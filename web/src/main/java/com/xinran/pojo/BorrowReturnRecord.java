@@ -14,6 +14,9 @@ import com.xinran.constant.DonateStatus;
 public class BorrowReturnRecord {
 
     private Long         id;
+    private Date         createdAt;
+    private Date         updatedAt;
+
     private Long         bookId;
     private DonateStatus bookDonateStatus; // 冗余
 

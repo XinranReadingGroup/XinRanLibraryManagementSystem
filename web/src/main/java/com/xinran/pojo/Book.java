@@ -1,7 +1,6 @@
 package com.xinran.pojo;
 
-import com.xinran.constant.BorrowStatus;
-import com.xinran.constant.DonateStatus;
+import java.util.Date;
 
 import lombok.Data;
 
@@ -12,14 +11,18 @@ import lombok.Data;
 @Data
 public class Book {
 
-    private Integer      id;
-    private String       isbn;
-    private String       title;
-    private String       imgURL;
-    private String       desc;
-    private String       author;
-    private DonateStatus donateState;
-    private BorrowStatus borrowStatus;
-    private Long         userId;
+    private Integer id;
+    private Date    createdAt;
+    private Date    updatedAt;
+
+    private Long    ownerId;
+
+    private String  isbn;
+    private String  title;
+    private String  imgURL;
+    private String  desc;
+    private String  author;
+    private String  donateState;
+    private String  borrowStatus;
 
 }

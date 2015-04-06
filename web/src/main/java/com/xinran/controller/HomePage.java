@@ -9,7 +9,7 @@ public class HomePage {
 
     @RequestMapping("/")
     public String greeting() {
-        return "hello,greeting";
+        return "homePage";
     }
 
 }

@@ -1,4 +1,4 @@
-package com.xinran.dao;
+package com.xinran.dao.mapper;
 
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Select;
