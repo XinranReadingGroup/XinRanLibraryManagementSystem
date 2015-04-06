@@ -9,6 +9,8 @@ import org.apache.ibatis.annotations.Results;
 import org.apache.ibatis.annotations.Select;
 import org.springframework.stereotype.Repository;
 
+import com.xinran.pojo.Book;
+
 @Repository(value = "bookMapper")
 public interface BookMapper {    
     
@@ -19,4 +21,7 @@ public interface BookMapper {
             @Result(property = "isShowLeft", column = "c_is_show_left"),    
             @Result(property = "name", column = "c_name") })    
     List<Menu> operateReturnBeans(@Param(value = "sql") String sql);    
+
+    @Select("SELECT * FROM book   order by created_At asc LIMIT #{limit} OFFSET #{offset} ")
+    public List<Book> findAllWithPagenate(@Param("limit") int limit, @Param("offset") int offset);
 }

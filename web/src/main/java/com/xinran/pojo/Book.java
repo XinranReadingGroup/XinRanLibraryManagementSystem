@@ -11,18 +11,19 @@ import lombok.Data;
 @Data
 public class Book {
 
-    private Integer id;
-    private Date    createdAt;
-    private Date    updatedAt;
+    private Long   id;
+    private Date   createdAt;
+    private Date   updatedAt;
 
-    private Long    ownerId;
+    private Long   ownerId;
 
-    private String  isbn;
-    private String  title;
-    private String  imgURL;
-    private String  desc;
-    private String  author;
-    private String  donateState;
-    private String  borrowStatus;
+    private String isbn;
+    private String title;
+    private String imgURL;
+    private String author;
+    private String memo;
+
+    private String donateState;
+    private String borrowStatus;
 
 }

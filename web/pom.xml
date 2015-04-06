@@ -84,10 +84,10 @@
 			<version>${springVersion}</version>
 		</dependency>
 		<dependency>
-    <groupId>org.springframework</groupId>
-    <artifactId>spring-context-support</artifactId>
-    <version>${springVersion}</version>
-</dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context-support</artifactId>
+			<version>${springVersion}</version>
+		</dependency>
 
 		<!-- spring AOP 包 -->
 		<dependency>
