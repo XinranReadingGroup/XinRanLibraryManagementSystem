@@ -12,7 +12,9 @@ public class User {
 
     private Long    id;
     private String  userName;
-    private String  encryptedPassword;
+    private String  nickName;           // add
+
+    private String  password;           // 加密后的密码
     private String  salt;
     private String  mobile;
     private String  email;
@@ -23,5 +25,9 @@ public class User {
     private Integer signInCount;
     private Date    currentSignInAt;
     private Date    lastSignInAt;
+
+    private String  area;               //
+    private String  signatur;           // 个性签名
+    private Integer score;              // add
 
 }

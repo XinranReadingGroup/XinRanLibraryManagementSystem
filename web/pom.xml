@@ -148,78 +148,14 @@
             <version>1.14.4</version>
         </dependency>
 
+        <dependency>
+            <groupId>com.google.zxing</groupId>
+            <artifactId>javase</artifactId>
+            <version>3.2.0</version>
+        </dependency>
+
 
     </dependencies>
 
-
-    <profiles>
-
-        <!--
-         | Developer profile
-         +-->
-        <profile>
-            <id>dev</id>
-            <activation>
-                <activeByDefault>true</activeByDefault>
-            </activation>
-            <build>
-                <plugins>
-                    <plugin>
-                        <groupId>com.googlecode</groupId>
-                        <artifactId>maven-db-plugin</artifactId>
-                        <version>1.4</version>
-                        <configuration>
-                            <adminDbConnectionSettings>
-                                <jdbcDriver>com.mysql.jdbc.Driver</jdbcDriver>
-                                <jdbcUrl>jdbc:mysql://localhost:3306/</jdbcUrl>
-                                <userName>root</userName>
-                                <password></password>
-                            </adminDbConnectionSettings>
-                            <appDbConnectionSettings>
-                                <jdbcDriver>com.mysql.jdbc.Driver</jdbcDriver>
-                                <jdbcUrl>jdbc:mysql://localhost:3306/someAppDb</jdbcUrl>
-                                <userName>someAppDbUser</userName>
-                                <password>someAppDbPassword</password>
-                            </appDbConnectionSettings>
-                            <sqlDelimiter>#--;</sqlDelimiter>
-                            <dbDataScriptsDirectory>
-                                <param>src/main/sql/data</param>
-                            </dbDataScriptsDirectory>
-                            <dbSchemaScriptsDirectory>
-                                <param>src/main/sql/schema</param>
-                            </dbSchemaScriptsDirectory>
-                            <dbUpdateScriptsDirectory>
-                                <param>src/main/sql/update</param>
-                            </dbUpdateScriptsDirectory>
-                            <dbCreateStatements>
-                                create database someAppDb; #--;
-                                grant all on someAppDb.* tosomeAppDbUser@localhost identified by 'someAppDbPassword';
-                                #--;
-                                flush privileges; #--;
-                            </dbCreateStatements>
-                            <dbDropStatements>drop database someAppDb; #--;</dbDropStatements>
-                            <!-- optional <scriptEncoding>UTF-8</scriptEncoding> -->
-                        </configuration>
-                        <dependencies>
-                            <dependency>
-                                <groupId>mysql</groupId>
-                                <artifactId>mysql-connector-java</artifactId>
-                                <version>5.1.9</version>
-                            </dependency>
-                        </dependencies>
-                    </plugin>
-                </plugins>
-            </build>
-        </profile>
-    </profiles>
-
-    <repositories>
-        <repository>
-            <id>maven-db-plugin-repo</id>
-            <name>maven db plugin repository</name>
-            <url>http://maven-db-plugin.googlecode.com/svn/maven/repo</url>
-            <layout>default</layout>
-        </repository>
-    </repositories>
 
 </project>
