@@ -1,70 +1,67 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xmlns:context="http://www.springframework.org/schema/context"
-       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd">
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd">
 
 
-    <context:property-placeholder location="classpath:jdbc.properties"/>
-    <!--配置数据源 -->
-    <bean id="jdbcDataSource"
-          class="org.springframework.jdbc.datasource.DriverManagerDataSource">
-        <property name="driverClassName" value="${jdbc.driver}"/>
-        <property name="url" value="${jdbc.url}"/>
-        <property name="username" value="${jdbc.username}"/>
-        <property name="password" value="${jdbc.password}"/>
-    </bean>
+	<context:property-placeholder location="classpath:jdbc.properties" />
+	<!--配置数据源 -->
+	<bean id="jdbcDataSource"
+		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName" value="${jdbc.driver}" />
+		<property name="url" value="${jdbc.url}" />
+		<property name="username" value="${jdbc.username}" />
+		<property name="password" value="${jdbc.password}" />
+	</bean>
 
 
-    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
-        <property name="dataSource" ref="jdbcDataSource"/>
-        <property name="configLocation" value="classpath:mybatis-config.xml"></property>
-    </bean>
+	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="jdbcDataSource" />
+		<property name="configLocation" value="classpath:mybatis-config.xml"></property>
+	</bean>
 
-    <bean id="transactionManager"
-          class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
-        <property name="dataSource" ref="jdbcDataSource"/>
-    </bean>
+	<bean id="transactionManager"
+		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="jdbcDataSource" />
+	</bean>
 
-    <bean id="transaction"
-          class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean"
-          lazy-init="true" abstract="true">
-        <!-- 配置事务管理器 -->
-        <property name="transactionManager" ref="transactionManager"></property>
-        <!-- 配置事务管理器 -->
-        <property name="transactionAttributes">
-            <props>
-
-
-                <!-- 下面就开始配置各个模块所必须的部分，在各自的applicationContext-XXX-beans.xml配置的对于事务管理的详细信息。
-                    首先就是配置事务的传播特性，如下： -->
-
-                <!-- 配置事务传播特性 -->
-
-                <prop key="add*">PROPAGATION_REQUIRED,-Exception</prop>
-                <prop key="update*">PROPAGATION_REQUIRED,-Exception</prop>
-                <prop key="insert*">PROPAGATION_REQUIRED,-Exception</prop>
-                <prop key="modify*">PROPAGATION_REQUIRED,-Exception</prop>
-                <prop key="delete*">PROPAGATION_REQUIRED,-Exception</prop>
-                <prop key="get*">PROPAGATION_REQUIRED,-Exception</prop>
-            </props>
-        </property>
-    </bean>
-
-    <bean id="userDAOFactoryBean" class="org.mybatis.spring.mapper.MapperFactoryBean">
-        <property name="mapperInterface" value="com.growup.serfj.dao.UserDAO"></property>
-        <property name="sqlSessionFactory" ref="sqlSessionFactory"></property>
-    </bean>
+	<bean id="transaction"
+		class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean"
+		lazy-init="true" abstract="true">
+		<!-- 配置事务管理器 -->
+		<property name="transactionManager" ref="transactionManager"></property>
+		<!-- 配置事务管理器 -->
+		<property name="transactionAttributes">
+			<props>
 
 
-    <context:annotation-config/>
-    <!-- 把标记了@Controller注解的类转换为bean -->
-    <context:component-scan base-package="com.growup.serfj.service"/>
+				<!-- 下面就开始配置各个模块所必须的部分，在各自的applicationContext-XXX-beans.xml配置的对于事务管理的详细信息。 
+					首先就是配置事务的传播特性，如下： -->
 
-    <bean id="userService" class="com.growup.serfj.service.UserService"/>
+				<!-- 配置事务传播特性 -->
+
+				<prop key="add*">PROPAGATION_REQUIRED,-Exception</prop>
+				<prop key="update*">PROPAGATION_REQUIRED,-Exception</prop>
+				<prop key="insert*">PROPAGATION_REQUIRED,-Exception</prop>
+				<prop key="modify*">PROPAGATION_REQUIRED,-Exception</prop>
+				<prop key="delete*">PROPAGATION_REQUIRED,-Exception</prop>
+				<prop key="get*">PROPAGATION_REQUIRED,-Exception</prop>
+				<prop key="find*">PROPAGATION_REQUIRED,-Exception</prop>
+				<prop key="list*">PROPAGATION_REQUIRED,-Exception</prop>
+				<prop key="query*">PROPAGATION_REQUIRED,-Exception</prop>
+
+			</props>
+		</property>
+	</bean>
+
+	<bean id="userDAOFactoryBean" class="org.mybatis.spring.mapper.MapperFactoryBean">
+		<property name="mapperInterface" value="com.growup.serfj.dao.UserDAO"></property>
+		<property name="sqlSessionFactory" ref="sqlSessionFactory"></property>
+	</bean>
 
 
-    <bean class="com.growup.serfj.util.SpringBeanFactoryUtil"/>
-
+	<context:annotation-config />
+	<!-- 把标记了@Controller注解的类转换为bean -->
+	<context:component-scan base-package="com.xinran.service" />
 
 </beans>
