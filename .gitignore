@@ -19,3 +19,5 @@ target/
 test-output/
 
 src/generated/*
+
+logs/
