@@ -1,22 +1,95 @@
 create table IF NOT EXISTS user (
-  id int primary key auto_increment,
-  email varchar(255),
-  userName varchar(255)
-);
+  id bigint(20) unsigned primary key auto_increment,
+  created_At datetime ,
+  updated_At datetime ,
+   userName  varchar(64),
+    nickName  varchar(64),
+     mobile  varchar(64),
+      email  varchar(64),
+       password  varchar(64),
+        salt  varchar(64),
+  reset_Password_Token varchar(255),
+
+    reset_Password_Sent_At datetime ,
+  remember_Created_At datetime ,
+    signIn_Count bigint(20) unsigned ,
+
+  current_Sign_In_At datetime ,
+  last_Sign_In_At datetime ,
+  updated_At datetime ,
+  signature varchar(512),
+  score int
+  );
+
 
 
 create table IF NOT EXISTS book (
   id bigint(20) unsigned primary key auto_increment,
   created_At datetime ,
   updated_At datetime ,
-  ownerId bigint(20) unsigned,  
+  owner_User_Id bigint(20) unsigned,  
   isbn  varchar(64),
   title varchar(128),
   imgURL varchar(128),
   author varchar(64),
   memo varchar(1024),
-  donateState tinyint,
+  book_Status tinyint,
   borrowStatus tinyint
 );
+
+
+
+create table IF NOT EXISTS Book_Location (
+  id bigint(20) unsigned primary key auto_increment,
+  created_At datetime ,
+  updated_At datetime ,
+  
+    lat FLOAT( 10, 6 )     ,
+     lng FLOAT( 10, 6 ) ,
+  type varchar(64),
+  province varchar(128),
+  city varchar(128),
+  country varchar(128),
+  detail varchar(256)
+
+   
+);
+
+create table IF NOT EXISTS Borrow_Return_Record (
+  id bigint(20) unsigned primary key auto_increment,
+  created_At datetime ,
+  updated_At datetime ,
+  
+    owner_User_Id bigint(20),
+  borrow_User_Id bigint(20),
+
+  book_Id bigint(20),
+  book_Status tinyint,
+  
+  detail varchar(256)
+
+           borrow_Date datetime ,
+           return_Date datetime ,
+     borrow_Status tinyint,
+
+);
+ 
+create table IF NOT EXISTS On_Off_Stock_Record (
+  id bigint(20) unsigned primary key auto_increment,
+  created_At datetime ,
+  updated_At datetime ,
+  
+    owner_User_Id bigint(20),
+ 
+  book_Id bigint(20),
+  book_Status tinyint,
+
+
+           on_Stock_Date datetime ,
+           off_Stock_Date datetime ,
+     borrow_Status tinyint,
+
+);
+
 
 

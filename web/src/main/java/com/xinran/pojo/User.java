@@ -11,13 +11,16 @@ import java.util.Date;
 public class User {
 
     private Long    id;
+    private Date    createdAt;
+    private Date    updatedAt;
+
     private String  userName;
     private String  nickName;           // add
+    private String  mobile;
+    private String  email;
 
     private String  password;           // 加密后的密码
     private String  salt;
-    private String  mobile;
-    private String  email;
 
     private String  resetPasswordToken;
     private Date    resetPasswordSentAt;
@@ -27,7 +30,8 @@ public class User {
     private Date    lastSignInAt;
 
     private String  area;               //
-    private String  signatur;           // 个性签名
+    private String  signature;          // 个性签名
     private Integer score;              // add
+
 
 }

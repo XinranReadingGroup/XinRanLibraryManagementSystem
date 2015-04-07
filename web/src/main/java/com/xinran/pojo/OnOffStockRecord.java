@@ -10,10 +10,17 @@ import lombok.Data;
 @Data
 public class OnOffStockRecord {
 
-    private Long   id;
-    private Long   bookId;
-    private Long   userId;
-    private Date   onStockDate;
-    private Date   offStockDate;
+    private Long    id;
+    private Date    createdAt;
+    private Date    updatedAt;
+
+    private Long    bookId;
+    private Integer bookStatus;  // 冗余的
+    private Long    ownerUserId;
+
+    private Date    onStockDate;
+    private Date    offStockDate;
+
+    private Integer borrowStatus;
 
 }

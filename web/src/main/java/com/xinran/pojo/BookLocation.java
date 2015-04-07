@@ -18,9 +18,6 @@ public class BookLocation {
     private Float  lat;
     private Float  lng;
 
-    // `lat` FLOAT( 10, 6 ) NOT NULL ,
-    // `lng` FLOAT( 10, 6 ) NOT NULL
-
     private String type;     // 小范围, 国内的
 
     private String province;

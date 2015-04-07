@@ -12,13 +12,13 @@ package com.xinran.constant;
  * @author 高海军 帝奇 Apr 3, 2015 7:27:02 PM
  */
 
-public enum DonateStatus {
+public enum BookStatus {
 
-    donatedStatus(1), notDonatedStatus(0);
+    donatedStatus(0), sharedStatus(1);
 
     private int status;
 
-    private DonateStatus(int status) {
+    private BookStatus(int status) {
         this.status = status;
     }
 
