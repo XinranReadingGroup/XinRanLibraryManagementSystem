@@ -32,7 +32,7 @@ public class UserController {
 
         if (canSignIn) {
             HttpSession session = request.getSession(true);
-            session.getId();
+            String sessionId = session.getId();
         }
 
         // write accesToken
