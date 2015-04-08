@@ -1,4 +1,4 @@
-package com.xinran.controller;
+package com.xinran.controller.mobile;
 
 import java.util.List;
 

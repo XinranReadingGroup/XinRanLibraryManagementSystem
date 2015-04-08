@@ -15,13 +15,14 @@ public class Book {
     private Date    createdAt;
     private Date    updatedAt;
 
+    private Long    ownerUserId;
+
     private String  isbn;
     private String  title;
     private String  imgURL;
     private String  author;
     private String  memo;
 
-    private Long    ownerUserId;
 
     private Integer bookStatus;
 

@@ -1,3 +1,4 @@
+package com.xinran.controller.mobile;
 // package com.xinran.controller;
 //
 // import java.io.ByteArrayOutputStream;

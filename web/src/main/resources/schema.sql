@@ -16,7 +16,6 @@ create table IF NOT EXISTS user (
 
   current_Sign_In_At datetime ,
   last_Sign_In_At datetime ,
-  updated_At datetime ,
   signature varchar(512),
   score int
   );
@@ -34,7 +33,7 @@ create table IF NOT EXISTS book (
   author varchar(64),
   memo varchar(1024),
   book_Status tinyint,
-  borrowStatus tinyint
+  borrow_Status tinyint
 );
 
 
@@ -65,12 +64,10 @@ create table IF NOT EXISTS Borrow_Return_Record (
 
   book_Id bigint(20),
   book_Status tinyint,
-  
-  detail varchar(256)
 
            borrow_Date datetime ,
            return_Date datetime ,
-     borrow_Status tinyint,
+     borrow_Status tinyint
 
 );
  
@@ -87,9 +84,6 @@ create table IF NOT EXISTS On_Off_Stock_Record (
 
            on_Stock_Date datetime ,
            off_Stock_Date datetime ,
-     borrow_Status tinyint,
+     borrow_Status tinyint
 
 );
-
-
-
