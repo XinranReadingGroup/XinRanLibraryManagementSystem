@@ -15,8 +15,6 @@ public class Book {
     private Date    createdAt;
     private Date    updatedAt;
 
-    private Long    ownerUserId;
-
     private String  isbn;
     private String  title;
     private String  imgURL;

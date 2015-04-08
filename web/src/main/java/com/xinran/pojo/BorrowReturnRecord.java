@@ -5,7 +5,7 @@ import java.util.Date;
 import lombok.Data;
 
 /**
- * Created by 高海军 帝奇 on 2015 Feb 21 16:45.
+ * 借还记录 Created by 高海军 帝奇 on 2015 Feb 21 16:45.
  */
 @Data
 public class BorrowReturnRecord {

@@ -6,6 +6,8 @@ import java.util.Date;
 import lombok.Data;
 
 /**
+ * 书籍位置
+ * 
  * @author 高海军 帝奇 Apr 3, 2015 7:49:38 PM
  */
 @Data
