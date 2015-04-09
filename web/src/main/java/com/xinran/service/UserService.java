@@ -2,6 +2,7 @@
 package com.xinran.service;
 
 import com.xinran.exception.SignInValidationException;
+import com.xinran.exception.SignOutValidationException;
 import com.xinran.exception.SignUpValidationException;
 
 /**
@@ -17,4 +18,11 @@ public interface UserService {
      * @return
      */
     public Long signUp(String identifier, String password) throws SignUpValidationException;
+
+    /**
+     * @param identifier
+     * @param password
+     * @return
+     */
+    public void signOut(String accessToken) throws SignOutValidationException;
 }

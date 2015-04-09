@@ -90,11 +90,7 @@
 		</dependency>
 
 		<!-- spring AOP 包 -->
-		<dependency>
-			<groupId>com.alibaba</groupId>
-			<artifactId>fastjson</artifactId>
-			<version>1.2.1</version>
-		</dependency>
+
 		<dependency>
 			<groupId>org.aspectj</groupId>
 			<artifactId>aspectjweaver</artifactId>
@@ -148,11 +144,7 @@
 			<artifactId>mysql-connector-java</artifactId>
 			<version>5.1.32</version>
 		</dependency>
-		<dependency>
-			<groupId>org.projectlombok</groupId>
-			<artifactId>lombok</artifactId>
-			<version>1.14.4</version>
-		</dependency>
+
 
 		<dependency>
 			<groupId>com.google.zxing</groupId>
@@ -171,10 +163,32 @@
 			<version>18.0</version>
 		</dependency>
 		<dependency>
-		  <groupId>org.apache.httpcomponents</groupId>
-		  <artifactId>httpclient</artifactId>
-		  <version>4.4.1</version>
+			<groupId>com.alibaba</groupId>
+			<artifactId>fastjson</artifactId>
+			<version>1.2.5</version>
 		</dependency>
+
+		<dependency>
+			<groupId>org.apache.httpcomponents</groupId>
+			<artifactId>httpclient</artifactId>
+			<version>4.4.1</version>
+		</dependency>
+
+
+
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+			<version>1.14.4</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>4.12</version>
+			<scope>test</scope>
+		</dependency>
+
 
 
 	</dependencies>
