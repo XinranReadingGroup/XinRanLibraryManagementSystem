@@ -8,8 +8,17 @@ import com.xinran.vo.AjaxResult;
  */
 public class AjaxResultBuilder {
 
-    public static AjaxResult buildSuccessfulResult() {
+    public static AjaxResult buildSuccessfulResult(Object data) {
         AjaxResult ajaxResult = new AjaxResult();
+        ajaxResult.setCode(200);
+        ajaxResult.setData(data);
+        return ajaxResult;
+    }
+
+    public static AjaxResult buildFailedResult(Integer code, Object data) {
+        AjaxResult ajaxResult = new AjaxResult();
+        ajaxResult.setCode(code);
+        ajaxResult.setData(data);
         return ajaxResult;
     }
 }
