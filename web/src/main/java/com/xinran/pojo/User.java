@@ -25,7 +25,7 @@ public class User {
     private String  resetPasswordToken;
     private Date    resetPasswordSentAt;
     private Date    rememberCreatedAt;
-    private Integer signInCount;
+    private Integer signInCount = 0;
     private Date    currentSignInAt;
     private Date    lastSignInAt;
 

@@ -3,7 +3,15 @@ package com.xinran.exception;
 /**
  * @author 高海军 帝奇 Apr 8, 2015 10:03:06 PM
  */
-public class SignOutValidationException extends Exception {
+public class SignOutValidationException extends XinranCheckedException {
+
+    /**
+     * @param code
+     */
+    public SignOutValidationException(int code) {
+        super(code);
+        // TODO Auto-generated constructor stub
+    }
 
     /**
      * 

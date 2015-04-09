@@ -10,14 +10,14 @@ import com.xinran.exception.SignUpValidationException;
  */
 public interface UserService {
 
-    public Long signIn(String identifier, String password) throws SignInValidationException;
-
     /**
      * @param identifier
      * @param password
      * @return
      */
     public Long signUp(String identifier, String password) throws SignUpValidationException;
+
+    public Long signIn(String identifier, String password) throws SignInValidationException;
 
     /**
      * @param identifier

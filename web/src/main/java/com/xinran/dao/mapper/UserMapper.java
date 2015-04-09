@@ -1,62 +1,43 @@
 package com.xinran.dao.mapper;
 
-import java.util.Date;
-
 import org.apache.ibatis.annotations.Insert;
+import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Update;
 
 import com.xinran.pojo.User;
 
 public interface UserMapper {
+
+    // TODO add index
+
 	@Select("SELECT * FROM user WHERE id = #{userId}")
-	public User getUser(long userId);
+    public User findUserById(long userId);
 
-    @Insert("insert into user (created_At, updated_At,userName, nickName,mobile, email,password, salt,reset_Password_Token, reset_Password_Sent_At,remember_Created_At, signIn_Count,"
-            + "current_Sign_In_At, last_Sign_In_At,signature,score) values(now(),now(),#{userName}, #{userName})")
-    public int addUser(User user);
-    
-    
-    // private Date createdAt;
-    // private Date updatedAt;
-    //
-    // private String userName;
-    // private String nickName; // add
-    // private String mobile;
-    // private String email;
-    //
-    // private String password; // 加密后的密码
-    // private String salt;
-    //
-    // private String resetPasswordToken;
-    // private Date resetPasswordSentAt;
-    // private Date rememberCreatedAt;
-    // private Integer signInCount;
-    // private Date currentSignInAt;
-    // private Date lastSignInAt;
-    //
-    // private String area; //
-    // private String signature; // 个性签名
-    // private Integer score; // add
+    @Select("SELECT * FROM user WHERE mobile = #{mobile}")
+    public User findUserByMobile(@Param("mobile") String mobile);
 
-    // id bigint(20) unsigned primary key auto_increment,
-    // created_At datetime ,
-    // updated_At datetime ,
-    // userName varchar(64),
-    // nickName varchar(64),
-    // mobile varchar(64),
-    // email varchar(64),
-    // password varchar(64),
-    // salt varchar(64),
-    // reset_Password_Token varchar(255),
-    //
-    // reset_Password_Sent_At datetime ,
-    // remember_Created_At datetime ,
-    // signIn_Count bigint(20) unsigned ,
-    //
-    // current_Sign_In_At datetime ,
-    // last_Sign_In_At datetime ,
-    // signature varchar(512),
-    // score int
+    @Select("SELECT * FROM user WHERE email = #{email}")
+    public User findUserByEmail(@Param("email") String email);
+
+    @Select("SELECT * FROM user WHERE user_Name = #{userName}")
+    public User findUserByUserName(@Param("userName") String userName);
+
+    @Insert("insert into user (created_At, updated_At,user_Name, nick_Name,mobile, email,password, salt,reset_Password_Token, reset_Password_Sent_At,remember_Created_At, signIn_Count,"
+            + "current_Sign_In_At, last_Sign_In_At,area,signature,score) values(now(),now(),#{userName}, #{nickName},"
+            + " #{mobile}, #{email}, #{password}, #{salt}, #{resetPasswordToken}, #{resetPasswordSentAt}, #{rememberCreatedAt}, "
+            + "#{signInCount}, #{currentSignInAt}, #{lastSignInAt}, #{area}, #{signature}, #{score})")
+    public Long addUser(User user);
+    
+    @Update("update  user set   updated_At = #{updatedAt},user_Name =  #{userName}, nick_Name = #{nickName},mobile=#{mobile},"
+            + " email=#{email},password=#{password}, salt= #{salt},reset_Password_Token =#{resetPasswordToken},"
+            + " reset_Password_Sent_At =#{resetPasswordSentAt},remember_Created_At=#{rememberCreatedAt}"
+            + ", signIn_Count =#{signInCount},current_Sign_In_At = #{currentSignInAt},"
+            + " last_Sign_In_At =#{lastSignInAt},area= #{area},signature=#{signature},score=#{score} where id = #{id}")
+ 
+    public int updateUser(User user);
+    
+
 
 
 }
