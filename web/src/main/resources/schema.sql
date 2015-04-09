@@ -2,8 +2,8 @@ create table IF NOT EXISTS user (
   id bigint(20) unsigned primary key auto_increment,
   created_At datetime ,
   updated_At datetime ,
-   userName  varchar(64),
-    nickName  varchar(64),
+   user_Name  varchar(64),
+    nick_Name  varchar(64),
      mobile  varchar(64),
       email  varchar(64),
        password  varchar(64),
@@ -26,14 +26,12 @@ create table IF NOT EXISTS book (
   id bigint(20) unsigned primary key auto_increment,
   created_At datetime ,
   updated_At datetime ,
-  owner_User_Id bigint(20) unsigned,  
   isbn  varchar(64),
   title varchar(128),
   imgURL varchar(128),
   author varchar(64),
   memo varchar(1024),
   book_Status tinyint,
-  borrow_Status tinyint
 );
 
 
