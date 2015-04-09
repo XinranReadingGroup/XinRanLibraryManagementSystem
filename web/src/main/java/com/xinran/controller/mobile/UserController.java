@@ -78,10 +78,11 @@ public class UserController {
     @RequestMapping("/user/signOut")
     public @ResponseBody AjaxResult signOut(@RequestParam(value = "identifier") String identifier,
                                            @RequestParam(value = "password") String password, HttpServletRequest request) {
-        boolean canSignIn = userService.canSignOut(identifier, password);
+        // boolean canSignIn = userService.canSignOut(identifier, password);
+        //
+        // return canSignInOrUp(request, canSignIn);
 
-        return canSignInOrUp(request, canSignIn);
-
+        return null;
     }
 
 }
