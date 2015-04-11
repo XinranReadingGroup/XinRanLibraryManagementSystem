@@ -8,12 +8,12 @@ package com.xinran.constant;
 
 public enum BorrowStatus {
 
-    borrowedStatus(1), notBorrowedStatus(0);
+    BORROWED(1), UNBORROWED(0);
 
     private int status;
 
     private BorrowStatus(int status) {
-        this.status = status;
+        this.status = Integer.valueOf(status);
     }
 
     public int getStatus() {

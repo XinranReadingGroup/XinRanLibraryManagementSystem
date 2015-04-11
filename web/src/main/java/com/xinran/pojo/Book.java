@@ -10,6 +10,12 @@ import lombok.Data;
 
 @Data
 public class Book {
+	
+	public Book(){
+		Date now = new Date();
+		this.createdAt = now;
+		this.updatedAt = now;
+	}
 
     private Long    id;
     private Date    createdAt;
@@ -19,11 +25,8 @@ public class Book {
     private String  title;
     private String  imgURL;
     private String  author;
-    private String  memo;
+    private String  summary;
     private String  price;
     private String  publisher;
-
-
-    private Integer bookStatus;
 
 }

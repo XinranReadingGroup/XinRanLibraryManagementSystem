@@ -9,6 +9,13 @@ import lombok.Data;
  */
 @Data
 public class OnOffStockRecord {
+	
+	public OnOffStockRecord(){
+		Date now = new Date();
+		this.createdAt = now;
+		this.updatedAt = now;
+		this.onStockDate = now;
+	}
 
     private Long    id;
     private Date    createdAt;
@@ -17,6 +24,8 @@ public class OnOffStockRecord {
     private Long    bookId;
     private Integer bookStatus;  // 冗余的
     private Long    ownerUserId;
+    private String  ownerPhone;
+    private Long 	location;
 
     private Date    onStockDate;
     private Date    offStockDate;

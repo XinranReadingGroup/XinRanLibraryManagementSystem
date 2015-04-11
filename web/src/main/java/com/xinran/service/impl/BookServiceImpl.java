@@ -12,7 +12,9 @@ import org.springframework.stereotype.Service;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.xinran.dao.mapper.BookMapper;
+import com.xinran.dao.mapper.OnOffStockRecordMapper;
 import com.xinran.pojo.Book;
+import com.xinran.pojo.OnOffStockRecord;
 import com.xinran.service.BookService;
 import com.xinran.service.DouBanService;
 
@@ -28,11 +30,29 @@ public class BookServiceImpl implements BookService {
     private BookMapper bookMapper;
     
     @Autowired
+    private OnOffStockRecordMapper onOffStockRecordMapper;
+    
+    @Autowired
     private DouBanService douBanService;
 
+    @Override
     public List<Book> findAllWithPagenate(int limit, int offset) {
         return bookMapper.findAllWithPagenate(limit, offset);
     }
+    
+    @Override
+    public OnOffStockRecord onStock(OnOffStockRecord record) {
+    	Long id = onOffStockRecordMapper.add(record);
+    	if(record.getId() == null){
+    		if(id == null){
+    			return null;
+    		}else{
+    			record.setId(id);
+    		}
+    	}
+    	return record;
+    }
+    
 
 	@Override
 	public Book findBookByISBN(String isbn) {
@@ -63,9 +83,9 @@ public class BookServiceImpl implements BookService {
 		
 		// 作者，如果多个作者，以逗号拼接
 		JSONArray authors = douBanData.getJSONArray("author");
-		if(authors.size() == 1){
+		if(authors != null && authors.size() == 1){
 			book.setAuthor(authors.getString(0));
-		}else if(authors.size() > 1){
+		}else if(authors != null && authors.size() > 1){
 			StringBuilder appender = new StringBuilder();
 			for(int i=0; i < authors.size(); i++){
 				appender.append(authors.getString(i));
@@ -84,7 +104,7 @@ public class BookServiceImpl implements BookService {
 		// ISBN
 		book.setIsbn(douBanData.getString("isbn13"));
 		// 概述
-		book.setMemo(douBanData.getString("summary"));
+		book.setSummary(douBanData.getString("summary"));
 		// 图片
 		book.setImgURL(douBanData.getString("image"));
 		return book;

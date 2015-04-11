@@ -31,11 +31,10 @@ create table IF NOT EXISTS book (
   title varchar(128),
   img_url varchar(128),
   author varchar(64),
-  memo varchar(4096),
+  summary varchar(4096),
   price varchar(32),
-  publisher varchar(64),
-  book_Status tinyint default 0
-);
+  publisher varchar(64)
+) charset utf8;
 
 
 
@@ -72,19 +71,21 @@ create table IF NOT EXISTS Borrow_Return_Record (
 
 );
  
-create table IF NOT EXISTS On_Off_Stock_Record (
+create table IF NOT EXISTS on_off_stock_record (
   id bigint(20) unsigned primary key auto_increment,
   created_At datetime ,
   updated_At datetime ,
   
-    owner_User_Id bigint(20),
- 
   book_Id bigint(20),
   book_Status tinyint,
+  
+  owner_User_Id bigint(20),
+  owner_Phone varchar(16),
+  
+  location bigint(20),
 
+  on_Stock_Date datetime ,
+  off_Stock_Date datetime ,
+  borrow_Status tinyint
 
-           on_Stock_Date datetime ,
-           off_Stock_Date datetime ,
-     borrow_Status tinyint
-
-);
+) charset utf8;

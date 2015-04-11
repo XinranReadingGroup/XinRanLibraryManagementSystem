@@ -8,17 +8,16 @@ package com.xinran.constant;
 
 public enum BookStatus {
 
-    donatedStatus(0), sharedStatus(1);
+    DONATED(0), SHARED(1);
 
-    private int status;
+    private Integer status;
 
-    private BookStatus(int status) {
-        this.status = status;
+    private BookStatus(int value) {
+        this.status = Integer.valueOf(value);
     }
-
-    public int getStatus() {
-        return status;
+    
+    public Integer getStatus(){
+    	return status;
     }
-
 
 }

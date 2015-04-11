@@ -28,13 +28,12 @@ public class TestLogin {
     public void donate() {
         Book book = new Book();
         book.setAuthor("海子");
-        book.setBookStatus(1);
         book.setCreatedAt(new Date());
         book.setUpdatedAt(new Date());
         book.setId(1L);
         book.setImgURL("http://img.url");
         book.setIsbn("123456Isbn");
-        book.setMemo("呵呵呵");
+        book.setSummary("呵呵呵");
         book.setTitle("面朝大海");
         AjaxResult result = AjaxResultBuilder.buildSuccessfulResult(book);
         System.out.println(JSONObject.toJSONString(result));
