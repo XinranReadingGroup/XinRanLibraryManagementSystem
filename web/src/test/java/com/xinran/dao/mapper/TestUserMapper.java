@@ -6,7 +6,6 @@ import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.transaction.annotation.Transactional;
@@ -27,63 +26,88 @@ import com.xinran.util.DateUtil;
 //这个表示方法执行完以后回滚事务，如果设置为false，则不回滚
 public class TestUserMapper {
 
+    String             area               = "testArea";
+    String             email              = "test@test.com";
+    String             mobile             = "testMobile";
+    String             nickName           = "testNickName";
+    String             password           = "testPassword";
+    String             resetPasswordToken = "testResetPasswordToken";
+    String             salt               = "testSalt";
+    Integer            score              = 1122;
+    String             signature          = "testSignature";
+    Integer            signInCount        = 2211;
+    String             userName           = "testUserName";
+
+    // just test different date
+    Date               currentDate               = DateUtil.getCurrentDate();
+    Date               lastSignInDate      = new Date(currentDate.getTime() - 123456L);
+    Date               rememberCreatedAt   = new Date(lastSignInDate.getTime() - 123456L);
+    Date               resetPasswordSentAt = new Date(rememberCreatedAt.getTime() - 123456L);
+
     @Autowired
     private UserMapper userMapper;
 
     @Test
     // @Rollback(false)
-    public void testAddUserAndFindById() {
-        Date date = DateUtil.getCurrentDate();
-        String area = "testArea";
-        String email = "test@test.com";
-        String mobile = "testMobile";
-        String nickName = "testNickName";
-        String password = "testPassword";
-        String resetPasswordToken = "testResetPasswordToken";
-        String salt = "testSalt";
-        Integer score = 1122;
-        String signature = "testSignature";
-        Integer signInCount = 2211;
-        String userName = "testUserName";
+    public void testAddUserAndFindById_Mail_Mobile_UserName() {
+
 
         User testUser = new User();
+        stubUser(testUser);
+
+        userMapper.addUser(testUser);
+
+        User user = userMapper.findUserById(testUser.getId());
+        assertAllIsPassed(testUser, user);
+
+        user = userMapper.findUserByEmail(testUser.getEmail());
+        assertAllIsPassed(testUser, user);
+
+        user = userMapper.findUserByMobile(testUser.getMobile());
+        assertAllIsPassed(testUser, user);
+
+        user = userMapper.findUserByUserName(testUser.getUserName());
+        assertAllIsPassed(testUser, user);
+
+    }
+
+    private void stubUser(User testUser) {
         testUser.setArea(area);
-        testUser.setCurrentSignInAt(date);
+        testUser.setCurrentSignInAt(currentDate);
         testUser.setEmail(email);
-        testUser.setLastSignInAt(date);
+        testUser.setLastSignInAt(currentDate);
         testUser.setMobile(mobile);
         testUser.setNickName(nickName);
         testUser.setPassword(password);
-        testUser.setRememberCreatedAt(date);
-        testUser.setResetPasswordSentAt(date);
+        testUser.setRememberCreatedAt(currentDate);
+        testUser.setResetPasswordSentAt(currentDate);
         testUser.setResetPasswordToken(resetPasswordToken);
         testUser.setSalt(salt);
         testUser.setScore(score);
         testUser.setSignature(signature);
         testUser.setSignInCount(signInCount);
         testUser.setUserName(userName);
-        userMapper.addUser(testUser);
+    }
 
-        User user = userMapper.findUserById(testUser.getId());
+    private void assertAllIsPassed(User testUser, User user) {
         Assert.assertNotNull(user.getCreatedAt());
         Assert.assertNotNull(user.getUpdatedAt());
 
         Assert.assertEquals(area, testUser.getArea());
-        Assert.assertEquals(date, testUser.getCurrentSignInAt());
+        Assert.assertEquals(currentDate, testUser.getCurrentSignInAt());
         Assert.assertEquals(email, testUser.getEmail());
-        Assert.assertEquals(date, testUser.getLastSignInAt());
+        Assert.assertEquals(currentDate, testUser.getLastSignInAt());
         Assert.assertEquals(mobile, testUser.getMobile());
         Assert.assertEquals(nickName, testUser.getNickName());
         Assert.assertEquals(password, testUser.getPassword());
-        Assert.assertEquals(date, testUser.getRememberCreatedAt());
-        Assert.assertEquals(date, testUser.getResetPasswordSentAt());
+        Assert.assertEquals(currentDate, testUser.getRememberCreatedAt());
+        Assert.assertEquals(currentDate, testUser.getResetPasswordSentAt());
         Assert.assertEquals(resetPasswordToken, testUser.getResetPasswordToken());
         Assert.assertEquals(salt, testUser.getSalt());
         Assert.assertEquals(score, testUser.getScore());
         Assert.assertEquals(signature, testUser.getSignature());
         Assert.assertEquals(signInCount, testUser.getSignInCount());
         Assert.assertEquals(userName, testUser.getUserName());
-
     }
 
 }

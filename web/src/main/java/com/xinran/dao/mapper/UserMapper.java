@@ -11,7 +11,7 @@ import com.xinran.pojo.User;
 
 public interface UserMapper {
 
-    // TODO add index
+    // TODO add index,4个唯一字段
 
 	@Select("SELECT * FROM user WHERE id = #{userId}")
     @Result(property = "parentId", column = "c_parent_id")

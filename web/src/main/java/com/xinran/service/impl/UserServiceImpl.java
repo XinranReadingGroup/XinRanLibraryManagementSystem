@@ -30,7 +30,7 @@ public class UserServiceImpl implements UserService {
      * @see com.xinran.service.UserService#signUp(java.lang.String, java.lang.String)
      */
     @Override
-    public Long signUp(String identifier, String password) throws SignUpValidationException {
+    public Long signUpForMobileIndentifier(String identifier, String password) throws SignUpValidationException {
         User userIfExists = userMapper.findUserByMobile(identifier);
 
         if (null == userIfExists) {
@@ -39,6 +39,7 @@ public class UserServiceImpl implements UserService {
 
             User signUpUser = new User();
             signUpUser.setMobile(identifier);
+            signUpUser.setSalt(salt);
             signUpUser.setPassword(hash);
             userMapper.addUser(signUpUser);
             return signUpUser.getId();
@@ -86,8 +87,17 @@ public class UserServiceImpl implements UserService {
      */
     @Override
     public void signOut(String accessToken) throws SignOutValidationException {
-        // TODO Auto-generated method stub
 
+    }
+
+    /*
+     * (non-Javadoc)
+     * @see com.xinran.service.UserService#findUserByUserId(java.lang.Long)
+     */
+    @Override
+    public User findUserByUserId(Long userId) {
+        User user = userMapper.findUserById(userId);
+        return user;
     }
 
 }

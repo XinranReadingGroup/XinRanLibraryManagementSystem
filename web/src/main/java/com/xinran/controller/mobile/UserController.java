@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.google.common.collect.Maps;
+import com.xinran.constant.ApplicationConstant;
 import com.xinran.exception.SignInValidationException;
 import com.xinran.exception.SignOutValidationException;
 import com.xinran.exception.SignUpValidationException;
@@ -28,19 +29,21 @@ import com.xinran.vo.builder.AjaxResultBuilder;
 @RequestMapping("/mobile")
 public class UserController {
 
+    private static final String userIdentifier = "userIdentifier";
+    private static final String password       = "password";
 
     @Autowired
     private UserService userService;
 
     @RequestMapping("/user/signUp")
-    public @ResponseBody AjaxResult signUp(@RequestParam(value = "identifier") String identifier,
-                                           @RequestParam(value = "password") String password, HttpServletRequest request) {
+    public @ResponseBody AjaxResult signUp(@RequestParam(value = userIdentifier) String identifier,
+                                           @RequestParam(value = password) String password, HttpServletRequest request) {
         Long userId;
         try {
-            userId = userService.signUp(identifier, password);
+            userId = userService.signUpForMobileIndentifier(identifier, password);
             return doSignInOrSignUp(request, userId);
         } catch (SignUpValidationException e) {
-            return AjaxResultBuilder.buildFailedResult(400, "account already been registered");
+            return AjaxResultBuilder.buildFailedResult(400, e.getMessage());
         }
 
     }
@@ -62,14 +65,14 @@ public class UserController {
 
 
     @RequestMapping("/user/signIn")
-    public @ResponseBody AjaxResult signIn(@RequestParam(value = "identifier") String identifier,
-                         @RequestParam(value = "password") String password, HttpServletRequest request) {
+    public @ResponseBody AjaxResult signIn(@RequestParam(value = userIdentifier) String identifier,
+                                           @RequestParam(value = password) String password, HttpServletRequest request) {
         Long userId;
         try {
             userId = userService.signIn(identifier, password);
             return doSignInOrSignUp(request, userId);
         } catch (SignInValidationException e) {
-            return AjaxResultBuilder.buildFailedResult(400, "invalid_username_or_password");
+            return AjaxResultBuilder.buildFailedResult(400, e.getMessage());
         }
 
     }
@@ -77,10 +80,10 @@ public class UserController {
 
 
     @RequestMapping("/user/signOut")
-    public @ResponseBody AjaxResult signOut(@RequestParam(value = "accessToken") String accessToken,
+    public @ResponseBody AjaxResult signOut(@RequestParam(value = ApplicationConstant.ACCESS_TOKEN) String accessToken,
                                             HttpServletRequest request) {
         try {
-
+            request.getSession().invalidate();
             userService.signOut(accessToken);
             return AjaxResultBuilder.buildSuccessfulResult("ok");
 
