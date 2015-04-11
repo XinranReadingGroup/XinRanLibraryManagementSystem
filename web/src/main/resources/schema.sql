@@ -16,6 +16,7 @@ create table IF NOT EXISTS user (
 
   current_Sign_In_At datetime ,
   last_Sign_In_At datetime ,
+    area varchar(512),
   signature varchar(512),
   score int
   );

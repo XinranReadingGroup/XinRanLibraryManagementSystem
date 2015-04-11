@@ -40,8 +40,8 @@ public class UserServiceImpl implements UserService {
             User signUpUser = new User();
             signUpUser.setMobile(identifier);
             signUpUser.setPassword(hash);
-            Long userId = userMapper.addUser(signUpUser);
-            return userId;
+            userMapper.addUser(signUpUser);
+            return signUpUser.getId();
         } else {
             throw new SignUpValidationException(ExceptionCode.IndentifierAlreadyBeenTaken.getCode());
         }

@@ -57,6 +57,13 @@
 
 	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
 		<property name="dataSource" ref="jdbcDataSource" />
+		<property name="configLocation" value="classpath:batisConfig.xml" />
+		
+		<!-- <property name="configurationProperties"> 
+			<props>
+				<prop key="mapUnderscoreToCamelCase">true</prop>
+			</props>
+		</property>  -->
 	</bean>
 
 	<bean id="transactionManager"
@@ -80,8 +87,9 @@
 				<!-- 配置事务传播特性 -->
 
 				<prop key="add*">PROPAGATION_REQUIRED,-Exception</prop>
-				<prop key="update*">PROPAGATION_REQUIRED,-Exception</prop>
 				<prop key="insert*">PROPAGATION_REQUIRED,-Exception</prop>
+				<prop key="create*">PROPAGATION_REQUIRED,-Exception</prop>
+				<prop key="update*">PROPAGATION_REQUIRED,-Exception</prop>
 				<prop key="modify*">PROPAGATION_REQUIRED,-Exception</prop>
 				<prop key="delete*">PROPAGATION_REQUIRED,-Exception</prop>
 				<prop key="get*">PROPAGATION_REQUIRED,-Exception</prop>
