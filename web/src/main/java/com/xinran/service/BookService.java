@@ -11,4 +11,7 @@ import com.xinran.pojo.Book;
 public interface BookService {
 
     public List<Book> findAllWithPagenate(int limit, int offset);
+    
+    
+    Book findBookByISBN(String isbn);
 }

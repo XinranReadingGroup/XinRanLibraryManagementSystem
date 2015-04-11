@@ -28,11 +28,12 @@ create table IF NOT EXISTS book (
   updated_At datetime ,
   isbn  varchar(64),
   title varchar(128),
-  imgURL varchar(128),
+  img_url varchar(128),
   author varchar(64),
-  memo varchar(1024),
+  memo varchar(4096),
   price varchar(32),
-  book_Status tinyint
+  publisher varchar(64),
+  book_Status tinyint default 0
 );
 
 

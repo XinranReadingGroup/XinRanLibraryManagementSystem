@@ -3,7 +3,6 @@ package com.xinran.service.impl;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.Reader;
-import java.util.Map;
 
 import org.apache.commons.lang.StringUtils;
 import org.apache.http.Header;
@@ -15,8 +14,10 @@ import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Service;
 
 import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
 import com.xinran.service.DouBanService;
 
 /**
@@ -26,6 +27,7 @@ import com.xinran.service.DouBanService;
  * @author zhuangyao.zy
  *
  */
+@Service
 public class DouBanServiceImpl implements DouBanService {
 	
 	private static final String API_URL_PREFIX = "https://api.douban.com/v2/book";
@@ -39,7 +41,7 @@ public class DouBanServiceImpl implements DouBanService {
 	private final CloseableHttpClient http = HttpClients.createDefault();
 
 	@Override
-	public Map<String, Object> getBookByISBN(String isbn) {
+	public JSONObject getBookByISBN(String isbn) {
 		HttpGet get = new HttpGet(API_GET_BOOK_BY_ISBN + isbn);
 		String resp = request(get);
 		if(StringUtils.isNotBlank(resp)){

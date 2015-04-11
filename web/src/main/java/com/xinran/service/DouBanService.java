@@ -1,6 +1,7 @@
 package com.xinran.service;
 
-import java.util.Map;
+
+import com.alibaba.fastjson.JSONObject;
 
 /**
  * 
@@ -18,6 +19,6 @@ public interface DouBanService {
 	 * 
 	 * @return 返回MAP格式的图书信息，key及value类型参考JSON
 	 */
-	Map<String, Object> getBookByISBN(String isbn);
+	JSONObject getBookByISBN(String isbn);
 	
 }
