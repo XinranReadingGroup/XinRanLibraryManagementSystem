@@ -29,15 +29,15 @@ import com.xinran.vo.builder.AjaxResultBuilder;
 @RequestMapping("/mobile")
 public class UserController {
 
-    private static final String userIdentifier = "userIdentifier";
-    private static final String password       = "password";
+    // private static final String userIdentifier = "userIdentifier";
+    // private static final String password = "password";
 
     @Autowired
     private UserService userService;
 
     @RequestMapping("/user/signUp")
-    public @ResponseBody AjaxResult signUp(@RequestParam(value = userIdentifier) String identifier,
-                                           @RequestParam(value = password) String password, HttpServletRequest request) {
+    public @ResponseBody AjaxResult signUp(@RequestParam(value = "userIdentifier") String identifier,
+                                           @RequestParam(value = "password") String password, HttpServletRequest request) {
         Long userId;
         try {
             userId = userService.signUpForMobileIndentifier(identifier, password);
@@ -65,8 +65,8 @@ public class UserController {
 
 
     @RequestMapping("/user/signIn")
-    public @ResponseBody AjaxResult signIn(@RequestParam(value = userIdentifier) String identifier,
-                                           @RequestParam(value = password) String password, HttpServletRequest request) {
+    public @ResponseBody AjaxResult signIn(@RequestParam(value = "userIdentifier") String identifier,
+                                           @RequestParam(value = "password") String password, HttpServletRequest request) {
         Long userId;
         try {
             userId = userService.signIn(identifier, password);
