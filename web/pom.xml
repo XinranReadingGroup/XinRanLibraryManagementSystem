@@ -29,6 +29,7 @@
 				<artifactId>jetty-maven-plugin</artifactId>
 				<version>9.0.5.v20130815</version>
 				<configuration>
+					<jvmArgs>-Xmx1g -Xms1g -XX:PermSize=256m -XX:MaxPermSize=256m -XX:+HeapDumpOnOutOfMemoryError</jvmArgs>
 					<connectors>
 						<connector implementation="org.mortbay.jetty.nio.SelectChannelConnector">
 							<port>80</port>
