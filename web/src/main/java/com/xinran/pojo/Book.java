@@ -20,6 +20,7 @@ public class Book {
     private String  imgURL;
     private String  author;
     private String  memo;
+    private String  price;
 
 
     private Integer bookStatus;

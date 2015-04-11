@@ -31,6 +31,7 @@ create table IF NOT EXISTS book (
   imgURL varchar(128),
   author varchar(64),
   memo varchar(1024),
+  price varchar(32),
   book_Status tinyint,
 );
 
