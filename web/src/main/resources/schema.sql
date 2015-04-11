@@ -32,7 +32,7 @@ create table IF NOT EXISTS book (
   author varchar(64),
   memo varchar(1024),
   price varchar(32),
-  book_Status tinyint,
+  book_Status tinyint
 );
 
 
