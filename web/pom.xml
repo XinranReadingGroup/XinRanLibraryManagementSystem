@@ -29,15 +29,11 @@
 				<artifactId>jetty-maven-plugin</artifactId>
 				<version>9.2.10.v20150310</version>
 				<configuration>
+					<waitForChild>false</waitForChild>
 					<scanIntervalSeconds>10</scanIntervalSeconds>
 					<stopKey>stopApp</stopKey>
 					<stopPort>9988</stopPort>
-					<jvmArgs>-server -Xmx1g -Xms1g -XX:NewRatio=50 -XX:+HeapDumpOnOutOfMemoryError -XX:+UseG1GC -XX:+UnlockExperimentalVMOptions -XX:+AggressiveOpts -XX:MaxGCPauseMillis=400 -XX:GCPauseIntervalMillis=8000 -XX:+PrintGCTimeStamps -XX:+PrintGCApplicationStoppedTime -XX:+PrintGCApplicationConcurrentTime</jvmArgs>
-					<connectors>
-						<connector implementation="org.mortbay.jetty.nio.SelectChannelConnector">
-							<port>80</port>
-						</connector>
-					</connectors>
+					<jvmArgs>-server -Xmx1g -Xms1g -XX:NewRatio=50 -XX:+HeapDumpOnOutOfMemoryError -XX:+UseG1GC -XX:+UnlockExperimentalVMOptions -XX:+AggressiveOpts -XX:MaxGCPauseMillis=400 -XX:GCPauseIntervalMillis=8000 -XX:+PrintGCTimeStamps -XX:+PrintGCApplicationStoppedTime -XX:+PrintGCApplicationConcurrentTime -Xloggc:gc.log -XX:+UseGCLogFileRotation -XX:NumberOfGCLogFiles=4 -XX:GCLogFileSize=10240K</jvmArgs>
 				</configuration>
 			</plugin>
 
