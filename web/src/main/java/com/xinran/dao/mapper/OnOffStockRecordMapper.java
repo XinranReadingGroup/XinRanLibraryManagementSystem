@@ -2,7 +2,10 @@ package com.xinran.dao.mapper;
 
 
 import org.apache.ibatis.annotations.Insert;
+import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.SelectKey;
+import org.apache.ibatis.annotations.Update;
 import org.springframework.stereotype.Repository;
 
 import com.xinran.pojo.OnOffStockRecord;
@@ -15,4 +18,13 @@ public interface OnOffStockRecordMapper {
     @SelectKey(before = false, keyProperty = "id", resultType = Long.class, statement = { "SELECT LAST_INSERT_ID() AS id" })
     Long add(OnOffStockRecord record);
     
+    @Select("SELECT * FROM on_off_stock_record WHERE id = #{id}")
+    public OnOffStockRecord findOnOffStockRecordById(@Param("id") Long id);
+
+    @Update("update  on_off_stock_record set   updated_At = #{updatedAt},off_Stock_Date =  #{offStockDate},"
+            + "owner_Phone =  #{ownerPhone}, location = #{location},borrow_Status=#{borrowStatus},"
+            + " borrowUserId=#{borrowUserId}  where id = #{id}")
+    public int updateOnOffStockRecord(OnOffStockRecord record);
+
+
 }

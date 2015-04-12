@@ -12,9 +12,7 @@ import org.springframework.stereotype.Service;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.xinran.dao.mapper.BookMapper;
-import com.xinran.dao.mapper.OnOffStockRecordMapper;
 import com.xinran.pojo.Book;
-import com.xinran.pojo.OnOffStockRecord;
 import com.xinran.service.BookService;
 import com.xinran.service.DouBanService;
 
@@ -29,8 +27,7 @@ public class BookServiceImpl implements BookService {
     @Autowired
     private BookMapper bookMapper;
     
-    @Autowired
-    private OnOffStockRecordMapper onOffStockRecordMapper;
+
     
     @Autowired
     private DouBanService douBanService;
@@ -39,19 +36,7 @@ public class BookServiceImpl implements BookService {
     public List<Book> findAllWithPagenate(int limit, int offset) {
         return bookMapper.findAllWithPagenate(limit, offset);
     }
-    
-    @Override
-    public OnOffStockRecord onStock(OnOffStockRecord record) {
-    	Long id = onOffStockRecordMapper.add(record);
-    	if(record.getId() == null){
-    		if(id == null){
-    			return null;
-    		}else{
-    			record.setId(id);
-    		}
-    	}
-    	return record;
-    }
+
     
 
 	@Override

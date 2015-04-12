@@ -50,16 +50,17 @@ CREATE TABLE IF NOT EXISTS book_location
 
 CREATE TABLE IF NOT EXISTS borrow_return_record 
   ( 
-     id             BIGINT(20) UNSIGNED PRIMARY KEY auto_increment, 
-     created_at     DATETIME, 
-     updated_at     DATETIME, 
-     owner_user_id  BIGINT(20), 
-     borrow_user_id BIGINT(20), 
-     book_id        BIGINT(20), 
-     book_type      TINYINT, 
-     borrow_date    DATETIME, 
-     return_date    DATETIME, 
-     borrow_status  TINYINT 
+     id             		BIGINT(20) UNSIGNED PRIMARY KEY auto_increment, 
+     created_at     		DATETIME, 
+     updated_at     		DATETIME, 
+     owner_user_id  		BIGINT(20), 
+     borrow_user_id 		BIGINT(20), 
+     book_id        		BIGINT(20), 
+     on_off_stock_id        BIGINT(20), 
+     book_type      		TINYINT, 
+     borrow_date    		DATETIME, 
+     return_date    		DATETIME, 
+     borrow_status  		TINYINT 
   ); 
 
 CREATE TABLE IF NOT EXISTS on_off_stock_record 
@@ -74,5 +75,6 @@ CREATE TABLE IF NOT EXISTS on_off_stock_record
      location       BIGINT(20), 
      on_stock_date  DATETIME, 
      off_stock_date DATETIME, 
+     borrow_user_id BIGINT(20), 
      borrow_status  TINYINT 
   ); 

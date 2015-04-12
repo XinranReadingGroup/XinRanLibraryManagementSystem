@@ -12,6 +12,11 @@ public enum ExceptionCode {
     InvalidUserNameOrPassowrd(20000),
 
 
+    // borrow
+    InvalidOnOffStockId(30000),
+
+    TheOnOffStockIdLinkedBookHasBeenBorrowed(30001),
+
     ;
 
     private int code;

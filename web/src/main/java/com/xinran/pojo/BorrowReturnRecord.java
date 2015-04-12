@@ -16,6 +16,7 @@ public class BorrowReturnRecord {
 
     private Long    borrowUserId;
     private Long    ownerUserId;
+    private Long    onOffStockId;
     private Long    bookId;
     private int     bookType;
 

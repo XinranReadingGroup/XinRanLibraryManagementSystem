@@ -33,5 +33,6 @@ public class OnOffStockRecord {
     private Date    offStockDate;
 
     private Integer borrowStatus;
+    private Long    borrowUserId; // 当前借书人ID
 
 }

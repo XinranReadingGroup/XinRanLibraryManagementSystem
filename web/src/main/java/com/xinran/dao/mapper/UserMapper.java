@@ -3,7 +3,6 @@ package com.xinran.dao.mapper;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Options;
 import org.apache.ibatis.annotations.Param;
-import org.apache.ibatis.annotations.Result;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 
@@ -14,8 +13,7 @@ public interface UserMapper {
     // TODO add index,4个唯一字段
 
 	@Select("SELECT * FROM user WHERE id = #{userId}")
-    @Result(property = "parentId", column = "c_parent_id")
-    public User findUserById(@Param("userId") long userId);
+    public User findUserById(@Param("userId") Long userId);
 
     @Select("SELECT * FROM user WHERE mobile = #{mobile}")
     public User findUserByMobile(@Param("mobile") String mobile);
