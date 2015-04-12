@@ -2,6 +2,8 @@ package com.xinran.pojo;
 
 import java.util.Date;
 
+import com.xinran.util.DateUtil;
+
 import lombok.Data;
 
 /**
@@ -12,7 +14,7 @@ import lombok.Data;
 public class Book {
 	
 	public Book(){
-		Date now = new Date();
+        Date now = DateUtil.getCurrentDate();
 		this.createdAt = now;
 		this.updatedAt = now;
 	}

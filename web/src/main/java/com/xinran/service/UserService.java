@@ -16,7 +16,8 @@ public interface UserService {
      * @param password
      * @return
      */
-    public Long signUpForMobileIndentifier(String identifier, String password) throws SignUpValidationException;
+    public Long signUpForMobileIndentifier(String identifier, String password, String nickName)
+                                                                                               throws SignUpValidationException;
 
     public Long signIn(String identifier, String password) throws SignInValidationException;
 

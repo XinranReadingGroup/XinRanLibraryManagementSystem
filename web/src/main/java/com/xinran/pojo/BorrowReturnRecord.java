@@ -17,7 +17,7 @@ public class BorrowReturnRecord {
     private Long    borrowUserId;
     private Long    ownerUserId;
     private Long    bookId;
-    private int     bookStatus;   // 冗余的
+    private int     bookType;
 
 
 

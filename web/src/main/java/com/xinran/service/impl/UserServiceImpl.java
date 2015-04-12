@@ -30,7 +30,8 @@ public class UserServiceImpl implements UserService {
      * @see com.xinran.service.UserService#signUp(java.lang.String, java.lang.String)
      */
     @Override
-    public Long signUpForMobileIndentifier(String identifier, String password) throws SignUpValidationException {
+    public Long signUpForMobileIndentifier(String identifier, String password, String nickName)
+                                                                                               throws SignUpValidationException {
         User userIfExists = userMapper.findUserByMobile(identifier);
 
         if (null == userIfExists) {
@@ -40,6 +41,7 @@ public class UserServiceImpl implements UserService {
             User signUpUser = new User();
             signUpUser.setMobile(identifier);
             signUpUser.setSalt(salt);
+            signUpUser.setNickName(nickName);
             signUpUser.setPassword(hash);
             userMapper.addUser(signUpUser);
             return signUpUser.getId();

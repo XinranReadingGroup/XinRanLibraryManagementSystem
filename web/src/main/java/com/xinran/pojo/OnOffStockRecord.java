@@ -2,6 +2,8 @@ package com.xinran.pojo;
 
 import java.util.Date;
 
+import com.xinran.util.DateUtil;
+
 import lombok.Data;
 
 /**
@@ -11,7 +13,7 @@ import lombok.Data;
 public class OnOffStockRecord {
 	
 	public OnOffStockRecord(){
-		Date now = new Date();
+        Date now = DateUtil.getCurrentDate();
 		this.createdAt = now;
 		this.updatedAt = now;
 		this.onStockDate = now;
@@ -22,7 +24,7 @@ public class OnOffStockRecord {
     private Date    updatedAt;
 
     private Long    bookId;
-    private Integer bookStatus;  // 冗余的
+    private Integer bookType;
     private Long    ownerUserId;
     private String  ownerPhone;
     private Long 	location;

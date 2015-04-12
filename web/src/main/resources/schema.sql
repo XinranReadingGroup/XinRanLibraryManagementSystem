@@ -1,91 +1,78 @@
-create table IF NOT EXISTS user (
-  id bigint(20) unsigned primary key auto_increment,
-  created_At datetime ,
-  updated_At datetime ,
-   user_Name  varchar(64),
-    nick_Name  varchar(64),
-     mobile  varchar(64),
-      email  varchar(64),
-       password  varchar(64),
-        salt  varchar(64),
-  reset_Password_Token varchar(255),
+CREATE TABLE IF NOT EXISTS user 
+  ( 
+     id                     BIGINT(20) UNSIGNED PRIMARY KEY auto_increment, 
+     created_at             DATETIME, 
+     updated_at             DATETIME, 
+     user_name              VARCHAR(64), 
+     nick_name              VARCHAR(64), 
+     mobile                 VARCHAR(64), 
+     email                  VARCHAR(64), 
+     password               VARCHAR(128), 
+     salt                   VARCHAR(64), 
+     reset_password_token   VARCHAR(255), 
+     reset_password_sent_at DATETIME, 
+     remember_created_at    DATETIME, 
+     signin_count           BIGINT(20) UNSIGNED, 
+     current_sign_in_at     DATETIME, 
+     last_sign_in_at        DATETIME, 
+     area                   VARCHAR(512), 
+     signature              VARCHAR(512), 
+     score                  INT 
+  ); 
 
-    reset_Password_Sent_At datetime ,
-  remember_Created_At datetime ,
-    signIn_Count bigint(20) unsigned ,
+CREATE TABLE IF NOT EXISTS book 
+  ( 
+     id         BIGINT(20) UNSIGNED PRIMARY KEY auto_increment, 
+     created_at DATETIME, 
+     updated_at DATETIME, 
+     isbn       VARCHAR(64), 
+     title      VARCHAR(128), 
+     img_url    VARCHAR(128), 
+     author     VARCHAR(64), 
+     summary    VARCHAR(4096), 
+     price      VARCHAR(32), 
+     publisher  VARCHAR(64) 
+  ); 
 
-  current_Sign_In_At datetime ,
-  last_Sign_In_At datetime ,
-    area varchar(512),
-  signature varchar(512),
-  score int
-  );
+CREATE TABLE IF NOT EXISTS book_location 
+  ( 
+     id         BIGINT(20) UNSIGNED PRIMARY KEY auto_increment, 
+     created_at DATETIME, 
+     updated_at DATETIME, 
+     lat        FLOAT(10, 6), 
+     lng        FLOAT(10, 6), 
+     type       VARCHAR(64), 
+     province   VARCHAR(128), 
+     city       VARCHAR(128), 
+     country    VARCHAR(128), 
+     detail     VARCHAR(256) 
+  ); 
 
+CREATE TABLE IF NOT EXISTS borrow_return_record 
+  ( 
+     id             BIGINT(20) UNSIGNED PRIMARY KEY auto_increment, 
+     created_at     DATETIME, 
+     updated_at     DATETIME, 
+     owner_user_id  BIGINT(20), 
+     borrow_user_id BIGINT(20), 
+     book_id        BIGINT(20), 
+     book_type      TINYINT, 
+     borrow_date    DATETIME, 
+     return_date    DATETIME, 
+     borrow_status  TINYINT 
+  ); 
 
-
-create table IF NOT EXISTS book (
-  id bigint(20) unsigned primary key auto_increment,
-  created_At datetime ,
-  updated_At datetime ,
-  isbn  varchar(64),
-  title varchar(128),
-  img_url varchar(128),
-  author varchar(64),
-  summary varchar(4096),
-  price varchar(32),
-  publisher varchar(64)
-) charset utf8;
-
-
-
-create table IF NOT EXISTS Book_Location (
-  id bigint(20) unsigned primary key auto_increment,
-  created_At datetime ,
-  updated_At datetime ,
-  
-    lat FLOAT( 10, 6 )     ,
-     lng FLOAT( 10, 6 ) ,
-  type varchar(64),
-  province varchar(128),
-  city varchar(128),
-  country varchar(128),
-  detail varchar(256)
-
-   
-);
-
-create table IF NOT EXISTS Borrow_Return_Record (
-  id bigint(20) unsigned primary key auto_increment,
-  created_At datetime ,
-  updated_At datetime ,
-  
-    owner_User_Id bigint(20),
-  borrow_User_Id bigint(20),
-
-  book_Id bigint(20),
-  book_Status tinyint,
-
-           borrow_Date datetime ,
-           return_Date datetime ,
-     borrow_Status tinyint
-
-);
- 
-create table IF NOT EXISTS on_off_stock_record (
-  id bigint(20) unsigned primary key auto_increment,
-  created_At datetime ,
-  updated_At datetime ,
-  
-  book_Id bigint(20),
-  book_Status tinyint,
-  
-  owner_User_Id bigint(20),
-  owner_Phone varchar(16),
-  
-  location bigint(20),
-
-  on_Stock_Date datetime ,
-  off_Stock_Date datetime ,
-  borrow_Status tinyint
-
-) charset utf8;
+CREATE TABLE IF NOT EXISTS on_off_stock_record 
+  ( 
+     id             BIGINT(20) UNSIGNED PRIMARY KEY auto_increment, 
+     created_at     DATETIME, 
+     updated_at     DATETIME, 
+     book_id        BIGINT(20), 
+     book_type      TINYINT, 
+     owner_user_id  BIGINT(20), 
+     owner_phone    VARCHAR(16), 
+     location       BIGINT(20), 
+     on_stock_date  DATETIME, 
+     off_stock_date DATETIME, 
+     borrow_status  TINYINT 
+  ); 

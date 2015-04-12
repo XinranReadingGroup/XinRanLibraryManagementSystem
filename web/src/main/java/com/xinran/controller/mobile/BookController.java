@@ -11,7 +11,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.xinran.constant.BookStatus;
+import com.xinran.constant.ApplicationConstant;
+import com.xinran.constant.BookType;
 import com.xinran.constant.BorrowStatus;
 import com.xinran.pojo.Book;
 import com.xinran.pojo.OnOffStockRecord;
@@ -40,24 +41,25 @@ public class BookController {
     
     @RequestMapping("/book/donate/{bookId}")
     public @ResponseBody AjaxResult donate(@PathVariable(value="bookId") Long bookId, 
-    		@RequestParam("loc") Long location, @RequestParam("phone") String phone,
+                                           @RequestParam("location") Long location,
+                                           @RequestParam("phone") String phone,
     		HttpServletRequest request){
-    	return AjaxResultBuilder.buildSuccessfulResult(onStock(bookId,location,phone,request,BookStatus.DONATED));
+    	return AjaxResultBuilder.buildSuccessfulResult(onStock(bookId,location,phone,request,BookType.DONATED));
     }
     
     @RequestMapping("/book/share/{bookId}")
     public @ResponseBody AjaxResult share(@PathVariable(value="bookId") Long bookId, 
-    		@RequestParam("loc") Long location, @RequestParam("phone") String phone,
+                                          @RequestParam("location") Long location, @RequestParam("phone") String phone,
     		HttpServletRequest request){
-    	return AjaxResultBuilder.buildSuccessfulResult(onStock(bookId,location,phone,request,BookStatus.SHARED));
+    	return AjaxResultBuilder.buildSuccessfulResult(onStock(bookId,location,phone,request,BookType.SHARED));
     }
     
     private OnOffStockRecord onStock(Long bookId, Long location, String phone,
-    		HttpServletRequest request, BookStatus bookStatus){
+    		HttpServletRequest request, BookType bookType){
     	OnOffStockRecord record = new OnOffStockRecord();
-    	record.setOwnerUserId((Long)request.getSession().getAttribute("userId"));
+        record.setOwnerUserId((Long) request.getSession().getAttribute(ApplicationConstant.USER_ID));
     	record.setOwnerPhone(phone);
-    	record.setBookStatus(bookStatus.getStatus());
+        record.setBookType(bookType.getType());
     	record.setLocation(location);
     	record.setBookId(bookId);
     	record.setBorrowStatus(BorrowStatus.UNBORROWED.getStatus());

@@ -37,10 +37,11 @@ public class UserController {
 
     @RequestMapping("/user/signUp")
     public @ResponseBody AjaxResult signUp(@RequestParam(value = "userIdentifier") String identifier,
-                                           @RequestParam(value = "password") String password, HttpServletRequest request) {
+                                           @RequestParam(value = "password") String password,
+                                           @RequestParam(value = "nickName") String nickName, HttpServletRequest request) {
         Long userId;
         try {
-            userId = userService.signUpForMobileIndentifier(identifier, password);
+            userId = userService.signUpForMobileIndentifier(identifier, password, nickName);
             return doSignInOrSignUp(request, userId);
         } catch (SignUpValidationException e) {
             return AjaxResultBuilder.buildFailedResult(400, e.getMessage());
