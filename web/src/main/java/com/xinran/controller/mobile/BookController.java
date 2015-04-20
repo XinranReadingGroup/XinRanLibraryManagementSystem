@@ -15,13 +15,18 @@ import com.xinran.constant.ApplicationConstant;
 import com.xinran.constant.BookType;
 import com.xinran.constant.BorrowStatus;
 import com.xinran.constant.ExceptionCode;
+import com.xinran.event.Event;
+import com.xinran.event.impl.BookOnStockEvent;
+import com.xinran.event.util.EventListenerSupport;
 import com.xinran.exception.BorrowOrReturnValidationException;
 import com.xinran.pojo.Book;
 import com.xinran.pojo.BorrowReturnRecord;
 import com.xinran.pojo.OnOffStockRecord;
 import com.xinran.service.BookService;
+import com.xinran.service.BorrowReturnRecordService;
 import com.xinran.service.OnOffStockRecordService;
 import com.xinran.util.DateUtil;
+import com.xinran.util.ThreadLocalUtil;
 import com.xinran.vo.AjaxResult;
 import com.xinran.vo.builder.AjaxResultBuilder;
 
@@ -40,6 +45,9 @@ public class BookController {
 
     @Autowired
     private OnOffStockRecordService onOffStockRecordService;
+
+    @Autowired
+    private BorrowReturnRecordService borrowReturnRecordService;
 
     @RequestMapping("/book/isbn/{isbn}")
     public @ResponseBody AjaxResult getBookByISBN(@PathVariable(value = "isbn") String isbn, HttpServletRequest request) {
@@ -74,6 +82,15 @@ public class BookController {
     	record.setBookId(bookId);
     	record.setBorrowStatus(BorrowStatus.UNBORROWED.getStatus());
         record = onOffStockRecordService.onStock(record);
+
+        try {
+            ThreadLocalUtil.set(record);
+            Event event = new BookOnStockEvent();
+            EventListenerSupport.fireEvent(event);
+        } finally {
+            ThreadLocalUtil.remove(record);
+        }
+
     	return record;
     	
     }
@@ -92,7 +109,7 @@ public class BookController {
             Integer borrowStatus = onOffStockRecord.getBorrowStatus();
             if (BorrowStatus.UNBORROWED.getStatus() != borrowStatus) {
                 throw new BorrowOrReturnValidationException(
-                                                            ExceptionCode.TheOnOffStockIdLinkedBookHasBeenBorrowed.getCode());
+                                                            ExceptionCode.TheBookHasBeenBorrowed.getCode());
 
             }
 
@@ -104,7 +121,47 @@ public class BookController {
             borrowReturnRecord.setBorrowDate(DateUtil.getCurrentDate());
             borrowReturnRecord.setOnOffStockId(onOffStockRecord.getId());
             borrowReturnRecord.setOwnerUserId(onOffStockRecord.getOwnerUserId());
+            borrowReturnRecordService.insert(borrowReturnRecord);
 
+            onOffStockRecord.setBorrowId(borrowReturnRecord.getId());
+            onOffStockRecordService.updateOnOffStockRecord(onOffStockRecord);
+
+        }
+
+        return AjaxResultBuilder.buildSuccessfulResult(null);
+    }
+    
+    
+    @RequestMapping("/book/return/{onStockId}")
+    public @ResponseBody AjaxResult returnBook(@PathVariable(value = "onStockId") Long onStockId,
+                                               HttpServletRequest request)
+                                                                                                                         throws BorrowOrReturnValidationException {
+        OnOffStockRecord onOffStockRecord = onOffStockRecordService.findOnOffStockRecordById(onStockId);
+        if (null == onOffStockRecord) {
+            throw new BorrowOrReturnValidationException(ExceptionCode.InvalidOnOffStockId.getCode());
+        } else {
+
+
+
+            Integer borrowStatus = onOffStockRecord.getBorrowStatus();
+            if (BorrowStatus.BORROWED.getStatus() != borrowStatus) {
+                throw new BorrowOrReturnValidationException(
+                                                            ExceptionCode.TheBookShouldBeInBorrowedStatus.getCode());
+
+            }
+
+            Long currentUserId = getCurrentUserId(request);
+            if (!onOffStockRecord.getBorrowUserId().equals(currentUserId)) {
+                throw new BorrowOrReturnValidationException(
+                                                            ExceptionCode.TheBookYouReturnedShouldBeBorrowedByYou.getCode());
+
+            }
+
+            BorrowReturnRecord borrowReturnRecord = borrowReturnRecordService.findBorrowReturnRecordById(onOffStockRecord.getBorrowId());
+            borrowReturnRecord.setBorrowStatus(BorrowStatus.RETURNED.getStatus());
+            borrowReturnRecord.setReturnDate(DateUtil.getCurrentDate());
+
+            borrowReturnRecordService.updateBorrowReturnRecord(borrowReturnRecord);
         }
 
         return AjaxResultBuilder.buildSuccessfulResult(null);

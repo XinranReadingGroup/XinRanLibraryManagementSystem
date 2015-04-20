@@ -25,9 +25,9 @@ public interface UserMapper {
     public User findUserByUserName(@Param("userName") String userName);
 
     @Insert("insert into user (created_At, updated_At,user_Name, nick_Name,mobile, email,password, salt,reset_Password_Token, reset_Password_Sent_At,remember_Created_At, signIn_Count,"
-            + "current_Sign_In_At, last_Sign_In_At,area,signature,score) values(now(),now(),#{userName}, #{nickName},"
+            + "current_Sign_In_At, last_Sign_In_At,area,signature,img_Id,score) values(now(),now(),#{userName}, #{nickName},"
             + " #{mobile}, #{email}, #{password}, #{salt}, #{resetPasswordToken}, #{resetPasswordSentAt}, #{rememberCreatedAt}, "
-            + "#{signInCount}, #{currentSignInAt}, #{lastSignInAt}, #{area}, #{signature}, #{score})")
+            + "#{signInCount}, #{currentSignInAt}, #{lastSignInAt}, #{area}, #{signature},#{imgId}, #{score})")
     // @Options(useGeneratedKeys = true, keyProperty = "id")
     @Options(useGeneratedKeys = true)
     public void addUser(User user);
@@ -36,7 +36,7 @@ public interface UserMapper {
             + " email=#{email},password=#{password}, salt= #{salt},reset_Password_Token =#{resetPasswordToken},"
             + " reset_Password_Sent_At =#{resetPasswordSentAt},remember_Created_At=#{rememberCreatedAt}"
             + ", signIn_Count =#{signInCount},current_Sign_In_At = #{currentSignInAt},"
-            + " last_Sign_In_At =#{lastSignInAt},area= #{area},signature=#{signature},score=#{score} where id = #{id}")
+            + " last_Sign_In_At =#{lastSignInAt},area= #{area},signature=#{signature},img_Id=#{imgId},score=#{score} where id = #{id}")
  
     public int updateUser(User user);
     

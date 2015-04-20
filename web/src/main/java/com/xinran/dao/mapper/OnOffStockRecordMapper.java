@@ -23,7 +23,7 @@ public interface OnOffStockRecordMapper {
 
     @Update("update  on_off_stock_record set   updated_At = #{updatedAt},off_Stock_Date =  #{offStockDate},"
             + "owner_Phone =  #{ownerPhone}, location = #{location},borrow_Status=#{borrowStatus},"
-            + " borrowUserId=#{borrowUserId}  where id = #{id}")
+            + " borrowUserId=#{borrowUserId},borrowId=#{borrowId}   where id = #{id}")
     public int updateOnOffStockRecord(OnOffStockRecord record);
 
 

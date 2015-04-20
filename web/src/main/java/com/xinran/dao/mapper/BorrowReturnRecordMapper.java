@@ -8,7 +8,6 @@ import org.apache.ibatis.annotations.Update;
 import org.springframework.stereotype.Repository;
 
 import com.xinran.pojo.BorrowReturnRecord;
-import com.xinran.pojo.User;
 
 /**
  * @author 高海军 帝奇 Apr 12, 2015 3:59:56 PM
@@ -28,7 +27,7 @@ public interface BorrowReturnRecordMapper {
             + " on_off_stock_id=#{onOffStockId},book_id=#{bookId}, book_type= #{bookType},borrow_date =#{borrowDate},"
             + " reset_Password_Sent_At =#{resetPasswordSentAt},remember_Created_At=#{rememberCreatedAt}"
             + ", return_date =#{returnDate},borrow_status = #{borrowStatus}  where id = #{id}")
-    public int updateUser(User user);
+    public int updateBorrowReturnRecord(BorrowReturnRecord record);
 
 
 }

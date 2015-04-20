@@ -15,4 +15,7 @@ public interface OnOffStockRecordService {
     OnOffStockRecord onStock(OnOffStockRecord record);
     
     OnOffStockRecord findOnOffStockRecordById(Long id);
+
+    int updateOnOffStockRecord(OnOffStockRecord record);
+
 }

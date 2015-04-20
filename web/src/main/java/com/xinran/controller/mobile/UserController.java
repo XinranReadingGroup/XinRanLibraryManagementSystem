@@ -51,16 +51,15 @@ public class UserController {
 
 
     private AjaxResult doSignInOrSignUp(HttpServletRequest request, Long userId) {
-        HttpSession session = request.getSession(true);
-
+        HttpSession session = request.getSession();
 
         Map<String, String> jsonMap = Maps.newHashMapWithExpectedSize(1);
         // TODO test 60天不过期
         session.setMaxInactiveInterval(Long.valueOf(TimeUnit.DAYS.toDays(60)).intValue());
         String sessionId = session.getId();
-        session.setAttribute("userId", userId);
-        session.setAttribute("accessToken", sessionId);
-        jsonMap.put("accessToken", sessionId);
+        session.setAttribute(ApplicationConstant.USER_ID, userId);
+        session.setAttribute(ApplicationConstant.ACCESS_TOKEN, sessionId);
+        jsonMap.put(ApplicationConstant.ACCESS_TOKEN, sessionId);
         return AjaxResultBuilder.buildSuccessfulResult(jsonMap);
     }
 

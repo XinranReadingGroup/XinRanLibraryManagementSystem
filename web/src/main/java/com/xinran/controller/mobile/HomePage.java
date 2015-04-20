@@ -36,6 +36,7 @@ public class HomePage {
     @RequestMapping("/mobile")
     public @ResponseBody AjaxResult index(HttpServletRequest request) {
 
+
         HomePageVO homePageVO = new HomePageVO();
 
         String accessTokenFromRequest = request.getParameter(ApplicationConstant.ACCESS_TOKEN);

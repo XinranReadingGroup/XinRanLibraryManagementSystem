@@ -34,4 +34,13 @@ public class OnOffStockRecordServiceImpl implements OnOffStockRecordService {
         OnOffStockRecord record = onOffStockRecordMapper.findOnOffStockRecordById(id);
         return record;
     }
+
+    /*
+     * (non-Javadoc)
+     * @see com.xinran.service.OnOffStockRecordService#updateOnOffStockRecord(com.xinran.pojo.OnOffStockRecord)
+     */
+    @Override
+    public int updateOnOffStockRecord(OnOffStockRecord record) {
+        return onOffStockRecordMapper.updateOnOffStockRecord(record);
+    }
 }

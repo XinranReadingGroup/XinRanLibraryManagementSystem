@@ -34,4 +34,11 @@ public interface UserService {
      * @return
      */
     public User findUserByUserId(Long userId);
+
+    /**
+     * @param identifier
+     * @param password
+     * @return
+     */
+    public void updateUser(User user);
 }

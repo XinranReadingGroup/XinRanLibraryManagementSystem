@@ -3,6 +3,8 @@ package com.xinran.pojo;
 
 import java.util.Date;
 
+import com.xinran.util.DateUtil;
+
 import lombok.Data;
 
 /**
@@ -16,6 +18,12 @@ public class BookLocation {
     private Long   id;
     private Date   createdAt;
     private Date   updatedAt;
+
+    public BookLocation() {
+        Date now = DateUtil.getCurrentDate();
+        this.createdAt = now;
+        this.updatedAt = now;
+    }
 
     private Float  lat;
     private Float  lng;
