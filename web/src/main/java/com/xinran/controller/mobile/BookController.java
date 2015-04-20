@@ -2,6 +2,8 @@
 package com.xinran.controller.mobile;
 
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +24,7 @@ import com.xinran.exception.BorrowOrReturnValidationException;
 import com.xinran.pojo.Book;
 import com.xinran.pojo.BorrowReturnRecord;
 import com.xinran.pojo.OnOffStockRecord;
+import com.xinran.pojo.Pagination;
 import com.xinran.service.BookService;
 import com.xinran.service.BorrowReturnRecordService;
 import com.xinran.service.OnOffStockRecordService;
@@ -166,5 +169,54 @@ public class BookController {
 
         return AjaxResultBuilder.buildSuccessfulResult(null);
     }
+    
+    
+    @RequestMapping("/book/donate/records")
+    public @ResponseBody AjaxResult getDonatedRecords(@RequestParam(value = "pageNo", required=false) Integer pageNo,@RequestParam(value = "pageSize", required=false) Integer pageSize, HttpServletRequest request) {
+    	Long userId = getCurrentUserId(request);
+    	userId = 1L;
+    	List<OnOffStockRecord> records = null;
+    	if(userId != null){
+    		Pagination page = new Pagination();
+    		if(pageNo != null && pageNo >= 0){
+    			page.setCurrent(pageNo);
+    		}
+    		if(pageSize != null && pageSize > 0){
+    			page.setSize(pageSize);
+    		}
+    		records = onOffStockRecordService.findDonated(userId, page);
+    		fillBookInfo(records);
+    	}
+    	return AjaxResultBuilder.buildSuccessfulResult(records);
+    }
+    
+    @RequestMapping("/book/share/records")
+    public @ResponseBody AjaxResult getSharedRecords(@RequestParam(value = "pageNo", required=false) Integer pageNo, @RequestParam(value = "pageSize", required=false) Integer pageSize, HttpServletRequest request) {
+    	Long userId = getCurrentUserId(request);
+    	userId = 1L;
+    	List<OnOffStockRecord> records = null;
+    	if(userId != null){
+    		Pagination page = new Pagination();
+    		if(pageNo != null && pageNo >= 0){
+    			page.setCurrent(pageNo);
+    		}
+    		if(pageSize != null && pageSize > 0){
+    			page.setSize(pageSize);
+    		}
+    		records = onOffStockRecordService.findShared(userId, page);
+    		fillBookInfo(records);
+    	}
+    	return AjaxResultBuilder.buildSuccessfulResult(records);
+    }
+
+	private void fillBookInfo(List<OnOffStockRecord> records) {
+		if(records == null || records.size() < 1){
+			return;
+		}
+		for(OnOffStockRecord record : records){
+			// TODO 使用缓存以避免每次查询数据库。以ID查询书本信息在很多场景会使用。
+			record.setBook(bookService.findBookById(record.getBookId()));
+		}
+	}
 
 }
