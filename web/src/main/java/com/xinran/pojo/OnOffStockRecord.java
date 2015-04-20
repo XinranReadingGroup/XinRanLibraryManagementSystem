@@ -34,5 +34,7 @@ public class OnOffStockRecord {
 
     private Integer borrowStatus;
     private Long    borrowUserId; // 当前借书人ID
+    
+    private Book    book;
 
 }

@@ -31,6 +31,15 @@ public class BookServiceImpl implements BookService {
     
     @Autowired
     private DouBanService douBanService;
+    
+    
+    @Override
+    public Book findBookById(Long id){
+    	if(id == null || id < 1L){
+    		return null;
+    	}
+    	return bookMapper.findById(id);
+    }
 
     @Override
     public List<Book> findAllWithPagenate(int limit, int offset) {

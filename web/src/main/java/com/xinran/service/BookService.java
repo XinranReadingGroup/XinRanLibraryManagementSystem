@@ -15,5 +15,7 @@ public interface BookService {
     
     Book findBookByISBN(String isbn);
     
+    Book findBookById(Long id);
+    
 
 }

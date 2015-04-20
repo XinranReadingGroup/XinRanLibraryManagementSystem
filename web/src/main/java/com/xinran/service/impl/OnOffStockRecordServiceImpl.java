@@ -1,10 +1,14 @@
 package com.xinran.service.impl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.xinran.constant.BookType;
 import com.xinran.dao.mapper.OnOffStockRecordMapper;
 import com.xinran.pojo.OnOffStockRecord;
+import com.xinran.pojo.Pagination;
 import com.xinran.service.OnOffStockRecordService;
 
 /**
@@ -34,4 +38,32 @@ public class OnOffStockRecordServiceImpl implements OnOffStockRecordService {
         OnOffStockRecord record = onOffStockRecordMapper.findOnOffStockRecordById(id);
         return record;
     }
+
+	@Override
+	public List<OnOffStockRecord> findShared(Long userId, Pagination page) {
+		if(userId == null){
+			throw new IllegalArgumentException();
+		}
+		if(page == null){
+			page = new Pagination();
+		}
+		OnOffStockRecord record = new OnOffStockRecord();
+		record.setOwnerUserId(userId);
+		record.setBookType(BookType.SHARED.getType());
+		return onOffStockRecordMapper.findRecordsByUserId(record, page);
+	}
+
+	@Override
+	public List<OnOffStockRecord> findDonated(Long userId, Pagination page) {
+		if(userId == null){
+			throw new IllegalArgumentException();
+		}
+		if(page == null){
+			page = new Pagination();
+		}
+		OnOffStockRecord record = new OnOffStockRecord();
+		record.setOwnerUserId(userId);
+		record.setBookType(BookType.DONATED.getType());
+		return onOffStockRecordMapper.findRecordsByUserId(record, page);
+	}
 }
