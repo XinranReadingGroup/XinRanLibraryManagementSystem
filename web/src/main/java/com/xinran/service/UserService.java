@@ -1,9 +1,6 @@
-
 package com.xinran.service;
 
-import com.xinran.exception.SignInValidationException;
-import com.xinran.exception.SignOutValidationException;
-import com.xinran.exception.SignUpValidationException;
+import com.xinran.exception.UserException;
 import com.xinran.pojo.User;
 
 /**
@@ -16,17 +13,16 @@ public interface UserService {
      * @param password
      * @return
      */
-    public Long signUpForMobileIndentifier(String identifier, String password, String nickName)
-                                                                                               throws SignUpValidationException;
+    public Long signUpForMobileIndentifier(String identifier, String password, String nickName) throws UserException;
 
-    public Long signIn(String identifier, String password) throws SignInValidationException;
+    public Long signIn(String identifier, String password) throws UserException;
 
     /**
      * @param identifier
      * @param password
      * @return
      */
-    public void signOut(String accessToken) throws SignOutValidationException;
+    public void signOut(String accessToken) throws UserException;
 
     /**
      * @param identifier

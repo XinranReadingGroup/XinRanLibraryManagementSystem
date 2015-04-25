@@ -11,6 +11,9 @@ public enum ExceptionCode {
     // sign in
     InvalidUserNameOrPassowrd(20000),
 
+    // view user profiler
+    CantViewUserProfilerIfItIsNotYours(20001),
+
 
     // borrow
     InvalidOnOffStockId(30000),

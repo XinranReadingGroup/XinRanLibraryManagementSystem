@@ -8,4 +8,5 @@ import com.xinran.event.Event;
 public interface Listener {
 
     public void onEvent(Event event);
+
 }

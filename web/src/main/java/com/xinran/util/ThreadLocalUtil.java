@@ -5,18 +5,18 @@ package com.xinran.util;
  */
 public abstract class ThreadLocalUtil {
 
-    private static final ThreadLocal<Object> xx = new ThreadLocal<Object>();
+    private static final ThreadLocal<Object> holder = new ThreadLocal<Object>();
 
     public static void set(Object value) {
-        xx.set(value);
+        holder.set(value);
     }
 
     public static void remove(Object value) {
-        xx.remove();
+        holder.remove();
     }
 
     public static Object get() {
-        return xx.get();
+        return holder.get();
     }
 
 }

@@ -7,7 +7,6 @@ import org.springframework.stereotype.Service;
 import com.xinran.event.impl.BookOnStockEvent;
 import com.xinran.event.util.EventListenerSupport;
 import com.xinran.listener.Listener;
-import com.xinran.listener.impl.DonateOrShareBookAddScoreListerner;
 import com.xinran.util.SpringContextUtil;
 
 /**
@@ -21,6 +20,7 @@ public class ApplicationBootstrap implements InitializingBean {
 
     // @PostConstruct
     public void init() {
+        // TODO use sping configurable,http://docs.spring.io/spring/docs/current/spring-framework-reference/htmlsingle/
         Listener bean = (Listener) contextUtil.getBean("donateOrShareBookAddScoreListerner");
         EventListenerSupport.addListener(BookOnStockEvent.class, bean);
 

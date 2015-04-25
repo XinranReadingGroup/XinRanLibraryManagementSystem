@@ -18,6 +18,10 @@ public class TestLogin {
 
     @Test
     public void signInOrSignUp() {
+        JSONObject obj = new JSONObject();
+        obj.put("name", "[-echo-]");
+        System.out.println(obj.toString()); // {"name":["-echo-"]}
+
         Map<String, String> jsonMap = Maps.newHashMapWithExpectedSize(1);
         jsonMap.put("accessToken", "testAccessToken");
         AjaxResult result = AjaxResultBuilder.buildSuccessfulResult(jsonMap);

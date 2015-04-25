@@ -13,10 +13,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.xinran.constant.ApplicationConstant;
 import com.xinran.constant.BookType;
 import com.xinran.constant.BorrowStatus;
 import com.xinran.constant.ExceptionCode;
+import com.xinran.controller.util.UserIdenetityUtil;
 import com.xinran.event.Event;
 import com.xinran.event.impl.BookOnStockEvent;
 import com.xinran.event.util.EventListenerSupport;
@@ -78,7 +78,7 @@ public class BookController {
     private OnOffStockRecord onStock(Long bookId, Long location, String phone,
     		HttpServletRequest request, BookType bookType){
     	OnOffStockRecord record = new OnOffStockRecord();
-        record.setOwnerUserId(getCurrentUserId(request));
+        record.setOwnerUserId(UserIdenetityUtil.getCurrentUserId(request));
     	record.setOwnerPhone(phone);
         record.setBookType(bookType.getType());
     	record.setLocation(location);
@@ -98,9 +98,7 @@ public class BookController {
     	
     }
 
-    private Long getCurrentUserId(HttpServletRequest request) {
-        return (Long) request.getSession().getAttribute(ApplicationConstant.USER_ID);
-    }
+
 
     @RequestMapping("/book/borrow/{onStockId}")
     public @ResponseBody AjaxResult borrow(@PathVariable(value = "onStockId") Long onStockId, HttpServletRequest request)
@@ -120,7 +118,7 @@ public class BookController {
             borrowReturnRecord.setBookId(onOffStockRecord.getBookId());
             borrowReturnRecord.setBookType(onOffStockRecord.getBookType());
             borrowReturnRecord.setBorrowStatus(BorrowStatus.BORROWED.getStatus());
-            borrowReturnRecord.setBorrowUserId(getCurrentUserId(request));
+            borrowReturnRecord.setBorrowUserId(UserIdenetityUtil.getCurrentUserId(request));
             borrowReturnRecord.setBorrowDate(DateUtil.getCurrentDate());
             borrowReturnRecord.setOnOffStockId(onOffStockRecord.getId());
             borrowReturnRecord.setOwnerUserId(onOffStockRecord.getOwnerUserId());
@@ -153,7 +151,7 @@ public class BookController {
 
             }
 
-            Long currentUserId = getCurrentUserId(request);
+            Long currentUserId = UserIdenetityUtil.getCurrentUserId(request);
             if (!onOffStockRecord.getBorrowUserId().equals(currentUserId)) {
                 throw new BorrowOrReturnValidationException(
                                                             ExceptionCode.TheBookYouReturnedShouldBeBorrowedByYou.getCode());
@@ -173,7 +171,7 @@ public class BookController {
     
     @RequestMapping("/book/donate/records")
     public @ResponseBody AjaxResult getDonatedRecords(@RequestParam(value = "pageNo", required=false) Integer pageNo,@RequestParam(value = "pageSize", required=false) Integer pageSize, HttpServletRequest request) {
-    	Long userId = getCurrentUserId(request);
+        Long userId = UserIdenetityUtil.getCurrentUserId(request);
     	userId = 1L;
     	List<OnOffStockRecord> records = null;
     	if(userId != null){
@@ -192,7 +190,7 @@ public class BookController {
     
     @RequestMapping("/book/share/records")
     public @ResponseBody AjaxResult getSharedRecords(@RequestParam(value = "pageNo", required=false) Integer pageNo, @RequestParam(value = "pageSize", required=false) Integer pageSize, HttpServletRequest request) {
-    	Long userId = getCurrentUserId(request);
+        Long userId = UserIdenetityUtil.getCurrentUserId(request);
     	userId = 1L;
     	List<OnOffStockRecord> records = null;
     	if(userId != null){

@@ -1,7 +1,6 @@
 package com.xinran.listener.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Configurable;
 import org.springframework.stereotype.Service;
 
 import com.xinran.constant.ScoreReason;
