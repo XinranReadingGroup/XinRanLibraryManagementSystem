@@ -66,23 +66,6 @@ public abstract class AbstractUserController {
 
     }
 
-    /**
-     * 登录页面
-     * 
-     */
-    @RequestMapping("/user/session/signIn")
-    public ModelAndView newSessionSignIn(HttpServletRequest request, HttpServletResponse response) {
-        return new ModelAndView("newSessionSignIn");
-    }
-
-    /**
-     * 注册页面
-     */
-    @RequestMapping("/user/session/signUp")
-    public ModelAndView newSessionSignUp(HttpServletRequest request, HttpServletResponse response) {
-        return new ModelAndView("newSessionSignUp");
-
-    }
 
     @RequestMapping("/user/signOut")
     public @ResponseBody AjaxResult signOut(@RequestParam(value = ApplicationConstant.ACCESS_TOKEN) String accessToken,

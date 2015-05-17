@@ -42,6 +42,7 @@ public class AbstractHomePage {
         // if (null != accessTokenFromSession && StringUtils.equals(accessTokenFromRequest, accessTokenFromSession)) {
         Long userId = (Long) session.getAttribute(ApplicationConstant.USER_ID);
         if (null != userId) {
+            homePageVO.setLogined(true);
             User user = userService.findUserByUserId(userId);
             if (null != user) {
                 String nickName = user.getNickName();
