@@ -19,6 +19,15 @@ define(function(require, exports, module) {
 
     };
 
+    Login.prototype.bindEvents = function() {
+        var self = this,
+            doc = document;
+
+        $(doc).delegate('#register-btn', 'click', function(event) {
+            self.register();
+        });
+    };
+
     Login.prototype.login = function() {
         var self = this,
             uid = $('#account').val(),
