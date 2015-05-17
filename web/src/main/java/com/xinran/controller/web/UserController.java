@@ -10,7 +10,6 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.apache.commons.lang.RandomStringUtils;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.google.common.collect.Maps;
@@ -23,7 +22,7 @@ import com.xinran.vo.builder.AjaxResultBuilder;
  * @author 高海军 帝奇 Apr 8, 2015 7:50:59 AM
  */
 @RestController(value = "webUserController")
-@RequestMapping("/web")
+// @RequestMapping("/")
 public class UserController extends AbstractUserController {
 
 

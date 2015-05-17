@@ -1,18 +1,18 @@
-package com.xinran.controller.mobile;
+package com.xinran.controller.web;
 
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.xinran.controller.common.AbstractHomePage;
 import com.xinran.service.BookService;
 import com.xinran.service.UserService;
-import com.xinran.vo.AjaxResult;
+import com.xinran.vo.HomePageVO;
 
-@RestController
+@RestController(value = "webHomePage")
 public class HomePage extends AbstractHomePage {
 
     // private Logger log = LoggerFactory.getLogger(this.getClass());
@@ -23,10 +23,11 @@ public class HomePage extends AbstractHomePage {
     @Autowired
     private UserService userService;
 
-    @RequestMapping("/mobile")
-    public @ResponseBody AjaxResult index(HttpServletRequest request) {
+    @RequestMapping("/")
+    public ModelAndView indexOfHomePage(HttpServletRequest request) {
+        HomePageVO homepage = super.buildHomePageVO(request);
+        return new ModelAndView("homePage", "homepageVO", homepage);
 
-        return super.index(request);
     }
 
 }

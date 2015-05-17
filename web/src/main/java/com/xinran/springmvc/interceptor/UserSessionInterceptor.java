@@ -26,6 +26,8 @@ public class UserSessionInterceptor implements HandlerInterceptor {
     private static List<String> noNeedLoginURLs = Lists.newArrayList();
 
     {
+        noNeedLoginURLs.add("/");
+
         noNeedLoginURLs.add("/search");
 
         noNeedLoginURLs.add("/user/signUp");

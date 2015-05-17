@@ -1,8 +1,7 @@
 
-package com.xinran.controller.mobile;
+package com.xinran.controller.web;
 
 
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.xinran.controller.common.AbstractBookController;
@@ -12,7 +11,6 @@ import com.xinran.controller.common.AbstractBookController;
  * @author zhuangyao.zy
  *
  */
-@RestController
-@RequestMapping("/mobile")
+@RestController(value = "webBookController")
 public class BookController extends AbstractBookController {
 }

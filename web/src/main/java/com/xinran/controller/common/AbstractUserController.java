@@ -65,6 +65,29 @@ public abstract class AbstractUserController {
 
     }
 
+    /**
+     * 登录页面
+     * 
+     * @param identifier
+     * @param password
+     * @param request
+     * @param response
+     * @return
+     */
+    @RequestMapping("/user/session/new")
+    public @ResponseBody AjaxResult newSession(@RequestParam(value = "userIdentifier") String identifier,
+                                               @RequestParam(value = "password") String password,
+                                               HttpServletRequest request, HttpServletResponse response) {
+        Long userId;
+        try {
+            userId = userService.signIn(identifier, password);
+            return doSignInOrSignUp(request, response, userId);
+        } catch (UserException e) {
+            return AjaxResultBuilder.buildFailedResult(400, e.getCode());
+        }
+
+    }
+
     @RequestMapping("/user/signOut")
     public @ResponseBody AjaxResult signOut(@RequestParam(value = ApplicationConstant.ACCESS_TOKEN) String accessToken,
                                             HttpServletRequest request) {
