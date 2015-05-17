@@ -15,6 +15,10 @@ define(function(require, exports, module) {
 
     };
 
+    Login.prototype.render = function() {
+
+    };
+
     Login.prototype.login = function() {
         var self = this,
             uid = $('#account').val(),
