@@ -15,8 +15,8 @@
     #include("common/baseStyle.vm")
     
     <!-- 页面静态资源 -->
-    <link rel="stylesheet" type="text/css" href="./css/register.css" media="all">
-    <link rel="stylesheet" type="text/css" href="./css/share.css" media="all">
+    <link rel="stylesheet" type="text/css" href="./css/home.css" media="all">
+
 </head>
 <body>
 <div class="body-wrap container-fluid" id="body-wrap">
@@ -37,54 +37,21 @@
 
 </div>
 
-
-${homepageVO}
-s
+<div class="home-book-count-title">目前共有图书 $!{homepageVO.bookList.size()} 册</div>
 <div id="home-main-box-root" class="home-main-box-root clearfix" >
 
-    <div class="book-item">
+    #foreach( $!bookItem in $!{homepageVO.bookList} )
+
+    <div class="book-item" title="$!{bookItem.title}" data-toggle="tooltip" data-placement="bottom" >
+        <div class="item-pic">
+            <img class="img-pic" src="$!{bookItem.imgURL}" />
+        </div>
+        <div class="item-title"> $!{bookItem.title} </div>
     </div>
-    <div class="book-item">
-    </div>
-    <div class="book-item">
-    </div>
-    <div class="book-item">
-    </div>
+
+    #end
 
 </div>
-
-
-<link rel="stylesheet" type="text/css" href="./js/common/pagination/pagination.css" media="all">
-
- <div class="pagination-wrap">
-      <div id="J_Pagination" class="pagination-inner"  data-currentPage="3" data-totalPage="20" ></div>
-</div>
-
-
-<script >
-seajs.use(['jquery','./js/common/pagination/pagination.js'], function( $, Pagination ){
-    
-     var $pageEl = $('#J_Pagination'),
-          pageConfig = {
-            currentPage:parseInt( $pageEl.attr('data-currentPage'), 10 ),
-            totalPage:parseInt( $pageEl.attr('data-totalPage') ),
-            firstPagesCount: 2,
-            preposePagesCount: 2,
-            postposePagesCount: 4,
-            lastPagesCount: 2
-          };
-      var pagination = new Pagination( $pageEl, pageConfig);
-
-      pagination.on('beforeswitch', function (e) {
-          alert(e.toPage);
-      },this);
-  
-});
-</script>
-
-
-
-
 
 
 
