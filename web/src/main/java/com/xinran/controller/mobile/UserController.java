@@ -40,22 +40,6 @@ public class UserController extends AbstractUserController {
         return AjaxResultBuilder.buildSuccessfulResult(jsonMap);
     }
 
-    /**
-     * 登录页面
-     */
-    @RequestMapping("/user/session/signIn")
-    public ModelAndView newSessionSignIn(HttpServletRequest request, HttpServletResponse response) {
-        return new ModelAndView("newSessionSignIn");
-    }
-
-    /**
-     * 注册页面
-     */
-    @RequestMapping("/user/session/signUp")
-    public ModelAndView newSessionSignUp(HttpServletRequest request, HttpServletResponse response) {
-        return new ModelAndView("newSessionSignUp");
-
-    }
 
 
 
