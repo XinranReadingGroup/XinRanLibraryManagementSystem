@@ -31,11 +31,11 @@ $!{homepageVO}
                 </li>
 
                 #if(null != $!{homepageVO.nickName})
-                    <li><a href="#">$!{homepageVO.nickName}</a></li>
-                    <li><a href="#">退出</a></li>
+                    <li><a href="/user/userCenter">$!{homepageVO.nickName}</a></li>
+                    <li><a href="/user/signOut">退出</a></li>
                 #else
-                    <li><a href="#">登录</a></li>
-                    <li><a href="#">注册</a></li>
+                    <li><a href="/user/session/signIn">登录</a></li>
+                    <li><a href="/user/session/signUp">注册</a></li>
                 #end
             </ul>
         </nav>
