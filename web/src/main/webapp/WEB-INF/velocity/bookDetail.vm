@@ -215,8 +215,27 @@
                 确认取消共享此图书吗？
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-                <button type="button" class="btn btn-primary" id="donate-book-btn">OK</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                <button type="button" class="btn btn-primary" id="donate-book-btn">确定</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="share-modal" tabindex="-1" role="dialog"  aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title">共享图书</h4>
+            </div>
+            <div class="modal-body">
+                确认共享此图书吗？
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                <button type="button" class="btn btn-primary" id="donate-book-btn">确定</button>
             </div>
         </div>
     </div>
