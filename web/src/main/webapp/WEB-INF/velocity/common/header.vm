@@ -29,7 +29,7 @@
                     </div>
                 </li>
 
-                #if( null != $!{homepageVO.nickName} )
+                #if(null != $!{homepageVO.nickName})
                     <li><a href="#">$!{homepageVO.nickName}</a></li>
                     <li><a href="#">退出</a></li>
                 #else
