@@ -62,13 +62,13 @@ define(function(require, exports, module) {
     		this.$btnGetBookEl.on('click',$.proxy(function( ev ){
     			var $el = $(ev.currentTarget);
     			this.getBookInfo();
-    		},this));	
+    		},this));
 
     		this.$btnShareBookEl.on('click',$.proxy(function( ev ){
     			alert('共享成功');
     		},this));
 
-    		
+
 
     	},
     	/**
@@ -86,13 +86,13 @@ define(function(require, exports, module) {
 				cache: false,
 				success: $.proxy(function( data ){
 					if( data && data.msg != 'book_not_found'  ){
-						this.setBookInfo( data );	
-						this.changeToBookInfoUI( true);		
+						this.setBookInfo( data );
+						this.changeToBookInfoUI( true);
 					}else{
 						alert('无法找到isbn对应的图书信息');
 					}
 				},this)
-				
+
 			});
 
     	},
