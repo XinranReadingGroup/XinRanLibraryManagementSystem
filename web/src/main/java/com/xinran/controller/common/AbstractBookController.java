@@ -18,7 +18,6 @@ import com.xinran.event.Event;
 import com.xinran.event.impl.BookOnStockEvent;
 import com.xinran.event.util.EventListenerSupport;
 import com.xinran.exception.BorrowOrReturnValidationException;
-import com.xinran.pojo.Book;
 import com.xinran.pojo.BorrowReturnRecord;
 import com.xinran.pojo.OnOffStockRecord;
 import com.xinran.pojo.Pagination;
