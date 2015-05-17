@@ -37,7 +37,6 @@
 
 </div>
 
-$!{homepageVO}
 
 <div class="home-book-count-title">目前共有图书 $!{homepageVO.bookList.size()} 册</div>
 <div id="home-main-box-root" class="home-main-box-root clearfix" >
@@ -45,10 +44,12 @@ $!{homepageVO}
     #foreach( $!bookItem in $!{homepageVO.bookList} )
 
     <div class="book-item" title="$!{bookItem.title}" data-toggle="tooltip" data-placement="bottom" >
-        <div class="item-pic">
-            <img class="img-pic" src="$!{bookItem.imgURL}" />
-        </div>
-        <div class="item-title"> $!{bookItem.title} </div>
+        <a target="_blank" href="http://xinrandushuba.com/book/isbn/$!{bookItem.isbn}">
+            <div class="item-pic">
+                <img class="img-pic" src="$!{bookItem.imgURL}" />
+            </div>
+            <div class="item-title"> $!{bookItem.title} </div>
+        </a>
     </div>
 
     #end
