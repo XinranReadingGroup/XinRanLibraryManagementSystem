@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>欣然读书--个人中心</title>
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <meta name="apple-mobile-web-app-status-bar-style" content="black"/>
+    <meta name="format-detection" content="telephone=no"/>
+    <meta name="format-detection" content="email=no"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=0"/>
+    <!-- 公用静态资源 -->
+    <link rel="stylesheet" type="text/css" href="../../css/common/bootstrap.css" media="all">
+    <link rel="stylesheet" type="text/css" href="../../css/common/common.css" media="all">
+    <script src="../../js/common/sea.js"></script>
+    <script src="../../js/common/jquery.js"></script>
+    <script src="../../js/common/bootstrap.js"></script>
+    <script src="../../js/common/seajs-css.js"></script>
+    <script src="../../js/common/sea-config.js"></script>
+
+    <!-- 页面静态资源 -->
+    <link rel="stylesheet" type="text/css" href="../../css/ucenter.css" media="all">
+</head>
+<body>
+<div class="body-wrap container-fluid" id="body-wrap">
+
+<!-- 顶部 -->
+<header class="navbar navbar-static-top bs-docs-nav" id="header" role="banner">
+    <div class="container header-wrap">
+        <div class="navbar-header">
+            <a class="navbar-brand header-logo" href="#">欣然读书</a>
+            <button class="navbar-toggle collapsed header-menu" type="button" data-toggle="collapse" data-target=".bs-navbar-collapse">
+            <span class="sr-only">Menu</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            </button>
+        </div>
+        <nav class="navbar-collapse bs-navbar-collapse collapse header-nav" aria-expanded="false" style="height: 1px;">
+            <ul class="nav navbar-nav">
+                <li class="active"><a href="../getting-started/">首页</a></li>
+                <li><a href="#">全部图书</a></li>
+                <li><a href="#">共享图书</a></li>
+                <li><a href="#">我的图书</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="Search for...">
+                        <span class="input-group-btn">
+                            <button class="btn btn-default" type="button"><span class="glyphicon glyphicon-search"></span></button>
+                        </span>
+                    </div>
+                </li>
+                <li><a href="#">登录</a></li>
+                <li><a href="#">注册</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+
+<div class="body-content-wrap">
+    <div id="headinfo_wrap" class="headinfo_wrap"></div>
+    <div id="userinfo_wrap" class="userinfo_wrap clearfix">
+        <div class="userinfo_left">
+            <div class="userinfo_left_head" id="j_userhead">
+                <a href="javascript:;" style="" class="userinfo_head">
+                <img src="../mock/img/portrait.jpg"></a>
+            </div>
+        </div>
+        <div class="userinfo_middle">
+            <div class="userinfo_title">
+                <span class="userinfo_username ">happyangelcp</span>
+            </div>
+            <div class="userinfo_num">
+                <div class="userinfo_userdata">
+                    <span class="userinfo_sex userinfo_sex_male"></span>
+                    <span>书龄: 300天</span>
+                    <span class="userinfo_split"></span>
+                    <span>分享书: 100册</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="main-content-wrap clearfix">
+        <div class="main-content">
+            <div role="tabpanel">
+                <ul class="nav nav-tabs" role="tablist">
+                    <li role="presentation" class="active"><a href="#read" aria-controls="read" role="tab" data-toggle="tab">读书记录</a></li>
+                    <li role="presentation"><a href="#share" aria-controls="share" role="tab" data-toggle="tab">分享记录</a></li>
+                    <li role="presentation"><a href="#donate" aria-controls="donate" role="tab" data-toggle="tab">捐书记录</a></li>
+                    <li role="presentation"><a href="#lend" aria-controls="lend" role="tab" data-toggle="tab">借阅记录</a></li>
+                    <li role="presentation"><a href="#integral" aria-controls="integral" role="tab" data-toggle="tab">个人积分</a></li>
+                </ul>
+                <div class="tab-content">
+                    <div role="tabpanel" class="tab-pane active" id="read">
+                        <ul class="book-list">
+                            <li class="book-item clearfix">
+                                <div class="book-img">
+                                    <img src="../mock/img/book.jpg">
+                                </div>
+                                <div class="book-info">
+                                    <div class="book-title clearfix">
+                                        <span>追风筝的人</span>
+                                        <span>2015-04-30</span>
+                                    </div>
+                                    <p class="book-desc">
+                                        《追风筝的人》内容简介：“许多年过去了，人们说陈年旧事可以被埋葬，然而我终于明白这是错的，因为往事会自行爬上来。回首前尘，我意识到在过去二十六年里，自己始终在窥视着那荒芜的小径。<br/>”12岁的阿富汗富家少爷阿米尔与仆人哈桑情同手足。然而，在一场风筝比赛后，发生了一件悲惨不堪的事，阿米尔为自己的懦弱感到自责和痛苦，逼走了哈桑，不久，自己也跟随父亲逃往美国。<br/>成年后的阿米尔始终无法原谅自己当年对哈桑的背叛。为了赎罪，阿米尔再度踏上暌违二十多年的故乡，希望能为不幸的好友尽最后一点心力，却发现一个惊天谎言，儿时的噩梦再度重演，阿米尔该如何抉择？<br/>小说如此残忍而又美丽，作者以温暖细腻的笔法勾勒人性的本质与救赎，读来令人荡气回肠。
+                                    </p>
+                                    <div class="book-op">
+                                        <button type="button" class="btn btn-default btn-sm donate-book">捐献</button>
+                                        <button type="button" class="btn btn-default btn-sm borrow-book">借阅</button>
+                                        <button type="button" class="btn btn-default btn-sm share-book">分享</button>
+                                        <button type="button" class="btn btn-default btn-sm comment-book">评论</button>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="book-item clearfix">
+                                <div class="book-img">
+                                    <img src="../mock/img/book.jpg">
+                                </div>
+                                <div class="book-info">
+                                    <div class="book-title clearfix">
+                                        <span>追风筝的人</span>
+                                        <span>2015-04-30</span>
+                                    </div>
+                                    <p class="book-desc">
+                                        《追风筝的人》内容简介：“许多年过去了，人们说陈年旧事可以被埋葬，然而我终于明白这是错的，因为往事会自行爬上来。回首前尘，我意识到在过去二十六年里，自己始终在窥视着那荒芜的小径。<br/>”12岁的阿富汗富家少爷阿米尔与仆人哈桑情同手足。然而，在一场风筝比赛后，发生了一件悲惨不堪的事，阿米尔为自己的懦弱感到自责和痛苦，逼走了哈桑，不久，自己也跟随父亲逃往美国。<br/>成年后的阿米尔始终无法原谅自己当年对哈桑的背叛。为了赎罪，阿米尔再度踏上暌违二十多年的故乡，希望能为不幸的好友尽最后一点心力，却发现一个惊天谎言，儿时的噩梦再度重演，阿米尔该如何抉择？<br/>小说如此残忍而又美丽，作者以温暖细腻的笔法勾勒人性的本质与救赎，读来令人荡气回肠。
+                                    </p>
+                                    <div class="book-op">
+                                        <button type="button" class="btn btn-default btn-sm donate-book">捐献</button>
+                                        <button type="button" class="btn btn-default btn-sm borrow-book">借阅</button>
+                                        <button type="button" class="btn btn-default btn-sm share-book">分享</button>
+                                        <button type="button" class="btn btn-default btn-sm comment-book">评论</button>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="book-item clearfix">
+                                <div class="book-img">
+                                    <img src="../mock/img/book.jpg">
+                                </div>
+                                <div class="book-info">
+                                    <div class="book-title clearfix">
+                                        <span>追风筝的人</span>
+                                        <span>2015-04-30</span>
+                                    </div>
+                                    <p class="book-desc">
+                                        《追风筝的人》内容简介：“许多年过去了，人们说陈年旧事可以被埋葬，然而我终于明白这是错的，因为往事会自行爬上来。回首前尘，我意识到在过去二十六年里，自己始终在窥视着那荒芜的小径。<br/>”12岁的阿富汗富家少爷阿米尔与仆人哈桑情同手足。然而，在一场风筝比赛后，发生了一件悲惨不堪的事，阿米尔为自己的懦弱感到自责和痛苦，逼走了哈桑，不久，自己也跟随父亲逃往美国。<br/>成年后的阿米尔始终无法原谅自己当年对哈桑的背叛。为了赎罪，阿米尔再度踏上暌违二十多年的故乡，希望能为不幸的好友尽最后一点心力，却发现一个惊天谎言，儿时的噩梦再度重演，阿米尔该如何抉择？<br/>小说如此残忍而又美丽，作者以温暖细腻的笔法勾勒人性的本质与救赎，读来令人荡气回肠。
+                                    </p>
+                                    <div class="book-op">
+                                        <button type="button" class="btn btn-default btn-sm donate-book">捐献</button>
+                                        <button type="button" class="btn btn-default btn-sm borrow-book">借阅</button>
+                                        <button type="button" class="btn btn-default btn-sm share-book">分享</button>
+                                        <button type="button" class="btn btn-default btn-sm comment-book">评论</button>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <div role="tabpanel" class="tab-pane" id="share">
+                        
+                    </div>
+                    <div role="tabpanel" class="tab-pane" id="donate">
+                        
+                    </div>
+                    <div role="tabpanel" class="tab-pane" id="lend">
+                        
+                    </div>
+                    <div role="tabpanel" class="tab-pane" id="integral">
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="donate-modal" tabindex="-1" role="dialog"  aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title">捐书</h4>
+            </div>
+            <div class="modal-body">
+                确认捐献此图书吗？！
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-primary" id="donate-book-btn">OK</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="borrow-modal" tabindex="-1" role="dialog"  aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title">借阅</h4>
+            </div>
+            <div class="modal-body">
+                <ul class="donate-list">
+                    <li class="donate-item">
+                        <label>
+                            <input type="radio" type="donateBook" value="10001">
+                            <span>图书管理员:xxx</span>
+                            <span>地点:xxx</span>
+                        </label>
+                    </li>
+                    <li class="donate-item">
+                        <label>
+                            <input type="radio" type="donateBook" value="10001">
+                            <span>图书管理员:xxx</span>
+                            <span>地点:xxx</span>
+                        </label>
+                    </li>
+                    <li class="donate-item">
+                        <label>
+                            <input type="radio" type="donateBook" value="10001">
+                            <span>图书管理员:xxx</span>
+                            <span>地点:xxx</span>
+                        </label>
+                    </li>
+                </ul>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-primary"  id="borrow-book-btn">OK</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="share-modal" tabindex="-1" role="dialog"  aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title">分享</h4>
+            </div>
+            <div class="modal-body">
+                <textarea placehodler="评论内容" class="comment-input">
+                    
+                </textarea>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-primary" id="share-book-btn">OK</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="comment-modal" tabindex="-1" role="dialog"  aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title">评论</h4>
+            </div>
+            <div class="modal-body">
+                <div class="comment-star">
+                    <label>
+                        <input type="radio" name="commentStar" value="5">
+                        <span class="glyphicon glyphicon-star"></span>
+                        <span class="glyphicon glyphicon-star"></span>
+                        <span class="glyphicon glyphicon-star"></span>
+                        <span class="glyphicon glyphicon-star"></span>
+                        <span class="glyphicon glyphicon-star"></span>
+                    </label>
+                    <label>
+                        <input type="radio" name="commentStar" value="4">
+                        <span class="glyphicon glyphicon-star"></span>
+                        <span class="glyphicon glyphicon-star"></span>
+                        <span class="glyphicon glyphicon-star"></span>
+                        <span class="glyphicon glyphicon-star"></span>
+                    </label>
+                    <label>
+                        <input type="radio" name="commentStar" value="3">
+                        <span class="glyphicon glyphicon-star"></span>
+                        <span class="glyphicon glyphicon-star"></span>
+                        <span class="glyphicon glyphicon-star"></span>
+                    </label>
+                    <label>
+                        <input type="radio" name="commentStar" value="2">
+                        <span class="glyphicon glyphicon-star"></span>
+                        <span class="glyphicon glyphicon-star"></span>
+                    </label>
+                    <label>
+                        <input type="radio" name="commentStar" value="1">
+                        <span class="glyphicon glyphicon-star"></span>
+                    </label>
+                </div>
+                <textarea placehodler="评论内容" class="comment-input">
+                    
+                </textarea>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-primary" id="comment-book-btn">OK</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+</div>
+<script type="text/javascript">
+seajs.use('./js/ucenter.js', function(Ucenter){
+    var ucenter = new Ucenter();
+    ucenter.render();
+});
+</script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
