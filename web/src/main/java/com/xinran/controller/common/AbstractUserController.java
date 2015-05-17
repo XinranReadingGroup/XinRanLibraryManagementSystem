@@ -73,8 +73,6 @@ public abstract class AbstractUserController {
     @RequestMapping("/user/session/signIn")
     public ModelAndView newSessionSignIn(HttpServletRequest request, HttpServletResponse response) {
         return new ModelAndView("newSessionSignIn");
-
-
     }
 
     /**
@@ -100,6 +98,22 @@ public abstract class AbstractUserController {
         }
 
     }
+
+    @RequestMapping("/user/profile")
+    public @ResponseBody AjaxResult viewMyselfUser(
+                                                   HttpServletRequest request) throws UserException {
+        UserVO userVO = viewMyselfUser1(request);
+        return AjaxResultBuilder.buildSuccessfulResult(userVO);
+    }
+
+    private UserVO viewMyselfUser1(HttpServletRequest request) {
+        Long userIdInSession = UserIdenetityUtil.getCurrentUserId(request);
+        User user = userService.findUserByUserId(userIdInSession);
+        UserVO userVO = new UserVO();
+        BeanUtils.copyProperties(user, userVO);
+        return userVO;
+    }
+
 
     @RequestMapping("/user/{userId}/profile")
     public @ResponseBody AjaxResult viewUser(@PathVariable(value = ApplicationConstant.USER_ID) Long userId,
