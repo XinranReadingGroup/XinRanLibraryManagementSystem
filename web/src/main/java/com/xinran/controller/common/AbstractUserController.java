@@ -69,16 +69,20 @@ public abstract class AbstractUserController {
     /**
      * 登录页面
      * 
-     * @param identifier
-     * @param password
-     * @param request
-     * @param response
-     * @return
      */
-    @RequestMapping("/user/session/new")
-    public ModelAndView newSession(HttpServletRequest request, HttpServletResponse response) {
-        return new ModelAndView("newSession");
+    @RequestMapping("/user/session/signIn")
+    public ModelAndView newSessionSignIn(HttpServletRequest request, HttpServletResponse response) {
+        return new ModelAndView("newSessionSignIn");
 
+
+    }
+
+    /**
+     * 注册页面
+     */
+    @RequestMapping("/user/session/signUp")
+    public ModelAndView newSessionSignUp(HttpServletRequest request, HttpServletResponse response) {
+        return new ModelAndView("newSessionSignUp");
 
     }
 
