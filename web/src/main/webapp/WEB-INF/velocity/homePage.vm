@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 <!DOCTYPE html>
 <html>
 <head>
@@ -39,6 +38,8 @@
 </div>
 
 
+${homepageVO}
+s
 <div id="home-main-box-root" class="home-main-box-root clearfix" >
 
     <div class="book-item">
@@ -104,6 +105,3 @@ seajs.use('./js/home.js', function( homeObj ){
 
 </body>
 </html>
-=======
-${homepageVO}
->>>>>>> 39599b883974e4664d14bfc8334939f81fbc967b
