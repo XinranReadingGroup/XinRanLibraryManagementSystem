@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>欣然读书--详情</title>
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <meta name="apple-mobile-web-app-status-bar-style" content="black"/>
+    <meta name="format-detection" content="telephone=no"/>
+    <meta name="format-detection" content="email=no"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=0"/>
+
+    <!-- 公用静态资源 -->
+    <link rel="stylesheet" type="text/css" href="../../css/common/bootstrap.css" media="all">
+    <link rel="stylesheet" type="text/css" href="../../css/common/common.css" media="all">
+    <script src="../../js/common/sea.js"></script>
+    <script src="../../js/common/jquery.js"></script>
+    <script src="../../js/common/bootstrap.js"></script>
+    <script src="../../js/common/seajs-css.js"></script>
+    <script src="../../js/common/sea-config.js"></script>
+
+    <!-- 页面静态资源 -->
+    <link rel="stylesheet" type="text/css" href="../../css/detail.css" media="all">
+
+</head>
+<body>
+<!-- 顶部 -->
+<header class="navbar navbar-static-top bs-docs-nav" id="header" role="banner">
+    <div class="container header-wrap">
+        <div class="navbar-header">
+            <a class="navbar-brand header-logo" href="#">欣然读书</a>
+            <button class="navbar-toggle collapsed header-menu" type="button" data-toggle="collapse" data-target=".bs-navbar-collapse">
+                <span class="sr-only">Menu</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+        </div>
+        <nav class="navbar-collapse bs-navbar-collapse collapse header-nav" aria-expanded="false" style="height: 1px;">
+            <ul class="nav navbar-nav">
+                <li class="active"><a href="../getting-started/">首页</a></li>
+                <li><a href="#">全部图书</a></li>
+                <li><a href="#">共享图书</a></li>
+                <li><a href="#">我的图书</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <div class="input-group">
+                      <input type="text" class="form-control" placeholder="Search for...">
+                      <span class="input-group-btn">
+                        <button class="btn btn-default" type="button"><span class="glyphicon glyphicon-search"></span></button>
+                      </span>
+                    </div>
+                </li>
+                <li><a href="#">登录</a></li>
+                <li><a href="#">注册</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+<div class="xy-detail">
+  <div class="xy-detail-header">
+    让书流动起来，传递知识分享爱，欣然读书吧
+  </div>
+  <div class="xy-detail-info">
+    <div class="xy-detail-info-left">
+      <img class="xy-detail-info-img" src="./img/detail/book.jpg">
+    </div>
+    <div class="xy-detail-info-right">
+      <p class="xy-detail-info-title">
+        你的孤独，比这个世界更动人
+      </p>
+      <p class="xy-detail-info-des">
+        <span class="xy-detail-info-des-left">共享日期:</span>
+        <span class="xy-detail-info-des-right">2015-01-12</span>
+      </p>
+       <p class="xy-detail-info-des">
+        <span class="xy-detail-info-des-left">共享人:</span>
+        <span class="xy-detail-info-des-right">欣然</span>
+      </p>
+       <p class="xy-detail-info-des">
+        <span class="xy-detail-info-des-left">目前状态:</span>
+        <span class="xy-detail-info-des-right">未被借</span>
+      </p>
+       <p class="xy-detail-info-control">
+       <a href="javascript:;" data-role="detail-share" class="xy-detail-btn xy-detail-info-btn xy-btn-green">取消共享</a>
+       <a href="javascript:;" data-role="detail-donate" class="xy-detail-btn xy-detail-info-btn xy-btn-normal">捐书</a>
+      </p>
+    </div>
+  </div>
+
+  <div class="xy-detail-publish">
+    <p>
+    <span class="xy-detail-head">出版信息</span>
+    <span class="xy-detail-head-hr"></span>
+    </p>
+
+    <p class="xy-detail-publish-item">
+      <span class="xy-detail-publish-left">作者:</span>
+      <span class="xy-detail-publish-right">王云超</span>
+    </p>
+
+
+    <p class="xy-detail-publish-item">
+      <span class="xy-detail-publish-left">出版社:</span>
+      <span class="xy-detail-publish-right">湖南文艺出版社</span>
+    </p>
+
+
+    <p class="xy-detail-publish-item">
+      <span class="xy-detail-publish-left">出版年:</span>
+      <span class="xy-detail-publish-right">2014-02</span>
+    </p>
+
+
+    <p class="xy-detail-publish-item">
+      <span class="xy-detail-publish-left">定价:</span>
+      <span class="xy-detail-publish-right">24.00元</span>
+    </p>
+
+
+    <p class="xy-detail-publish-item">
+      <span class="xy-detail-publish-left">装帧:</span>
+      <span class="xy-detail-publish-right">平装</span>
+    </p>
+
+    <p class="xy-detail-publish-item">
+      <span class="xy-detail-publish-left">ISBN:</span>
+      <span class="xy-detail-publish-right">9787540470623</span>
+    </p>
+
+  </div>
+
+  <div class="xy-detail-content">
+    <p>
+      <span class="xy-detail-head">内容简介</span>
+      <span class="xy-detail-head-hr"></span>
+    </p>
+
+    <div class="xy-detail-content-info">
+      <p>
+        他们成群结队穿梭于立交桥上，花枝招展奔走在摩天大楼之间，只为驱赶梦想的年轮，他们不需要怀念什么往事，也可以不屑自己的出处。
+      </p>
+
+      <p>
+        那些美好的不美好的，都会随着岁月流逝与环境变迁一点点消失不见。人潮涌动的都市，没有什么是永恒的，也没有什么不可替代，我们为自负者的唏嘘，为失败者的惋惜，为无辜者的伤感，都会在未来的某刻被提及者一带而过，我们其实和我们所在的这座城市一样无情。
+      </p>
+
+      <p>
+        ★一缕阳光骄傲地抬起头，我和他们一样，都是天通苑的孩子。——《日落天通苑》
+      </p>
+
+      <p class="xy-detail-content-control">
+        <a href="" class="xy-detail-content-seek" data-role="xy-detail-seek-more">{展开全部}</a>
+      </p>
+    </div>
+  </div>
+
+  <div class="xy-detail-history">
+    <p>
+      <span class="xy-detail-head">借阅历史</span>
+      <span class="xy-detail-head-hr"></span>
+    </p>
+    <div class="xy-detail-history-content">
+      <p>
+        <span class="xy-detail-trips">
+        暂时没有人借阅此书
+      </span>
+      </p>
+
+      <a class="xy-detail-history-item">
+        <img src="./img/detail/avatar.jpg">
+        <span href="javascript:;" class="xy-detail-history-name">
+          欣然
+        </span>
+      </a>
+      <a class="xy-detail-history-item">
+        <img src="./img/detail/avatar.jpg">
+        <span href="javascript:;" class="xy-detail-history-name">
+          欣然
+        </span>
+      </a>
+    </div>
+  </div>
+</div>
+
+<div class="xy-footer">
+  <p class="xy-footer-trips">&copy;2015 绿色兑换－欣然流动读书吧</p>
+  <p class="xy-footer-trips">
+  <a href="javascript:;" class="xy-footer-link">关于读书吧</a>
+  &middot;
+  <a href="javascript:;" class="xy-footer-link">联系我们</a>
+  &middot;
+  <a href="javascript:;" class="xy-footer-link">免责声明</a>
+  &middot;
+  <a href="javascript:;" class="xy-footer-link">帮助中心</a>
+  &middot;
+  <a href="javascript:;" class="xy-footer-link">APP下载</a>
+  </p>
+</div>
+</body>
+</html>
