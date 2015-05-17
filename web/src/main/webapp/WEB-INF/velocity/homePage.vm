@@ -37,6 +37,8 @@
 
 </div>
 
+$!{homepageVO}
+
 <div class="home-book-count-title">目前共有图书 $!{homepageVO.bookList.size()} 册</div>
 <div id="home-main-box-root" class="home-main-box-root clearfix" >
 
