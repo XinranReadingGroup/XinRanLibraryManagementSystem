@@ -25,6 +25,8 @@ define(function(require, exports, module) {
 
         $(doc).delegate('#register-btn', 'click', function(event) {
             self.register();
+
+            return false;
         });
     };
 
