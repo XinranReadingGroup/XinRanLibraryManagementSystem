@@ -160,16 +160,16 @@
                         </ul>
                     </div>
                     <div role="tabpanel" class="tab-pane" id="share">
-                        
+
                     </div>
                     <div role="tabpanel" class="tab-pane" id="donate">
-                        
+
                     </div>
                     <div role="tabpanel" class="tab-pane" id="lend">
-                        
+
                     </div>
                     <div role="tabpanel" class="tab-pane" id="integral">
-                        
+
                     </div>
                 </div>
             </div>
@@ -250,7 +250,7 @@
             </div>
             <div class="modal-body">
                 <textarea placehodler="评论内容" class="comment-input">
-                    
+
                 </textarea>
             </div>
             <div class="modal-footer">
@@ -304,7 +304,7 @@
                     </label>
                 </div>
                 <textarea placehodler="评论内容" class="comment-input">
-                    
+
                 </textarea>
             </div>
             <div class="modal-footer">
