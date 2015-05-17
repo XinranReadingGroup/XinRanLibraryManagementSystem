@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.xinran.constant.ApplicationConstant;
 import com.xinran.constant.ExceptionCode;
@@ -75,16 +76,9 @@ public abstract class AbstractUserController {
      * @return
      */
     @RequestMapping("/user/session/new")
-    public @ResponseBody AjaxResult newSession(@RequestParam(value = "userIdentifier") String identifier,
-                                               @RequestParam(value = "password") String password,
-                                               HttpServletRequest request, HttpServletResponse response) {
-        Long userId;
-        try {
-            userId = userService.signIn(identifier, password);
-            return doSignInOrSignUp(request, response, userId);
-        } catch (UserException e) {
-            return AjaxResultBuilder.buildFailedResult(400, e.getCode());
-        }
+    public ModelAndView newSession(HttpServletRequest request, HttpServletResponse response) {
+        return new ModelAndView("newSession");
+
 
     }
 
