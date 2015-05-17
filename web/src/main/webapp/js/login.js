@@ -30,6 +30,12 @@ define(function(require, exports, module) {
 
             return false;
         });
+
+        $(doc).delegate('#login-btn', 'click', function(event) {
+            self.login();
+
+            return false;
+        });
     };
 
     Login.prototype.login = function() {
