@@ -16,7 +16,9 @@ define(function(require, exports, module) {
     };
 
     Login.prototype.render = function() {
+        var self = this;
 
+        self.bindEvents();
     };
 
     Login.prototype.bindEvents = function() {
