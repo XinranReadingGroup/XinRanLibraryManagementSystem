@@ -16,7 +16,6 @@ define(function(require, exports, module) {
 
     BookDetail.prototype.start = function() {
         var self = this;
-        debugger;
         self.bindEvents();
     };
 
@@ -25,22 +24,13 @@ define(function(require, exports, module) {
             doc = document;
 
         $(doc).delegate('[data-role=detail-share]', 'click', function(event) {
-            console.log('xx');
             $('#disShare-modal').modal('show');
         });
 
-        $(doc).delegate('.share-book', 'click', function(event) {
+        $(doc).delegate('[data-role=detail-donate]', 'click', function(event) {
             $('#share-modal').modal('show');
         });
-        $(doc).delegate('.comment-book', 'click', function(event) {
-            $('#comment-modal').modal('show');
-        });
 
-        $(doc).delegate('#donate-book-btn', 'click', function(event) {
-            $.get('book/donate/3', {}, function(json) {
-
-            }, 'json');
-        });
         $(doc).delegate('#borrow-book-btn', 'click', function(event) {
             $.get('book/borrow/3', {}, function(json) {
 
