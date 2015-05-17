@@ -1,0 +1,117 @@
+.pagination-wrap {
+    margin-top: 20px;
+    text-align: right;
+    padding-bottom: 20px;
+    font-weight: lighter;
+    color: #333;
+}
+.pagination-wrap a {
+    color: #333;
+    cursor: pointer;
+    font-weight: normal;
+}
+.pagination-wrap a:hover {
+    border: 1px solid #f40;
+	color:#f40;
+	background-color:#fff;
+	text-decoration:none;
+}
+.pagination-wrap .pagination-inner {
+    display: inline-block;
+    *zoom: 1;
+}
+.pagination-wrap .pagination-start,
+.pagination-wrap .pagination-prev,
+.pagination-wrap .pagination-next,
+.pagination-wrap .pagination-end {
+  width: 16px;
+  background: url(./icons.png) no-repeat;
+}
+.pagination-wrap .pagination-start,
+.pagination-wrap .pagination-prev,
+.pagination-wrap .pagination-next,
+.pagination-wrap .pagination-end,
+.pagination-wrap .pagination-spec,
+.pagination-wrap .pagination-curr,
+.pagination-wrap .pagination-break {
+  min-width: 16px;
+  _width: 16px;
+  border: 1px solid #ccc;
+  display: inline;
+  float: left;
+  height: 24px;
+  margin-right: 3px;
+  padding: 0 5px;
+  line-height: 24px;
+  text-align: center;
+  font-family: Tahoma, SimSun, Arial;
+  vertical-align: top;
+  white-space: nowrap;
+  overflow: hidden;
+  border-radius: 4px;
+}
+
+.pagination-wrap a.pagination-spec:hover {
+    border: 1px solid #f40;
+	color:#f40;
+	background-color:#fff;
+	text-decoration:none;
+}
+
+.pagination-wrap .pagination-start {
+  padding-left: 1px;
+  background-position: 8px 8px;
+}
+.pagination-wrap .pagination-prev {
+  padding-left: 2px;
+  background-position: 3px -12px;
+}
+.pagination-wrap .pagination-curr {
+  font-weight: 700;
+  color: #fff;
+  background-color: #f40;
+  border: 1px solid #f40;
+}
+.pagination-wrap .pagination-break {
+  border: 0;
+  line-height: 20px;
+}
+.pagination-wrap .pagination-form {
+    border: 0;
+    line-height: 25px;
+    display: inline-block;
+    *display: inline;
+}
+.pagination-wrap .pagination-text {
+  height: 24px;
+  line-height: 24px;
+  width: 38px;
+  text-align: center;
+  margin: 0 3px;
+  border-radius: 2px;
+  background-color: #fff;
+  border:1px solid #ccc;
+}
+
+.pagination-wrap .pagination-btn {
+  padding: 2px 10px;
+  border: 1px solid #f40;
+  border-radius: 2px;
+  font-size: 12px;
+  margin-left: 5px;
+  color:#fff;
+  font-weight:bold;
+  background-color:#f40;
+  display: inline-block;
+  cursor:pointer;
+
+}
+
+.pagination-wrap .pagination-next {
+  padding-right: 2px;
+  background-position: 5px -50px;
+}
+.pagination-wrap .pagination-end {
+  padding-right: 2px;
+  background-position: 10px -31px;
+}
