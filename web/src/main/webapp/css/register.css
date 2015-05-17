@@ -1,0 +1,49 @@
+/**
+ * 
+ */
+html{
+	background: #f1f5f8;
+}
+.login-panel-wrap{
+	height: 360px;
+	position: relative;
+	background: #007903 url(../img/login/light.png) center 0 no-repeat;
+}
+.login-panel {
+	width: 740px;
+	height: 100%;
+  	margin: 0 auto;
+  	position: relative;
+}
+.login-banner{
+	position: absolute;
+	width: 360px;
+	height: 120px;
+	top: 50%;
+	left: 0;
+	margin-top: -60px;
+	color: #f7f7f7;
+}
+.login-banner h1{
+	font-size: 56px;
+	margin: 0 0 20px 0;
+	font-weight: normal;
+}
+.login-banner p{
+	font-size: 16px;
+}
+
+/**
+ * 
+ */
+.login-form{
+	width: 260px;
+	position: absolute;
+	right: 0;
+	top: 50%;
+	margin-top: -90px;
+	color: #ddd;
+}
+.login-form input{
+	width: 260px;
+}

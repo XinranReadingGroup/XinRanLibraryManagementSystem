@@ -1,0 +1,187 @@
+/**
+ * 
+ */
+html {
+	background: #d1dae4;
+}
+.body-content-wrap {
+	background: url(../img/ucenter/bg_wrap.jpg) no-repeat scroll center 0 #d1dae4;
+	padding: 20px 0;
+	margin: 0 -15px;
+}
+.headinfo_wrap {
+	background: url(../img/ucenter/head.jpg) no-repeat;
+	width: 980px;
+	height: 260px;
+	margin: 0 auto;
+	position: relative;
+}
+.userinfo_wrap {
+	height: 110px;
+	width: 980px;
+	margin: 0 auto;
+	border-style: solid;
+	border-color: #8FC0D3;
+	border-width: 0 1px;
+	background: #F5F7FA;
+}
+.userinfo_left {
+	position: relative;
+	width: 190px;
+	height: 110px;
+	float: left;
+}
+.userinfo_left_head {
+	left: 17px;
+	position: absolute;
+	top: -65px;
+}
+.userinfo_head {
+	display: block;
+	background: url(../img/ucenter/userinfo_head.png) no-repeat;
+	height: 160px;
+	padding: 5px;
+	width: 160px;
+	cursor: pointer;
+}
+.userinfo_head img {
+	width: 150px;
+	height: 150px;
+	border-radius: 4px;
+}
+.userinfo_middle {
+	width: 500px;
+	float: left;
+}
+.userinfo_relation {
+	position: relative;
+	left: 0;
+	top: 0;
+	zoom: 1;
+}
+.userinfo_title {
+	font-family: 'Microsoft YaHei';
+	font-size: 18px;
+	height: 26px;
+	line-height: 26px;
+	margin-top: 10px;
+	overflow: hidden;
+}
+.userinfo_num {
+	margin-top: 4px;
+	color: #797c80;
+	overflow: hidden;
+	zoom: 1;
+}
+.userinfo_sex_male {
+	background-position: 0 -32px;
+}
+.userinfo_sex {
+	background: url(../img/ucenter/icon_groups.png) no-repeat 0px -32px;
+	display: inline-block;
+	height: 14px;
+	margin: -3px 4px 0 0;
+	vertical-align: middle;
+	width: 14px;
+}
+.userinfo_num {
+	margin-top: 4px;
+	color: #797c80;
+	overflow: hidden;
+	zoom: 1;
+}
+.userinfo_split {
+	border-color: #ccc;
+	border-style: solid;
+	border-width: 0 0 0 1px;
+	display: inline-block;
+	height: 10px;
+	line-height: 10px;
+	margin: 0 10px 2px 9px;
+	vertical-align: middle;
+}
+.main-content-wrap{
+	width: 980px;
+	margin: 0 auto;
+	border-left: 1px solid #87bed9;
+	border-right: 1px solid #87bed9;
+	border-bottom: 1px solid #87bed9;
+	background-color: #fff;
+}
+.main-content{
+	width: 739px;
+	float: left;
+	border-right: 1px solid #cdd2d6;
+}
+
+
+
+/**
+ * 
+ */
+.book-list{
+	list-style: none;
+	margin: 20px 0;
+	padding: 0;
+	border: none;
+}
+.book-item{
+	padding: 8px 0;
+	border-bottom: 1px dotted #e1e3e6;
+}
+.book-title{
+	font-size: 16px;
+	font-weight: 900;
+	color: #555;
+	padding: 6px 0;
+}
+.book-img{
+	width: 200px;
+	float: left;
+
+}
+.book-img img{
+	max-width: 200px;
+}
+.book-info{
+	width: 530px;
+	padding-right: 10px;
+	float: right;
+}
+.book-desc{
+	color: #919499;
+	font-size: 12px;
+	word-break: break-all;
+	padding: 0;
+	margin: 0;
+}
+.book-op{
+	padding-top: 10px;
+}
+
+
+/**
+ * 
+ */
+.comment-star label{
+	display: block;
+	height: 20px;
+	line-height: 20px;
+}
+.comment-star .glyphicon-star{
+	color: rgb(255, 194, 0);
+}
+.comment-input{
+	width: 100%;
+	height: 60px;
+	padding-top: 8px;
+}
+
+
+
+
+
+
+
+
+

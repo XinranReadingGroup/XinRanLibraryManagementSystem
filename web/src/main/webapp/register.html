@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>欣然读书--注册</title>
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <meta name="apple-mobile-web-app-status-bar-style" content="black"/>
+    <meta name="format-detection" content="telephone=no"/>
+    <meta name="format-detection" content="email=no"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=0"/>
+
+    <!-- 公用静态资源 -->
+    <link rel="stylesheet" type="text/css" href="./css/common/bootstrap.css" media="all">
+    <link rel="stylesheet" type="text/css" href="./css/common/common.css" media="all">
+    <script src="./js/common/sea.js"></script>
+    <script src="./js/common/jquery.js"></script>
+    <script src="./js/common/bootstrap.js"></script>
+    <script src="./js/common/seajs-css.js"></script>
+    <script src="./js/common/sea-config.js"></script>
+
+    <!-- 页面静态资源 -->
+    <link rel="stylesheet" type="text/css" href="./css/register.css" media="all">
+</head>
+<body>
+<div class="body-wrap container-fluid" id="body-wrap">
+
+<!-- 顶部 -->
+<header class="navbar navbar-static-top bs-docs-nav" id="header" role="banner">
+    <div class="container header-wrap">
+        <div class="navbar-header">
+            <a class="navbar-brand header-logo" href="#">欣然读书</a>
+            <button class="navbar-toggle collapsed header-menu" type="button" data-toggle="collapse" data-target=".bs-navbar-collapse">
+                <span class="sr-only">Menu</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+        </div>
+        <nav class="navbar-collapse bs-navbar-collapse collapse header-nav" aria-expanded="false" style="height: 1px;">
+            <ul class="nav navbar-nav">
+                <li class="active"><a href="../getting-started/">首页</a></li>
+                <li><a href="#">全部图书</a></li>
+                <li><a href="#">共享图书</a></li>
+                <li><a href="#">我的图书</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <div class="input-group">
+                      <input type="text" class="form-control" placeholder="Search for...">
+                      <span class="input-group-btn">
+                        <button class="btn btn-default" type="button"><span class="glyphicon glyphicon-search"></span></button>
+                      </span>
+                    </div>
+                </li>
+                <li><a href="#">登录</a></li>
+                <li><a href="#">注册</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+<div class="login-panel-wrap row">
+    <div class="login-panel">
+        <div class="login-banner">
+            <h1>欣然读书</h1>
+            <p>谈笑有鸿儒，往来无白丁。</p>
+        </div>
+        <div class="login-form">
+            <form class="form-horizontal">
+              <div class="form-group">
+                <div class="col-sm-8">
+                  <input type="email" class="form-control" id="account" placeholder="邮箱或者手机">
+                </div>
+              </div>
+              <div class="form-group">
+                <div class="col-sm-8">
+                  <input type="password" class="form-control" id="password" placeholder="密码">
+                </div>
+              </div>
+               <div class="form-group">
+                <div class="col-sm-8">
+                  <input type="password" class="form-control" id="repassword" placeholder="确认密码">
+                </div>
+              </div>
+              <div class="form-group">
+                <div class="col-sm-8">
+                  <div class="checkbox">
+                    <label>
+                      <input type="checkbox"> 同意网站协议
+                    </label>
+                  </div>
+                </div>
+              </div>
+              <div class="form-group">
+                <div class="col-sm-8">
+                  <button type="submit" class="btn btn-default">注册</button>
+                </div>
+              </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div class="login-ad">
+</div>
+
+</div>
+<script type="text/javascript">
+seajs.use('./js/login.js', function(Login){
+    var login = new Login();
+    login.render();
+});
+</script>
+</body>
+</html>
