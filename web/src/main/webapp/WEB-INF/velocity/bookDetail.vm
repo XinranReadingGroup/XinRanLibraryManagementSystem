@@ -92,7 +92,7 @@
   </div>
 
   <div class="xy-detail-publish">
-    <p>
+    <p class="xy-detail-first-item">
     <span class="xy-detail-head">出版信息</span>
     <span class="xy-detail-head-hr"></span>
     </p>
@@ -134,7 +134,7 @@
   </div>
 
   <div class="xy-detail-content">
-    <p>
+    <p class="xy-detail-first-item">
       <span class="xy-detail-head">内容简介</span>
       <span class="xy-detail-head-hr"></span>
     </p>
@@ -159,7 +159,7 @@
   </div>
 
   <div class="xy-detail-history">
-    <p>
+    <p class="xy-detail-first-item">
       <span class="xy-detail-head">借阅历史</span>
       <span class="xy-detail-head-hr"></span>
     </p>

@@ -27,7 +27,7 @@ define(function(require, exports, module) {
             $('#disShare-modal').modal('show');
         });
 
-        $(doc).delegate('[data-role=detail-share]', 'click', function(event) {
+        $(doc).delegate('[data-role=detail-donate]', 'click', function(event) {
             $('#share-modal').modal('show');
         });
 
