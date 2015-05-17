@@ -9,7 +9,8 @@ seajs.config({
 
     // 别名配置
     alias: {
-        'jquery': '/js/common/jquery.js'
+        'jquery': '/js/common/jquery.js',
+        'events': '/js/common/events/events.js'
     },
 
     // 文件编码
