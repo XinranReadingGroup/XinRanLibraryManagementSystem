@@ -42,7 +42,8 @@ define(function(require, exports, module) {
             'password': pswd
         }, function(json) {
             if (json.code == 200) {
-                Util.setCookie('accessToken', json.data.accessToken)
+                Util.setCookie('accessToken', json.data.accessToken);
+                top.location.href = '/';
             }
         }, 'json');
     };
@@ -60,6 +61,7 @@ define(function(require, exports, module) {
         }, function(json) {
             if (json.code == 200) {
                 Util.setCookie('accessToken', json.data.accessToken);
+                top.location.href = '/';
             }
         }, 'json');
     };
@@ -72,7 +74,7 @@ define(function(require, exports, module) {
         }, function(json) {
             if (json.code == 200) {
                 Util.clearCookie('accessToken');
-                top.location.reload();
+                top.location.href = '/';
             }
         }, 'json');
     };
