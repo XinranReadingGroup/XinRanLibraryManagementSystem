@@ -36,19 +36,15 @@ import com.xinran.vo.builder.AjaxResultBuilder;
 public class AbstractBookController {
 
     @Autowired
-    private BookService               bookService;
+    protected BookService               bookService;
 
     @Autowired
-    private OnOffStockRecordService   onOffStockRecordService;
+    protected OnOffStockRecordService   onOffStockRecordService;
 
     @Autowired
-    private BorrowReturnRecordService borrowReturnRecordService;
+    protected BorrowReturnRecordService borrowReturnRecordService;
 
-    @RequestMapping("/book/isbn/{isbn}")
-    public @ResponseBody AjaxResult getBookByISBN(@PathVariable(value = "isbn") String isbn, HttpServletRequest request) {
-        Book book = bookService.findBookByISBN(isbn);
-        return AjaxResultBuilder.buildSuccessfulResult(book);
-    }
+
 
     @RequestMapping("/book/donate/{bookId}")
     public @ResponseBody AjaxResult donate(@PathVariable(value = "bookId") Long bookId,
