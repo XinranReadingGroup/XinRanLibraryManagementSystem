@@ -11,6 +11,7 @@ import javax.servlet.http.HttpSession;
 import org.apache.commons.lang.RandomStringUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.google.common.collect.Maps;
 import com.xinran.constant.ApplicationConstant;
@@ -39,6 +40,22 @@ public class UserController extends AbstractUserController {
         return AjaxResultBuilder.buildSuccessfulResult(jsonMap);
     }
 
+    /**
+     * 登录页面
+     */
+    @RequestMapping("/user/session/signIn")
+    public ModelAndView newSessionSignIn(HttpServletRequest request, HttpServletResponse response) {
+        return new ModelAndView("newSessionSignIn");
+    }
+
+    /**
+     * 注册页面
+     */
+    @RequestMapping("/user/session/signUp")
+    public ModelAndView newSessionSignUp(HttpServletRequest request, HttpServletResponse response) {
+        return new ModelAndView("newSessionSignUp");
+
+    }
 
 
 
