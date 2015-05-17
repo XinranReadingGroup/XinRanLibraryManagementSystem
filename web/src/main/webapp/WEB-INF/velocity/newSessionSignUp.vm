@@ -76,19 +76,19 @@
 				</div>
 				<div class="form-group">
 					<div class="col-sm-8">
-						<input type="password" class="form-control" id="password" placeholder="密码">
+						<input type="text" class="form-control" id="nickname" placeholder="昵称">
 					</div>
 				</div>
 				<div class="form-group">
 					<div class="col-sm-8">
-						<input type="password" class="form-control" id="repassword" placeholder="确认密码">
+						<input type="password" class="form-control" id="password" placeholder="密码">
 					</div>
 				</div>
 				<div class="form-group">
 					<div class="col-sm-8">
 						<div class="checkbox">
 							<label>
-								<input type="checkbox"> 同意网站协议
+								<input type="checkbox"> <a href="#" target="_blank">同意网站协议</a>
 							</label>
 						</div>
 					</div>

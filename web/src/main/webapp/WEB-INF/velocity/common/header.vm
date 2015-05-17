@@ -2,7 +2,7 @@
 <header class="navbar navbar-static-top bs-docs-nav" id="header" role="banner">
     <div class="container header-wrap  ui-green">
         <div class="navbar-header">
-            <a class="navbar-brand header-logo" href="#">欣然读书</a>
+            <a class="navbar-brand header-logo" href="http://xinrandushuba.com/">欣然读书</a>
             <button class="navbar-toggle collapsed header-menu" type="button" data-toggle="collapse" data-target=".bs-navbar-collapse">
                 <span class="sr-only">Menu</span>
                 <span class="icon-bar"></span>
@@ -12,22 +12,29 @@
         </div>
         <nav class="navbar-collapse bs-navbar-collapse collapse header-nav" aria-expanded="false" style="height: 1px;">
             <ul class="nav navbar-nav">
-                <li class="active"><a href="../getting-started/">首页</a></li>
+                <li class="active"><a href="http://xinrandushuba.com/">首页</a></li>
                 <li><a href="#">全部图书</a></li>
                 <li><a href="#">共享图书</a></li>
                 <li><a href="#">我的图书</a></li>
             </ul>
+
+
             <ul class="nav navbar-nav navbar-right">
                 <li>
                     <div class="input-group">
-                      <input type="text" class="form-control" placeholder="Search for...">
+                      <input id="input-search-text" type="text" class="form-control" placeholder="Search for...">
                       <span class="input-group-btn">
                         <button class="btn btn-default" type="button"><span class="glyphicon glyphicon-search"></span></button>
                       </span>
                     </div>
                 </li>
-                <li><a href="#">登录</a></li>
-                <li><a href="#">注册</a></li>
+                #if( $!{homepageVO.nickName} )
+                    <li><a href="#">$!{homepageVO.nickName}</a></li>
+                    <li><a href="#">退出</a></li>
+                #else
+                    <li><a href="#">登录</a></li>
+                    <li><a href="#">注册</a></li>
+                #end
             </ul>
         </nav>
     </div>

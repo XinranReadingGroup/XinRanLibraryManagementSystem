@@ -35,13 +35,11 @@ define(function(require, exports, module) {
     Login.prototype.login = function() {
         var self = this,
             uid = $('#account').val(),
-            uname = $('#nickname').val(),
             pswd = $('#password').val();
 
-        $.post('/user/signUp', {
+        $.post('http://xinrandushuba.com/user/signIn', {
             'userIdentifier': uid,
-            'password': pswd,
-            'nickName': uname
+            'password': pswd
         }, function(json) {
             if (json.code == 200) {
                 Util.setCookie('accessToken', json.data.accessToken)
@@ -52,13 +50,13 @@ define(function(require, exports, module) {
     Login.prototype.register = function() {
         var self = this,
             uid = $('#account').val(),
-            uname = $('#nickname').val(),
+            nickname = $('#nickname').val(),
             pswd = $('#password').val();
 
-        $.post('/user/signUp', {
+        $.post('http://xinrandushuba.com/user/signUp', {
             'userIdentifier': uid,
             'password': pswd,
-            'nickName': uname
+            'nickName': nickname
         }, function(json) {
             if (json.code == 200) {
                 Util.setCookie('accessToken', json.data.accessToken);
@@ -67,10 +65,7 @@ define(function(require, exports, module) {
     };
 
     Login.prototype.logout = function() {
-        var self = this,
-            uid = $('#account').val(),
-            uname = $('nickname').val(),
-            pswd = $('#password').val();
+        var self = this;
 
         $.post('/user/signOut', {
             'accessToken': token
