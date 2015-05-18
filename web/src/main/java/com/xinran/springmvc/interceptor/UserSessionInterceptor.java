@@ -26,9 +26,16 @@ public class UserSessionInterceptor implements HandlerInterceptor {
     private static List<String> noNeedLoginURLs = Lists.newArrayList();
 
     {
+        // web 首页
         noNeedLoginURLs.add("/");
 
+        // mobile 首页
+        noNeedLoginURLs.add("/mobile");
+
         noNeedLoginURLs.add("/search");
+
+        noNeedLoginURLs.add("/user/session/signIn");
+        noNeedLoginURLs.add("/user/session/signUp");
 
         noNeedLoginURLs.add("/user/signUp");
         noNeedLoginURLs.add("/user/signIn");
@@ -42,15 +49,12 @@ public class UserSessionInterceptor implements HandlerInterceptor {
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
 
         // 白名单机制, 注册,登录,首页,搜索,数据详情,详情二维码,其他都需要登录登录
-        String path = request.getRequestURI();
+        String requestURI = request.getRequestURI();
 
-        if ("/mobile".equals(path) || "/web".equals(path)) {
-            return true;
-        }
 
         for (String url : noNeedLoginURLs) {
             // TODO 使用注解会更好点
-            if (-1 != path.indexOf(url)) {
+            if (-1 != requestURI.indexOf(url)) {
                 return true;
             }
 
@@ -63,14 +67,12 @@ public class UserSessionInterceptor implements HandlerInterceptor {
             return false;
         }
         
-        if (-1 != path.indexOf("/mobile")) {
+        if (-1 != requestURI.indexOf("/mobile")) {
             String accessTokenFromRequest = request.getParameter(ApplicationConstant.ACCESS_TOKEN);
             if (Objects.equals(accessTokenFromRequest, accessTokenFromSession)) {
                 return true;
             }
-        }
-
-        if (-1 != path.indexOf("/web")) {
+        } else {
             Cookie[] cookies = request.getCookies();
             if (null != cookies) {
                 for (Cookie cookie : cookies) {
@@ -86,7 +88,7 @@ public class UserSessionInterceptor implements HandlerInterceptor {
 
         }
 
-        log.debug("denied this path {}  ", path);
+        log.debug("denied this path {}  ", requestURI);
         return false;
     }
 

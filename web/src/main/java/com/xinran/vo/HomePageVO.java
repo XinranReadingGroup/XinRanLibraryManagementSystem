@@ -12,6 +12,8 @@ import lombok.Data;
 @Data
 public class HomePageVO {
 
-    private String nickName;
+    private String     nickName;
+    private boolean    isLogined;
+
     private List<Book> bookList;
 }

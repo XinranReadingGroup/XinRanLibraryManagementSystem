@@ -47,3 +47,6 @@ html{
 .login-form input{
 	width: 180px;
 }
+.login-form a{
+	color: #333;
+}
