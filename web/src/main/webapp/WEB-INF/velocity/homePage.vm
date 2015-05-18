@@ -22,7 +22,8 @@
 <div class="body-wrap container-fluid" id="body-wrap">
 
 <!-- 顶部 -->
-#include("common/header.vm")
+#parse("/common/header.vm")
+
 
 <div class="login-ad">
 </div>
@@ -70,7 +71,9 @@ seajs.use('./js/home.js', function( homeObj ){
 </script>
 
 
-#include("common/footer.vm")
+#include("/common/footer.vm")
+
+$!{homepageVO}
 
 </body>
 </html>

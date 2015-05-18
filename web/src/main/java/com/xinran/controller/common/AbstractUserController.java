@@ -66,7 +66,6 @@ public abstract class AbstractUserController {
 
     }
 
-
     @RequestMapping("/user/signOut")
     public @ResponseBody AjaxResult signOut(@RequestParam(value = ApplicationConstant.ACCESS_TOKEN) String accessToken,
                                             HttpServletRequest request) {
@@ -83,10 +82,9 @@ public abstract class AbstractUserController {
     }
 
     @RequestMapping("/user/profile")
-    public @ResponseBody AjaxResult viewMyselfUser(
-                                                   HttpServletRequest request) throws UserException {
+    public ModelAndView viewMyselfUser(HttpServletRequest request) throws UserException {
         UserVO userVO = viewMyselfUser1(request);
-        return AjaxResultBuilder.buildSuccessfulResult(userVO);
+        return new ModelAndView("userProfile", "userVO", userVO);
     }
 
     private UserVO viewMyselfUser1(HttpServletRequest request) {
@@ -96,7 +94,6 @@ public abstract class AbstractUserController {
         BeanUtils.copyProperties(user, userVO);
         return userVO;
     }
-
 
     @RequestMapping("/user/{userId}/profile")
     public @ResponseBody AjaxResult viewUser(@PathVariable(value = ApplicationConstant.USER_ID) Long userId,

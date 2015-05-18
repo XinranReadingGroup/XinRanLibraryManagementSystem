@@ -30,7 +30,7 @@ $!{homepageVO}
                     </div>
                 </li>
 
-                #if(null != $!{homepageVO.nickName})
+                #if("false" != $!{homepageVO.isLogined})
                     <li><a href="/user/userCenter">$!{homepageVO.nickName}</a></li>
                     <li><a href="/user/signOut">退出</a></li>
                 #else
