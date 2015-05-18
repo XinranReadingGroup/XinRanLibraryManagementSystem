@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.xinran.controller.common.AbstractBookController;
 import com.xinran.pojo.Book;
 import com.xinran.vo.AjaxResult;
+import com.xinran.vo.BookDetail;
 import com.xinran.vo.builder.AjaxResultBuilder;
 
 /**
@@ -28,4 +29,12 @@ public class BookController extends AbstractBookController {
         Book book = bookService.findBookByISBN(isbn);
         return AjaxResultBuilder.buildSuccessfulResult(book);
     }
+
+    @RequestMapping("/book/detail/{id}")
+    public @ResponseBody AjaxResult getBookById(@PathVariable(value = "id") Long id, HttpServletRequest request) {
+        BookDetail bookDetail = super.buildBookDetail(id);
+        return AjaxResultBuilder.buildSuccessfulResult(bookDetail);
+    }
+
+
 }

@@ -11,6 +11,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.xinran.controller.common.AbstractBookController;
 import com.xinran.pojo.Book;
+import com.xinran.vo.BookDetail;
 
 /**
  * 
@@ -24,6 +25,11 @@ public class BookController extends AbstractBookController {
     public ModelAndView getBookByISBN(@PathVariable(value = "isbn") String isbn, HttpServletRequest request) {
         Book book = bookService.findBookByISBN(isbn);
         return new ModelAndView("bookDetail", "bookDetail", book);
+    }
 
+    @RequestMapping("/book/detail/{id}")
+    public ModelAndView getBookById(@PathVariable(value = "id") Long id, HttpServletRequest request) {
+        BookDetail bookDetail = super.buildBookDetail(id);
+        return new ModelAndView("bookDetail", "bookDetail", bookDetail);
     }
 }
