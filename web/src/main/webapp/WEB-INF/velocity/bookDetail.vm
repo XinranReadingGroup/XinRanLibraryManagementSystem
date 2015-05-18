@@ -69,23 +69,23 @@ $bookDetail
   </div>
   <div class="xy-detail-info">
     <div class="xy-detail-info-left">
-      <img class="xy-detail-info-img" src="../../img/detail/book.jpg">
+      <img class="xy-detail-info-img" src="$bookDetail.imgURL">
     </div>
     <div class="xy-detail-info-right">
       <p class="xy-detail-info-title">
-        你的孤独，比这个世界更动人
+        $bookDetail.title
       </p>
       <p class="xy-detail-info-des">
         <span class="xy-detail-info-des-left">共享日期:</span>
-        <span class="xy-detail-info-des-right">2015-01-12</span>
+        <span class="xy-detail-info-des-right">$bookDetail.createAt</span>
       </p>
        <p class="xy-detail-info-des">
         <span class="xy-detail-info-des-left">共享人:</span>
-        <span class="xy-detail-info-des-right">欣然</span>
+        <span class="xy-detail-info-des-right">xxx</span>
       </p>
        <p class="xy-detail-info-des">
         <span class="xy-detail-info-des-left">目前状态:</span>
-        <span class="xy-detail-info-des-right">未被借</span>
+        <span class="xy-detail-info-des-right">xxx</span>
       </p>
        <p class="xy-detail-info-control">
        <a href="javascript:;" data-role="detail-share" class="btn btn-default">取消共享</a>
@@ -102,36 +102,36 @@ $bookDetail
 
     <p class="xy-detail-publish-item">
       <span class="xy-detail-publish-left">作者:</span>
-      <span class="xy-detail-publish-right">王云超</span>
+      <span class="xy-detail-publish-right">$bookDetail.author</span>
     </p>
 
 
     <p class="xy-detail-publish-item">
       <span class="xy-detail-publish-left">出版社:</span>
-      <span class="xy-detail-publish-right">湖南文艺出版社</span>
+      <span class="xy-detail-publish-right">$bookDetail.publisher</span>
     </p>
 
 
     <p class="xy-detail-publish-item">
       <span class="xy-detail-publish-left">出版年:</span>
-      <span class="xy-detail-publish-right">2014-02</span>
+      <span class="xy-detail-publish-right">xxx</span>
     </p>
 
 
     <p class="xy-detail-publish-item">
       <span class="xy-detail-publish-left">定价:</span>
-      <span class="xy-detail-publish-right">24.00元</span>
+      <span class="xy-detail-publish-right">$bookDetail.price元</span>
     </p>
 
 
     <p class="xy-detail-publish-item">
       <span class="xy-detail-publish-left">装帧:</span>
-      <span class="xy-detail-publish-right">平装</span>
+      <span class="xy-detail-publish-right">xxx</span>
     </p>
 
     <p class="xy-detail-publish-item">
       <span class="xy-detail-publish-left">ISBN:</span>
-      <span class="xy-detail-publish-right">9787540470623</span>
+      <span class="xy-detail-publish-right">$bookDetail.isbu</span>
     </p>
 
   </div>
@@ -143,17 +143,9 @@ $bookDetail
     </p>
 
     <div class="xy-detail-content-info">
-      <p>
-        他们成群结队穿梭于立交桥上，花枝招展奔走在摩天大楼之间，只为驱赶梦想的年轮，他们不需要怀念什么往事，也可以不屑自己的出处。
-      </p>
-
-      <p>
-        那些美好的不美好的，都会随着岁月流逝与环境变迁一点点消失不见。人潮涌动的都市，没有什么是永恒的，也没有什么不可替代，我们为自负者的唏嘘，为失败者的惋惜，为无辜者的伤感，都会在未来的某刻被提及者一带而过，我们其实和我们所在的这座城市一样无情。
-      </p>
-
-      <p>
-        ★一缕阳光骄傲地抬起头，我和他们一样，都是天通苑的孩子。——《日落天通苑》
-      </p>
+      <div class="xy-detail-des">
+        $bookDetail.summary
+      </div>
 
       <p class="xy-detail-content-control">
         <a href="" class="xy-detail-content-seek" data-role="xy-detail-seek-more">{展开全部}</a>
