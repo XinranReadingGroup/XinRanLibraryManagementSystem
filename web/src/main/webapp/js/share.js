@@ -105,7 +105,7 @@ define(function(require, exports, module) {
 
     		this.$bookInfoRootEl.find('.J-book-pic').attr('src', bookInfo.imgURL  );
     		this.$bookInfoRootEl.find('.J-book-title').html(bookInfo.title + '(' + bookInfo.subtitle + ')'  );
-    		this.$bookInfoRootEl.find('.J-author').html( bookInfo.author.join('&nbsp;|&nbsp;') );
+    		this.$bookInfoRootEl.find('.J-author').html( bookInfo.author || ''); 
     		this.$bookInfoRootEl.find('.J-publisher').html( bookInfo.publisher );
     		this.$bookInfoRootEl.find('.J-pubdate').html( bookInfo.pubdate || '').hide();
     		this.$bookInfoRootEl.find('.J-price').html( bookInfo.price );
