@@ -34,7 +34,7 @@ define(function(require, exports, module) {
 	    		this.$bookInfoRootEl =  $('#bookinfo-box-root');
 	    		this.$btnShareBookEl = this.$bookInfoRootEl.find('.J-btn-share-book');
 	    		this.initEvents();
-                this.initDialog();
+               
     		}
     	},
 
@@ -77,20 +77,21 @@ define(function(require, exports, module) {
     	*/
     	getBookInfo:function(){
     		var isbnStr = this.$inputIsbnEl.val(),
-    			getBookUrl = 'https://api.douban.com/v2/book/isbn/:' + isbnStr;
+    			getBookUrl = '/book/isbn/' + isbnStr;
 
     		$.ajax({
 				url: getBookUrl,
 				type:'get',
-				dataType: 'jsonp',
+				dataType: 'json',
 				cache: false,
 				success: $.proxy(function( data ){
 					if( data && data.msg != 'book_not_found'  ){
 						this.setBookInfo( data );
 						this.changeToBookInfoUI( true);
 					}else{
-						alert('无法找到isbn对应的图书信息');
-					}
+                        
+                         popupMsg.miniTipsAlert('无法找到对应的书籍信息：isbn' +isbnStr );
+                    }
 				},this)
 
 			});
