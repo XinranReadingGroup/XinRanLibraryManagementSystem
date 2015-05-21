@@ -12,7 +12,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=0"/>
 
     <!-- 公用静态资源 -->
-    #include("common/baseStyle.vm")
+    #parse("common/baseStyle.vm")
     
     <!-- 页面静态资源 -->
     <link rel="stylesheet" type="text/css" href="$!{webHost}/css/register.css" media="all">
@@ -22,7 +22,7 @@
 <div class="body-wrap container-fluid" id="body-wrap">
 
 <!-- 顶部 -->
-#include("common/header.vm")
+#parse("common/header.vm")
 
 <div class="login-ad">
 </div>
@@ -136,7 +136,7 @@ seajs.use('./js/share.js', function( shareObj ){
 
 
 
-#include("common/footer.vm")
+#parse("common/footer.vm")
 
 </body>
 </html>

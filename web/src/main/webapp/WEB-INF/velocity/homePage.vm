@@ -12,7 +12,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=0"/>
 
     <!-- 公用静态资源 -->
-    #include("common/baseStyle.vm")
+    #parse("common/baseStyle.vm")
     
     <!-- 页面静态资源 -->
     <link rel="stylesheet" type="text/css" href="./css/home.css" media="all">
@@ -22,7 +22,7 @@
 <div class="body-wrap container-fluid" id="body-wrap">
 
 <!-- 顶部 -->
-#parse("/common/header.vm")
+#parse("common/header.vm")
 
 
 <div class="login-ad">
@@ -71,9 +71,8 @@ seajs.use('./js/home.js', function( homeObj ){
 </script>
 
 
-#include("/common/footer.vm")
+#parse("common/footer.vm")
 
-$!{homepageVO}
 
 </body>
 </html>
