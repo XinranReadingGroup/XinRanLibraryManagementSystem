@@ -86,7 +86,7 @@ define(function(require, exports, module) {
 				cache: false,
 				success: $.proxy(function( data ){
 					if( data && data.code == 200 ){
-						this.setBookInfo( data );
+						this.setBookInfo( data.data );
 						this.changeToBookInfoUI( true);
 					}else{
                         
