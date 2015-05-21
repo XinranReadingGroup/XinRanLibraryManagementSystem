@@ -85,7 +85,7 @@ define(function(require, exports, module) {
 				dataType: 'json',
 				cache: false,
 				success: $.proxy(function( data ){
-					if( data && data.msg != 'book_not_found'  ){
+					if( data && data.code == 200 ){
 						this.setBookInfo( data );
 						this.changeToBookInfoUI( true);
 					}else{
