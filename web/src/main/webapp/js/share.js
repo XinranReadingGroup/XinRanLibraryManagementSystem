@@ -116,7 +116,7 @@ define(function(require, exports, module) {
                 dataType: 'json',
                 data:{
                     loc:'1'
-                }
+                },
                 cache: false,
                 success: $.proxy(function( data ){
                     if( data && data.code == 200 ){
