@@ -65,7 +65,12 @@ define(function(require, exports, module) {
     		},this));
 
     		this.$btnShareBookEl.on('click',$.proxy(function( ev ){
-    			alert('共享成功');
+    			 popupMsg.runtimeConfirm('确认共享此图书？',$.proxy(function( isConfirm ){
+                    if( isConfirm === true ){
+                        this.saveShareBook();
+                    }
+
+                },this));
     		},this));
 
 
@@ -97,6 +102,34 @@ define(function(require, exports, module) {
 			});
 
     	},
+        /**
+            通过isbn 共享图书
+            @method saveShareBook
+        */
+        saveShareBook:function(){
+            var isbnStr = this.$inputIsbnEl.val(),
+                getBookUrl = '/book/share/' + isbnStr;
+
+            $.ajax({
+                url: getBookUrl,
+                type:'get',
+                dataType: 'json',
+                data:{
+                    loc:'1'
+                }
+                cache: false,
+                success: $.proxy(function( data ){
+                    if( data && data.code == 200 ){
+                        popupMsg.miniTipsAlert('享书成功:' +isbnStr );
+                    }else{
+                        
+                         popupMsg.miniTipsAlert('享书失败:' +isbnStr );
+                    }
+                },this)
+
+            });
+
+        },
 		/**
     		设置图书信息
     		@method setBookInfo
