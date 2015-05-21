@@ -107,12 +107,7 @@ define(function(require, exports, module) {
     		this.$bookInfoRootEl.find('.J-book-title').html(bookInfo.title + '(' + bookInfo.subtitle + ')'  );
     		this.$bookInfoRootEl.find('.J-author').html( bookInfo.author || ''); 
     		this.$bookInfoRootEl.find('.J-publisher').html( bookInfo.publisher );
-    		this.$bookInfoRootEl.find('.J-pubdate').html( bookInfo.pubdate || '').hide();
     		this.$bookInfoRootEl.find('.J-price').html( bookInfo.price );
-    		this.$bookInfoRootEl.find('.J-binding').html( bookInfo.binding || '' ).hide();
-    		this.$bookInfoRootEl.find('.J-pubdate').html( bookInfo.pubdate || '' ).hide();
-    		this.$bookInfoRootEl.find('.J-isbn').html( bookInfo.isbn13 || bookInfo.isbn10 || ''  ).hide();
-    		this.$bookInfoRootEl.find('.J-author_intro').html( bookInfo.author_intro || '').hide();
     		this.$bookInfoRootEl.find('.J-summary').html( bookInfo.summary  );
 
     	},

@@ -85,23 +85,14 @@
                 <p> <span class="J-book-title book-title">欣然图书</span></p>
                 <p>作者: <span class="J-author">欣然图书</span></p>
                 <p>出版社: <span class="J-publisher">湖南文艺出版社</span></p>
-                <p>出版年: <span class="J-pubdate">2015-2</span></p>
                 <p>定价: <span class="J-price">36.00元</span></p>
-                <p>装帧: <span class="J-binding">平装</span></p>
-                <p>ISBN: <span class="J-isbn">9787540470623</span></p>
                 <p>
                   <input type="button" class="J-btn-share-book" value="共享图书" />
                 </p>
             </div>
         </div>
 
-        <div class="ui-banner-box ui-normal">
-            <div class="ui-normal-box">
-                <h3>作者简介</h3>
-                <div class="J-author_intro">
-                </div>
-            </div>
-        </div>
+ 
 
         <div class="ui-banner-box ui-normal">
             <div class="ui-normal-box">
