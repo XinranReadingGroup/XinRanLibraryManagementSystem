@@ -2,8 +2,8 @@
 
 <link rel="stylesheet" type="text/css" href="./css/common/bootstrap.css" media="all">
 <link rel="stylesheet" type="text/css" href="./css/common/common.css" media="all">
-<script src="./js/common/sea.js"></script>
-<script src="./js/common/jquery.js"></script>
-<script src="./js/common/bootstrap.js"></script>
-<script src="./js/common/seajs-css.js"></script>
-<script src="./js/common/sea-config.js"></script>
+<script src="/js/common/sea.js"></script>
+<script src="/js/common/jquery.js"></script>
+<script src="/js/common/bootstrap.js"></script>
+<script src="/js/common/seajs-css.js"></script>
+<script src="/js/common/sea-config.js"></script>
