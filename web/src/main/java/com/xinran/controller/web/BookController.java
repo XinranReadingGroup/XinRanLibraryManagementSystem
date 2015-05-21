@@ -27,6 +27,16 @@ public class BookController extends AbstractBookController {
         return new ModelAndView("bookDetail", "bookDetail", book);
     }
 
+    @RequestMapping("/book/share/new")
+    public ModelAndView shareNewBook(HttpServletRequest request) {
+        return new ModelAndView("shareNewBook");
+    }
+
+    @RequestMapping("/book/donate/new")
+    public ModelAndView donateNewBook(HttpServletRequest request) {
+        return new ModelAndView("donateNewBook");
+    }
+
     @RequestMapping("/book/detail/{id}")
     public ModelAndView getBookById(@PathVariable(value = "id") Long id, HttpServletRequest request) {
         BookDetail bookDetail = super.buildBookDetail(id);
