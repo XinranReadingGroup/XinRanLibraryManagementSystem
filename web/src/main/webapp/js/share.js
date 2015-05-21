@@ -103,16 +103,16 @@ define(function(require, exports, module) {
     	*/
     	setBookInfo:function( bookInfo ){
 
-    		this.$bookInfoRootEl.find('.J-book-pic').attr('src', bookInfo.image  );
+    		this.$bookInfoRootEl.find('.J-book-pic').attr('src', bookInfo.imgURL  );
     		this.$bookInfoRootEl.find('.J-book-title').html(bookInfo.title + '(' + bookInfo.subtitle + ')'  );
     		this.$bookInfoRootEl.find('.J-author').html( bookInfo.author.join('&nbsp;|&nbsp;') );
     		this.$bookInfoRootEl.find('.J-publisher').html( bookInfo.publisher );
-    		this.$bookInfoRootEl.find('.J-pubdate').html( bookInfo.pubdate );
+    		this.$bookInfoRootEl.find('.J-pubdate').html( bookInfo.pubdate || '').hide();
     		this.$bookInfoRootEl.find('.J-price').html( bookInfo.price );
-    		this.$bookInfoRootEl.find('.J-binding').html( bookInfo.binding );
-    		this.$bookInfoRootEl.find('.J-pubdate').html( bookInfo.pubdate );
-    		this.$bookInfoRootEl.find('.J-isbn').html( bookInfo.isbn13 || bookInfo.isbn10  );
-    		this.$bookInfoRootEl.find('.J-author_intro').html( bookInfo.author_intro );
+    		this.$bookInfoRootEl.find('.J-binding').html( bookInfo.binding || '' ).hide();
+    		this.$bookInfoRootEl.find('.J-pubdate').html( bookInfo.pubdate || '' ).hide();
+    		this.$bookInfoRootEl.find('.J-isbn').html( bookInfo.isbn13 || bookInfo.isbn10 || ''  ).hide();
+    		this.$bookInfoRootEl.find('.J-author_intro').html( bookInfo.author_intro || '').hide();
     		this.$bookInfoRootEl.find('.J-summary').html( bookInfo.summary  );
 
     	},
