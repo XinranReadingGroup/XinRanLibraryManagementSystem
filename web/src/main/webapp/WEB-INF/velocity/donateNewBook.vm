@@ -128,7 +128,7 @@
 
 
 <script >
-seajs.use('./js/share.js', function( shareObj ){
+seajs.use('$!{webHost}/js/share.js', function( shareObj ){
     //页面处理初始化
     shareObj.init();
 });
