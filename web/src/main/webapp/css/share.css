@@ -1,0 +1,129 @@
+/**
+ * 
+ */
+html{
+	background: #f1f5f8;
+}
+
+.book-share-box-root{
+	margin: 0;
+	padding: 20px;
+	width: auto;
+	text-align: center;
+}
+.book-share-box-root .book-isbn-sub-box{
+	display: inline-block;
+	position: relative;
+	margin:0 auto;
+	text-align: left;
+	width: 800px;
+	padding: 10px;
+}
+
+
+.book-isbn-sub-box .box-pic{
+	float: left;
+	height: 160px;
+	width: 240px;
+	margin-right: -100%;
+	margin-top: 25px;
+	border:1px solid #ddd;
+}
+
+.book-isbn-sub-box .box-info{
+	float: left;
+	width: 100%;
+	padding: 10px 10px 10px 240px;
+}
+.book-isbn-sub-box .box-info h3{
+	color: #333;
+	font-size: 16px;
+	font-weight: 700;
+	margin: 10px 0 10px 45px;
+	padding: 0 0 10px 0;
+}
+
+
+.book-isbn-sub-box .field-item{
+	padding: 10px;
+	width: 100%;
+}
+.book-isbn-sub-box .field-item .title{
+	float: left;
+	width: 100px;
+	text-align: right;
+	margin-right: -100%;
+}
+.book-isbn-sub-box .field-item .content{
+	float: left;
+	width: 100%;
+	text-align: left;
+	padding: 0 0 0 100px;
+}
+
+
+.bookinfo-detail-root{
+	margin: 0;
+	padding: 20px;
+	width: auto;
+	text-align: center;
+}
+.bookinfo-detail-root .book-detail-main{
+	display: inline-block;
+	position: relative;
+	margin:0 auto;
+	text-align: left;
+	width: 100%;
+	padding: 10px 30px 20px 30px;
+}
+
+.book-detail-main .detail-title{
+	display: block;
+	position:static;
+	text-align: left;
+	width: auto;
+	padding: 10px;
+	font-size: 16px;
+	font-weight: 700;
+	color: #66cc00;
+}
+
+.book-detail-main .box-pic{
+	float: left;
+	display: inline-block;
+	height: 144px;
+	width: 102px;
+	margin: 5px 0 10px 10px;
+	margin-right: -100%;
+	border:1px solid #ddd;
+	padding: 1px;
+}
+.book-detail-main .box-pic img{
+	height: 142px;
+	width: 100px;
+}
+.book-detail-main .book-title{
+	font-size: 14px;
+	font-weight: 700;
+}
+.book-detail-main .box-info{
+	float: left;
+	display: inline-block;
+	width: 100%;
+	padding: 0 10px 10px 122px;
+}
+.book-detail-main .box-info h3{
+	color: #333;
+	font-size: 16px;
+	font-weight: 700;
+	margin: 10px 0 10px 45px;
+	padding: 0 0 10px 0;
+}
+
+.book-detail-main p{
+	margin: 0;
+	padding: 5px 0 0 0;
+}
+
+
+

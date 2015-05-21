@@ -24,9 +24,9 @@ public interface OnOffStockRecordMapper {
     @Select("SELECT * FROM on_off_stock_record WHERE id = #{id}")
     public OnOffStockRecord findOnOffStockRecordById(@Param("id") Long id);
 
-    @Update("update  on_off_stock_record set   updated_at = #{updatedAt},off_stock_date =  #{offStockDate},"
-            + "owner_phone =  #{ownerPhone}, location = #{location},borrow_status=#{borrowStatus},"
-            + " borrow_user_id=#{borrowUserId}  where id = #{id}")
+    @Update("update  on_off_stock_record set   updated_At = #{updatedAt},off_Stock_Date =  #{offStockDate},"
+            + "owner_Phone =  #{ownerPhone}, location = #{location},borrow_Status=#{borrowStatus},"
+            + " borrow_user_id=#{borrowUserId},borrow_Id=#{borrowId}   where id = #{id}")
     public int updateOnOffStockRecord(OnOffStockRecord record);
     
     

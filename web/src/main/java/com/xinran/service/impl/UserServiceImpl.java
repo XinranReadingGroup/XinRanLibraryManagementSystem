@@ -8,9 +8,7 @@ import com.google.common.base.Charsets;
 import com.google.common.hash.Hashing;
 import com.xinran.constant.ExceptionCode;
 import com.xinran.dao.mapper.UserMapper;
-import com.xinran.exception.SignInValidationException;
-import com.xinran.exception.SignOutValidationException;
-import com.xinran.exception.SignUpValidationException;
+import com.xinran.exception.UserException;
 import com.xinran.pojo.User;
 import com.xinran.service.UserService;
 import com.xinran.util.DateUtil;
@@ -31,7 +29,7 @@ public class UserServiceImpl implements UserService {
      */
     @Override
     public Long signUpForMobileIndentifier(String identifier, String password, String nickName)
-                                                                                               throws SignUpValidationException {
+ throws UserException {
         User userIfExists = userMapper.findUserByMobile(identifier);
 
         if (null == userIfExists) {
@@ -46,7 +44,7 @@ public class UserServiceImpl implements UserService {
             userMapper.addUser(signUpUser);
             return signUpUser.getId();
         } else {
-            throw new SignUpValidationException(ExceptionCode.IndentifierAlreadyBeenTaken.getCode());
+            throw new UserException(ExceptionCode.IndentifierAlreadyBeenTaken.getCode());
         }
 
     }
@@ -60,12 +58,12 @@ public class UserServiceImpl implements UserService {
      * @see com.xinran.service.UserService#signIn(java.lang.String, java.lang.String)
      */
     @Override
-    public Long signIn(String identifier, String password) throws SignInValidationException {
+    public Long signIn(String identifier, String password) throws UserException {
         User user = userMapper.findUserByMobile(identifier);
 
         // TODO 非激活校验
         if (null == user) {
-            throw new SignInValidationException(ExceptionCode.InvalidUserNameOrPassowrd.getCode());
+            throw new UserException(ExceptionCode.InvalidUserNameOrPassowrd.getCode());
         }
 
         String actualHash = user.getPassword();
@@ -78,7 +76,7 @@ public class UserServiceImpl implements UserService {
             userMapper.updateUser(user);
             return user.getId();
         } else {
-            throw new SignInValidationException(ExceptionCode.InvalidUserNameOrPassowrd.getCode());
+            throw new UserException(ExceptionCode.InvalidUserNameOrPassowrd.getCode());
         }
 
     }
@@ -88,8 +86,8 @@ public class UserServiceImpl implements UserService {
      * @see com.xinran.service.UserService#signOut(java.lang.String)
      */
     @Override
-    public void signOut(String accessToken) throws SignOutValidationException {
-
+    public void signOut(String accessToken) throws UserException {
+        // TODO empty implement
     }
 
     /*
@@ -100,6 +98,11 @@ public class UserServiceImpl implements UserService {
     public User findUserByUserId(Long userId) {
         User user = userMapper.findUserById(userId);
         return user;
+    }
+
+    @Override
+    public void updateUser(User user) {
+        userMapper.updateUser(user);
     }
 
 }

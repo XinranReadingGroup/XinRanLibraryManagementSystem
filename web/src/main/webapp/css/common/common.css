@@ -1,0 +1,209 @@
+html {
+	font-size: 14px;
+	font-family: "微软雅黑", arial, Helvetica, STHeiTi, sans-serif;
+}
+body {
+	
+}
+.bs-docs-nav {
+	margin-bottom: 0;
+}
+.bs-home-nav .bs-nav-b {
+	display: none
+}
+.bs-docs-nav .navbar-brand, .bs-docs-nav .navbar-nav>li>a {
+	font-weight: 500;
+	color: #563d7c;
+}
+@media screen and (min-width: 768px) {
+	.bs-docs-nav .navbar-nav>.active>a, .bs-docs-nav .navbar-nav>.active>a:hover, .bs-docs-nav .navbar-nav>li>a:hover {
+		color: #463265;
+		background-color: #f9f9f9;
+	}
+}
+.bs-docs-nav .navbar-toggle .icon-bar {
+	background-color: #563d7c;
+}
+.bs-docs-nav .navbar-header .navbar-toggle {
+}
+.bs-docs-nav .navbar-header .navbar-toggle:focus, .bs-docs-nav .navbar-header .navbar-toggle:hover {
+	background-color: #f9f9f9;
+	border-color: #f9f9f9;
+}
+.header-wrap {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	background: -moz-linear-gradient(center top,white,#eee) repeat scroll 0 0 transparent;
+    background: -webkit-linear-gradient(top,white,#eee) repeat scroll 0 0 transparent;
+    background: -o-linear-gradient(top,white 0,#eee 100%) repeat scroll 0 0 transparent;
+    background: -ms-linear-gradient(top,white 0,#eee 100%) repeat scroll 0 0 transparent;
+    border-bottom: 1px solid rgba(0,0,0,0.17);
+}
+
+.header-wrap.ui-green {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	background: -moz-linear-gradient(center top,#66cc00,white) repeat scroll 0 0 transparent;
+    background: -webkit-linear-gradient(top,#66cc00,white) repeat scroll 0 0 transparent;
+    background: -o-linear-gradient(top,#66cc00#66cc00 0,white 100%) repeat scroll 0 0 transparent;
+    background: -ms-linear-gradient(top,#66cc00 0,white 100%) repeat scroll 0 0 transparent;
+    border-bottom: 1px solid rgba(0,0,0,0.17);
+}
+
+.bs-docs-nav .header-wrap.ui-green  .navbar-brand,.bs-docs-nav .header-wrap.ui-green  .navbar-nav>li>a {
+	font-weight: 500;
+	color: #333;
+}
+
+@media screen and (max-width: 768px) {
+  .header-nav {
+	background-color: #fff;
+  }
+}
+.navbar-right .input-group{
+	width: 280px;
+	padding: 8px 20px;
+}
+
+.clearfix {display: inline-table;zoom:1;_height: 1%;display: block;}
+.clearfix:after { content: "."; display: block;font-size:0;line-height:0; height: 0; clear: both; visibility: hidden;}
+
+
+
+/*  banner begin */
+
+
+.ui-banner-box{
+	width:auto;
+	border:none;
+	background-color: #f9f9f9;
+	padding:25px 10px 25px 10px;
+	font-size: 12px; 
+	text-align: center;
+	margin: 10px 0 10px 0;
+	border:1px solid #ddd;
+
+}
+.ui-banner-box.ui-bgcolor-white{
+	background-color: #fff;
+}
+
+.ui-banner-box.ui-normal{
+	padding: 10px;
+}
+
+.ui-banner-box .ui-color-darkgreen{
+	color: #669900;
+}
+
+.ui-banner-box h3{
+	color: #333;
+	font-size: 16px;
+	font-weight: 700;
+	margin: 0;
+	padding: 0 0 10px 0;
+
+}
+.ui-banner-box p{
+	color: #666;
+	font-size: 12px;
+	font-weight: normal;
+}
+
+.ui-banner-box .ui-center-box{
+	display: inline-block;
+	margin:0 auto;
+	text-align: left;
+}
+.ui-banner-box .ui-normal-box{
+	display: inline-block;
+	margin:0 auto;
+	width: 100%;
+	padding: 10px;
+	text-align: left;
+}
+
+.ui-banner-box h3.ui-large{
+	font-size: 18px;
+}
+
+
+/* banner end */
+
+
+
+/*  layout begin */
+.ui-layout-box{
+	margin-left: auto;
+	margin-right: auto;
+	width: 100%;
+}
+
+.ui-layout-box .ui-col-main{
+	float: left;
+  	width: 100%;
+}
+
+.ui-layout-box .ui-main-wrap{
+	margin-left: 230px;
+  	margin-top: 20px;
+}
+
+.ui-layout-box .ui-col-sub{
+	float: left;
+  	width: 210px;
+  	margin-left: -100%;
+  	margin-top: 20px;
+
+}
+/*  layout end */
+
+
+#footer{
+	border-top:none;
+	margin:10px 0 0 0;
+	padding:0 0 10px;
+	text-align: left;
+}
+/*box*/
+.ui-footer{
+	margin-top: 10px;
+	padding-bottom: 20px;
+}
+.ui-footer-wrapper p{
+    text-align:center;
+}
+.ui-footer-wrapper {
+	background-color: whiteSmoke;
+}
+.ui-footer-main{
+	padding: 20px 0 0 0;
+}
+.ui-footer-wrapper hr{
+	border:0 none;
+	border-top: 1px solid #ccc;
+	margin:0;
+}
+.ui-footer-wrapper a:link, 
+.ui-footer-wrapper a:visited{
+	color: #666;
+	text-decoration : none;
+}
+
+.ui-footer-wrapper a:focus,
+.ui-footer-wrapper a:hover {
+	color : #333;
+	text-decoration : underline;
+}
+.ui-footer-wrapper .ui-footer-link:link,
+.ui-footer-wrapper .ui-footer-link:visited{
+	color : #333;
+}
+
+
+
+

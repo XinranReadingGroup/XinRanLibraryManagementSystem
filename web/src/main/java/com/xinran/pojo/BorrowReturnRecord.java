@@ -2,6 +2,8 @@ package com.xinran.pojo;
 
 import java.util.Date;
 
+import com.xinran.util.DateUtil;
+
 import lombok.Data;
 
 /**
@@ -10,17 +12,22 @@ import lombok.Data;
 @Data
 public class BorrowReturnRecord {
 
+    public BorrowReturnRecord() {
+        Date now = DateUtil.getCurrentDate();
+        this.createdAt = now;
+        this.updatedAt = now;
+    }
+
     private Long    id;
     private Date    createdAt;
     private Date    updatedAt;
+
 
     private Long    borrowUserId;
     private Long    ownerUserId;
     private Long    onOffStockId;
     private Long    bookId;
     private int     bookType;
-
-
 
     private Date    borrowDate;
     private Date    returnDate;

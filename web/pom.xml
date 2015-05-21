@@ -33,7 +33,8 @@
 					<scanIntervalSeconds>0</scanIntervalSeconds>
 					<stopKey>stopApp</stopKey>
 					<stopPort>9988</stopPort>
-					<jvmArgs>-server -Xmx1g -Xms1g  -XX:+HeapDumpOnOutOfMemoryError -XX:+UseG1GC -XX:+UnlockExperimentalVMOptions -XX:+AggressiveOpts -XX:MaxGCPauseMillis=400 -XX:GCPauseIntervalMillis=8000 -XX:+PrintGCTimeStamps -XX:+PrintGCApplicationStoppedTime -XX:+PrintGCApplicationConcurrentTime -Xloggc:gc.log -XX:+UseGCLogFileRotation -XX:NumberOfGCLogFiles=4 -XX:GCLogFileSize=10240K</jvmArgs>
+					<jvmArgs>-server      -javaagent:${settings.localRepository}/org/springframework/spring-instrument/${springVersion}/spring-instrument-${springVersion}.jar
+					 -Xmx1g -Xms1g  -XX:+HeapDumpOnOutOfMemoryError -XX:+UseG1GC -XX:+UnlockExperimentalVMOptions -XX:+AggressiveOpts -XX:MaxGCPauseMillis=400 -XX:GCPauseIntervalMillis=8000 -XX:+PrintGCTimeStamps -XX:+PrintGCApplicationStoppedTime -XX:+PrintGCApplicationConcurrentTime -Xloggc:gc.log -XX:+UseGCLogFileRotation -XX:NumberOfGCLogFiles=4 -XX:GCLogFileSize=10240K</jvmArgs>
 				</configuration>
 			</plugin>
 
@@ -84,6 +85,11 @@
 			<artifactId>spring-web</artifactId>
 			<version>${springVersion}</version>
 		</dependency>
+		<dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-instrument</artifactId>
+            <version>${springVersion}</version>
+        </dependency>
 		<dependency>
 			<groupId>com.fasterxml.jackson.core</groupId>
 			<artifactId>jackson-core</artifactId>

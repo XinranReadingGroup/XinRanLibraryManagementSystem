@@ -4,11 +4,19 @@ import lombok.Data;
 
 import java.util.Date;
 
+import com.xinran.util.DateUtil;
+
 /**
  * Created by 高海军 帝奇 on 2015 Feb 13 07:32.
  */
 @Data
 public class User {
+
+    public User() {
+        Date now = DateUtil.getCurrentDate();
+        this.createdAt = now;
+        this.updatedAt = now;
+    }
 
     private Long    id;
     private Date    createdAt;
@@ -32,6 +40,7 @@ public class User {
     private String  area;               //
     private String  signature;          // 个性签名
     private Integer score;              // add
+    private String  imgId;              // 头像图片id
 
 
 }

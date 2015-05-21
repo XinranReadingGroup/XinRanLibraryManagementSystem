@@ -18,6 +18,9 @@ public interface OnOffStockRecordService {
     OnOffStockRecord onStock(OnOffStockRecord record);
     
     OnOffStockRecord findOnOffStockRecordById(Long id);
+
+    int updateOnOffStockRecord(OnOffStockRecord record);
+
     
     /**
      * 获取用户的享书记录(含书本信息)。

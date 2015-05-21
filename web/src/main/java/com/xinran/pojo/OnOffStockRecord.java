@@ -27,13 +27,15 @@ public class OnOffStockRecord {
     private Integer bookType;
     private Long    ownerUserId;
     private String  ownerPhone;
-    private Long 	location;
+    private Long    location;     // TODO using id?
 
     private Date    onStockDate;
     private Date    offStockDate;
 
-    private Integer borrowStatus;
+    private Long    borrowId;    // 当前借书记录的Id
     private Long    borrowUserId; // 当前借书人ID
+    private Integer borrowStatus;
+
     
     private Book    book;
 

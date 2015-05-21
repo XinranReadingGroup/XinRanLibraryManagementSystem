@@ -21,3 +21,5 @@ test-output/
 src/generated/*
 
 logs/
+
+.DS_Store

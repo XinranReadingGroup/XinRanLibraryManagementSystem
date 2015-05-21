@@ -39,6 +39,15 @@ public class OnOffStockRecordServiceImpl implements OnOffStockRecordService {
         return record;
     }
 
+    /*
+     * (non-Javadoc)
+     * @see com.xinran.service.OnOffStockRecordService#updateOnOffStockRecord(com.xinran.pojo.OnOffStockRecord)
+     */
+    @Override
+    public int updateOnOffStockRecord(OnOffStockRecord record) {
+        return onOffStockRecordMapper.updateOnOffStockRecord(record);
+    }
+
 	@Override
 	public List<OnOffStockRecord> findShared(Long userId, Pagination page) {
 		if(userId == null){

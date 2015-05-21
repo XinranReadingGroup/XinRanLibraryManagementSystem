@@ -11,11 +11,22 @@ public enum ExceptionCode {
     // sign in
     InvalidUserNameOrPassowrd(20000),
 
+    // view user profiler
+    CantViewUserProfilerIfItIsNotYours(20001),
+
 
     // borrow
     InvalidOnOffStockId(30000),
 
-    TheOnOffStockIdLinkedBookHasBeenBorrowed(30001),
+    // 该书已被借走,不能重复再借
+    TheBookHasBeenBorrowed(30001),
+
+    // return 还书时,该书应该处于已被借阅状态
+    TheBookShouldBeInBorrowedStatus(40000),
+
+    // return 还书时,只能还自己借的书
+    TheBookYouReturnedShouldBeBorrowedByYou(40001),
+
 
     ;
 
