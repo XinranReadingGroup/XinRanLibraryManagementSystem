@@ -77,7 +77,7 @@ define(function(require, exports, module) {
     	*/
     	getBookInfo:function(){
     		var isbnStr = this.$inputIsbnEl.val(),
-    			getBookUrl = '/book/isbn/' + isbnStr;
+    			getBookUrl = '/mobile/book/isbn/' + isbnStr;
 
     		$.ajax({
 				url: getBookUrl,
