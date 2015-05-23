@@ -25,9 +25,7 @@
 
 </head>
 <body>
-$bookDetail
 
-<p style="margin-top:30px;">vm info</p>
 <!-- 顶部 -->
 <header class="navbar navbar-static-top bs-docs-nav" id="header" role="banner">
     <div class="container header-wrap">
