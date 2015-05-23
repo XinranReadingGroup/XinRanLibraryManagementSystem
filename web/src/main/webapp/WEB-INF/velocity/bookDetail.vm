@@ -25,7 +25,6 @@
 
 </head>
 <body>
-
 <!-- 顶部 -->
 <header class="navbar navbar-static-top bs-docs-nav" id="header" role="banner">
     <div class="container header-wrap">
@@ -79,11 +78,11 @@
       </p>
        <p class="xy-detail-info-des">
         <span class="xy-detail-info-des-left">共享人:</span>
-        <span class="xy-detail-info-des-right">xxx</span>
+        <span class="xy-detail-info-des-right">苏泊</span>
       </p>
        <p class="xy-detail-info-des">
         <span class="xy-detail-info-des-left">目前状态:</span>
-        <span class="xy-detail-info-des-right">xxx</span>
+        <span class="xy-detail-info-des-right">已共享</span>
       </p>
        <p class="xy-detail-info-control">
        <a href="javascript:;" data-role="detail-share" class="btn btn-default">取消共享</a>
