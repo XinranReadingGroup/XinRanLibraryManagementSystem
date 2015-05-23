@@ -18,6 +18,7 @@ import com.xinran.event.Event;
 import com.xinran.event.impl.BookOnStockEvent;
 import com.xinran.event.util.EventListenerSupport;
 import com.xinran.exception.BorrowOrReturnValidationException;
+import com.xinran.pojo.Book;
 import com.xinran.pojo.BorrowReturnRecord;
 import com.xinran.pojo.OnOffStockRecord;
 import com.xinran.pojo.Pagination;
@@ -27,6 +28,7 @@ import com.xinran.service.OnOffStockRecordService;
 import com.xinran.util.DateUtil;
 import com.xinran.util.ThreadLocalUtil;
 import com.xinran.vo.AjaxResult;
+import com.xinran.vo.BookDetail;
 import com.xinran.vo.builder.AjaxResultBuilder;
 
 /**
@@ -186,6 +188,16 @@ public class AbstractBookController {
             fillBookInfo(records);
         }
         return AjaxResultBuilder.buildSuccessfulResult(records);
+    }
+
+    protected BookDetail buildBookDetail(Long id) {
+        OnOffStockRecord onOffStockRecord = onOffStockRecordService.findOnOffStockRecordById(id);
+        Book book = bookService.findBookById(onOffStockRecord.getBookId());
+
+        BookDetail bookDetail = new BookDetail();
+        bookDetail.setBook(book);
+        bookDetail.setOnOffStockRecord(onOffStockRecord);
+        return bookDetail;
     }
 
     private void fillBookInfo(List<OnOffStockRecord> records) {

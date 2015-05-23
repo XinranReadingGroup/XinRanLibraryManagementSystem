@@ -27,7 +27,7 @@ public class OnOffStockRecord {
     private Integer bookType;
     private Long    ownerUserId;
     private String  ownerPhone;
-    private Long 	location;
+    private Long    location;     // TODO using id?
 
     private Date    onStockDate;
     private Date    offStockDate;

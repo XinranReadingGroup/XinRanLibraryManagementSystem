@@ -49,6 +49,26 @@ public class BookServiceImpl implements BookService {
     
 
 	@Override
+	public Book findBookByISBN(String isbn, boolean local) {
+		if(StringUtils.isBlank(isbn)){
+			return null;
+		}
+		Book book = bookMapper.findByISBN(isbn);
+		if(book == null && !local){
+			JSONObject douBanData = douBanService.getBookByISBN(isbn);
+			if(douBanData != null){
+				book = convertDouBanData2Book(douBanData);
+				try{
+					bookMapper.add(book);
+				}catch(Exception e){
+					LOG.error("Error to add book to db", e);
+				}
+			}
+		}
+		return book;
+	}
+	
+	@Override
 	public Book findBookByISBN(String isbn) {
 		if(StringUtils.isBlank(isbn)){
 			return null;
@@ -66,6 +86,16 @@ public class BookServiceImpl implements BookService {
 			}
 		}
 		return book;
+	}
+	
+	@Override
+	public List<Book> queryByTitle(String keyword){
+		List<Book> books = null;
+		if(StringUtils.isBlank(keyword)){
+			return books;
+		}
+		
+		return bookMapper.queryByTitle(keyword);
 	}
 
 	

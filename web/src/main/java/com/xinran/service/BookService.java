@@ -12,10 +12,12 @@ public interface BookService {
 
     public List<Book> findAllWithPagenate(int limit, int offset);
     
-    
     Book findBookByISBN(String isbn);
     
-    Book findBookById(Long id);
+    Book findBookByISBN(String isbn, boolean local);
     
+    Book findBookById(Long id);
+
+	List<Book> queryByTitle(String keyword);
 
 }
