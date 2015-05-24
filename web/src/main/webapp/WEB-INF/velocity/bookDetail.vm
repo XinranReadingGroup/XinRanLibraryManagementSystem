@@ -79,7 +79,7 @@ $bookDetail
       </p>
       <p class="xy-detail-info-des">
         <span class="xy-detail-info-des-left">共享日期:</span>
-        <span class="xy-detail-info-des-right">$bookDetail.createAt</span>
+        <span class="xy-detail-info-des-right">$bookDetail.createdAt</span>
       </p>
        <p class="xy-detail-info-des">
         <span class="xy-detail-info-des-left">共享人:</span>
@@ -146,7 +146,7 @@ $bookDetail
 
     <div class="xy-detail-content-info">
       <div class="xy-detail-des">
-        $bookDetail.summary
+        <pre>$bookDetail.summary</pre>
       </div>
 
       <p class="xy-detail-content-control">
