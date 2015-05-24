@@ -25,6 +25,11 @@
 
 </head>
 <body>
+<h1>========================</h1>
+<pre>
+$bookDetail
+</pre>
+<h1>========================</h1>
 <!-- 顶部 -->
 <header class="navbar navbar-static-top bs-docs-nav" id="header" role="banner">
     <div class="container header-wrap">
