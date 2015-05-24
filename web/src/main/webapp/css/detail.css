@@ -133,6 +133,10 @@ body {
 .xy-detail-trips {
   color: #999;
 }
+.xy-detail-des pre {
+  border: none;
+  background: #fff;
+}
 
 .xy-detail-first-item {
   margin-bottom: 18px;

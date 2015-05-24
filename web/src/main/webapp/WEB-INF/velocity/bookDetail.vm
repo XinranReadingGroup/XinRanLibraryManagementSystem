@@ -69,7 +69,7 @@ $bookDetail
   <div class="xy-detail-header">
     让书流动起来，传递知识分享爱，欣然读书吧
   </div>
-  <div class="xy-detail-info">
+  <div class="xy-detail-info" data-id="$bookDetail.id">
     <div class="xy-detail-info-left">
       <img class="xy-detail-info-img" src="$bookDetail.imgURL">
     </div>
