@@ -42,7 +42,7 @@
                           type     VARCHAR(64),
                           province VARCHAR(128),
                           city     VARCHAR(128),
-                          country  VARCHAR(128),
+                          county   VARCHAR(128),
                           detail   VARCHAR(256)
              );CREATE TABLE IF NOT EXISTS on_off_stock_record
              (

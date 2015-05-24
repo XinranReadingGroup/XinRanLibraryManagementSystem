@@ -1,6 +1,8 @@
 package com.xinran.service.impl;
 
 import org.apache.commons.lang.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,11 +16,20 @@ import com.xinran.service.UserService;
 import com.xinran.util.DateUtil;
 import com.xinran.util.StringUtil;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.concurrent.locks.ReentrantLock;
+
 /**
  * @author 高海军 帝奇 Apr 9, 2015 9:30:37 PM
  */
 @Service
 public class UserServiceImpl implements UserService {
+
+    private static final Logger LOG = LoggerFactory.getLogger(UserServiceImpl.class);
 
     @Autowired
     private UserMapper userMapper;
@@ -105,4 +116,46 @@ public class UserServiceImpl implements UserService {
         userMapper.updateUser(user);
     }
 
+    @Override
+    public User registerUserByMobile(String phone) {
+        String salt = StringUtil.random(8);
+        String hash = calcHash("123456", salt);
+        User signUpUser = new User();
+        signUpUser.setMobile(phone);
+        signUpUser.setSalt(salt);
+        signUpUser.setNickName(phone);
+        signUpUser.setPassword(hash);
+        userMapper.addUser(signUpUser);
+        return signUpUser;
+    }
+
+
+    private List<String> administrators;
+    private ReentrantLock adminLocker = new ReentrantLock();
+    @Override
+    public boolean isAdmin(User user) {
+        if (administrators == null && adminLocker.tryLock()) {
+            BufferedReader reader = null;
+            try {
+                administrators = new ArrayList<>();
+                reader = new BufferedReader(new InputStreamReader(getClass().getClassLoader().getResourceAsStream("/administrators")));
+                String phone = reader.readLine();
+                while (phone != null && phone.length() > 0) {
+                    administrators.add(phone.trim());
+                }
+            } catch (Exception e) {
+                LOG.error("Error to load administrators.", e);
+            }finally {
+                adminLocker.unlock();
+                if (reader == null) {
+                    try {
+                        reader.close();
+                    } catch (IOException e) {
+                        LOG.error("Error to close reader", e);
+                    }
+                }
+            }
+        }
+        return administrators.contains(user.getMobile());
+    }
 }

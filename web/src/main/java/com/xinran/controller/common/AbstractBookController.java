@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
+import com.xinran.exception.StockException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -51,7 +52,12 @@ public class AbstractBookController {
     public @ResponseBody AjaxResult donate(@PathVariable(value = "bookId") Long bookId,
                                            @RequestParam("location") Long location,
                                            @RequestParam("phone") String phone, HttpServletRequest request) {
-        OnOffStockRecord onStock = onStock(bookId, location, phone, request, BookType.DONATED);
+        OnOffStockRecord onStock = null;
+        try {
+            onStock = onStock(bookId, location, phone, request, BookType.DONATED);
+        } catch (StockException e) {
+            return AjaxResultBuilder.buildFailedResult(400, e.getCode());
+        }
         return AjaxResultBuilder.buildSuccessfulResult(onStock);
     }
 
@@ -59,12 +65,17 @@ public class AbstractBookController {
     public @ResponseBody AjaxResult share(@PathVariable(value = "bookId") Long bookId,
                                           @RequestParam("location") Long location, @RequestParam("phone") String phone,
                                           HttpServletRequest request) {
-        OnOffStockRecord onStock = onStock(bookId, location, phone, request, BookType.SHARED);
+        OnOffStockRecord onStock = null;
+        try {
+            onStock = onStock(bookId, location, phone, request, BookType.SHARED);
+        } catch (StockException e) {
+            return AjaxResultBuilder.buildFailedResult(400, e.getCode());
+        }
         return AjaxResultBuilder.buildSuccessfulResult(onStock);
     }
 
     private OnOffStockRecord onStock(Long bookId, Long location, String phone, HttpServletRequest request,
-                                     BookType bookType) {
+                                     BookType bookType) throws StockException {
         OnOffStockRecord record = new OnOffStockRecord();
         record.setOwnerUserId(UserIdenetityUtil.getCurrentUserId(request));
         record.setOwnerPhone(phone);

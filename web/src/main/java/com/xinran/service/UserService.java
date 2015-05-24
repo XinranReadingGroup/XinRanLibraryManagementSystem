@@ -37,4 +37,27 @@ public interface UserService {
      * @return
      */
     public void updateUser(User user);
+
+    /**
+     * 根据手机号码生成默认账号。
+     *
+     * 默认密码123456
+     * 默认昵称为手机号码
+     *
+     * // FIXME 生成默认账号之后应该能够短信通知到用户。
+     *
+     *
+     * @param phone 手机号码
+     * @return
+     */
+    public User registerUserByMobile(String phone);
+
+    /**
+     *
+     * 判断是否为管理员
+     *
+     * @param user
+     * @return
+     */
+    public boolean isAdmin(User user);
 }

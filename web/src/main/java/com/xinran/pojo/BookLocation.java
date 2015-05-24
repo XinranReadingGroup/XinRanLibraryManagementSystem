@@ -32,6 +32,6 @@ public class BookLocation {
 
     private String province;
     private String city;
-    private String country;
+    private String county;
     private String detail;
 }

@@ -21,6 +21,12 @@ public enum ExceptionCode {
     // 该书已被借走,不能重复再借
     TheBookHasBeenBorrowed(30001),
 
+    // 只允许管理员帮别人捐书、享书
+    OnlyAdminHelpToOnStock(31000),
+
+    // 捐书、享书是无法定位到持有者
+    NoOwnerWhenOnStock(31001),
+
     // return 还书时,该书应该处于已被借阅状态
     TheBookShouldBeInBorrowedStatus(40000),
 

@@ -2,6 +2,7 @@ package com.xinran.service;
 
 import java.util.List;
 
+import com.xinran.exception.StockException;
 import com.xinran.pojo.OnOffStockRecord;
 import com.xinran.pojo.Pagination;
 
@@ -15,7 +16,7 @@ public interface OnOffStockRecordService {
      * 
      * @return 如果上架成功，则返回完整记录，否则返回NULL
      */
-    OnOffStockRecord onStock(OnOffStockRecord record);
+    OnOffStockRecord onStock(OnOffStockRecord record) throws StockException;
     
     OnOffStockRecord findOnOffStockRecordById(Long id);
 

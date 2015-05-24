@@ -1,0 +1,25 @@
+[
+  {
+    "name": "浙江省",
+    "cities": [
+      {
+        "name": "杭州市",
+        "counties": [
+          {
+            "name": "下城区"
+          }
+        ]
+      },
+      {}
+    ]
+  },
+  {
+    "name": "北京",
+    "isDirect": true,
+    "counties": [
+      {
+        "name": "丰台区"
+      }
+    ]
+  }
+]

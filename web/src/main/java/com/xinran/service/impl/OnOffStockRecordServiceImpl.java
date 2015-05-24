@@ -1,15 +1,22 @@
 package com.xinran.service.impl;
 
-import java.util.List;
-
+import com.google.common.base.Charsets;
+import com.google.common.hash.Hashing;
+import com.xinran.constant.BookType;
+import com.xinran.constant.ExceptionCode;
+import com.xinran.dao.mapper.OnOffStockRecordMapper;
+import com.xinran.dao.mapper.UserMapper;
+import com.xinran.exception.StockException;
+import com.xinran.pojo.OnOffStockRecord;
+import com.xinran.pojo.Pagination;
+import com.xinran.pojo.User;
+import com.xinran.service.OnOffStockRecordService;
+import com.xinran.service.UserService;
+import com.xinran.util.StringUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.xinran.constant.BookType;
-import com.xinran.dao.mapper.OnOffStockRecordMapper;
-import com.xinran.pojo.OnOffStockRecord;
-import com.xinran.pojo.Pagination;
-import com.xinran.service.OnOffStockRecordService;
+import java.util.List;
 
 /**
  * @author 高海军 帝奇 Apr 12, 2015 3:40:57 PM
@@ -19,9 +26,49 @@ public class OnOffStockRecordServiceImpl implements OnOffStockRecordService {
 
     @Autowired
     private OnOffStockRecordMapper onOffStockRecordMapper;
+    @Autowired
+    private UserService userService;
+    @Autowired
+    private UserMapper userMapper;
 
     @Override
-    public OnOffStockRecord onStock(OnOffStockRecord record) {
+    public OnOffStockRecord onStock(OnOffStockRecord record) throws StockException {
+        User submitter = userMapper.findUserById(record.getOwnerUserId());
+        User mobileUser = userMapper.findUserByMobile(record.getOwnerPhone());
+        User owner = null;
+        // 提交者按目前的逻辑应该是当前登录用户
+        // 全部不存在，以手机号创建用户————目前不存在这种情况
+        if (submitter == null && mobileUser == null) {
+            owner = userService.registerUserByMobile(record.getOwnerPhone());
+        }
+        // 如果全部存在
+        else if (submitter != null && mobileUser != null) {
+            // 是同一个用户，则随便取一个
+            if (submitter.getId() == mobileUser.getId()) {
+                owner = submitter;
+            }
+            // 如果提交者不为管理员，则不能帮别人进行捐、享书
+            else if(!userService.isAdmin(submitter)){
+                throw new StockException(ExceptionCode.OnlyAdminHelpToOnStock.getCode());
+            }
+        }
+        // 如果提交者存在，手机账户不存在
+        else if (submitter != null && mobileUser == null) {
+            // 提交者是管理员则以手机号新建一个用户
+            if (userService.isAdmin(submitter)) {
+                owner = userService.registerUserByMobile(record.getOwnerPhone());
+            }else{
+                throw new StockException(ExceptionCode.OnlyAdminHelpToOnStock.getCode());
+            }
+        }
+        // 如果提交者不存在，手机账户存在，则以手机账户为准————目前不存在这种情况
+        else if (submitter == null && mobileUser != null) {
+            owner = mobileUser;
+        }
+        if (owner == null) {
+            throw new StockException(ExceptionCode.NoOwnerWhenOnStock.getCode());
+        }
+        record.setOwnerUserId(owner.getId());
         Long id = onOffStockRecordMapper.add(record);
         if (record.getId() == null) {
             if (id == null) {
@@ -32,7 +79,7 @@ public class OnOffStockRecordServiceImpl implements OnOffStockRecordService {
         }
         return record;
     }
-    
+
     @Override
     public OnOffStockRecord findOnOffStockRecordById(Long id) {
         OnOffStockRecord record = onOffStockRecordMapper.findOnOffStockRecordById(id);
@@ -48,31 +95,31 @@ public class OnOffStockRecordServiceImpl implements OnOffStockRecordService {
         return onOffStockRecordMapper.updateOnOffStockRecord(record);
     }
 
-	@Override
-	public List<OnOffStockRecord> findShared(Long userId, Pagination page) {
-		if(userId == null){
-			throw new IllegalArgumentException();
-		}
-		if(page == null){
-			page = new Pagination();
-		}
-		OnOffStockRecord record = new OnOffStockRecord();
-		record.setOwnerUserId(userId);
-		record.setBookType(BookType.SHARED.getType());
-		return onOffStockRecordMapper.findRecordsByUserId(record, page);
-	}
+    @Override
+    public List<OnOffStockRecord> findShared(Long userId, Pagination page) {
+        if (userId == null) {
+            throw new IllegalArgumentException();
+        }
+        if (page == null) {
+            page = new Pagination();
+        }
+        OnOffStockRecord record = new OnOffStockRecord();
+        record.setOwnerUserId(userId);
+        record.setBookType(BookType.SHARED.getType());
+        return onOffStockRecordMapper.findRecordsByUserId(record, page);
+    }
 
-	@Override
-	public List<OnOffStockRecord> findDonated(Long userId, Pagination page) {
-		if(userId == null){
-			throw new IllegalArgumentException();
-		}
-		if(page == null){
-			page = new Pagination();
-		}
-		OnOffStockRecord record = new OnOffStockRecord();
-		record.setOwnerUserId(userId);
-		record.setBookType(BookType.DONATED.getType());
-		return onOffStockRecordMapper.findRecordsByUserId(record, page);
-	}
+    @Override
+    public List<OnOffStockRecord> findDonated(Long userId, Pagination page) {
+        if (userId == null) {
+            throw new IllegalArgumentException();
+        }
+        if (page == null) {
+            page = new Pagination();
+        }
+        OnOffStockRecord record = new OnOffStockRecord();
+        record.setOwnerUserId(userId);
+        record.setBookType(BookType.DONATED.getType());
+        return onOffStockRecordMapper.findRecordsByUserId(record, page);
+    }
 }
