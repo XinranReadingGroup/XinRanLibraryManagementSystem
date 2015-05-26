@@ -133,7 +133,7 @@ $bookDetail
 
     <p class="xy-detail-publish-item">
       <span class="xy-detail-publish-left">ISBN:</span>
-      <span class="xy-detail-publish-right">$bookDetail.isbu</span>
+      <span class="xy-detail-publish-right">$bookDetail.isbn</span>
     </p>
 
   </div>
