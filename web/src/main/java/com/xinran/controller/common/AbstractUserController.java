@@ -33,7 +33,7 @@ public abstract class AbstractUserController {
     // private static final String password = "password";
 
     @Autowired
-    private UserService userService;
+    protected UserService userService;
 
     @RequestMapping("/user/signUp")
     public @ResponseBody AjaxResult signUp(@RequestParam(value = "userIdentifier") String identifier,
@@ -43,14 +43,15 @@ public abstract class AbstractUserController {
         Long userId;
         try {
             userId = userService.signUpForMobileIndentifier(identifier, password, nickName);
-            return doSignInOrSignUp(request, response, userId);
+            return doSignInOrSignUp(request, response, userId, nickName);
         } catch (UserException e) {
             return AjaxResultBuilder.buildFailedResult(400, e.getCode());
         }
 
     }
 
-    protected abstract AjaxResult doSignInOrSignUp(HttpServletRequest request, HttpServletResponse response, Long userId);
+    protected abstract AjaxResult doSignInOrSignUp(HttpServletRequest request, HttpServletResponse response,
+                                                   Long userId, String nickName);
 
     @RequestMapping("/user/signIn")
     public @ResponseBody AjaxResult signIn(@RequestParam(value = "userIdentifier") String identifier,
@@ -59,27 +60,15 @@ public abstract class AbstractUserController {
         Long userId;
         try {
             userId = userService.signIn(identifier, password);
-            return doSignInOrSignUp(request, response, userId);
+            String nickName = userService.findUserByUserId(userId).getNickName();
+            return doSignInOrSignUp(request, response, userId, nickName);
         } catch (UserException e) {
             return AjaxResultBuilder.buildFailedResult(400, e.getCode());
         }
 
     }
 
-    @RequestMapping("/user/signOut")
-    public @ResponseBody AjaxResult signOut(@RequestParam(value = ApplicationConstant.ACCESS_TOKEN) String accessToken,
-                                            HttpServletRequest request) {
-        try {
-            request.getSession().invalidate();
-            userService.signOut(accessToken);
-            return AjaxResultBuilder.buildSuccessfulResult("ok");
 
-        } catch (UserException e) {
-            return AjaxResultBuilder.buildFailedResult(400, e.getCode());
-
-        }
-
-    }
 
     @RequestMapping("/user/profile")
     public ModelAndView viewMyselfUser(HttpServletRequest request) throws UserException {

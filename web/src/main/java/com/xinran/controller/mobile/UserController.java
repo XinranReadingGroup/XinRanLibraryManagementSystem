@@ -10,12 +10,14 @@ import javax.servlet.http.HttpSession;
 
 import org.apache.commons.lang.RandomStringUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.servlet.ModelAndView;
 
 import com.google.common.collect.Maps;
 import com.xinran.constant.ApplicationConstant;
 import com.xinran.controller.common.AbstractUserController;
+import com.xinran.exception.UserException;
 import com.xinran.vo.AjaxResult;
 import com.xinran.vo.builder.AjaxResultBuilder;
 
@@ -26,8 +28,25 @@ import com.xinran.vo.builder.AjaxResultBuilder;
 @RequestMapping("/mobile")
 public class UserController extends AbstractUserController {
 
+    @RequestMapping("/user/signOut")
+    public @ResponseBody AjaxResult signOut(@RequestParam(value = ApplicationConstant.ACCESS_TOKEN) String accessToken,
+                                            HttpServletRequest request) {
+        try {
+            request.getSession().invalidate();
 
-    protected AjaxResult doSignInOrSignUp(HttpServletRequest request, HttpServletResponse response, Long userId) {
+            // TODO
+            userService.signOut(null);
+            return AjaxResultBuilder.buildSuccessfulResult("ok");
+
+        } catch (UserException e) {
+            return AjaxResultBuilder.buildFailedResult(400, e.getCode());
+
+        }
+
+    }
+
+    protected AjaxResult doSignInOrSignUp(HttpServletRequest request, HttpServletResponse response, Long userId,
+                                          String nickName) {
         HttpSession session = request.getSession();
 
         Map<String, String> jsonMap = Maps.newHashMapWithExpectedSize(1);

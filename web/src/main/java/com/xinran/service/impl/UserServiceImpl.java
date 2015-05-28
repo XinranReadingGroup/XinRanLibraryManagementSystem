@@ -18,6 +18,7 @@ import com.xinran.util.StringUtil;
 
 import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
@@ -97,7 +98,7 @@ public class UserServiceImpl implements UserService {
      * @see com.xinran.service.UserService#signOut(java.lang.String)
      */
     @Override
-    public void signOut(String accessToken) throws UserException {
+    public void signOut(Long userId) throws UserException {
         // TODO empty implement
     }
 
@@ -138,7 +139,8 @@ public class UserServiceImpl implements UserService {
             BufferedReader reader = null;
             try {
                 administrators = new ArrayList<>();
-                reader = new BufferedReader(new InputStreamReader(getClass().getClassLoader().getResourceAsStream("/administrators")));
+                InputStream resourceAsStream = getClass().getClassLoader().getResourceAsStream("/administrators");
+                reader = new BufferedReader(new InputStreamReader(resourceAsStream, "UTF-8"));
                 String phone = reader.readLine();
                 while (phone != null && phone.length() > 0) {
                     administrators.add(phone.trim());
@@ -147,7 +149,7 @@ public class UserServiceImpl implements UserService {
                 LOG.error("Error to load administrators.", e);
             }finally {
                 adminLocker.unlock();
-                if (reader == null) {
+                if (reader != null) {
                     try {
                         reader.close();
                     } catch (IOException e) {

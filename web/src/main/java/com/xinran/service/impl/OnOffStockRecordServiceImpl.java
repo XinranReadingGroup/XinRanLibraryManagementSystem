@@ -1,7 +1,10 @@
 package com.xinran.service.impl;
 
-import com.google.common.base.Charsets;
-import com.google.common.hash.Hashing;
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 import com.xinran.constant.BookType;
 import com.xinran.constant.ExceptionCode;
 import com.xinran.dao.mapper.OnOffStockRecordMapper;
@@ -12,11 +15,6 @@ import com.xinran.pojo.Pagination;
 import com.xinran.pojo.User;
 import com.xinran.service.OnOffStockRecordService;
 import com.xinran.service.UserService;
-import com.xinran.util.StringUtil;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
-import java.util.List;
 
 /**
  * @author 高海军 帝奇 Apr 12, 2015 3:40:57 PM

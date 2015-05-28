@@ -6,5 +6,7 @@ package com.xinran.constant;
 public class ApplicationConstant {
 
     public static final String USER_ID      = "userId";
+    public static final String USER_NAME    = "userName";
+
     public static final String ACCESS_TOKEN = "accessToken";
 }

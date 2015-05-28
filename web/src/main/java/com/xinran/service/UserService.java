@@ -22,7 +22,7 @@ public interface UserService {
      * @param password
      * @return
      */
-    public void signOut(String accessToken) throws UserException;
+    public void signOut(Long userId) throws UserException;
 
     /**
      * @param identifier

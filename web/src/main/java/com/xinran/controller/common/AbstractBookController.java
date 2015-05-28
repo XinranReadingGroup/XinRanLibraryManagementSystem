@@ -4,7 +4,7 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
-import com.xinran.exception.StockException;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,17 +19,24 @@ import com.xinran.event.Event;
 import com.xinran.event.impl.BookOnStockEvent;
 import com.xinran.event.util.EventListenerSupport;
 import com.xinran.exception.BorrowOrReturnValidationException;
+import com.xinran.exception.StockException;
 import com.xinran.pojo.Book;
+import com.xinran.pojo.BookLocation;
 import com.xinran.pojo.BorrowReturnRecord;
 import com.xinran.pojo.OnOffStockRecord;
 import com.xinran.pojo.Pagination;
+import com.xinran.pojo.User;
+import com.xinran.service.BookLocationService;
 import com.xinran.service.BookService;
 import com.xinran.service.BorrowReturnRecordService;
 import com.xinran.service.OnOffStockRecordService;
+import com.xinran.service.UserService;
 import com.xinran.util.DateUtil;
 import com.xinran.util.ThreadLocalUtil;
 import com.xinran.vo.AjaxResult;
+import com.xinran.vo.BasicUserVO;
 import com.xinran.vo.BookDetail;
+import com.xinran.vo.BookLocationVO;
 import com.xinran.vo.builder.AjaxResultBuilder;
 
 /**
@@ -39,6 +46,12 @@ public class AbstractBookController {
 
     @Autowired
     protected BookService               bookService;
+
+    @Autowired
+    protected UserService               userService;
+
+    @Autowired
+    protected BookLocationService       bookLocationService;
 
     @Autowired
     protected OnOffStockRecordService   onOffStockRecordService;
@@ -202,12 +215,28 @@ public class AbstractBookController {
     }
 
     protected BookDetail buildBookDetail(Long id) {
+
         OnOffStockRecord onOffStockRecord = onOffStockRecordService.findOnOffStockRecordById(id);
         Book book = bookService.findBookById(onOffStockRecord.getBookId());
+
+
+
+        Long bookLocationId = onOffStockRecord.getLocation();
+        BookLocation bookLocation = bookLocationService.findBookLocationById(bookLocationId);
+        BookLocationVO bookLocationVO = new BookLocationVO();
+        BeanUtils.copyProperties(bookLocation, bookLocationVO);
+
+        Long ownerUserId = onOffStockRecord.getOwnerUserId();
+        User user = userService.findUserByUserId(ownerUserId);
+        BasicUserVO basicUserVO = new BasicUserVO();
+        BeanUtils.copyProperties(user, basicUserVO);
 
         BookDetail bookDetail = new BookDetail();
         bookDetail.setBook(book);
         bookDetail.setOnOffStockRecord(onOffStockRecord);
+        bookDetail.setUserVO(basicUserVO);
+        bookDetail.setBookLocationVO(bookLocationVO);
+
         return bookDetail;
     }
 

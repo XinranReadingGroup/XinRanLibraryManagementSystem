@@ -14,5 +14,10 @@ public class BookDetail {
 
     private Book Book;
     private OnOffStockRecord onOffStockRecord;
+    
+    // 捐书人或者享书人VO
+    private BasicUserVO      userVO;
+
+    private BookLocationVO   bookLocationVO;
 
 }
