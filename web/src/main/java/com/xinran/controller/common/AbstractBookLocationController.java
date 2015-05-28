@@ -32,32 +32,26 @@ public class AbstractBookLocationController {
     private BookLocationService locationService;
 
     @RequestMapping("/book/location/add")
-    public
-    @ResponseBody
-    AjaxResult add(BookLocation location, HttpServletRequest request) {
+    public @ResponseBody AjaxResult add(BookLocation location, HttpServletRequest request) {
         return AjaxResultBuilder.buildSuccessfulResult(locationService.add(location));
     }
 
     @RequestMapping("/book/location/query")
-    public
-    @ResponseBody
-    AjaxResult query(@RequestParam(value="province", required = false) String province,
-                     @RequestParam(value="city", required = false) String city,
-                     @RequestParam(value="county", required = false) String county, HttpServletRequest request) {
-        return AjaxResultBuilder.buildSuccessfulResult(locationService.query(province, city, county));
+    public @ResponseBody AjaxResult query(@RequestParam(value = "province", required = false) String province,
+                                          @RequestParam(value = "city", required = false) String city,
+                                          @RequestParam(value = "county", required = false) String county,
+                                          HttpServletRequest request) {
+        List<BookLocation> query = locationService.query(province, city, county);
+        return AjaxResultBuilder.buildSuccessfulResult(query);
     }
 
     @RequestMapping("/book/location/provinces")
-    public
-    @ResponseBody
-    AjaxResult provinces(HttpServletRequest request) {
+    public @ResponseBody AjaxResult provinces(HttpServletRequest request) {
         return AjaxResultBuilder.buildSuccessfulResult(new ArrayList<String>(data.keySet()));
     }
 
     @RequestMapping("/book/location/cities")
-    public
-    @ResponseBody
-    AjaxResult cities(@RequestParam("province") String province, HttpServletRequest request) {
+    public @ResponseBody AjaxResult cities(@RequestParam("province") String province, HttpServletRequest request) {
         Object cities = data.get(province);
         Map<String, Object> result = new HashMap<>();
         if (cities != null && cities instanceof List<?>) {
@@ -71,9 +65,8 @@ public class AbstractBookLocationController {
     }
 
     @RequestMapping("/book/location/counties")
-    public
-    @ResponseBody
-    AjaxResult counties(@RequestParam("province") String province, @RequestParam("city") String city, HttpServletRequest request) {
+    public @ResponseBody AjaxResult counties(@RequestParam("province") String province,
+                                             @RequestParam("city") String city, HttpServletRequest request) {
         Object cities = data.get(province);
         Object result = null;
         if (cities != null && cities instanceof List<?>) {
