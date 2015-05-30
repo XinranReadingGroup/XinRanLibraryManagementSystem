@@ -1,14 +1,13 @@
 package com.xinran.service.impl;
 
-import com.xinran.dao.mapper.BookLocationMapper;
-import com.xinran.pojo.BookLocation;
-import com.xinran.service.BookLocationService;
+import java.util.List;
 
-import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
+import com.xinran.dao.mapper.BookLocationMapper;
+import com.xinran.pojo.BookLocation;
+import com.xinran.service.BookLocationService;
 
 /**
  * Created by zhuangyao.zy on 2015/5/24.
@@ -30,12 +29,7 @@ public class BookLocationServiceImpl implements BookLocationService {
 
     @Override
     public BookLocation add(BookLocation location) {
-        Long id = locationMapper.add(location);
-        if (id != null) {
-            location.setId(id);
-            return location;
-        }else{
-            return null;
-        }
+        locationMapper.add(location);
+        return location;
     }
 }

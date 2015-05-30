@@ -8,5 +8,9 @@ import lombok.Data;
 @Data
 public class BookLocationVO {
 
+    private String province;
+    private String city;
+    private String county;
+    private String detail;
 
 }

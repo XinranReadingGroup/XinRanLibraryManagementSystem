@@ -33,7 +33,9 @@ public class AbstractBookLocationController {
 
     @RequestMapping("/book/location/add")
     public @ResponseBody AjaxResult add(BookLocation location, HttpServletRequest request) {
-        return AjaxResultBuilder.buildSuccessfulResult(locationService.add(location));
+        // FIXME 只有admin 才能添加地址库
+        BookLocation add = locationService.add(location);
+        return AjaxResultBuilder.buildSuccessfulResult(add);
     }
 
     @RequestMapping("/book/location/query")

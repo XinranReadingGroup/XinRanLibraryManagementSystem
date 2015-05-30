@@ -64,7 +64,8 @@ public class AbstractBookController {
     @RequestMapping("/book/donate/{bookId}")
     public @ResponseBody AjaxResult donate(@PathVariable(value = "bookId") Long bookId,
                                            @RequestParam("location") Long location,
-                                           @RequestParam("phone") String phone, HttpServletRequest request) {
+                                           @RequestParam(value = "phone", required = false) String phone,
+                                           HttpServletRequest request) {
         OnOffStockRecord onStock = null;
         try {
             onStock = onStock(bookId, location, phone, request, BookType.DONATED);
@@ -234,7 +235,7 @@ public class AbstractBookController {
         BookDetail bookDetail = new BookDetail();
         bookDetail.setBook(book);
         bookDetail.setOnOffStockRecord(onOffStockRecord);
-        bookDetail.setUserVO(basicUserVO);
+        bookDetail.setOwnerUserVO(basicUserVO);
         bookDetail.setBookLocationVO(bookLocationVO);
 
         return bookDetail;

@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RestController;
 /**
  * Created by zhuangyao.zy on 2015/5/24.
  */
-@RestController
+@RestController(value = "mobileBookLocationController")
 @RequestMapping("/mobile")
 public class BookLocationController extends AbstractBookLocationController {
 

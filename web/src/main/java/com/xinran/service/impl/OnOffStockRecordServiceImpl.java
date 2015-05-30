@@ -29,6 +29,9 @@ public class OnOffStockRecordServiceImpl implements OnOffStockRecordService {
     @Autowired
     private UserMapper userMapper;
 
+    /*
+     * TODO submitter 必须存在
+     */
     @Override
     public OnOffStockRecord onStock(OnOffStockRecord record) throws StockException {
         User submitter = userMapper.findUserById(record.getOwnerUserId());
@@ -43,7 +46,7 @@ public class OnOffStockRecordServiceImpl implements OnOffStockRecordService {
         else if (submitter != null && mobileUser != null) {
             // 是同一个用户，则随便取一个
             if (submitter.getId() == mobileUser.getId()) {
-                owner = submitter;
+                owner = mobileUser;
             }
             // 如果提交者不为管理员，则不能帮别人进行捐、享书
             else if(!userService.isAdmin(submitter)){
@@ -53,11 +56,13 @@ public class OnOffStockRecordServiceImpl implements OnOffStockRecordService {
         // 如果提交者存在，手机账户不存在
         else if (submitter != null && mobileUser == null) {
             // 提交者是管理员则以手机号新建一个用户
-            if (userService.isAdmin(submitter)) {
-                owner = userService.registerUserByMobile(record.getOwnerPhone());
-            }else{
-                throw new StockException(ExceptionCode.OnlyAdminHelpToOnStock.getCode());
-            }
+            // if (userService.isAdmin(submitter)) {
+            // owner = userService.registerUserByMobile(record.getOwnerPhone());
+            owner = submitter;
+
+            // }else{
+            // throw new StockException(ExceptionCode.OnlyAdminHelpToOnStock.getCode());
+            // }
         }
         // 如果提交者不存在，手机账户存在，则以手机账户为准————目前不存在这种情况
         else if (submitter == null && mobileUser != null) {
