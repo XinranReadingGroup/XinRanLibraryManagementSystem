@@ -3,9 +3,10 @@ package com.xinran.pojo;
 
 import java.util.Date;
 
-import com.xinran.util.DateUtil;
-
 import lombok.Data;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.xinran.util.DateUtil;
 
 /**
  * 书籍位置
@@ -15,8 +16,10 @@ import lombok.Data;
 @Data
 public class BookLocation {
 
-    private Long   id;
-    private Date   createdAt;
+    private Long id;
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss")
+    private Date createdAt;
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss")
     private Date   updatedAt;
 
     public BookLocation() {

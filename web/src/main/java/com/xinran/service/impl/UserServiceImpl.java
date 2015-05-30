@@ -1,5 +1,13 @@
 package com.xinran.service.impl;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.concurrent.locks.ReentrantLock;
+
 import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -15,14 +23,6 @@ import com.xinran.pojo.User;
 import com.xinran.service.UserService;
 import com.xinran.util.DateUtil;
 import com.xinran.util.StringUtil;
-
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.concurrent.locks.ReentrantLock;
 
 /**
  * @author 高海军 帝奇 Apr 9, 2015 9:30:37 PM

@@ -8,12 +8,10 @@ import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Result;
 import org.apache.ibatis.annotations.Results;
 import org.apache.ibatis.annotations.Select;
-import org.apache.ibatis.annotations.SelectKey;
 import org.apache.ibatis.annotations.SelectProvider;
 import org.springframework.stereotype.Repository;
 
 import com.xinran.pojo.BookLocation;
-import com.xinran.pojo.BorrowReturnRecord;
 
 /**
  * Created by zhuangyao.zy on 2015/5/24.

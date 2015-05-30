@@ -77,11 +77,11 @@ public class AbstractBookController {
 
     @RequestMapping("/book/share/{bookId}")
     public @ResponseBody AjaxResult share(@PathVariable(value = "bookId") Long bookId,
-                                          @RequestParam("location") Long location, @RequestParam("phone") String phone,
+                                          @RequestParam("location") Long location,
                                           HttpServletRequest request) {
         OnOffStockRecord onStock = null;
         try {
-            onStock = onStock(bookId, location, phone, request, BookType.SHARED);
+            onStock = onStock(bookId, location, null, request, BookType.SHARED);
         } catch (StockException e) {
             return AjaxResultBuilder.buildFailedResult(400, e.getCode());
         }

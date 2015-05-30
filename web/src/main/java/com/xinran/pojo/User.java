@@ -1,9 +1,10 @@
 package com.xinran.pojo;
 
-import lombok.Data;
-
 import java.util.Date;
 
+import lombok.Data;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.xinran.util.DateUtil;
 
 /**
@@ -19,7 +20,9 @@ public class User {
     }
 
     private Long    id;
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss")
     private Date    createdAt;
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss")
     private Date    updatedAt;
 
     private String  userName;
@@ -31,10 +34,14 @@ public class User {
     private String  salt;
 
     private String  resetPasswordToken;
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss")
     private Date    resetPasswordSentAt;
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss")
     private Date    rememberCreatedAt;
     private Integer signInCount = 0;
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss")
     private Date    currentSignInAt;
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss")
     private Date    lastSignInAt;
 
     private String  area;               //

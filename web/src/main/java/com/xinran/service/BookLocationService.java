@@ -1,10 +1,8 @@
 package com.xinran.service;
 
-import com.xinran.pojo.BookLocation;
-
 import java.util.List;
 
-import org.apache.ibatis.annotations.Param;
+import com.xinran.pojo.BookLocation;
 
 /**
  * Created by zhuangyao.zy on 2015/5/24.

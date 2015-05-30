@@ -4,6 +4,7 @@ import java.util.Date;
 
 import lombok.Data;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.xinran.util.DateUtil;
 
 /**
@@ -18,8 +19,10 @@ public class Score {
         this.updatedAt = now;
     }
 
-    private Long id;
-    private Date createdAt;
+    private Long    id;
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss")
+    private Date    createdAt;
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss")
     private Date updatedAt;
 
     private Long    userId;     // 积分拥有者
