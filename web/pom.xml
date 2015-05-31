@@ -253,13 +253,13 @@
 
 	</dependencies>
 
-	<profiles>
+	<!-- <profiles>
 		<profile>
 			<id>dev</id>
-			<!-- Dev Env. Properties -->
+			Dev Env. Properties
 			<properties>
 				<profile.name>${profile.name}</profile.name>
-				<!-- Database Properties -->
+				Database Properties
 				<db.driverClass>${db.driverClass}</db.driverClass>
 			</properties>
 		</profile>
@@ -268,13 +268,13 @@
 
 			<id>test</id>
 
-			<!-- Test Env. Properties -->
+			Test Env. Properties
 
 			<properties>
 
 				<profile.name>${profile.name}</profile.name>
 
-				<!-- Database Properties -->
+				Database Properties
 
 				<db.driverClass>${db.driverClass}</db.driverClass>
 
@@ -284,7 +284,7 @@
 
 				<db.password>${db.password}</db.password>
 
-				<!-- JMS Properties -->
+				JMS Properties
 
 				<jms.factory.initial>${jms.factory.initial}</jms.factory.initial>
 
@@ -300,13 +300,13 @@
 
 			<id>prod</id>
 
-			<!-- Prod Env. Properties -->
+			Prod Env. Properties
 
 			<properties>
 
 				<profile.name>${profile.name}</profile.name>
 
-				<!-- Database Properties -->
+				Database Properties
 
 				<db.driverClass>${db.driverClass}</db.driverClass>
 
@@ -316,7 +316,7 @@
 
 				<db.password>${db.password}</db.password>
 
-				<!-- JMS Properties -->
+				JMS Properties
 
 				<jms.factory.initial>${jms.factory.initial}</jms.factory.initial>
 
@@ -328,7 +328,7 @@
 
 		</profile>
 
-	</profiles>
+	</profiles> -->
 
 
 
