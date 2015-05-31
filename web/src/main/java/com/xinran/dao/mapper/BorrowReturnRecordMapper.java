@@ -10,7 +10,6 @@ import org.apache.ibatis.annotations.Update;
 import org.springframework.stereotype.Repository;
 
 import com.xinran.pojo.BorrowReturnRecord;
-import com.xinran.pojo.OnOffStockRecord;
 import com.xinran.pojo.Pagination;
 
 /**
@@ -25,7 +24,7 @@ public interface BorrowReturnRecordMapper {
     void insert(BorrowReturnRecord record);
 
     @Select("SELECT * FROM borrow_return_record WHERE id = #{id}")
-    BorrowReturnRecord findBorrowReturnRecordById(@Param("id") Long id);
+    BorrowReturnRecord findById(@Param("id") Long id);
     
     @Update("update  borrow_return_record set   updated_at = now(),return_date = #{returnDate},borrow_status = #{borrowStatus}  where id = #{id}")
     public int updateBorrowReturnRecord(BorrowReturnRecord record);
@@ -33,8 +32,14 @@ public interface BorrowReturnRecordMapper {
     // TODO add index
 
     @Select("SELECT * FROM borrow_return_record WHERE borrow_user_id = #{borrowUserId} and borrow_status = #{borrowStatus} order by id desc limit #{page.start},#{page.end}")
-    List<BorrowReturnRecord> findRecordsByUserId(@Param("record") OnOffStockRecord record,
+    List<BorrowReturnRecord> findRecordsByBorrowUserId(@Param("borrowUserId") Long borrowUserId,
+                                                 @Param("borrowStatus") Integer borrowStatus,
                                                  @Param("page") Pagination page);
 
+    // TODO add index
+
+    @Select("SELECT * FROM borrow_return_record WHERE  on_off_stock_id = #{onOffStockId} order by id desc limit #{page.start},#{page.end}")
+    List<BorrowReturnRecord> findRecordsByOnOffStockId(@Param("onOffStockId") Long onOffStockId,
+                                                  @Param("page") Pagination page);
 
 }

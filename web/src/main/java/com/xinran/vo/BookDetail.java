@@ -1,6 +1,8 @@
 
 package com.xinran.vo;
 
+import java.util.List;
+
 import lombok.Data;
 
 import com.xinran.pojo.Book;
@@ -19,5 +21,7 @@ public class BookDetail {
     private BasicUserVO      ownerUserVO;
 
     private BookLocationVO   bookLocationVO;
+
+    private List<BasicUserVO> histroicBorrowedRecordList;
 
 }

@@ -79,7 +79,7 @@ $bookDetail
       </p>
       <p class="xy-detail-info-des">
         <span class="xy-detail-info-des-left">共享日期:</span>
-        <span class="xy-detail-info-des-right">$bookDetail.createdAt</span>
+        <span class="xy-detail-info-des-right">$date.format($bookDetail.onOffStockRecord.createdAt)</span>
       </p>
        <p class="xy-detail-info-des">
         <span class="xy-detail-info-des-left">共享人:</span>

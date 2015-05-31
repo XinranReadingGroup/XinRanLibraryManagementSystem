@@ -85,7 +85,7 @@ public abstract class AbstractUserController {
     }
 
     @RequestMapping("/user/{userId}/profile")
-    public @ResponseBody AjaxResult viewUser(@PathVariable(value = ApplicationConstant.USER_ID) Long userId,
+    public @ResponseBody AjaxResult viewOtherUser(@PathVariable(value = ApplicationConstant.USER_ID) Long userId,
                                              HttpServletRequest request) throws UserException {
         Long userIdInSession = UserIdenetityUtil.getCurrentUserId(request);
         if (Objects.equals(userIdInSession, userId)) {

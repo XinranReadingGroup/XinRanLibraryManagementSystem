@@ -1,9 +1,11 @@
 package com.xinran.controller.common;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.apache.commons.collections.CollectionUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -225,7 +227,7 @@ public class AbstractBookController {
                                                      @RequestParam(value = "pageSize", required = false) Integer pageSize,
                                                      HttpServletRequest request) {
         Long userId = UserIdenetityUtil.getCurrentUserId(request);
-        List<OnOffStockRecord> records = null;
+        List<BookDetail> bookDetailList = new ArrayList<BookDetail>();
         if (userId != null) {
             Pagination page = new Pagination();
             if (pageNo != null && pageNo >= 0) {
@@ -234,10 +236,40 @@ public class AbstractBookController {
             if (pageSize != null && pageSize > 0) {
                 page.setSize(pageSize);
             }
-            records = onOffStockRecordService.findShared(userId, page);
-            fillBookInfo(records);
+            List<BorrowReturnRecord> records = borrowReturnRecordService.findBorrowedBooks(userId, page);
+            if (CollectionUtils.isNotEmpty(records)) {
+                for (BorrowReturnRecord borrowReturnRecord : records) {
+                    BookDetail bookDetail = buildBookDetail(borrowReturnRecord.getOnOffStockId());
+                    bookDetailList.add(bookDetail);
+                }
+            }
         }
-        return AjaxResultBuilder.buildSuccessfulResult(records);
+        return AjaxResultBuilder.buildSuccessfulResult(bookDetailList);
+    }
+
+    @RequestMapping("/book/return/records")
+    public @ResponseBody AjaxResult getReturnedRecords(@RequestParam(value = "pageNo", required = false) Integer pageNo,
+                                                       @RequestParam(value = "pageSize", required = false) Integer pageSize,
+                                                       HttpServletRequest request) {
+        Long userId = UserIdenetityUtil.getCurrentUserId(request);
+        List<BookDetail> bookDetailList = new ArrayList<BookDetail>();
+        if (userId != null) {
+            Pagination page = new Pagination();
+            if (pageNo != null && pageNo >= 0) {
+                page.setCurrent(pageNo);
+            }
+            if (pageSize != null && pageSize > 0) {
+                page.setSize(pageSize);
+            }
+            List<BorrowReturnRecord> records = borrowReturnRecordService.findReturnedBooks(userId, page);
+            if (CollectionUtils.isNotEmpty(records)) {
+                for (BorrowReturnRecord borrowReturnRecord : records) {
+                    BookDetail bookDetail = buildBookDetail(borrowReturnRecord.getOnOffStockId());
+                    bookDetailList.add(bookDetail);
+                }
+            }
+        }
+        return AjaxResultBuilder.buildSuccessfulResult(bookDetailList);
     }
 
     protected BookDetail buildBookDetail(Long id) {
@@ -253,17 +285,35 @@ public class AbstractBookController {
         BeanUtils.copyProperties(bookLocation, bookLocationVO);
 
         Long ownerUserId = onOffStockRecord.getOwnerUserId();
-        User user = userService.findUserByUserId(ownerUserId);
-        BasicUserVO basicUserVO = new BasicUserVO();
-        BeanUtils.copyProperties(user, basicUserVO);
+        BasicUserVO basicUserVO = buildBasicUserVO(ownerUserId);
+        
+        Pagination pagination = new Pagination();
+        List<BorrowReturnRecord> borrowReturnRecordList = borrowReturnRecordService.findHistroicBorrowedBooks(onOffStockRecord.getId(),
+                                                                                                              pagination);
+        List<BasicUserVO> basicUserVOList = null;
+        if (CollectionUtils.isNotEmpty(borrowReturnRecordList)) {
+            basicUserVOList = new ArrayList<BasicUserVO>();
+            for (BorrowReturnRecord borrowReturnRecord : borrowReturnRecordList) {
+                Long borrowUserId = borrowReturnRecord.getBorrowUserId();
+                BasicUserVO basicUserVO1 = buildBasicUserVO(borrowUserId);
+                basicUserVOList.add(basicUserVO1);
+            }
+        }
 
         BookDetail bookDetail = new BookDetail();
         bookDetail.setBook(book);
         bookDetail.setOnOffStockRecord(onOffStockRecord);
         bookDetail.setOwnerUserVO(basicUserVO);
         bookDetail.setBookLocationVO(bookLocationVO);
-
+        bookDetail.setHistroicBorrowedRecordList(basicUserVOList);
         return bookDetail;
+    }
+
+    private BasicUserVO buildBasicUserVO(Long ownerUserId) {
+        User user = userService.findUserByUserId(ownerUserId);
+        BasicUserVO basicUserVO = new BasicUserVO();
+        BeanUtils.copyProperties(user, basicUserVO);
+        return basicUserVO;
     }
 
     private void fillBookInfo(List<OnOffStockRecord> records) {

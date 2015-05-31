@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<toolbox>
+	<xhtml>true</xhtml>
+	<tool>
+		<key>date</key>
+		<scope>application</scope>
+		<class>org.apache.velocity.tools.generic.DateTool</class>
+		<parameter name="format" value="yyyy-MM-dd HH:mm:ss" />
+	</tool>
+	<tool>
+		<key>display</key>
+		<scope>application</scope>
+		<class>org.apache.velocity.tools.generic.DisplayTool</class>
+	</tool>
+	<tool>
+		<key>math</key>
+		<scope>application</scope>
+		<class>org.apache.velocity.tools.generic.MathTool</class>
+	</tool>
+	<tool>
+		<key>iter</key>
+		<scope>application</scope>
+		<class>org.apache.velocity.tools.generic.IteratorTool</class>
+	</tool>
+	<tool>
+		<key>sort</key>
+		<scope>application</scope>
+		<class>org.apache.velocity.tools.generic.SortTool</class>
+	</tool>
+	<tool>
+		<key>esc</key>
+		<scope>application</scope>
+		<class>org.apache.velocity.tools.generic.EscapeTool</class>
+	</tool>
+</toolbox>

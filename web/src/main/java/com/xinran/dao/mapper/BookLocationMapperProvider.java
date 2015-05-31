@@ -19,7 +19,6 @@ public class BookLocationMapperProvider {
         if (params.get("county") != null) {
             buffer.append(" and county = #{county}");
         }
-        System.out.println(buffer.toString());
         return buffer.toString();
     }
 }

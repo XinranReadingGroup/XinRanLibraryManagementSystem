@@ -8,6 +8,7 @@ import lombok.Data;
 @Data
 public class BasicUserVO {
 
+    private Long   id;
     private String nickName; // add
     private String imgId;   // 头像图片id
 

@@ -50,6 +50,8 @@
 		<property name="contentType">
 			<value>text/html;charset=UTF-8</value>
 		</property>
+		<property name="toolboxConfigLocation" value="/WEB-INF/velocity/veclocityToolbox.xml" />
+		
 	</bean>
 
 	<bean id="velocityConfigurer"
