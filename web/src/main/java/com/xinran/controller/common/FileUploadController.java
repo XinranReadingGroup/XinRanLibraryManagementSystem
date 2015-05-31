@@ -49,7 +49,7 @@ public class FileUploadController {
                        ModelMap modelMap, HttpServletRequest request, HttpServletResponse response) {
 
         // 保存文件路径 profile
-        String saveDirectory = "/home/admin/xinran/upload/";
+        String saveDirectory = "/home/admin/xinran/upload/avatar/";
 
         MultipartFile multipartFile = uploadForm.getFile();
 
