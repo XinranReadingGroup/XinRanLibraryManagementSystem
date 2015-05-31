@@ -47,7 +47,9 @@ public class FileUploadController {
     public @ResponseBody AjaxResult upload(@Validated @ModelAttribute("uploadItem") FileUploadForm uploadForm,
                                          BindingResult result,
                        ModelMap modelMap, HttpServletRequest request, HttpServletResponse response) {
-        // String saveDirectory = request.getServletContext().getRealPath("/");
+
+        // 保存文件路径 profile
+        String saveDirectory = "/home/admin/xinran/upload/";
 
         MultipartFile multipartFile = uploadForm.getFile();
 
@@ -58,7 +60,7 @@ public class FileUploadController {
         if (null != multipartFile) {
 
             try {
-                multipartFile.transferTo(new File(newFileName));
+                multipartFile.transferTo(new File(saveDirectory + newFileName));
             } catch (IllegalStateException | IOException e) {
                 logger.error(e.getMessage(), e);
             }

@@ -82,15 +82,8 @@
 		<property name="defaultEncoding" value="utf-8" />
 		<property name="maxUploadSize" value="1048576" />
 		<property name="maxInMemorySize" value="40960" />
-		<property name="uploadTempDir" ref="uploadDirResource" />
 	</bean>
 	
-     <bean  id="uploadDirResource" class="org.springframework.core.io.FileSystemResource">
-            <constructor-arg>
-                <value>/Users/ghj/open_source</value>
-            </constructor-arg>
-     </bean>
-    
     
 	<!--配置数据源 -->
 	<bean id="jdbcDataSource"
