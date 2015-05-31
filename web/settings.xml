@@ -1,0 +1,37 @@
+<settings xmlns="http://maven.apache.org/SETTINGS/1.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/SETTINGS/1.0.0
+                      http://maven.apache.org/xsd/settings-1.0.0.xsd">
+
+	<!-- Active Profile Section -->
+	<activeProfiles>
+		<activeProfile>dev</activeProfile>
+	</activeProfiles>
+
+	<profiles>
+		<profile>
+			<id>dev</id>
+			<!-- Dev Env. Properties -->
+			<properties>
+				<profile.name>dev</profile.name>
+				<db.driverClass>com.mysql.jdbc.Driver</db.driverClass>
+			</properties>
+		</profile>
+		<profile>
+			<id>test</id>
+			<!-- Test Env. Properties -->
+			<properties>
+				<profile.name>test</profile.name>
+				<db.driverClass>com.mysql.jdbc.Driver</db.driverClass>
+			</properties>
+		</profile>
+		<profile>
+			<id>prod</id>
+			<!-- Prod Env. Properties -->
+			<properties>
+				<profile.name>prod</profile.name>
+				<db.driverClass>com.mysql.jdbc.Driver</db.driverClass>
+			</properties>
+		</profile>
+	</profiles>
+</settings>

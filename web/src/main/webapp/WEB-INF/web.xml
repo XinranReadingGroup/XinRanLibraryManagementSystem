@@ -7,6 +7,12 @@
     <welcome-file-list>
         <welcome-file>index.jsp</welcome-file>
     </welcome-file-list>
+    
+    <!-- spring profile -->
+    <context-param>
+            <param-name>spring.profiles.default</param-name>
+            <param-value>prod</param-value>
+    </context-param>
 
 
     <servlet>

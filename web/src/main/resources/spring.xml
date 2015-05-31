@@ -2,9 +2,9 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
 	xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:tx="http://www.springframework.org/schema/tx"
-	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd 
-	http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd
-	http://www.springframework.org/schema/mvc   http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+	http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+	http://www.springframework.org/schema/mvc   http://www.springframework.org/schema/mvc/spring-mvc.xsd
 	http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd">
 
 	<!-- 把标记了@Controller注解的类转换为bean -->
@@ -12,11 +12,21 @@
 	<context:component-scan base-package="com.xinran.service" />
 	<context:component-scan base-package="com.xinran.listener" />
 	<context:component-scan base-package="com.xinran.boot" />
+	
+	
 
 	<!-- 支持configurable注解 -->
 	<context:load-time-weaver />
 
 	<mvc:annotation-driven />
+	
+	
+	<!-- 静态资源访问 -->
+    <mvc:resources location="/img/" mapping="/img/**" />
+    <mvc:resources location="/js/" mapping="/js/**" />
+    <mvc:resources location="/css/" mapping="/css/**" />
+    <mvc:resources location="/mock/" mapping="/mock/**" />
+	
 	<context:property-placeholder
 		location="classpath:jdbc.properties,file:/home/admin/xinran/jdbc.properties"
 		ignore-resource-not-found="true" />
@@ -51,7 +61,7 @@
 			<value>text/html;charset=UTF-8</value>
 		</property>
 		<property name="toolboxConfigLocation" value="/WEB-INF/velocity/veclocityToolbox.xml" />
-		
+
 	</bean>
 
 	<bean id="velocityConfigurer"
@@ -72,15 +82,16 @@
 		<property name="defaultEncoding" value="utf-8" />
 		<property name="maxUploadSize" value="1048576" />
 		<property name="maxInMemorySize" value="40960" />
+		<property name="uploadTempDir" ref="uploadDirResource" />
 	</bean>
-	<!-- 静态资源访问 -->
-	<mvc:resources location="/img/" mapping="/img/**" />
-	<mvc:resources location="/js/" mapping="/js/**" />
-	<mvc:resources location="/css/" mapping="/css/**" />
-	<mvc:resources location="/mock/" mapping="/mock/**" />
 	
-
-
+     <bean  id="uploadDirResource" class="org.springframework.core.io.FileSystemResource">
+            <constructor-arg>
+                <value>/Users/ghj/open_source</value>
+            </constructor-arg>
+     </bean>
+    
+    
 	<!--配置数据源 -->
 	<bean id="jdbcDataSource"
 		class="org.springframework.jdbc.datasource.DriverManagerDataSource">

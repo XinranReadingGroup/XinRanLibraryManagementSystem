@@ -33,12 +33,30 @@
 					<scanIntervalSeconds>0</scanIntervalSeconds>
 					<stopKey>stopApp</stopKey>
 					<stopPort>9988</stopPort>
-					<jvmArgs>-server      -javaagent:${settings.localRepository}/org/springframework/spring-instrument/${springVersion}/spring-instrument-${springVersion}.jar
-					 -Xmx1g -Xms1g  -XX:+HeapDumpOnOutOfMemoryError -XX:+UseG1GC -XX:+UnlockExperimentalVMOptions -XX:+AggressiveOpts -XX:MaxGCPauseMillis=400 -XX:GCPauseIntervalMillis=8000 -XX:+PrintGCTimeStamps -XX:+PrintGCApplicationStoppedTime -XX:+PrintGCApplicationConcurrentTime -Xloggc:gc.log -XX:+UseGCLogFileRotation -XX:NumberOfGCLogFiles=4 -XX:GCLogFileSize=10240K</jvmArgs>
+					<jvmArgs>-server
+						-javaagent:${settings.localRepository}/org/springframework/spring-instrument/${springVersion}/spring-instrument-${springVersion}.jar
+						-Xmx1g -Xms1g -XX:+HeapDumpOnOutOfMemoryError -XX:+UseG1GC
+						-XX:+UnlockExperimentalVMOptions -XX:+AggressiveOpts
+						-XX:MaxGCPauseMillis=400 -XX:GCPauseIntervalMillis=8000
+						-XX:+PrintGCTimeStamps -XX:+PrintGCApplicationStoppedTime
+						-XX:+PrintGCApplicationConcurrentTime -Xloggc:gc.log
+						-XX:+UseGCLogFileRotation -XX:NumberOfGCLogFiles=4
+						-XX:GCLogFileSize=10240K</jvmArgs>
 				</configuration>
 			</plugin>
 
 		</plugins>
+		
+		<resources>
+         <!-- Placeholders that are found from the files located in the configured
+             resource directories are replaced with the property values found from the
+             profile specific configuration file. -->
+         <resource>
+             <directory>${resource.directory}</directory>
+             <filtering>true</filtering>
+         </resource>
+        </resources>
+		
 	</build>
 
 	<dependencies>
@@ -86,10 +104,10 @@
 			<version>${springVersion}</version>
 		</dependency>
 		<dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-instrument</artifactId>
-            <version>${springVersion}</version>
-        </dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-instrument</artifactId>
+			<version>${springVersion}</version>
+		</dependency>
 		<dependency>
 			<groupId>com.fasterxml.jackson.core</groupId>
 			<artifactId>jackson-core</artifactId>
@@ -148,11 +166,21 @@
 			<artifactId>velocity</artifactId>
 			<version>1.7</version>
 		</dependency>
-        <dependency>
-            <groupId>org.apache.velocity</groupId>
-            <artifactId>velocity-tools</artifactId>
-            <version>2.0</version>
-        </dependency>
+		<dependency>
+			<groupId>org.apache.velocity</groupId>
+			<artifactId>velocity-tools</artifactId>
+			<version>2.0</version>
+			<exclusions>
+				<exclusion>
+					<groupId>org.apache.struts</groupId>
+					<artifactId>struts-tiles</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>org.apache.struts</groupId>
+					<artifactId>struts-taglib</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
 
 
 		<dependency>
@@ -224,6 +252,84 @@
 		</dependency>
 
 	</dependencies>
+
+	<profiles>
+		<profile>
+			<id>dev</id>
+			<!-- Dev Env. Properties -->
+			<properties>
+				<profile.name>${profile.name}</profile.name>
+				<!-- Database Properties -->
+				<db.driverClass>${db.driverClass}</db.driverClass>
+			</properties>
+		</profile>
+
+		<profile>
+
+			<id>test</id>
+
+			<!-- Test Env. Properties -->
+
+			<properties>
+
+				<profile.name>${profile.name}</profile.name>
+
+				<!-- Database Properties -->
+
+				<db.driverClass>${db.driverClass}</db.driverClass>
+
+				<db.connectionURL>${db.connectionURL}</db.connectionURL>
+
+				<db.username>${db.username}</db.username>
+
+				<db.password>${db.password}</db.password>
+
+				<!-- JMS Properties -->
+
+				<jms.factory.initial>${jms.factory.initial}</jms.factory.initial>
+
+				<jms.provider.url>${jms.provider.url}</jms.provider.url>
+
+				<jms.queue>${jms.queue}</jms.queue>
+
+			</properties>
+
+		</profile>
+
+		<profile>
+
+			<id>prod</id>
+
+			<!-- Prod Env. Properties -->
+
+			<properties>
+
+				<profile.name>${profile.name}</profile.name>
+
+				<!-- Database Properties -->
+
+				<db.driverClass>${db.driverClass}</db.driverClass>
+
+				<db.connectionURL>${db.connectionURL}</db.connectionURL>
+
+				<db.username>${db.username}</db.username>
+
+				<db.password>${db.password}</db.password>
+
+				<!-- JMS Properties -->
+
+				<jms.factory.initial>${jms.factory.initial}</jms.factory.initial>
+
+				<jms.provider.url>${jms.provider.url}</jms.provider.url>
+
+				<jms.queue>${jms.queue}</jms.queue>
+
+			</properties>
+
+		</profile>
+
+	</profiles>
+
 
 
 </project>
