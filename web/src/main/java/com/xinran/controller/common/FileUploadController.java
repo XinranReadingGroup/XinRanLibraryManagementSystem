@@ -50,11 +50,12 @@ public class FileUploadController {
         // String saveDirectory = request.getServletContext().getRealPath("/");
 
         MultipartFile multipartFile = uploadForm.getFile();
+
+        // TODO file name ?
         String newFileName = "user_avatar_origin_" + UserIdenetityUtil.getCurrentUserId(request) + ".jpg";
 
 
         if (null != multipartFile) {
-            System.out.println("12222222" + multipartFile.getContentType());
 
             try {
                 multipartFile.transferTo(new File(newFileName));

@@ -9,11 +9,11 @@
     </welcome-file-list>
     
     <!-- spring profile -->
-    <context-param>
+    <!-- <context-param>
             <param-name>spring.profiles.default</param-name>
             <param-value>prod</param-value>
     </context-param>
-
+ -->
 
     <servlet>
         <servlet-name>springMVC</servlet-name>
