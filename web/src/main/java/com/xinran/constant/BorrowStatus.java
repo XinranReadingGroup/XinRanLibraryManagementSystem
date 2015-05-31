@@ -8,7 +8,7 @@ package com.xinran.constant;
 
 public enum BorrowStatus {
 
-    UNBORROWED(0), BORROWED(1), RETURNED(1),
+    UNBORROWED(0), BORROWED(1)
 
     ;
 

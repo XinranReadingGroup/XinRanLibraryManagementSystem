@@ -135,6 +135,8 @@ public class AbstractBookController {
             borrowReturnRecordService.insert(borrowReturnRecord);
 
             onOffStockRecord.setBorrowId(borrowReturnRecord.getId());
+            onOffStockRecord.setBorrowUserId(UserIdenetityUtil.getCurrentUserId(request));
+            onOffStockRecord.setBorrowStatus(BorrowStatus.BORROWED.getStatus());
             onOffStockRecordService.updateOnOffStockRecord(onOffStockRecord);
 
         }
@@ -164,10 +166,15 @@ public class AbstractBookController {
             }
 
             BorrowReturnRecord borrowReturnRecord = borrowReturnRecordService.findBorrowReturnRecordById(onOffStockRecord.getBorrowId());
-            borrowReturnRecord.setBorrowStatus(BorrowStatus.RETURNED.getStatus());
+            borrowReturnRecord.setBorrowStatus(BorrowStatus.UNBORROWED.getStatus());
             borrowReturnRecord.setReturnDate(DateUtil.getCurrentDate());
 
             borrowReturnRecordService.updateBorrowReturnRecord(borrowReturnRecord);
+
+            onOffStockRecord.setBorrowStatus(BorrowStatus.UNBORROWED.getStatus());
+            onOffStockRecord.setBorrowId(null);
+            onOffStockRecord.setBorrowUserId(null);
+            onOffStockRecordService.updateOnOffStockRecord(onOffStockRecord);
         }
 
         return AjaxResultBuilder.buildSuccessfulResult(null);
@@ -178,7 +185,6 @@ public class AbstractBookController {
                                                       @RequestParam(value = "pageSize", required = false) Integer pageSize,
                                                       HttpServletRequest request) {
         Long userId = UserIdenetityUtil.getCurrentUserId(request);
-        userId = 1L;
         List<OnOffStockRecord> records = null;
         if (userId != null) {
             Pagination page = new Pagination();
@@ -199,7 +205,26 @@ public class AbstractBookController {
                                                      @RequestParam(value = "pageSize", required = false) Integer pageSize,
                                                      HttpServletRequest request) {
         Long userId = UserIdenetityUtil.getCurrentUserId(request);
-        userId = 1L;
+        List<OnOffStockRecord> records = null;
+        if (userId != null) {
+            Pagination page = new Pagination();
+            if (pageNo != null && pageNo >= 0) {
+                page.setCurrent(pageNo);
+            }
+            if (pageSize != null && pageSize > 0) {
+                page.setSize(pageSize);
+            }
+            records = onOffStockRecordService.findShared(userId, page);
+            fillBookInfo(records);
+        }
+        return AjaxResultBuilder.buildSuccessfulResult(records);
+    }
+
+    @RequestMapping("/book/borrow/records")
+    public @ResponseBody AjaxResult getBorrowedRecords(@RequestParam(value = "pageNo", required = false) Integer pageNo,
+                                                     @RequestParam(value = "pageSize", required = false) Integer pageSize,
+                                                     HttpServletRequest request) {
+        Long userId = UserIdenetityUtil.getCurrentUserId(request);
         List<OnOffStockRecord> records = null;
         if (userId != null) {
             Pagination page = new Pagination();

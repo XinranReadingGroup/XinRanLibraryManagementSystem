@@ -29,9 +29,8 @@ public interface OnOffStockRecordMapper {
             + " borrow_user_id=#{borrowUserId},borrow_Id=#{borrowId}   where id = #{id}")
     public int updateOnOffStockRecord(OnOffStockRecord record);
     
-    
+    // TODO add index
     @Select("SELECT * FROM on_off_stock_record WHERE owner_user_id = #{record.ownerUserId} and book_type = #{record.bookType} order by id desc limit #{page.start},#{page.end}")
     List<OnOffStockRecord> findRecordsByUserId(@Param("record") OnOffStockRecord record, @Param("page") Pagination page);
-
 
 }
