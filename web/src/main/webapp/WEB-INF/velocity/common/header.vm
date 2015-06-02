@@ -1,5 +1,4 @@
 <!-- 顶部 -->
-$!{homepageVO}
 <header class="navbar navbar-static-top bs-docs-nav" id="header" role="banner">
     <div class="container header-wrap">
         <div class="navbar-header">
