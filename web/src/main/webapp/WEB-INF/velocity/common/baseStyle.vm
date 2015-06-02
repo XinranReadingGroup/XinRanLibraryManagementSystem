@@ -1,5 +1,5 @@
 <!-- 公用静态资源 -->
-＃set($webHost = "//xinrandushuba.com")
+#set($webHost = "//xinrandushuba.com")
 <link rel="stylesheet" type="text/css" href="$!{webHost}/css/common/bootstrap.css" media="all">
 <link rel="stylesheet" type="text/css" href="$!{webHost}/css/common/common.css" media="all">
 <link rel="stylesheet" type="text/css" href="$!{webHost}/js/common/artdialog/css/ui-dialog.css" media="all">
