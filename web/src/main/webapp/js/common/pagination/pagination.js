@@ -1,6 +1,6 @@
 /**
  * 分页组件
- * @author zhangsen.z
+ * @author dasen
  *
  */
 define(function(require, exports, module) {

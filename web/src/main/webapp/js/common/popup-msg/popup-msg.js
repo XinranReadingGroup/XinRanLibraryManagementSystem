@@ -1,6 +1,6 @@
 /**
    @desc [弹出mini消息组件]
-   @author zhangsen.z
+   @author dasen
  */
 define(function(require, exports, module) {
 	var $ = require('jquery'),
