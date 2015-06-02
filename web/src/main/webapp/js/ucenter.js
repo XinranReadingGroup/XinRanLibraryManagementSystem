@@ -18,6 +18,8 @@ define(function(require, exports, module) {
         var self = this;
 
         self.bindEvents();
+
+        self.renderPanel();
     };
 
     Ucenter.prototype.bindEvents = function() {
@@ -57,6 +59,17 @@ define(function(require, exports, module) {
 
             }, 'json');
         });
+    };
+
+    Ucenter.prototype.renderPanel = function() {
+        var self = this;
+
+        $.get('/book/donate/records', {}, function(data) {
+            if (data.code == 200) {
+
+            }
+
+        }, 'json');
     };
 
     module.exports = Ucenter;

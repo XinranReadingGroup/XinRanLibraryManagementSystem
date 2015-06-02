@@ -1,7 +1,7 @@
 <!-- 顶部 -->
 $!{homepageVO}
 <header class="navbar navbar-static-top bs-docs-nav" id="header" role="banner">
-    <div class="container header-wrap  ui-green">
+    <div class="container header-wrap">
         <div class="navbar-header">
             <a class="navbar-brand header-logo" href="http://xinrandushuba.com/">欣然读书</a>
             <button class="navbar-toggle collapsed header-menu" type="button" data-toggle="collapse" data-target=".bs-navbar-collapse">
@@ -31,7 +31,7 @@ $!{homepageVO}
                 </li>
 
                 #if("false" != $!{homepageVO.isLogined})
-                    <li><a href="/user/userCenter">$!{homepageVO.nickName}</a></li>
+                    <li><a href="/user/profile">$!{homepageVO.nickName}</a></li>
                     <li><a href="/user/signOut">退出</a></li>
                 #else
                     <li><a href="/user/session/signIn">登录</a></li>
