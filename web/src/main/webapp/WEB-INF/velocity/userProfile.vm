@@ -317,13 +317,11 @@
 
 </div>
 <script type="text/javascript">
-seajs.use('../../js/ucenter.js', function(Ucenter){
+seajs.use('../ucenter.js', function(Ucenter){
     var ucenter = new Ucenter();
     ucenter.render();
 });
 </script>
-
-$userProfile
 </body>
 </html>
 
