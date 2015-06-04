@@ -73,9 +73,9 @@ $bookDetail
   <div class="xy-detail-header">
     让书流动起来，传递知识分享爱，欣然读书吧
   </div>
-  <div class="xy-detail-info" data-id="$bookDetail.id">
+  <div class="xy-detail-info" data-id="$bookDetailInfo.id">
     <div class="xy-detail-info-left">
-      <img class="xy-detail-info-img" src="$bookDetail.imgURL">
+      <img class="xy-detail-info-img" src="$bookDetailInfo.imgURL">
     </div>
     <div class="xy-detail-info-right">
       <p class="xy-detail-info-title">
@@ -87,7 +87,7 @@ $bookDetail
       </p>
        <p class="xy-detail-info-des">
         <span class="xy-detail-info-des-left">
-          #if $bookDetailInfo.bookType
+          #if ($bookDetailInfo.bookType)
             捐书人:
           #else
             共享人:
@@ -100,7 +100,7 @@ $bookDetail
        <p class="xy-detail-info-des">
         <span class="xy-detail-info-des-left">目前状态:</span>
         <span class="xy-detail-info-des-right">
-          #if $bookDetailInfo.borrowStatus
+          #if ($bookDetailInfo.borrowStatus)
             已借
           #else
             可借
