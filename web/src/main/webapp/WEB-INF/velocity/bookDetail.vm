@@ -130,6 +130,8 @@ $session
           #else
           ## 书的状态是已借
           ## 且借书人是自己
+            $bookBorrow.borrowUserId
+            $session.getAttribute("userId")
             #if($bookBorrow.borrowUserId == $session.getAttribute("userId"))
             <a href="javascript:;" data-role="detail-return-book" class="btn btn-default btn-success">还书</a>
             #end
