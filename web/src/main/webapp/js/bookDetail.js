@@ -32,9 +32,7 @@ define(function(require, exports, module) {
         });
 
         $(doc).delegate('#detail-return-book', 'click', function(event) {
-            $.get('book/share/3', {}, function(json) {
-
-            }, 'json');
+            $('#borrow-modal').modal('show');
         });
     };
 
@@ -42,7 +40,6 @@ define(function(require, exports, module) {
         var bookSummary = $('.xy-detail-des'),
             viewMoreSummary = $('[data-role=xy-detail-seek-more]');
 
-        console.log(bookSummary.height());
         if(bookSummary.height() > 250) {
             viewMoreSummary.show();
             bookSummary.addClass('xy-detail-limit');

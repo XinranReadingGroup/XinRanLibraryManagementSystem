@@ -105,7 +105,7 @@ $session
        <p class="xy-detail-info-des">
         <span class="xy-detail-info-des-left">目前状态:</span>
         <span class="xy-detail-info-des-right">
-          #if ($bookBorrow.borrowStatus)
+          #if ($bookBorrow.borrowStatus == 1)
             已借
           #else
             可借
