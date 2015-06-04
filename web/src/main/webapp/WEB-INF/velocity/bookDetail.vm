@@ -30,6 +30,10 @@
 $bookDetail
 </pre>
 <h1>========================</h1>
+
+#set($bookDetailInfo = $bookDetail.book)
+#set($bookBorrow = $bookDetail.onOffStockRecord)
+#set($userInfo = $bookDetail.BasicUserVO)
 <!-- 顶部 -->
 <header class="navbar navbar-static-top bs-docs-nav" id="header" role="banner">
     <div class="container header-wrap">
@@ -69,25 +73,39 @@ $bookDetail
   <div class="xy-detail-header">
     让书流动起来，传递知识分享爱，欣然读书吧
   </div>
-  <div class="xy-detail-info" data-id="$bookDetail.id">
+  <div class="xy-detail-info" data-id="$bookDetailInfo.id">
     <div class="xy-detail-info-left">
-      <img class="xy-detail-info-img" src="$bookDetail.imgURL">
+      <img class="xy-detail-info-img" src="$bookDetailInfo.imgURL">
     </div>
     <div class="xy-detail-info-right">
       <p class="xy-detail-info-title">
-        $bookDetail.title
+        $bookDetailInfo.title
       </p>
       <p class="xy-detail-info-des">
         <span class="xy-detail-info-des-left">共享日期:</span>
-        <span class="xy-detail-info-des-right">$date.format($bookDetail.createdAt)</span>
+        <span class="xy-detail-info-des-right">$date.format($bookBorrow.createdAt)</span>
       </p>
        <p class="xy-detail-info-des">
-        <span class="xy-detail-info-des-left">共享人:</span>
-        <span class="xy-detail-info-des-right">苏泊</span>
+        <span class="xy-detail-info-des-left">
+          #if ($bookDetailInfo.bookType)
+            捐书人:
+          #else
+            共享人:
+          #end
+        </span>
+        <span class="xy-detail-info-des-right">
+          $userInfo.nickName
+        </span>
       </p>
        <p class="xy-detail-info-des">
         <span class="xy-detail-info-des-left">目前状态:</span>
-        <span class="xy-detail-info-des-right">已共享</span>
+        <span class="xy-detail-info-des-right">
+          #if ($bookDetailInfo.borrowStatus)
+            已借
+          #else
+            可借
+          #end
+        </span>
       </p>
        <p class="xy-detail-info-control">
        <a href="javascript:;" data-role="detail-share" class="btn btn-default">取消共享</a>
@@ -104,36 +122,23 @@ $bookDetail
 
     <p class="xy-detail-publish-item">
       <span class="xy-detail-publish-left">作者:</span>
-      <span class="xy-detail-publish-right">$bookDetail.author</span>
+      <span class="xy-detail-publish-right">$bookDetailInfo.author</span>
     </p>
 
 
     <p class="xy-detail-publish-item">
       <span class="xy-detail-publish-left">出版社:</span>
-      <span class="xy-detail-publish-right">$bookDetail.publisher</span>
+      <span class="xy-detail-publish-right">$bookDetailInfo.publisher</span>
     </p>
-
-
-    <p class="xy-detail-publish-item">
-      <span class="xy-detail-publish-left">出版年:</span>
-      <span class="xy-detail-publish-right">xxx</span>
-    </p>
-
 
     <p class="xy-detail-publish-item">
       <span class="xy-detail-publish-left">定价:</span>
-      <span class="xy-detail-publish-right">$bookDetail.price</span>
-    </p>
-
-
-    <p class="xy-detail-publish-item">
-      <span class="xy-detail-publish-left">装帧:</span>
-      <span class="xy-detail-publish-right">xxx</span>
+      <span class="xy-detail-publish-right">$bookDetailInfo.price</span>
     </p>
 
     <p class="xy-detail-publish-item">
       <span class="xy-detail-publish-left">ISBN:</span>
-      <span class="xy-detail-publish-right">$bookDetail.isbn</span>
+      <span class="xy-detail-publish-right">$bookDetailInfo.isbn</span>
     </p>
 
   </div>
@@ -146,11 +151,11 @@ $bookDetail
 
     <div class="xy-detail-content-info">
       <div class="xy-detail-des">
-        <pre>$bookDetail.summary</pre>
+        <pre>$bookDetailInfo.summary</pre>
       </div>
 
       <p class="xy-detail-content-control">
-        <a href="" class="xy-detail-content-seek" data-role="xy-detail-seek-more">{展开全部}</a>
+        <a href="javascript:void(0);" class="xy-detail-content-seek" data-role="xy-detail-seek-more">{展开全部}</a>
       </p>
     </div>
   </div>
