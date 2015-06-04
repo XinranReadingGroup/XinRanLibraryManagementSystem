@@ -192,24 +192,27 @@ $session
       <span class="xy-detail-head-hr"></span>
     </p>
     <div class="xy-detail-history-content">
+      #if ($bookDetail.histroicBorrowedRecordList == null)
       <p>
         <span class="xy-detail-trips">
         暂时没有人借阅此书
       </span>
       </p>
+      #else
+      <a class="xy-detail-history-item">
+        <img src="../../img/detail/avatar.jpg">
+        <span href="javascript:;" class="xy-detail-history-name">
+          欣然
+        </span>
+      </a>
+      <a class="xy-detail-history-item">
+        <img src="../../img/detail/avatar.jpg">
+        <span href="javascript:;" class="xy-detail-history-name">
+          欣然
+        </span>
+      </a>
+      #end
 
-      <a class="xy-detail-history-item">
-        <img src="../../img/detail/avatar.jpg">
-        <span href="javascript:;" class="xy-detail-history-name">
-          欣然
-        </span>
-      </a>
-      <a class="xy-detail-history-item">
-        <img src="../../img/detail/avatar.jpg">
-        <span href="javascript:;" class="xy-detail-history-name">
-          欣然
-        </span>
-      </a>
     </div>
   </div>
 </div>
