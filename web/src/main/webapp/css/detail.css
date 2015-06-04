@@ -134,6 +134,9 @@ body {
   color: #999;
 }
 .xy-detail-des {
+  overflow: hidden;
+}
+.xy-detail-limit {
   max-height: 250px;
   overflow: hidden;
 }

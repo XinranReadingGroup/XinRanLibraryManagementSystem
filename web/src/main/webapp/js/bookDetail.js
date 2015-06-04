@@ -53,9 +53,9 @@ define(function(require, exports, module) {
             viewMoreSummary = $('[data-role=xy-detail-seek-more]');
 
         console.log(bookSummary.height());
-
         if(bookSummary.height() > 250) {
             viewMoreSummary.show();
+            bookSummary.addClass('xy-detail-limit');
         }
         viewMoreSummary.click(function() {
             bookSummary.addClass('xy-detail-des-show-all');
