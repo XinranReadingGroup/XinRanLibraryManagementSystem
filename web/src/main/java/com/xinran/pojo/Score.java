@@ -28,6 +28,6 @@ public class Score {
     private Long    userId;     // 积分拥有者
     private Long    factId;     // OnStockRecordId(捐书id),RorrowBookRecordId(捐书id)等
     private Integer scoreReason; // 见枚举类 ScoreReason
-    private Integer scoreValue; // 单词奖励或者惩罚分数,可正可负
+    private Integer scoreValue; // 单次奖励或者惩罚分数,可正可负
 
 }

@@ -82,3 +82,13 @@
                           score_reason INT,
                           score_value  INT
              );
+             CREATE TABLE IF NOT EXISTS activity
+             (
+                          id           BIGINT(20) UNSIGNED PRIMARY KEY auto_increment,
+                          created_at   DATETIME,
+                          updated_at   DATETIME,
+                          user_id      BIGINT(20),
+                          fact_id      BIGINT(20),
+                          score_reason INT,
+                          score_value  INT
+             );

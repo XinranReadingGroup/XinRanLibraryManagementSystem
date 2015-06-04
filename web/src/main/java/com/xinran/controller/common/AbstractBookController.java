@@ -197,9 +197,10 @@ public class AbstractBookController {
                 page.setSize(pageSize);
             }
             records = onOffStockRecordService.findDonated(userId, page);
-            fillBookInfo(records);
+            List<BookDetail> bookDetailList = fillBookInfo(records);
+            return AjaxResultBuilder.buildSuccessfulResult(bookDetailList);
         }
-        return AjaxResultBuilder.buildSuccessfulResult(records);
+        return null;
     }
 
     @RequestMapping("/book/share/records")
@@ -217,9 +218,11 @@ public class AbstractBookController {
                 page.setSize(pageSize);
             }
             records = onOffStockRecordService.findShared(userId, page);
-            fillBookInfo(records);
+            List<BookDetail> bookDetailList = fillBookInfo(records);
+            return AjaxResultBuilder.buildSuccessfulResult(bookDetailList);
+
         }
-        return AjaxResultBuilder.buildSuccessfulResult(records);
+        return null;
     }
 
     @RequestMapping("/book/borrow/records")
@@ -272,9 +275,9 @@ public class AbstractBookController {
         return AjaxResultBuilder.buildSuccessfulResult(bookDetailList);
     }
 
-    protected BookDetail buildBookDetail(Long id) {
+    protected BookDetail buildBookDetail(Long onOffStockId) {
 
-        OnOffStockRecord onOffStockRecord = onOffStockRecordService.findOnOffStockRecordById(id);
+        OnOffStockRecord onOffStockRecord = onOffStockRecordService.findOnOffStockRecordById(onOffStockId);
         Book book = bookService.findBookById(onOffStockRecord.getBookId());
 
 
@@ -316,14 +319,15 @@ public class AbstractBookController {
         return basicUserVO;
     }
 
-    private void fillBookInfo(List<OnOffStockRecord> records) {
-        if (records == null || records.size() < 1) {
-            return;
-        }
+    private List<BookDetail> fillBookInfo(List<OnOffStockRecord> records) {
+
+        List<BookDetail> bookDetailList = new ArrayList<>();
         for (OnOffStockRecord record : records) {
             // TODO 使用缓存以避免每次查询数据库。以ID查询书本信息在很多场景会使用。
-            record.setBook(bookService.findBookById(record.getBookId()));
+            BookDetail bookDetail = buildBookDetail(record.getId());
+            bookDetailList.add(bookDetail);
         }
+        return bookDetailList;
     }
 
 }
