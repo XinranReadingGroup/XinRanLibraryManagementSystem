@@ -142,7 +142,7 @@ body {
 }
 .xy-detail-des.xy-detail-des-show-all {
   overflow: visible;
-  max-height: auto;
+  max-height: inherit;
 }
 .xy-detail-content-seek {
   display: none;
