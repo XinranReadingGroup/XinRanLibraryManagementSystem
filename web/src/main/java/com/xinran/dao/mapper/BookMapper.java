@@ -19,18 +19,7 @@ public interface BookMapper {
     public List<Book> findAllWithPagenate(@Param("limit") int limit, @Param("offset") int offset);
     
     
-    @Results(value={
-    		@Result(column="id", property="id", id = true),
-    		@Result(column="created_at", property="createdAt"),
-    		@Result(column="updated_at", property="createdAt"),
-    		@Result(column="isbn", property="isbn"),
-    		@Result(column="title", property="title"),
-    		@Result(column="img_url", property="imgURL"),
-    		@Result(column="author", property="author"),
-    		@Result(column="summary", property="summary"),
-    		@Result(column="price", property="price"),
-    		@Result(column="publisher", property="publisher")
-    })
+
     @Select("SELECT * FROM book WHERE isbn = #{isbn}")
     Book findByISBN(@Param("isbn") String isbn);
     
@@ -39,34 +28,12 @@ public interface BookMapper {
     Long add(Book book);
 
     
-    @Results(value={
-    		@Result(column="id", property="id", id = true),
-    		@Result(column="created_at", property="createdAt"),
-    		@Result(column="updated_at", property="createdAt"),
-    		@Result(column="isbn", property="isbn"),
-    		@Result(column="title", property="title"),
-    		@Result(column="img_url", property="imgURL"),
-    		@Result(column="author", property="author"),
-    		@Result(column="summary", property="summary"),
-    		@Result(column="price", property="price"),
-    		@Result(column="publisher", property="publisher")
-    })
+
     @Select("SELECT * FROM book WHERE id = #{id}")
 	Book findById(@Param("id") Long id);
 
 
-    @Results(value={
-    		@Result(column="id", property="id", id = true),
-    		@Result(column="created_at", property="createdAt"),
-    		@Result(column="updated_at", property="createdAt"),
-    		@Result(column="isbn", property="isbn"),
-    		@Result(column="title", property="title"),
-    		@Result(column="img_url", property="imgURL"),
-    		@Result(column="author", property="author"),
-    		@Result(column="summary", property="summary"),
-    		@Result(column="price", property="price"),
-    		@Result(column="publisher", property="publisher")
-    })
+
     @Select("SELECT * FROM book WHERE title like '%#{keyword}%'")
 	List<Book> queryByTitle(String keyword);
 }
