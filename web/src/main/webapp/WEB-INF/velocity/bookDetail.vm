@@ -116,7 +116,7 @@ $bookDetail
 
     <p class="xy-detail-publish-item">
       <span class="xy-detail-publish-left">出版年:</span>
-      <span class="xy-detail-publish-right">xxx</span>
+      <span class="xy-detail-publish-right"></span>
     </p>
 
 
@@ -128,7 +128,7 @@ $bookDetail
 
     <p class="xy-detail-publish-item">
       <span class="xy-detail-publish-left">装帧:</span>
-      <span class="xy-detail-publish-right">xxx</span>
+      <span class="xy-detail-publish-right"></span>
     </p>
 
     <p class="xy-detail-publish-item">
