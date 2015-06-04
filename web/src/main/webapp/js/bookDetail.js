@@ -49,12 +49,17 @@ define(function(require, exports, module) {
     };
 
     BookDetail.prototype.formatSummary = function() {
-        var bookSummary = $('.xy-detail-des');
+        var bookSummary = $('.xy-detail-des'),
+            viewMoreSummary = $('[data-role=xy-detail-seek-more]');
+
         console.log(bookSummary.height());
 
-        if(bookSummary.height() > 300) {
-
+        if(bookSummary.height() > 250) {
+            viewMoreSummary.show();
         }
+        viewMoreSummary.click(function() {
+            bookSummary.addClass('xy-detail-des-show-all');
+        });
     }
 
     module.exports = BookDetail;
