@@ -30,7 +30,7 @@
 $bookDetail
 </pre>
 
-$session.getAttribute("userId")
+$session
 
 <h1>========================</h1>
 
@@ -80,7 +80,7 @@ $session.getAttribute("userId")
   </div>
   <div class="xy-detail-info" data-id="$bookDetailInfo.id">
     <div class="xy-detail-info-left">
-      <img class="xy-detail-info-img" src="$bookDetailInfo.imgURL">
+      <img class="xy-detail-info-img" src="$bookDetailInfo.imgUrl">
     </div>
     <div class="xy-detail-info-right">
       <p class="xy-detail-info-title">
