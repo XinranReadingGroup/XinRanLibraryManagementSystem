@@ -13,25 +13,25 @@ import com.xinran.util.DateUtil;
 
 @Data
 public class Book {
-	
-	public Book(){
+
+    public Book() {
         Date now = DateUtil.getCurrentDate();
-		this.createdAt = now;
-		this.updatedAt = now;
-	}
+        this.createdAt = now;
+        this.updatedAt = now;
+    }
 
-    private Long    id;
+    private Long   id;
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss")
-    private Date    createdAt;
+    private Date   createdAt;
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss")
-    private Date    updatedAt;
+    private Date   updatedAt;
 
-    private String  isbn;
-    private String  title;
-    private String  imgURL;
-    private String  author;
-    private String  summary;
-    private String  price;
-    private String  publisher;
+    private String isbn;
+    private String title;
+    private String imgUrl;
+    private String author;
+    private String summary;
+    private String price;
+    private String publisher;
 
 }
