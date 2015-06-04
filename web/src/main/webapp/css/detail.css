@@ -142,6 +142,7 @@ body {
 }
 .xy-detail-des.xy-detail-des-show-all {
   overflow: visible;
+  max-height: auto;
 }
 .xy-detail-content-seek {
   display: none;
