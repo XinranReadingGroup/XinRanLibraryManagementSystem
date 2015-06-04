@@ -59,6 +59,8 @@ define(function(require, exports, module) {
         }
         viewMoreSummary.click(function() {
             bookSummary.addClass('xy-detail-des-show-all');
+            this.hide();
+            return false;
         });
     }
 

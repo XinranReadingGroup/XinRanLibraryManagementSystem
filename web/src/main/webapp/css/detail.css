@@ -140,7 +140,7 @@ body {
   max-height: 250px;
   overflow: hidden;
 }
-.xy-detail-des .xy-detail-des-show-all {
+.xy-detail-des.xy-detail-des-show-all {
   overflow: visible;
 }
 .xy-detail-content-seek {
