@@ -10,6 +10,7 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.xinran.business.BookBusinesssService;
 import com.xinran.constant.BookType;
 import com.xinran.constant.BorrowStatus;
 import com.xinran.constant.ExceptionCode;
@@ -40,7 +41,7 @@ import com.xinran.vo.BookLocationVO;
  * @author 高海军 帝奇 Jun 4, 2015 7:14:59 PM
  */
 @Service
-public class BookBusinesssServiceImpl {
+public class BookBusinesssServiceImpl implements BookBusinesssService {
 
     @Autowired
     protected BookService               bookService;
