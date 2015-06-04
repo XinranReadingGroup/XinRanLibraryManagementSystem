@@ -40,7 +40,6 @@ $session.getAttribute("userId")
 
 <!-- 顶部 -->
 
-$bookDetail.histroicBorrowedRecordList
 <header class="navbar navbar-static-top bs-docs-nav" id="header" role="banner">
     <div class="container header-wrap">
         <div class="navbar-header">
@@ -134,7 +133,7 @@ $bookDetail.histroicBorrowedRecordList
             #if($bookBorrow.borrowUserId == $session.getAttribute("userId"))
             <a href="javascript:;" data-role="detail-return-book" class="btn btn-default btn-success">还书</a>
             #end
-          end
+          #end
        #end
 
       </p>
