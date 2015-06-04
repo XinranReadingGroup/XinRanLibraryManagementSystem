@@ -28,7 +28,7 @@ define(function(require, exports, module) {
         });
 
         $(doc).delegate('[data-role=detail-borrow-book]', 'click', function(event) {
-            $('#share-modal').modal('show');
+            $('#borrow-modal').modal('show');
         });
 
         $(doc).delegate('#detail-return-book', 'click', function(event) {
