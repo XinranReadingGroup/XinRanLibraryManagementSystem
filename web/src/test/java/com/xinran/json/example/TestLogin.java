@@ -35,7 +35,7 @@ public class TestLogin {
         book.setCreatedAt(new Date());
         book.setUpdatedAt(new Date());
         book.setId(1L);
-        book.setImgURL("http://img.url");
+        book.setImgUrl("http://img.url");
         book.setIsbn("123456Isbn");
         book.setSummary("呵呵呵");
         book.setTitle("面朝大海");

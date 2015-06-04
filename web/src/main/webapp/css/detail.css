@@ -133,6 +133,20 @@ body {
 .xy-detail-trips {
   color: #999;
 }
+.xy-detail-des {
+  overflow: hidden;
+}
+.xy-detail-limit {
+  max-height: 250px;
+  overflow: hidden;
+}
+.xy-detail-des.xy-detail-des-show-all {
+  overflow: visible;
+  max-height: inherit;
+}
+.xy-detail-content-seek {
+  display: none;
+}
 .xy-detail-des pre {
   border: none;
   background: #fff;

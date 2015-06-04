@@ -130,7 +130,7 @@ public class BookServiceImpl implements BookService {
 		// 概述
 		book.setSummary(douBanData.getString("summary"));
 		// 图片
-		book.setImgURL(douBanData.getString("image"));
+        book.setImgUrl(douBanData.getString("image"));
 		return book;
 	}
 

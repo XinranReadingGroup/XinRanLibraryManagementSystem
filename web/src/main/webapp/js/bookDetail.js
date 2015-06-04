@@ -15,8 +15,8 @@ define(function(require, exports, module) {
     };
 
     BookDetail.prototype.start = function() {
-        var self = this;
-        self.bindEvents();
+        this.bindEvents();
+        this.formatSummary();
     };
 
     BookDetail.prototype.bindEvents = function() {
@@ -47,6 +47,22 @@ define(function(require, exports, module) {
             }, 'json');
         });
     };
+
+    BookDetail.prototype.formatSummary = function() {
+        var bookSummary = $('.xy-detail-des'),
+            viewMoreSummary = $('[data-role=xy-detail-seek-more]');
+
+        console.log(bookSummary.height());
+        if(bookSummary.height() > 250) {
+            viewMoreSummary.show();
+            bookSummary.addClass('xy-detail-limit');
+        }
+        viewMoreSummary.click(function() {
+            bookSummary.addClass('xy-detail-des-show-all');
+            $(this).hide();
+            return false;
+        });
+    }
 
     module.exports = BookDetail;
 });

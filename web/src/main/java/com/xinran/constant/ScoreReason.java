@@ -6,6 +6,9 @@ package com.xinran.constant;
 public enum ScoreReason {
     DONATE_BOOK(0), BORROW_BOOK(1), RETURN_BOOK(2),
 
+    // 参加运营活动
+    PARTY(3),
+
     ;
 
     private Integer reason;

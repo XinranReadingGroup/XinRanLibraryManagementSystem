@@ -4,7 +4,6 @@ import java.util.Date;
 
 import lombok.Data;
 
-import com.alibaba.fastjson.annotation.JSONField;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.xinran.util.DateUtil;
 
@@ -41,7 +40,7 @@ public class OnOffStockRecord {
     private Long    borrowUserId; // 当前借书人ID
     private Integer borrowStatus;
 
-    @JSONField(serialize = false)
-    private Book    book;
+    // @JSONField(serialize = false)
+    // private Book book;
 
 }
