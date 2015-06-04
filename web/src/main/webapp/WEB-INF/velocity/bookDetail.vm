@@ -39,6 +39,8 @@ $session.getAttribute("userId")
 #set($userInfo = $bookDetail.ownerUserVO)
 
 <!-- 顶部 -->
+
+$bookDetail.histroicBorrowedRecordList
 <header class="navbar navbar-static-top bs-docs-nav" id="header" role="banner">
     <div class="container header-wrap">
         <div class="navbar-header">
