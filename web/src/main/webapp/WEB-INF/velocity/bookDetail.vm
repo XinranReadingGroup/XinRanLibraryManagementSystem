@@ -29,11 +29,15 @@
 <pre>
 $bookDetail
 </pre>
+
+$session.getAttribute("userId")
+
 <h1>========================</h1>
 
 #set($bookDetailInfo = $bookDetail.book)
 #set($bookBorrow = $bookDetail.onOffStockRecord)
-#set($userInfo = $bookDetail.BasicUserVO)
+#set($userInfo = $bookDetail.ownerUserVO)
+
 <!-- 顶部 -->
 <header class="navbar navbar-static-top bs-docs-nav" id="header" role="banner">
     <div class="container header-wrap">
@@ -100,7 +104,7 @@ $bookDetail
        <p class="xy-detail-info-des">
         <span class="xy-detail-info-des-left">目前状态:</span>
         <span class="xy-detail-info-des-right">
-          #if ($bookDetailInfo.borrowStatus)
+          #if ($bookBorrow.borrowStatus)
             已借
           #else
             可借
@@ -108,8 +112,29 @@ $bookDetail
         </span>
       </p>
        <p class="xy-detail-info-control">
-       <a href="javascript:;" data-role="detail-share" class="btn btn-default">取消共享</a>
-       <a href="javascript:;" data-role="detail-donate" class="btn btn-default btn-success">捐书</a>
+
+        ## 书是被共享的
+        #if($bookBorrow.bookType == 1)
+          ##且共享人是当前登录用户
+          #if($bookBorrow.ownerUserId == $session.getAttribute("userId"))
+           <a href="javascript:;" data-role="detail-dis-share" class="btn btn-default">取消共享</a>
+          #end
+        #end
+
+       ## 书是被借的
+       #if($bookBorrow.bookType == 0)
+          ## 书的状态是未借
+          #if($bookBorrow.borrow_status == 0)
+            <a href="javascript:;" data-role="detail-borrow-book" class="btn btn-default btn-success">借书</a>
+          #else
+          ## 书的状态是已借
+          ## 且借书人是自己
+            #if($bookBorrow.borrowUserId == $session.getAttribute("userId"))
+            <a href="javascript:;" data-role="detail-return-book" class="btn btn-default btn-success">还书</a>
+            #end
+          end
+       #end
+
       </p>
     </div>
   </div>
