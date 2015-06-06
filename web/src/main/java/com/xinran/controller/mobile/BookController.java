@@ -36,7 +36,7 @@ public class BookController extends AbstractBookController {
 
     @RequestMapping("/book/detail/{id}")
     public @ResponseBody AjaxResult getBookById(@PathVariable(value = "id") Long id, HttpServletRequest request) {
-        BookDetail bookDetail = bookBusinesssService.buildBookDetail(id);
+        BookDetail bookDetail = super.buildBookDetail(id);
         return AjaxResultBuilder.buildSuccessfulResult(bookDetail);
     }
     
