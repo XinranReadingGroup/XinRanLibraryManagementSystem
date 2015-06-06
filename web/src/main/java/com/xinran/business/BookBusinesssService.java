@@ -13,8 +13,6 @@
 // */
 // public interface BookBusinesssService {
 //
-//
-//
 // public OnOffStockRecord onStock(Long bookId, Long location, String phone, HttpServletRequest request,
 // BookType bookType) throws StockException;
 //
