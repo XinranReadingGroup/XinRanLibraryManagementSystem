@@ -23,28 +23,16 @@ define(function(require, exports, module) {
         var self = this,
             doc = document;
 
-        $(doc).delegate('[data-role=detail-share]', 'click', function(event) {
+        $(doc).delegate('[data-role=detail-dis-share]', 'click', function(event) {
             $('#disShare-modal').modal('show');
         });
 
-        $(doc).delegate('[data-role=detail-donate]', 'click', function(event) {
-            $('#share-modal').modal('show');
+        $(doc).delegate('[data-role=detail-borrow-book]', 'click', function(event) {
+            $('#borrow-modal').modal('show');
         });
 
-        $(doc).delegate('#borrow-book-btn', 'click', function(event) {
-            $.get('book/borrow/3', {}, function(json) {
-
-            }, 'json');
-        });
-        $(doc).delegate('#share-book-btn', 'click', function(event) {
-            $.get('book/share/3', {}, function(json) {
-
-            }, 'json');
-        });
-        $(doc).delegate('#comment-book-btn', 'click', function(event) {
-            $.get('book/comment/3', {}, function(json) {
-
-            }, 'json');
+        $(doc).delegate('#detail-return-book', 'click', function(event) {
+            $('#borrow-modal').modal('show');
         });
     };
 
@@ -52,7 +40,6 @@ define(function(require, exports, module) {
         var bookSummary = $('.xy-detail-des'),
             viewMoreSummary = $('[data-role=xy-detail-seek-more]');
 
-        console.log(bookSummary.height());
         if(bookSummary.height() > 250) {
             viewMoreSummary.show();
             bookSummary.addClass('xy-detail-limit');
