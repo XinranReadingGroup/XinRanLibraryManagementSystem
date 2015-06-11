@@ -123,6 +123,7 @@ body {
     float: left;
     margin-right: 32px;
     margin-bottom: 16px;
+    text-align: center;
 }
 .xy-detail-history-content .xy-detail-history-item img {
   width: 50px;

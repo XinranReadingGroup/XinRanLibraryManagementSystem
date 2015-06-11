@@ -30,7 +30,7 @@
 $bookDetail
 </pre>
 
-$session
+$!session.getAttribute("userId")
 
 <h1>========================</h1>
 
@@ -122,7 +122,7 @@ $session
         ## 书是被共享的
         #if($bookBorrow.bookType == 1)
           ##且共享人是当前登录用户
-          #if($bookBorrow.ownerUserId == $session.getAttribute("userId"))
+          #if($bookBorrow.ownerUserId == $!session.getAttribute("userId"))
            <a href="javascript:;" data-role="detail-dis-share" class="btn btn-default">取消共享</a>
           #end
         #end
@@ -201,7 +201,7 @@ $session
     <div class="xy-detail-history-content">
       #if ($bookDetail.histroicBorrowedRecordList)
       #foreach($history in $bookDetail.histroicBorrowedRecordList)
-      <a class="xy-detail-history-item" data-id="$history.id">
+      <a href="javascript:void(0);" class="xy-detail-history-item" data-id="$history.id">
         <img src="$history.imgId">
         <span href="javascript:;" class="xy-detail-history-name">
             $history.nickName
