@@ -83,7 +83,7 @@ define(function(require, exports, module) {
         });
 
 
-        $(doc).delegate('#detail-return-book', 'click', function(event) {
+        $(doc).delegate('[data-role=detail-return-book]', 'click', function(event) {
             $('#return-modal').modal('show');
         });
     };
