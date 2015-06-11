@@ -108,7 +108,7 @@ ownerUserId: $bookBorrow.ownerUserId
       </p>
        <p class="xy-detail-info-des">
         <span class="xy-detail-info-des-left">目前状态:</span>
-        <span class="xy-detail-info-des-right">
+        <span class="xy-detail-info-des-right xy-detail-book-status">
         <!--  borrow_status
               UNBORROWED(0), BORROWED(1)
 
