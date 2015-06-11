@@ -134,13 +134,11 @@ ownerUserId: $bookBorrow.ownerUserId
        ## 书是被借的
        #if($bookBorrow.bookType == 0)
           ## 书的状态是未借
-          #if($bookBorrow.borrow_status == 0)
+          #if($bookBorrow.borrowStatus == 0)
             <a href="javascript:;" data-role="detail-borrow-book" class="btn btn-default btn-success">借书</a>
           #else
           ## 书的状态是已借
           ## 且借书人是自己
-            $bookBorrow.borrowUserId
-            $session.getAttribute("userId")
             #if($bookBorrow.borrowUserId == $session.getAttribute("userId"))
             <a href="javascript:;" data-role="detail-return-book" class="btn btn-default btn-success">还书</a>
             #end
@@ -205,7 +203,7 @@ ownerUserId: $bookBorrow.ownerUserId
     <div class="xy-detail-history-content">
       #if ($bookDetail.histroicBorrowedRecordList)
       #foreach($history in $bookDetail.histroicBorrowedRecordList)
-      <a href="http://xinrandushuba.com/user/$history.id" class="xy-detail-history-item" data-id="$history.id">
+      <a target="_blank" href="http://xinrandushuba.com/user/$history.id" class="xy-detail-history-item" data-id="$history.id">
         <img src="$history.imgId">
         <span href="javascript:;" class="xy-detail-history-name">
             $history.nickName
