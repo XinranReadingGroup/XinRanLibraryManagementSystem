@@ -105,6 +105,11 @@ $session
        <p class="xy-detail-info-des">
         <span class="xy-detail-info-des-left">目前状态:</span>
         <span class="xy-detail-info-des-right">
+        <!--  borrow_status
+              UNBORROWED(0), BORROWED(1)
+
+              book_type
+               DONATED(0), SHARED(1);  -->
           #if ($bookBorrow.borrowStatus == 1)
             已借
           #else
@@ -195,18 +200,14 @@ $session
     </p>
     <div class="xy-detail-history-content">
       #if ($bookDetail.histroicBorrowedRecordList)
-      <a class="xy-detail-history-item">
-        <img src="../../img/detail/avatar.jpg">
+      #each $bookDetail.histroicBorrowedRecordList
+      <a class="xy-detail-history-item" data-id="$id">
+        <img src="$imgId">
         <span href="javascript:;" class="xy-detail-history-name">
-          欣然
+            $nickName
         </span>
       </a>
-      <a class="xy-detail-history-item">
-        <img src="../../img/detail/avatar.jpg">
-        <span href="javascript:;" class="xy-detail-history-name">
-          欣然
-        </span>
-      </a>
+      #end
       #else
       <p>
         <span class="xy-detail-trips">
