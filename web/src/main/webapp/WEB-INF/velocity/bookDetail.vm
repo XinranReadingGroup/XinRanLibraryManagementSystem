@@ -25,23 +25,13 @@
 
 </head>
 <body>
-<h1>========================</h1>
-<pre>
-$bookDetail
-</pre>
-
-
-
-<h1>========================</h1>
 
 #set($bookDetailInfo = $bookDetail.book)
 #set($bookBorrow = $bookDetail.onOffStockRecord)
 #set($userInfo = $bookDetail.ownerUserVO)
 
 
-session->userId :  $!session.getAttribute("userId")
 
-ownerUserId: $bookBorrow.ownerUserId
 <!-- 顶部 -->
 
 <header class="navbar navbar-static-top bs-docs-nav" id="header" role="banner">
