@@ -205,7 +205,7 @@ ownerUserId: $bookBorrow.ownerUserId
     <div class="xy-detail-history-content">
       #if ($bookDetail.histroicBorrowedRecordList)
       #foreach($history in $bookDetail.histroicBorrowedRecordList)
-      <a href="javascript:void(0);" class="xy-detail-history-item" data-id="$history.id">
+      <a href="http://xinrandushuba.com/user/$history.id" class="xy-detail-history-item" data-id="$history.id">
         <img src="$history.imgId">
         <span href="javascript:;" class="xy-detail-history-name">
             $history.nickName
