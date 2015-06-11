@@ -23,6 +23,7 @@ define(function(require, exports, module) {
         var self = this,
             doc = document;
 
+        var onOffStockId = window.location.href.substr(37,1);
         $(doc).delegate('[data-role=detail-dis-share]', 'click', function(event) {
             $('#disShare-modal').modal('show');
         });
@@ -35,7 +36,7 @@ define(function(require, exports, module) {
                 id = target.attr('data-id');
 
             $.ajax({
-                url: 'http://xinrandushuba.com/mobile/book/borrow/'+id,
+                url: 'http://xinrandushuba.com/mobile/book/borrow/'+onOffStockId,
                 dataType: 'json',
                 timeout: 15000,
                 success: function(json){
@@ -55,9 +56,35 @@ define(function(require, exports, module) {
             });
 
         });
+        $(doc).delegate('#return-book-btn', 'click', function(event) {
+            var target = $('[data-role=detail-return-book]'),
+                id = target.attr('data-id');
+
+            $.ajax({
+                url: 'http://xinrandushuba.com/mobile/book/return/'+onOffStockId,
+                dataType: 'json',
+                timeout: 15000,
+                success: function(json){
+                    if(json && json.code == 200) {
+                        alert('还书成功');
+                    } else {
+                        alert('还书失败');
+                    }
+                    $('#return-modal').modal('hide');
+                },
+                error: function(){
+                    //console.log(arguments);
+                    // do something
+                    alert('还书失败');
+                    $('#return-modal').modal('hide');
+                }
+            });
+
+        });
+
 
         $(doc).delegate('#detail-return-book', 'click', function(event) {
-            $('#borrow-modal').modal('show');
+            $('#return-modal').modal('show');
         });
     };
 

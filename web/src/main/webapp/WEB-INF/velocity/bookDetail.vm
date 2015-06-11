@@ -127,7 +127,7 @@ ownerUserId: $bookBorrow.ownerUserId
         #if($bookBorrow.bookType == 1)
           ##且共享人是当前登录用户
           #if($bookBorrow.ownerUserId == $!session.getAttribute("userId"))
-           <a href="javascript:;" data-role="detail-dis-share" class="btn btn-default">取消共享</a>
+           <a href="javascript:;"data-id="$bookBorrow.bookId"  data-role="detail-dis-share" class="btn btn-default">取消共享</a>
           #end
         #end
 
@@ -140,7 +140,7 @@ ownerUserId: $bookBorrow.ownerUserId
           ## 书的状态是已借
           ## 且借书人是自己
             #if($bookBorrow.borrowUserId == $session.getAttribute("userId"))
-            <a href="javascript:;" data-role="detail-return-book" class="btn btn-default btn-success">还书</a>
+            <a href="javascript:;" data-id="$bookBorrow.bookId" data-role="detail-return-book" class="btn btn-default btn-success">还书</a>
             #end
           #end
        #end
@@ -277,6 +277,26 @@ ownerUserId: $bookBorrow.ownerUserId
         </div>
     </div>
 </div>
+<div class="modal fade" id="return-modal" tabindex="-1" role="dialog"  aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title">还图书</h4>
+            </div>
+            <div class="modal-body">
+                确认还此图书吗？
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                <button type="button" class="btn btn-primary" id="return-book-btn">确定</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 
 <script type="text/javascript">
 seajs.use('../../js/bookDetail.js', function(bookDetail){
