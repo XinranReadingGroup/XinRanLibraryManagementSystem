@@ -30,7 +30,9 @@
 $bookDetail
 </pre>
 
-$!session.getAttribute("userId")
+session->userId :  $!session.getAttribute("userId")
+
+ownerUserId: $bookBorrow.ownerUserId
 
 <h1>========================</h1>
 
