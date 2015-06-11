@@ -135,7 +135,7 @@ ownerUserId: $bookBorrow.ownerUserId
        #if($bookBorrow.bookType == 0)
           ## 书的状态是未借
           #if($bookBorrow.borrowStatus == 0)
-            <a href="javascript:;" data-role="detail-borrow-book" class="btn btn-default btn-success">借书</a>
+            <a href="javascript:;" data-id="$bookBorrow.bookId" data-role="detail-borrow-book" class="btn btn-default btn-success">借书</a>
           #else
           ## 书的状态是已借
           ## 且借书人是自己
@@ -268,11 +268,11 @@ ownerUserId: $bookBorrow.ownerUserId
                 <h4 class="modal-title">共享图书</h4>
             </div>
             <div class="modal-body">
-                确认共享此图书吗？
+                确认借阅此图书吗？
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
-                <button type="button" class="btn btn-primary" id="donate-book-btn">确定</button>
+                <button type="button" class="btn btn-primary" id="borrow-book-btn">确定</button>
             </div>
         </div>
     </div>

@@ -30,6 +30,31 @@ define(function(require, exports, module) {
         $(doc).delegate('[data-role=detail-borrow-book]', 'click', function(event) {
             $('#borrow-modal').modal('show');
         });
+        $(doc).delegate('#borrow-book-btn', 'click', function(event) {
+            var target = $(event),
+                id = target.attr('data-id');
+
+            $.ajax({
+                url: 'http://xinrandushuba.com/mobile/book/borrow/'+id,
+                dataType: 'json',
+                timeout: 15000,
+                success: function(json){
+                    if(json && json.code == 200) {
+                        alert('借阅成功');
+                    } else {
+                        alert('借阅失败');
+                    }
+                    $('#borrow-modal').modal('hide');
+                },
+                error: function(){
+                    //console.log(arguments);
+                    // do something
+                    alert('借阅失败');
+                    $('#borrow-modal').modal('hide');
+                }
+            });
+
+        });
 
         $(doc).delegate('#detail-return-book', 'click', function(event) {
             $('#borrow-modal').modal('show');
