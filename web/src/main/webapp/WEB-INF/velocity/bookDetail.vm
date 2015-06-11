@@ -201,10 +201,10 @@ $session
     <div class="xy-detail-history-content">
       #if ($bookDetail.histroicBorrowedRecordList)
       #foreach($history in $bookDetail.histroicBorrowedRecordList)
-      <a class="xy-detail-history-item" data-id="$id">
-        <img src="$imgId">
+      <a class="xy-detail-history-item" data-id="$history.id">
+        <img src="$history.imgId">
         <span href="javascript:;" class="xy-detail-history-name">
-            $nickName
+            $history.nickName
         </span>
       </a>
       #end
