@@ -31,7 +31,7 @@ define(function(require, exports, module) {
             $('#borrow-modal').modal('show');
         });
         $(doc).delegate('#borrow-book-btn', 'click', function(event) {
-            var target = $(event),
+            var target = $('[data-role=detail-borrow-book]'),
                 id = target.attr('data-id');
 
             $.ajax({
