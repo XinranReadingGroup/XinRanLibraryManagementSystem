@@ -200,7 +200,7 @@ $session
     </p>
     <div class="xy-detail-history-content">
       #if ($bookDetail.histroicBorrowedRecordList)
-      #each $bookDetail.histroicBorrowedRecordList
+      #foreach($history in $bookDetail.histroicBorrowedRecordList)
       <a class="xy-detail-history-item" data-id="$id">
         <img src="$imgId">
         <span href="javascript:;" class="xy-detail-history-name">
