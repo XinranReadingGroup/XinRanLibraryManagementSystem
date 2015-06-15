@@ -14,7 +14,8 @@
             <ul class="nav navbar-nav">
                 <li class="active"><a href="http://xinrandushuba.com/">首页</a></li>
                 <li><a href="#">全部图书</a></li>
-                <li><a href="http://xinrandushuba.com/shareBook.htm">共享图书</a></li>
+                <li><a href="http://xinrandushuba.com/book/donate/new">捐赠图书</a></li>
+                <li><a href="http://xinrandushuba.com/book/share/new">共享图书</a></li>
                 <li><a href="#">我的图书</a></li>
             </ul>
 
