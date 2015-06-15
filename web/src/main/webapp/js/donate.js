@@ -65,9 +65,9 @@ define(function(require, exports, module) {
     		},this));
 
     		this.$btnShareBookEl.on('click',$.proxy(function( ev ){
-    			 popupMsg.runtimeConfirm('确认共享此图书？',$.proxy(function( isConfirm ){
+    			 popupMsg.runtimeConfirm('确认捐赠此图书？',$.proxy(function( isConfirm ){
                     if( isConfirm === true ){
-                        this.saveShareBook();
+                        this.saveDonateBook();
                     }
 
                 },this));
@@ -106,9 +106,9 @@ define(function(require, exports, module) {
             通过isbn 共享图书
             @method saveShareBook
         */
-        saveShareBook:function(){
+        saveDonateBook:function(){
             var bookId = this.$inputIsbnEl.attr('data-id'),
-                getBookUrl = '/book/share/' + bookId;
+                getBookUrl = '/book/donate/' + bookId;
 
             $.ajax({
                 url: getBookUrl,
@@ -117,6 +117,7 @@ define(function(require, exports, module) {
                 data:{
                     loc:'1'
                 },
+                
                 cache: false,
                 success: $.proxy(function( data ){
                     if( data && data.code == 200 ){
