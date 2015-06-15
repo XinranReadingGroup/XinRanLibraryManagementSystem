@@ -76,7 +76,7 @@
 
 <div id="bookinfo-box-root" class="bookinfo-detail-root"  style="display:none;">
     <div class="book-detail-main">
-        <div class="detail-title">你要分享的图书信息</div>
+        <div class="detail-title">你要捐赠的图书信息</div>
         <div class="clearfix">
             <div class="box-pic">
                 <img class="J-book-pic" src="" /> 
@@ -119,9 +119,9 @@
 
 
 <script >
-seajs.use('$!{webHost}/js/share.js', function( shareObj ){
+seajs.use('$!{webHost}/js/donate.js', function( donateObj ){
     //页面处理初始化
-    shareObj.init();
+    donateObj.init();
 });
 </script>
 

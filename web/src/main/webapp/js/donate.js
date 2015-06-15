@@ -1,5 +1,5 @@
 /**
- * [共享图书处理部分JS]
+ * [捐赠图书处理部分JS]
  * @param  {[type]} require [description]
  * @param  {[type]} exports [description]
  * @param  {[type]} module) {               module.exports [description]
@@ -13,7 +13,7 @@ define(function(require, exports, module) {
 
 
 
-   var shareObj = {
+   var donateObj = {
 
    		hasInit:false,
 
@@ -162,5 +162,5 @@ define(function(require, exports, module) {
 
     };
 
-    module.exports = shareObj;
+    module.exports = donateObj;
 });
