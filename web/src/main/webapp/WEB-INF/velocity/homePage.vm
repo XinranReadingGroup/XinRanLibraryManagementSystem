@@ -46,7 +46,7 @@
     <div class="book-item" title="$!{bookItem.title}" data-toggle="tooltip" data-placement="bottom" >
         <a target="_blank" href="http://xinrandushuba.com/book/isbn/$!{bookItem.isbn}">
             <div class="item-pic">
-                <img class="img-pic" src="$!{bookItem.imgURL}" />
+                <img class="img-pic" src="$!{bookItem.imgUrl}" />
             </div>
             <div class="item-title"> $!{bookItem.title} </div>
         </a>
