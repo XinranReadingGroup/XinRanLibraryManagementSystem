@@ -87,7 +87,7 @@
                 <p>出版社: <span class="J-publisher">湖南文艺出版社</span></p>
                 <p>定价: <span class="J-price">36.00元</span></p>
                 <p>
-                  <input type="button" class="J-btn-share-book" value="共享图书" />
+                  <input type="button" class="J-btn-share-book" value="捐赠图书" />
                 </p>
             </div>
         </div>
