@@ -117,7 +117,7 @@ define(function(require, exports, module) {
                 data:{
                     loc:'1'
                 },
-                
+
                 cache: false,
                 success: $.proxy(function( data ){
                     if( data && data.code == 200 ){
@@ -138,7 +138,7 @@ define(function(require, exports, module) {
     	setBookInfo:function( bookInfo ){
 
     		this.$bookInfoRootEl.find('.J-book-pic').attr('src', bookInfo.imgUrl  );
-    		this.$bookInfoRootEl.find('.J-book-title').html(bookInfo.title;
+    		this.$bookInfoRootEl.find('.J-book-title').html(bookInfo.title );
     		this.$bookInfoRootEl.find('.J-author').html( bookInfo.author || ''); 
     		this.$bookInfoRootEl.find('.J-publisher').html( bookInfo.publisher );
     		this.$bookInfoRootEl.find('.J-price').html( bookInfo.price );
