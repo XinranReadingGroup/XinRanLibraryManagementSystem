@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.apache.commons.lang.RandomStringUtils;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -86,5 +87,14 @@ public class UserController extends AbstractUserController {
 
     }
 
+    /**
+     * 用户个人页面
+     */
+    @RequestMapping("/user/{userId}")
+    public ModelAndView newSessionSignUp(@PathVariable(value = ApplicationConstant.USER_ID) Long userId,
+                                         HttpServletRequest request) {
+        return new ModelAndView("userHomePage");
+
+    }
 
 }

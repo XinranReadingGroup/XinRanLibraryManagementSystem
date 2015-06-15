@@ -64,7 +64,11 @@ public class AbstractBookController {
     @Autowired
     protected BorrowReturnRecordService borrowReturnRecordService;
 
-
+    @RequestMapping("/book/isbn/{isbn}")
+    public @ResponseBody AjaxResult getBookByISBN(@PathVariable(value = "isbn") String isbn, HttpServletRequest request) {
+        Book book = bookService.findBookByISBN(isbn);
+        return AjaxResultBuilder.buildSuccessfulResult(book);
+    }
 
     @RequestMapping("/book/donate/{bookId}")
     public @ResponseBody AjaxResult donate(@PathVariable(value = "bookId") Long bookId,
@@ -122,7 +126,11 @@ public class AbstractBookController {
     public @ResponseBody AjaxResult returnBook(@PathVariable(value = "onStockId") Long onStockId,
                                                HttpServletRequest request) throws BorrowOrReturnValidationException {
         Long currentUserId = UserIdenetityUtil.getCurrentUserId(request);
-        this.returnBook(onStockId, currentUserId);
+        try {
+            this.returnBook(onStockId, currentUserId);
+        } catch (BorrowOrReturnValidationException e) {
+            return AjaxResultBuilder.buildFailedResult(400, e.getCode());
+        }
 
         return AjaxResultBuilder.buildSuccessfulResult(null);
     }

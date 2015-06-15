@@ -28,11 +28,12 @@ import com.xinran.vo.builder.AjaxResultBuilder;
 @RequestMapping("/mobile")
 public class BookController extends AbstractBookController {
 
-    @RequestMapping("/book/isbn/{isbn}")
-    public @ResponseBody AjaxResult getBookByISBN(@PathVariable(value = "isbn") String isbn, HttpServletRequest request) {
-        Book book = bookService.findBookByISBN(isbn);
-        return AjaxResultBuilder.buildSuccessfulResult(book);
-    }
+    // @RequestMapping("/book/isbn/{isbn}")
+    // public @ResponseBody AjaxResult getBookByISBN(@PathVariable(value = "isbn") String isbn, HttpServletRequest
+    // request) {
+    // Book book = bookService.findBookByISBN(isbn);
+    // return AjaxResultBuilder.buildSuccessfulResult(book);
+    // }
 
     @RequestMapping("/book/detail/{id}")
     public @ResponseBody AjaxResult getBookById(@PathVariable(value = "id") Long id, HttpServletRequest request) {

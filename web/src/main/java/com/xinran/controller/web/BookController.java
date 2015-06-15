@@ -21,11 +21,11 @@ import com.xinran.vo.BookDetail;
 @RestController(value = "webBookController")
 public class BookController extends AbstractBookController {
 
-    @RequestMapping("/book/isbn/{isbn}")
-    public ModelAndView getBookByISBN(@PathVariable(value = "isbn") String isbn, HttpServletRequest request) {
-        Book book = bookService.findBookByISBN(isbn);
-        return new ModelAndView("bookDetail", "bookDetail", book);
-    }
+    // @RequestMapping("/book/isbn/{isbn}")
+    // public ModelAndView getBookByISBN(@PathVariable(value = "isbn") String isbn, HttpServletRequest request) {
+    // Book book = bookService.findBookByISBN(isbn);
+    // return new ModelAndView("bookDetail", "bookDetail", book);
+    // }
 
     @RequestMapping("/book/share/new")
     public ModelAndView shareNewBook(HttpServletRequest request) {
