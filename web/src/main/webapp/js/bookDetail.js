@@ -23,6 +23,7 @@ define(function(require, exports, module) {
         var self = this,
             doc = document;
 
+        var onOffStockId = window.location.href.substr(37,1);
         $(doc).delegate('[data-role=detail-dis-share]', 'click', function(event) {
             $('#disShare-modal').modal('show');
         });
@@ -30,9 +31,70 @@ define(function(require, exports, module) {
         $(doc).delegate('[data-role=detail-borrow-book]', 'click', function(event) {
             $('#borrow-modal').modal('show');
         });
+        $(doc).delegate('#borrow-book-btn', 'click', function(event) {
+            var target = $('[data-role=detail-borrow-book]'),
+                id = target.attr('data-id');
 
-        $(doc).delegate('#detail-return-book', 'click', function(event) {
-            $('#borrow-modal').modal('show');
+            $.ajax({
+                url: 'http://xinrandushuba.com/mobile/book/borrow/'+onOffStockId,
+                dataType: 'json',
+                timeout: 15000,
+                success: function(json){
+                    if(json && json.code == 200) {
+                        alert('借阅成功');
+                        var parent = $('[data-role=detail-borrow-book]').parent('.xy-detail-info-control');
+                        $('[data-role=detail-borrow-book]').remove();
+                        parent.append('<a href="javascript:;" data-id="'+onOffStockId+'" data-role="detail-return-book" class="btn btn-default btn-success">还书</a>');
+
+                        $('.xy-detail-book-status').text('已借');
+                    } else {
+                        alert('借阅失败');
+                    }
+                    $('#borrow-modal').modal('hide');
+                },
+                error: function(){
+                    //console.log(arguments);
+                    // do something
+                    alert('借阅失败');
+                    $('#borrow-modal').modal('hide');
+                }
+            });
+
+        });
+        $(doc).delegate('#return-book-btn', 'click', function(event) {
+            var target = $('[data-role=detail-return-book]'),
+                id = target.attr('data-id');
+
+            $.ajax({
+                url: 'http://xinrandushuba.com/mobile/book/return/'+onOffStockId,
+                dataType: 'json',
+                timeout: 15000,
+                success: function(json){
+                    if(json && json.code == 200) {
+                        alert('还书成功');
+                        var parent = $('[data-role=detail-return-book]').parent('.xy-detail-info-control');
+                        $('[data-role=detail-return-book]').remove();
+                        parent.append('<a href="javascript:;" data-id="'+onOffStockId +'" data-role="detail-borrow-book" class="btn btn-default btn-success">借书</a>');
+
+                        $('.xy-detail-book-status').text('已还');
+                    } else {
+                        alert('还书失败');
+                    }
+                    $('#return-modal').modal('hide');
+                },
+                error: function(){
+                    //console.log(arguments);
+                    // do something
+                    alert('还书失败');
+                    $('#return-modal').modal('hide');
+                }
+            });
+
+        });
+
+
+        $(doc).delegate('[data-role=detail-return-book]', 'click', function(event) {
+            $('#return-modal').modal('show');
         });
     };
 

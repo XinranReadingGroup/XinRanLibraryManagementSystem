@@ -25,18 +25,12 @@
 
 </head>
 <body>
-<h1>========================</h1>
-<pre>
-$bookDetail
-</pre>
-
-$session
-
-<h1>========================</h1>
 
 #set($bookDetailInfo = $bookDetail.book)
 #set($bookBorrow = $bookDetail.onOffStockRecord)
 #set($userInfo = $bookDetail.ownerUserVO)
+
+
 
 <!-- 顶部 -->
 
@@ -104,7 +98,12 @@ $session
       </p>
        <p class="xy-detail-info-des">
         <span class="xy-detail-info-des-left">目前状态:</span>
-        <span class="xy-detail-info-des-right">
+        <span class="xy-detail-info-des-right xy-detail-book-status">
+        <!--  borrow_status
+              UNBORROWED(0), BORROWED(1)
+
+              book_type
+               DONATED(0), SHARED(1);  -->
           #if ($bookBorrow.borrowStatus == 1)
             已借
           #else
@@ -117,23 +116,21 @@ $session
         ## 书是被共享的
         #if($bookBorrow.bookType == 1)
           ##且共享人是当前登录用户
-          #if($bookBorrow.ownerUserId == $session.getAttribute("userId"))
-           <a href="javascript:;" data-role="detail-dis-share" class="btn btn-default">取消共享</a>
+          #if($bookBorrow.ownerUserId == $!session.getAttribute("userId"))
+           <a href="javascript:;"data-id="$bookBorrow.bookId"  data-role="detail-dis-share" class="btn btn-default">取消共享</a>
           #end
         #end
 
        ## 书是被借的
        #if($bookBorrow.bookType == 0)
           ## 书的状态是未借
-          #if($bookBorrow.borrow_status == 0)
-            <a href="javascript:;" data-role="detail-borrow-book" class="btn btn-default btn-success">借书</a>
+          #if($bookBorrow.borrowStatus == 0)
+            <a href="javascript:;" data-id="$bookBorrow.bookId" data-role="detail-borrow-book" class="btn btn-default btn-success">借书</a>
           #else
           ## 书的状态是已借
           ## 且借书人是自己
-            $bookBorrow.borrowUserId
-            $session.getAttribute("userId")
             #if($bookBorrow.borrowUserId == $session.getAttribute("userId"))
-            <a href="javascript:;" data-role="detail-return-book" class="btn btn-default btn-success">还书</a>
+            <a href="javascript:;" data-id="$bookBorrow.bookId" data-role="detail-return-book" class="btn btn-default btn-success">还书</a>
             #end
           #end
        #end
@@ -195,18 +192,14 @@ $session
     </p>
     <div class="xy-detail-history-content">
       #if ($bookDetail.histroicBorrowedRecordList)
-      <a class="xy-detail-history-item">
-        <img src="../../img/detail/avatar.jpg">
+      #foreach($history in $bookDetail.histroicBorrowedRecordList)
+      <a target="_blank" href="http://xinrandushuba.com/user/$history.id" class="xy-detail-history-item" data-id="$history.id">
+        <img src="$history.imgId">
         <span href="javascript:;" class="xy-detail-history-name">
-          欣然
+            $history.nickName
         </span>
       </a>
-      <a class="xy-detail-history-item">
-        <img src="../../img/detail/avatar.jpg">
-        <span href="javascript:;" class="xy-detail-history-name">
-          欣然
-        </span>
-      </a>
+      #end
       #else
       <p>
         <span class="xy-detail-trips">
@@ -265,15 +258,35 @@ $session
                 <h4 class="modal-title">共享图书</h4>
             </div>
             <div class="modal-body">
-                确认共享此图书吗？
+                确认借阅此图书吗？
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
-                <button type="button" class="btn btn-primary" id="donate-book-btn">确定</button>
+                <button type="button" class="btn btn-primary" id="borrow-book-btn">确定</button>
             </div>
         </div>
     </div>
 </div>
+<div class="modal fade" id="return-modal" tabindex="-1" role="dialog"  aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title">还图书</h4>
+            </div>
+            <div class="modal-body">
+                确认还此图书吗？
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                <button type="button" class="btn btn-primary" id="return-book-btn">确定</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 
 <script type="text/javascript">
 seajs.use('../../js/bookDetail.js', function(bookDetail){
