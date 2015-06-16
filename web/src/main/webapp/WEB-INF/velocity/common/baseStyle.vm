@@ -7,4 +7,5 @@
 <script src="$!{webHost}/js/common/jquery.js"></script>
 <script src="$!{webHost}/js/common/bootstrap.js"></script>
 <script src="$!{webHost}/js/common/seajs-css.js"></script>
+<script src="$!{webHost}/js/common/seajs-text.js"></script>
 <script src="$!{webHost}/js/common/sea-config.js"></script>
