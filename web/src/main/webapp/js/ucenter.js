@@ -68,7 +68,21 @@ define(function(require, exports, module) {
             if (data.code == 200) {
 
             }
+        }, 'json');
+        $.get('/book/donate/records', {}, function(data) {
+            if (data.code == 200) {
 
+            }
+        }, 'json');
+        $.get('/book/donate/records', {}, function(data) {
+            if (data.code == 200) {
+
+            }
+        }, 'json');
+        $.get('/book/donate/records', {}, function(data) {
+            if (data.code == 200) {
+
+            }
         }, 'json');
     };
 

@@ -75,9 +75,7 @@ define(function(require, exports, module) {
     Login.prototype.logout = function() {
         var self = this;
 
-        $.post('/user/signOut', {
-            'accessToken': token
-        }, function(json) {
+        $.post('/user/signOut', {}, function(json) {
             if (json.code == 200) {
                 Util.clearCookie('accessToken');
                 top.location.href = '/';
