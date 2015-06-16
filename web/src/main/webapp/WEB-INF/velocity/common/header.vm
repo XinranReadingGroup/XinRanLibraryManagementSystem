@@ -38,7 +38,7 @@
     </div>
 </header>
 <script type="text/javascript">
-seajs.use('../../../js/login.js', function(Login){
+seajs.use('../js/login.js', function(Login){
     var login = new Login();
     login.render();
 });
