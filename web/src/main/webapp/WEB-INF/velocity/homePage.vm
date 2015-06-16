@@ -55,11 +55,6 @@
     #end
 
 </div>
-
-
-
-
-
 </div>
 
 
@@ -70,9 +65,7 @@ seajs.use('$!{webHost}/js/home.js', function( homeObj ){
 });
 </script>
 
-
 #parse("common/footer.vm")
-
 
 </body>
 </html>

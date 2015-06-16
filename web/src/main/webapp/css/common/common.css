@@ -4,6 +4,9 @@ html {
 }
 body {
 }
+.navbar{
+	margin-bottom: 0;
+}
 .header-wrap {
 	position: fixed;
 	top: 0;
