@@ -8,7 +8,9 @@
 
 define(function(require, exports, module) {
 
-    var $ = require('jquery');
+    var $ = require('jquery'),
+        Handlebars = require('handelbars'),
+        UcenterTpl = require('./tpl/ucenter.tpl');
 
     function Ucenter(config) {
 
@@ -40,48 +42,44 @@ define(function(require, exports, module) {
         });
 
         $(doc).delegate('#donate-book-btn', 'click', function(event) {
-            $.get('book/donate/3', {}, function(json) {
 
-            }, 'json');
         });
         $(doc).delegate('#borrow-book-btn', 'click', function(event) {
-            $.get('book/borrow/3', {}, function(json) {
 
-            }, 'json');
         });
         $(doc).delegate('#share-book-btn', 'click', function(event) {
-            $.get('book/share/3', {}, function(json) {
 
-            }, 'json');
         });
         $(doc).delegate('#comment-book-btn', 'click', function(event) {
-            $.get('book/comment/3', {}, function(json) {
 
-            }, 'json');
         });
     };
 
     Ucenter.prototype.renderPanel = function() {
         var self = this;
 
-        $.get('/book/donate/records', {}, function(data) {
+        $.get('/book/share/records', {}, function(data) {
             if (data.code == 200) {
-
+                var element = $(Handlebars.compile(UcenterTpl)(data));
+                $('#share').html(self.element);
             }
         }, 'json');
         $.get('/book/donate/records', {}, function(data) {
             if (data.code == 200) {
-
+                var element = $(Handlebars.compile(UcenterTpl)(data));
+                $('#donate').html(self.element);
             }
         }, 'json');
-        $.get('/book/donate/records', {}, function(data) {
+        $.get('/book/borrow/records', {}, function(data) {
             if (data.code == 200) {
-
+                var element = $(Handlebars.compile(UcenterTpl)(data));
+                $('#borrow').html(self.element);
             }
         }, 'json');
-        $.get('/book/donate/records', {}, function(data) {
+        $.get('/book/return/records', {}, function(data) {
             if (data.code == 200) {
-
+                var element = $(Handlebars.compile(UcenterTpl)(data));
+                $('#return').html(self.element);
             }
         }, 'json');
     };

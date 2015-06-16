@@ -50,87 +50,22 @@
         <div class="main-content">
             <div role="tabpanel">
                 <ul class="nav nav-tabs" role="tablist">
-                    <li role="presentation" class="active"><a href="#read" aria-controls="read" role="tab" data-toggle="tab">读书记录</a></li>
-                    <li role="presentation"><a href="#share" aria-controls="share" role="tab" data-toggle="tab">分享记录</a></li>
+                    <li role="presentation" class="active"><a href="#share" aria-controls="share" role="tab" data-toggle="tab">分享记录</a></li>
                     <li role="presentation"><a href="#donate" aria-controls="donate" role="tab" data-toggle="tab">捐书记录</a></li>
-                    <li role="presentation"><a href="#lend" aria-controls="lend" role="tab" data-toggle="tab">借阅记录</a></li>
-                    <li role="presentation"><a href="#integral" aria-controls="integral" role="tab" data-toggle="tab">个人积分</a></li>
+                    <li role="presentation"><a href="#borrow" aria-controls="borrow" role="tab" data-toggle="tab">借书记录</a></li>
+                    <li role="presentation"><a href="#return" aria-controls="return" role="tab" data-toggle="tab">还书记录</a></li>
                 </ul>
                 <div class="tab-content">
-                    <div role="tabpanel" class="tab-pane active" id="read">
-                        <ul class="book-list">
-                            <li class="book-item clearfix">
-                                <div class="book-img">
-                                    <img src="../mock/img/book.jpg">
-                                </div>
-                                <div class="book-info">
-                                    <div class="book-title clearfix">
-                                        <span>追风筝的人</span>
-                                        <span>2015-04-30</span>
-                                    </div>
-                                    <p class="book-desc">
-                                        《追风筝的人》内容简介：“许多年过去了，人们说陈年旧事可以被埋葬，然而我终于明白这是错的，因为往事会自行爬上来。回首前尘，我意识到在过去二十六年里，自己始终在窥视着那荒芜的小径。<br/>”12岁的阿富汗富家少爷阿米尔与仆人哈桑情同手足。然而，在一场风筝比赛后，发生了一件悲惨不堪的事，阿米尔为自己的懦弱感到自责和痛苦，逼走了哈桑，不久，自己也跟随父亲逃往美国。<br/>成年后的阿米尔始终无法原谅自己当年对哈桑的背叛。为了赎罪，阿米尔再度踏上暌违二十多年的故乡，希望能为不幸的好友尽最后一点心力，却发现一个惊天谎言，儿时的噩梦再度重演，阿米尔该如何抉择？<br/>小说如此残忍而又美丽，作者以温暖细腻的笔法勾勒人性的本质与救赎，读来令人荡气回肠。
-                                    </p>
-                                    <div class="book-op">
-                                        <button type="button" class="btn btn-default btn-sm donate-book">捐献</button>
-                                        <button type="button" class="btn btn-default btn-sm borrow-book">借阅</button>
-                                        <button type="button" class="btn btn-default btn-sm share-book">分享</button>
-                                        <button type="button" class="btn btn-default btn-sm comment-book">评论</button>
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="book-item clearfix">
-                                <div class="book-img">
-                                    <img src="../mock/img/book.jpg">
-                                </div>
-                                <div class="book-info">
-                                    <div class="book-title clearfix">
-                                        <span>追风筝的人</span>
-                                        <span>2015-04-30</span>
-                                    </div>
-                                    <p class="book-desc">
-                                        《追风筝的人》内容简介：“许多年过去了，人们说陈年旧事可以被埋葬，然而我终于明白这是错的，因为往事会自行爬上来。回首前尘，我意识到在过去二十六年里，自己始终在窥视着那荒芜的小径。<br/>”12岁的阿富汗富家少爷阿米尔与仆人哈桑情同手足。然而，在一场风筝比赛后，发生了一件悲惨不堪的事，阿米尔为自己的懦弱感到自责和痛苦，逼走了哈桑，不久，自己也跟随父亲逃往美国。<br/>成年后的阿米尔始终无法原谅自己当年对哈桑的背叛。为了赎罪，阿米尔再度踏上暌违二十多年的故乡，希望能为不幸的好友尽最后一点心力，却发现一个惊天谎言，儿时的噩梦再度重演，阿米尔该如何抉择？<br/>小说如此残忍而又美丽，作者以温暖细腻的笔法勾勒人性的本质与救赎，读来令人荡气回肠。
-                                    </p>
-                                    <div class="book-op">
-                                        <button type="button" class="btn btn-default btn-sm donate-book">捐献</button>
-                                        <button type="button" class="btn btn-default btn-sm borrow-book">借阅</button>
-                                        <button type="button" class="btn btn-default btn-sm share-book">分享</button>
-                                        <button type="button" class="btn btn-default btn-sm comment-book">评论</button>
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="book-item clearfix">
-                                <div class="book-img">
-                                    <img src="../mock/img/book.jpg">
-                                </div>
-                                <div class="book-info">
-                                    <div class="book-title clearfix">
-                                        <span>追风筝的人</span>
-                                        <span>2015-04-30</span>
-                                    </div>
-                                    <p class="book-desc">
-                                        《追风筝的人》内容简介：“许多年过去了，人们说陈年旧事可以被埋葬，然而我终于明白这是错的，因为往事会自行爬上来。回首前尘，我意识到在过去二十六年里，自己始终在窥视着那荒芜的小径。<br/>”12岁的阿富汗富家少爷阿米尔与仆人哈桑情同手足。然而，在一场风筝比赛后，发生了一件悲惨不堪的事，阿米尔为自己的懦弱感到自责和痛苦，逼走了哈桑，不久，自己也跟随父亲逃往美国。<br/>成年后的阿米尔始终无法原谅自己当年对哈桑的背叛。为了赎罪，阿米尔再度踏上暌违二十多年的故乡，希望能为不幸的好友尽最后一点心力，却发现一个惊天谎言，儿时的噩梦再度重演，阿米尔该如何抉择？<br/>小说如此残忍而又美丽，作者以温暖细腻的笔法勾勒人性的本质与救赎，读来令人荡气回肠。
-                                    </p>
-                                    <div class="book-op">
-                                        <button type="button" class="btn btn-default btn-sm donate-book">捐献</button>
-                                        <button type="button" class="btn btn-default btn-sm borrow-book">借阅</button>
-                                        <button type="button" class="btn btn-default btn-sm share-book">分享</button>
-                                        <button type="button" class="btn btn-default btn-sm comment-book">评论</button>
-                                    </div>
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
-                    <div role="tabpanel" class="tab-pane" id="share">
-
+                    <div role="tabpanel" class="tab-pane active" id="share">
+                        
                     </div>
                     <div role="tabpanel" class="tab-pane" id="donate">
 
                     </div>
-                    <div role="tabpanel" class="tab-pane" id="lend">
+                    <div role="tabpanel" class="tab-pane" id="borrow">
 
                     </div>
-                    <div role="tabpanel" class="tab-pane" id="integral">
+                    <div role="tabpanel" class="tab-pane" id="return">
 
                     </div>
                 </div>
