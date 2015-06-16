@@ -35,11 +35,8 @@ body {
 	top: 0;
 	left: 0;
 	width: 100%;
-	background: -moz-linear-gradient(center top,white,#eee) repeat scroll 0 0 transparent;
-    background: -webkit-linear-gradient(top,white,#eee) repeat scroll 0 0 transparent;
-    background: -o-linear-gradient(top,white 0,#eee 100%) repeat scroll 0 0 transparent;
-    background: -ms-linear-gradient(top,white 0,#eee 100%) repeat scroll 0 0 transparent;
-    border-bottom: 1px solid rgba(0,0,0,0.17);
+	background-color: #222;
+  	border-color: #080808;
 }
 
 .header-wrap.ui-green {
