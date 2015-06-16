@@ -36,6 +36,12 @@ define(function(require, exports, module) {
 
             return false;
         });
+
+        $(doc).delegate('#logout-btn', 'click', function(event) {
+            self.logout();
+
+            return false;
+        });
     };
 
     Login.prototype.login = function() {

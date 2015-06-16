@@ -30,6 +30,10 @@
             <p>谈笑有鸿儒，往来无白丁。</p>
         </div>
         <div class="login-form">
+        	#if($!{session.getAttribute("userName")})
+                <div class="active">您已经登录账号$!{session.getAttribute("userName")}，进入<a href="/user/profile">个人中心</a></li>
+                <div><a href="/user/signOut">退出</a></div>
+            #else
             <div class="form-horizontal">
 				<div class="form-group">
 					<label for="account" class="col-sm-4 control-label">账号</label>
@@ -58,6 +62,7 @@
 					</div>
 				</div>
             </div>
+            #end
         </div>
     </div>
 </div>

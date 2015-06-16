@@ -12,11 +12,10 @@
         </div>
         <nav class="navbar-collapse bs-navbar-collapse collapse header-nav" aria-expanded="false" style="height: 1px;">
             <ul class="nav navbar-nav">
-                <li class="active"><a href="http://xinrandushuba.com/">首页</a></li>
-                <li><a href="#">全部图书</a></li>
-                <li><a href="http://xinrandushuba.com/book/donate/new">捐赠图书</a></li>
-                <li><a href="http://xinrandushuba.com/book/share/new">共享图书</a></li>
-                <li><a href="#">我的图书</a></li>
+                <li class="active"><a href="/">首页</a></li>
+                <li><a href="/book/donate/new">捐赠图书</a></li>
+                <li><a href="/book/new">共享图书</a></li>
+                <li><a href="/user/profile">个人中心</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <li>
@@ -29,7 +28,7 @@
                 </li>           
                 #if($!{session.getAttribute("userName")})
                     <li class="active"><a href="/user/profile">$!{session.getAttribute("userName")}</a></li>
-                    <li><a href="/user/signOut">退出</a></li>
+                    <li><a class="logout-btn" id="logout-btn">退出</a></li>
                 #else
                     <li><a href="/user/session/signIn">登录</a></li>
                     <li><a href="/user/session/signUp">注册</a></li>
@@ -38,3 +37,9 @@
         </nav>
     </div>
 </header>
+<script type="text/javascript">
+seajs.use('../../js/login.js', function(Login){
+    var login = new Login();
+    login.render();
+});
+</script>
