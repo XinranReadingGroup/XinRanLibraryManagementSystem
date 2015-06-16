@@ -61,25 +61,25 @@ define(function(require, exports, module) {
         $.get('/book/share/records', {}, function(data) {
             if (data.code == 200) {
                 var element = $(Handlebars.compile(UcenterTpl)(data));
-                $('#share').html(self.element);
+                $('#share').html(element);
             }
         }, 'json');
         $.get('/book/donate/records', {}, function(data) {
             if (data.code == 200) {
                 var element = $(Handlebars.compile(UcenterTpl)(data));
-                $('#donate').html(self.element);
+                $('#donate').html(element);
             }
         }, 'json');
         $.get('/book/borrow/records', {}, function(data) {
             if (data.code == 200) {
                 var element = $(Handlebars.compile(UcenterTpl)(data));
-                $('#borrow').html(self.element);
+                $('#borrow').html(element);
             }
         }, 'json');
         $.get('/book/return/records', {}, function(data) {
             if (data.code == 200) {
                 var element = $(Handlebars.compile(UcenterTpl)(data));
-                $('#return').html(self.element);
+                $('#return').html(element);
             }
         }, 'json');
     };
