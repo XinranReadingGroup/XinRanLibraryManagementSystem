@@ -370,7 +370,9 @@ public class AbstractBookController {
     private BasicUserVO buildBasicUserVO(Long ownerUserId) {
         User user = userService.findUserByUserId(ownerUserId);
         BasicUserVO basicUserVO = new BasicUserVO();
-        BeanUtils.copyProperties(user, basicUserVO);
+        if (null != user) {
+            BeanUtils.copyProperties(user, basicUserVO);
+        }
         return basicUserVO;
     }
 
