@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.xinran.controller.common.AbstractBookController;
-import com.xinran.pojo.Book;
 import com.xinran.vo.BookDetail;
 
 /**

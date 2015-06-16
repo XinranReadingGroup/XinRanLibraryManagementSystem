@@ -30,8 +30,8 @@
                     </div>
                 </li>
 
-                #if($!{homepageVO.isLogined} != "false")
-                    <li><a href="/user/profile">$!{homepageVO.nickName}</a></li>
+                #if( $!{session.getAttribute("userName")} )
+                    <li><a href="/user/profile">$!{session.getAttribute("userName")}</a></li>
                     <li><a href="/user/signOut">退出</a></li>
                 #else
                     <li><a href="/user/session/signIn">登录</a></li>
