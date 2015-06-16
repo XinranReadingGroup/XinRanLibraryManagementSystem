@@ -1,9 +1,6 @@
 <footer id="footer" class="ui-footer ui-footer-wrapper">
-    <hr/>
     <div class="ui-footer-main">
-        <p>
-            © 2015  绿色兑换-欣然流动读书吧 
-        </p>
+        <p>&copyright;2015  绿色兑换-欣然流动读书吧</p>
         <p>
             <a rel="nofollow" href="#">关于读书吧</a>
             - <a rel="nofollow" href="#">联系我们</a>
@@ -11,6 +8,5 @@
             - <a rel="nofollow" href="#"> 帮助中心</a>
             - <a rel="nofollow" href="#"> APP下载</a>
         </p>
-        
     </div>
 </footer>

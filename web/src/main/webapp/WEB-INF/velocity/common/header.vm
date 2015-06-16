@@ -1,5 +1,5 @@
 <!-- 顶部 -->
-<header class="navbar navbar-static-top bs-docs-nav" id="header" role="banner">
+<header class="navbar navbar-static-top bs-docs-nav navbar-inverse" id="header" role="banner">
     <div class="container header-wrap">
         <div class="navbar-header">
             <a class="navbar-brand header-logo" href="http://xinrandushuba.com/">欣然读书</a>
