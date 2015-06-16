@@ -2,15 +2,15 @@
     {{#each data}}
     <li class="book-item clearfix">
         <div class="book-img">
-            <img src="{{this.onOffStockRecord.imgUrl}}">
+            <img src="{{this.book.imgUrl}}">
         </div>
         <div class="book-info">
             <div class="book-title clearfix">
-                <span>{{this.onOffStockRecord.title}}</span>
+                <span>{{this.book.title}}</span>
                 <span>{{this.onOffStockRecord.onStockDate}}</span>
             </div>
             <p class="book-desc">
-                {{this.onOffStockRecord.summary}}
+                {{this.book.summary}}
             </p>
             <div class="book-op" data-id="{{this.onOffStockRecord.id}}">
                 <button type="button" class="btn btn-default btn-sm donate-book">捐献</button>

@@ -18,8 +18,6 @@
                 <li><a href="http://xinrandushuba.com/book/share/new">共享图书</a></li>
                 <li><a href="#">我的图书</a></li>
             </ul>
-
-
             <ul class="nav navbar-nav navbar-right">
                 <li>
                     <div class="input-group">
@@ -29,9 +27,9 @@
                       </span>
                     </div>
                 </li>
-
-                #if($!{homepageVO.isLogined} != "false")
-                    <li><a href="/user/profile">$!{homepageVO.nickName}</a></li>
+                
+                #if($!{session.getAttribute("userName")})
+                    <li class="active"><a href="/user/profile">$!{session.getAttribute("userName")}</a></li>
                     <li><a href="/user/signOut">退出</a></li>
                 #else
                     <li><a href="/user/session/signIn">登录</a></li>
