@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -54,8 +55,8 @@ public class AbstractBookLocationController {
         return AjaxResultBuilder.buildSuccessfulResult(new ArrayList<String>(data.keySet()));
     }
 
-    @RequestMapping("/book/location/cities")
-    public @ResponseBody AjaxResult cities(@RequestParam("province") String province, HttpServletRequest request) {
+    @RequestMapping("/book/location/province/{province}/cities")
+    public @ResponseBody AjaxResult cities(@PathVariable(value = "province") String province, HttpServletRequest request) {
         Object cities = data.get(province);
         Map<String, Object> result = new HashMap<>();
         if (cities != null && cities instanceof List<?>) {
@@ -68,9 +69,9 @@ public class AbstractBookLocationController {
         return AjaxResultBuilder.buildSuccessfulResult(result);
     }
 
-    @RequestMapping("/book/location/counties")
-    public @ResponseBody AjaxResult counties(@RequestParam("province") String province,
-                                             @RequestParam("city") String city, HttpServletRequest request) {
+    @RequestMapping("/book/location/province/{province}/cities/{city}/counties")
+    public @ResponseBody AjaxResult counties(@PathVariable(value = "province") String province,
+                                             @PathVariable(value = "city") String city, HttpServletRequest request) {
         Object cities = data.get(province);
         Object result = null;
         if (cities != null && cities instanceof List<?>) {
