@@ -21,7 +21,7 @@ public interface OnOffStockRecordMapper {
     @SelectKey(before = false, keyProperty = "id", resultType = Long.class, statement = { "SELECT LAST_INSERT_ID() AS id" })
     Long add(OnOffStockRecord record);
     
-    @Select("SELECT * FROM on_off_stock_record WHERE id = #{id}")
+    @Select("SELECT * FROM on_off_stock_record WHERE off_stock_date is null and id = #{id}")
     public OnOffStockRecord findOnOffStockRecordById(@Param("id") Long id);
 
     @Update("update  on_off_stock_record set   updated_At = #{updatedAt},off_Stock_Date =  #{offStockDate},"
@@ -30,7 +30,7 @@ public interface OnOffStockRecordMapper {
     public int updateOnOffStockRecord(OnOffStockRecord record);
     
     // TODO add index
-    @Select("SELECT * FROM on_off_stock_record WHERE owner_user_id = #{record.ownerUserId} and book_type = #{record.bookType} order by id desc limit #{page.start},#{page.end}")
+    @Select("SELECT * FROM on_off_stock_record WHERE off_stock_date is null and owner_user_id = #{record.ownerUserId} and book_type = #{record.bookType} order by id desc limit #{page.start},#{page.end}")
     List<OnOffStockRecord> findRecordsByUserId(@Param("record") OnOffStockRecord record, @Param("page") Pagination page);
 
 }

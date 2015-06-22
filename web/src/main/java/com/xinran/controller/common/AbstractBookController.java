@@ -97,6 +97,19 @@ public class AbstractBookController {
         return AjaxResultBuilder.buildSuccessfulResult(onStock);
     }
 
+    @RequestMapping("/book/offstock/{onStockId}")
+    public
+    @ResponseBody
+    AjaxResult offStock(@PathVariable(value = "onStockId") Long onStockId, HttpServletRequest request) {
+        OnOffStockRecord record = new OnOffStockRecord();
+        record.setId(onStockId);
+        try {
+            onOffStockRecordService.offStock(record);
+        } catch (StockException e) {
+            return AjaxResultBuilder.buildFailedResult(400, e.getCode());
+        }
+        return AjaxResultBuilder.buildSuccessfulResult(null);
+    }
 
 
     @RequestMapping("/book/borrow/{onStockId}")

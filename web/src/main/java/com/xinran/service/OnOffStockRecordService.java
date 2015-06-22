@@ -17,6 +17,14 @@ public interface OnOffStockRecordService {
      * @return 如果上架成功，则返回完整记录，否则返回NULL
      */
     OnOffStockRecord onStock(OnOffStockRecord record) throws StockException;
+
+    /**
+     * 书本下架。目前下架逻辑通过offStockDate来标识。
+     * 如果该值不为空，则已经下架，否则在架。
+     * @param record 记录Id
+     * @throws StockException 如果下架失败会抛出异常
+     */
+    void offStock(OnOffStockRecord record) throws StockException;
     
     OnOffStockRecord findOnOffStockRecordById(Long id);
 

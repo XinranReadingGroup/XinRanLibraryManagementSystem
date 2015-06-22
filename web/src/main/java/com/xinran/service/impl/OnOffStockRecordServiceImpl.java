@@ -1,7 +1,9 @@
 package com.xinran.service.impl;
 
+import java.util.Date;
 import java.util.List;
 
+import com.xinran.constant.BorrowStatus;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -81,6 +83,25 @@ public class OnOffStockRecordServiceImpl implements OnOffStockRecordService {
             }
         }
         return record;
+    }
+
+    @Override
+    public void offStock(OnOffStockRecord record) throws StockException {
+        OnOffStockRecord exist = onOffStockRecordMapper.findOnOffStockRecordById(record.getId());
+        // 如果未存在或者已下架
+        if (exist == null) {
+            throw new StockException(ExceptionCode.NoStockToOff.getCode());
+        }
+        // 如果处于借出状态
+        if (exist.getBorrowStatus() != null && exist.getBorrowStatus() == BorrowStatus.BORROWED.getStatus()) {
+            throw new StockException(ExceptionCode.ReturnItBeforeOffStock.getCode());
+        }
+        // 如果不是享书则无法下架
+        if (exist.getBookType() != null && exist.getBookType() != BookType.SHARED.getType()) {
+            throw new StockException(ExceptionCode.OnlySharedCanOffStock.getCode());
+        }
+        exist.setOffStockDate(new Date());
+        onOffStockRecordMapper.updateOnOffStockRecord(exist);
     }
 
     @Override
