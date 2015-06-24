@@ -50,3 +50,6 @@ html{
 .login-form a{
 	color: #333;
 }
+.login-form .active{
+	font-size: 18px;
+}

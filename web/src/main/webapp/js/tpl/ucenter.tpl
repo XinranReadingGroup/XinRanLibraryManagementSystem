@@ -17,7 +17,7 @@
                 <!-- <button type="button" class="btn btn-default btn-sm borrow-book">借阅</button> -->
                 <!-- <button type="button" class="btn btn-default btn-sm share-book">分享</button> -->
                 <!-- <button type="button" class="btn btn-default btn-sm comment-book">评论</button> -->
-                <a class="btn btn-default btn-sm comment-book" href="/book/{{this.onOffStockRecord.id}}" target="_blank">详情</a>
+                <a class="btn btn-default btn-sm" href="/book/detail/{{this.onOffStockRecord.id}}" target="_blank">详情</a>
             </div>
         </div>
     </li>
