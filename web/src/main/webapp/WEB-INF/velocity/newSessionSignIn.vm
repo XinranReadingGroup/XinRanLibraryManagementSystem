@@ -32,7 +32,6 @@
         <div class="login-form">
         	#if($!{session.getAttribute("userName")})
                 <div class="active">您已经登录账号$!{session.getAttribute("userName")}，进入<a href="/user/profile">个人中心</a></li>
-                <div><a href="/user/signOut">退出</a></div>
             #else
             <div class="form-horizontal">
 				<div class="form-group">
