@@ -6,8 +6,10 @@
         </div>
         <div class="book-info">
             <div class="book-title clearfix">
-                <span>{{this.book.title}}</span>
-                <span>{{this.onOffStockRecord.onStockDate}}</span>
+                <span>书名：{{this.book.title}}</span>
+                <span>作者：{{this.book.title}}</span>
+                <span>分享时间：{{this.onOffStockRecord.onStockDate}}</span>
+                <span>书的所有者：{{this.ownerUserVO.nickName}}</span>
             </div>
             <p class="book-desc">
                 {{this.book.summary}}
