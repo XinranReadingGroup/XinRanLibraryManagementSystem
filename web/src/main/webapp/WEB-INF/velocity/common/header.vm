@@ -14,7 +14,7 @@
             <ul class="nav navbar-nav">
                 <li class="active"><a href="/">首页</a></li>
                 <li><a href="/book/donate/new">捐赠图书</a></li>
-                <li><a href="/book/new">共享图书</a></li>
+                <li><a href="/book/share/new">共享图书</a></li>
                 <li><a href="/user/profile">个人中心</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
