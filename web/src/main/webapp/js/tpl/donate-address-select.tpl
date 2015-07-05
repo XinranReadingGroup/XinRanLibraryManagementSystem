@@ -60,8 +60,8 @@
 
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">确认捐赠</button>
+        <button type="button" class="J-btn-close btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="J-btn-ok btn btn-primary">确认捐赠</button>
       </div>
     </div>
   </div>

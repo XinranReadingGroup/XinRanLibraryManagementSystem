@@ -46,7 +46,12 @@ define(function(require, exports, module) {
         initDialog:function(){
 
             this.$addressDialogContentEl = $(selectDialogTmp);
-           // $(document.body).append( this.$addressDialogContentEl);
+            $(document.body).append( this.$addressDialogContentEl);
+            
+            this.$btnShareBookEl.attr({
+                'data-toggle': 'modal',
+                'data-target':'#J-address-dialog-root'
+            });
         },
     	/**
     		事件初始化
@@ -59,18 +64,17 @@ define(function(require, exports, module) {
     			this.getBookInfo();
     		},this));
 
-    		this.$btnShareBookEl.on('click',$.proxy(function( ev ){
+
+            this.$addressDialogContentEl.find('.J-btn-ok').on('click',$.proxy(function( ev ){
+                var $el = $(ev.currentTarget);
+                
+                this.$addressDialogContentEl.modal('hide');
+
+                this.saveDonateBook();
 
 
-                this.$addressDialogContentEl.modal('show');
-                /*
-    			 popupMsg.runtimeConfirm('确认捐赠此图书？',$.proxy(function( isConfirm ){
-                    if( isConfirm === true ){
-                        this.saveDonateBook();
-                    }
+            },this));
 
-                },this));*/
-    		},this));
 
 
 
