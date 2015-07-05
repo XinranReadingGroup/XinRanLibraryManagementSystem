@@ -9,7 +9,7 @@
 define(function(require, exports, module) {
 
     var $ = require('jquery'),
-        Util = require('./common/util');
+        Util = require('./util');
 
     function Common(config) {
 
