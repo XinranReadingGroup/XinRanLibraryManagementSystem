@@ -9,6 +9,7 @@
 define(function(require, exports, module) {
 
    var $ = require('jquery'),
+       selectDialogTmp = require('./tpl/donate-address-select.tpl'),
        popupMsg = require('/js/common/popup-msg/popup-msg.js');
 
 
@@ -44,6 +45,9 @@ define(function(require, exports, module) {
         */
         initDialog:function(){
 
+            this.$addressDialogContentEl = $(selectDialogTmp);
+            $(document.body).append( this.$addressDialogContentEl);
+
             popupMsg.runtimeConfirm('请确认选择？',$.proxy(function( isConfirm ){
                 if( isConfirm === true ){
                     alert('yes');
@@ -65,12 +69,16 @@ define(function(require, exports, module) {
     		},this));
 
     		this.$btnShareBookEl.on('click',$.proxy(function( ev ){
+
+
+                this.$addressDialogContentEl.modal('show');
+                /*
     			 popupMsg.runtimeConfirm('确认捐赠此图书？',$.proxy(function( isConfirm ){
                     if( isConfirm === true ){
                         this.saveDonateBook();
                     }
 
-                },this));
+                },this));*/
     		},this));
 
 
