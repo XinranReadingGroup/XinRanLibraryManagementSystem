@@ -49,7 +49,7 @@ define(function(require, exports, module) {
             uid = $('#account').val(),
             pswd = $('#password').val();
 
-        $.post('http://xinrandushuba.com/user/signIn', {
+        $.post('/user/signIn', {
             'userIdentifier': uid,
             'password': pswd
         }, function(json) {
@@ -66,7 +66,7 @@ define(function(require, exports, module) {
             nickname = $('#nickname').val(),
             pswd = $('#password').val();
 
-        $.post('http://xinrandushuba.com/user/signUp', {
+        $.post('/user/signUp', {
             'userIdentifier': uid,
             'password': pswd,
             'nickName': nickname
