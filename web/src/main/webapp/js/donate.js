@@ -46,7 +46,7 @@ define(function(require, exports, module) {
         initDialog:function(){
 
             this.$addressDialogContentEl = $(selectDialogTmp);
-            $(document.body).append( this.$addressDialogContentEl);
+           // $(document.body).append( this.$addressDialogContentEl);
         },
     	/**
     		事件初始化
