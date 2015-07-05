@@ -1,5 +1,5 @@
 <!-- Modal -->
-<div class="J-dialog-root modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+<div id="J-address-dialog-root" class="J-dialog-root modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -7,6 +7,8 @@
         <h4 class="modal-title" id="myModalLabel">请选择书籍放置地址</h4>
       </div>
       <div class="modal-body">
+
+
         <div class="collapse navbar-collapse bs-example-js-navbar-collapse">
       		<ul class="nav navbar-nav">
 	            <li  class="J-provinces dropdown">
