@@ -33,6 +33,7 @@ define(function(require, exports, module) {
 	    		//book info
 	    		this.$bookInfoRootEl =  $('#bookinfo-box-root');
 	    		this.$btnShareBookEl = this.$bookInfoRootEl.find('.J-btn-share-book');
+                this.$dropDownLiTmpEl = $('<li><a class="J-item" href="#"></a></li>');
                 this.initDialog();
 	    		this.initEvents();
                
@@ -44,6 +45,7 @@ define(function(require, exports, module) {
             @method initEvents
         */
         initDialog:function(){
+            
 
             this.$addressDialogContentEl = $(selectDialogTmp);
             $(document.body).append( this.$addressDialogContentEl);
@@ -52,6 +54,8 @@ define(function(require, exports, module) {
                 'data-toggle': 'modal',
                 'data-target':'#J-address-dialog-root'
             });
+
+
         },
     	/**
     		事件初始化
@@ -72,13 +76,62 @@ define(function(require, exports, module) {
 
                 this.saveDonateBook();
 
+            },this));
+
+            this.$addressDialogContentEl.find('.J-provinces').delegate('.J-item','click',$.proxy(function( ev ){
+                var $el = $(ev.currentTarget);
+                this.$addressDialogContentEl.find('.J-provinces .J-text').html(  $el.html() );
+
+                this.getCity();
+
+            },this));
+
+            this.$addressDialogContentEl.find('.J-city').delegate('.J-item','click',$.proxy(function( ev ){
+                var $el = $(ev.currentTarget);
+                
+                this.$addressDialogContentEl.find('.J-city .J-text').html(  $el.html() );
+
 
             },this));
 
 
 
 
+
+
     	},
+
+        /**
+            通过isbn 获取省份城市
+            @method getCity
+        */
+        getCity:function(){
+            var provinceStr = this.$addressDialogContentEl.find('.J-provinces .J-text').html(),
+                getUrl = '/book/location/cities/province=' + provinceStr;
+
+            $.ajax({
+                url: getUrl,
+                type:'get',
+                dataType: 'json',
+                cache: false,
+                success: $.proxy(function( data ){
+                    if( data && data.code == 200 ){
+
+
+
+
+                    }else{
+                        
+                         popupMsg.miniTipsAlert('无法找到省份所属城市' );
+                    }
+                },this)
+
+            });
+
+        },
+
+
+
     	/**
     		通过isbn 获得图书信息
     		@method getBookInfo
@@ -105,6 +158,10 @@ define(function(require, exports, module) {
 			});
 
     	},
+
+
+
+
         /**
             通过isbn 共享图书
             @method saveShareBook
