@@ -30,7 +30,7 @@ define(function(require, exports, module) {
 	    		this.$inputIsbnEl = this.$rootEl.find('.J-input-isbn');
 	    		this.$inputDonorEl = this.$rootEl.find('.J-input-donor');
 	    		this.$btnGetBookEl = this.$rootEl.find('.J-btn-get-book');
-
+                this.initDialog();
 	    		//book info
 	    		this.$bookInfoRootEl =  $('#bookinfo-box-root');
 	    		this.$btnShareBookEl = this.$bookInfoRootEl.find('.J-btn-share-book');
@@ -47,15 +47,6 @@ define(function(require, exports, module) {
 
             this.$addressDialogContentEl = $(selectDialogTmp);
             $(document.body).append( this.$addressDialogContentEl);
-
-            popupMsg.runtimeConfirm('请确认选择？',$.proxy(function( isConfirm ){
-                if( isConfirm === true ){
-                    alert('yes');
-                }else{
-                     alert('no');
-                }
-
-            },this));
         },
     	/**
     		事件初始化
