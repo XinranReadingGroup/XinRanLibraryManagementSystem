@@ -94,11 +94,6 @@ define(function(require, exports, module) {
 
             },this));
 
-
-
-
-
-
     	},
 
         /**
@@ -117,8 +112,13 @@ define(function(require, exports, module) {
                 success: $.proxy(function( data ){
                     if( data && data.code == 200 ){
 
-
-
+                        var cityList = ['杭州','温州','萧山' ];
+                        this.$addressDialogContentEl.find('.J-city .J-list').empty();
+                        for( var i=0,len = cityList.length; i < len; i++){
+                            var cityItem = this.$dropDownLiTmpEl.clone( true );
+                            cityItem.find('.J-item').html( cityList[i]);
+                            this.$addressDialogContentEl.find('.J-city .J-list').append( cityItem );
+                        }
 
                     }else{
                         
