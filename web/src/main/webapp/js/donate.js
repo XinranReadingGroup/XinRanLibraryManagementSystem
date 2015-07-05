@@ -55,6 +55,32 @@ define(function(require, exports, module) {
                 'data-target':'#J-address-dialog-root'
             });
 
+            var getUrl = '/book/location/provinces';
+            //初始化省份
+            $.ajax({
+                url: getUrl,
+                type:'get',
+                dataType: 'json',
+                cache: false,
+                success: $.proxy(function( data ){
+                    if( data && data.code == 200 ){
+
+                        var provinceList = data.data || ['浙江省','上海','北京' ];
+                        this.$addressDialogContentEl.find('.J-provinces .J-list').empty();
+                        for( var i=0,len = provinceList.length; i < len; i++){
+                            var provinceItem = this.$dropDownLiTmpEl.clone( true );
+                            provinceItem.find('.J-item').html( provinceList[i]);
+                            this.$addressDialogContentEl.find('.J-provinces .J-list').append( provinceItem );
+                        }
+
+                    }else{
+                        
+                         popupMsg.miniTipsAlert('无法找到省份所属城市' );
+                    }
+                },this)
+
+            });
+
 
         },
     	/**
