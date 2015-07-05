@@ -42,9 +42,8 @@
 <div id="home-main-box-root" class="home-main-box-root clearfix" >
 
     #foreach( $!bookItem in $!{homepageVO.bookList} )
-    $!bookItem
     <div class="book-item" title="$!{bookItem.title}" data-toggle="tooltip" data-placement="bottom" >
-        <a target="_blank" href="$!{webHost}/book/detail/$!{bookItem.isbn}">
+        <a target="_blank" href="$!{webHost}/book/detail/$!{bookItem.id}">
             <div class="item-pic">
                 <img class="img-pic" src="$!{bookItem.imgUrl}" />
             </div>
