@@ -122,7 +122,6 @@ public class AbstractBookController {
             Integer borrowStatus = onOffStockRecord.getBorrowStatus();
             if (BorrowStatus.UNBORROWED.getStatus() != borrowStatus) {
                 throw new BorrowOrReturnValidationException(ExceptionCode.TheBookHasBeenBorrowed.getCode());
-
             }
 
             Long currentUserId = UserIdenetityUtil.getCurrentUserId(request);
@@ -351,8 +350,11 @@ public class AbstractBookController {
         Long bookLocationId = onOffStockRecord.getLocation();
         BookLocation bookLocation = bookLocationService.findBookLocationById(bookLocationId);
         BookLocationVO bookLocationVO = new BookLocationVO();
-        if (null != bookLocationVO) {
-            BeanUtils.copyProperties(bookLocation, bookLocationVO);
+        if (null != bookLocation) {
+            bookLocationVO.setProvince(AbstractBookLocationController.getMap().get(bookLocation.getProvince()));
+            bookLocationVO.setCity(AbstractBookLocationController.getMap().get(bookLocation.getCity()));
+            bookLocationVO.setCounty(AbstractBookLocationController.getMap().get(bookLocation.getCity()));
+            bookLocationVO.setDetail(bookLocation.getDetail());
         }
 
         Long ownerUserId = onOffStockRecord.getOwnerUserId();

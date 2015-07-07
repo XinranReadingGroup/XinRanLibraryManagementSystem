@@ -72,11 +72,11 @@ public abstract class AbstractUserController {
 
     @RequestMapping("/user/profile")
     public ModelAndView viewMyselfUser(HttpServletRequest request) throws UserException {
-        UserVO userVO = viewMyselfUser1(request);
+        UserVO userVO = buildUserVO(request);
         return new ModelAndView("userProfile", "userVO", userVO);
     }
 
-    private UserVO viewMyselfUser1(HttpServletRequest request) {
+    private UserVO buildUserVO(HttpServletRequest request) {
         Long userIdInSession = UserIdenetityUtil.getCurrentUserId(request);
         User user = userService.findUserByUserId(userIdInSession);
         UserVO userVO = new UserVO();

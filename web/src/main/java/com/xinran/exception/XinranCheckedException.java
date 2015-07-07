@@ -17,6 +17,12 @@ public class XinranCheckedException extends Exception {
         this.code = code;
     }
 
+    /**
+     * 
+     */
+    public XinranCheckedException() {
+    }
+
     public int getCode() {
         return code;
     }

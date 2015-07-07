@@ -11,24 +11,24 @@
 	<context:component-scan base-package="com.xinran.service" />
 	<context:component-scan base-package="com.xinran.business" />
 	<context:component-scan base-package="com.xinran.controller" />
-	
+
 	<context:component-scan base-package="com.xinran.listener" />
 	<context:component-scan base-package="com.xinran.boot" />
-	
-	
+
+
 
 	<!-- 支持configurable注解 -->
 	<context:load-time-weaver />
 
 	<mvc:annotation-driven />
-	
-	
+
+
 	<!-- 静态资源访问 -->
-    <mvc:resources location="/img/" mapping="/img/**" />
-    <mvc:resources location="/js/" mapping="/js/**" />
-    <mvc:resources location="/css/" mapping="/css/**" />
-    <mvc:resources location="/mock/" mapping="/mock/**" />
-	
+	<mvc:resources location="/img/" mapping="/img/**" />
+	<mvc:resources location="/js/" mapping="/js/**" />
+	<mvc:resources location="/css/" mapping="/css/**" />
+	<mvc:resources location="/mock/" mapping="/mock/**" />
+
 	<context:property-placeholder
 		location="classpath:jdbc.properties,file:/home/admin/xinran/jdbc.properties"
 		ignore-resource-not-found="true" />
@@ -38,9 +38,35 @@
 	<mvc:interceptors>
 		<mvc:interceptor>
 			<mvc:mapping path="/**" />
-			<bean class="com.xinran.springmvc.interceptor.UserSessionInterceptor" />
+			<bean class="com.xinran.springmvc.interceptor.UserSessionInterceptor">
+				<property name="noNeedLoginURLs">
+					<list>
+						<value>/user/session/signIn</value>
+						<value>/user/session/signUp</value>
+						<value>/book/search</value>
+						<value>/user/signUp</value>
+                        <value>/user/signIn</value>
+                        <value>/book/share/records </value>
+                        <value>/book/return/records</value>
+                        <value>/book/borrow/records</value>
+                        <value>/book/donate/records</value>
+                        <value>/book/detail</value>
+                        <value>/book/location</value>
+					</list>
+				</property>
+			</bean>
 		</mvc:interceptor>
 	</mvc:interceptors>
+
+	<bean id="handlerExceptionResolver"
+		class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
+		<property name="exceptionMappings">
+			<props>
+				<prop key="com.xinran.exception.AuthorizationException">redirect:/user/session/signIn</prop>
+			</props>
+		</property>
+	</bean>
+
 
 
 	<bean id="jacksonMessageConverter"
@@ -85,8 +111,8 @@
 		<property name="maxUploadSize" value="1048576" />
 		<property name="maxInMemorySize" value="40960" />
 	</bean>
-	
-    
+
+
 	<!--配置数据源 -->
 	<bean id="jdbcDataSource"
 		class="org.springframework.jdbc.datasource.DriverManagerDataSource">

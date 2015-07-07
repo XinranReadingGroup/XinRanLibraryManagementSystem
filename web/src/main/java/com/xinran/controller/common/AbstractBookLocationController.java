@@ -1,6 +1,5 @@
 package com.xinran.controller.common;
 
-import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.Reader;
 import java.util.ArrayList;
@@ -11,7 +10,7 @@ import java.util.Map;
 import javax.annotation.PostConstruct;
 import javax.servlet.http.HttpServletRequest;
 
-import org.apache.commons.lang.StringUtils;
+import org.apache.commons.io.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,11 +18,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.JSONArray;
-import com.alibaba.fastjson.JSONObject;
 import com.xinran.pojo.BookLocation;
 import com.xinran.service.BookLocationService;
 import com.xinran.vo.AjaxResult;
+import com.xinran.vo.LocationMeta;
 import com.xinran.vo.builder.AjaxResultBuilder;
 
 /**
@@ -32,7 +30,15 @@ import com.xinran.vo.builder.AjaxResultBuilder;
 public class AbstractBookLocationController {
 
     @Autowired
-    private BookLocationService locationService;
+    private BookLocationService                 locationService;
+
+    /**
+     * 暂时用JSON静态资源来描述省市区基本信息。
+     */
+    private final static Map<Long, String>             map          = new HashMap<Long, String>(64);             // id/name
+    private final static List<LocationMeta>            provinceList = new ArrayList<LocationMeta>(32);
+    private final static Map<Long, List<LocationMeta>> cityMap      = new HashMap<Long, List<LocationMeta>>(32);
+    private final static Map<Long, List<LocationMeta>> countyMap    = new HashMap<Long, List<LocationMeta>>(32);
 
     @RequestMapping("/book/location/add")
     public @ResponseBody AjaxResult add(BookLocation location, HttpServletRequest request) {
@@ -52,106 +58,99 @@ public class AbstractBookLocationController {
 
     @RequestMapping("/book/location/provinces")
     public @ResponseBody AjaxResult provinces(HttpServletRequest request) {
-        return AjaxResultBuilder.buildSuccessfulResult(new ArrayList<String>(data.keySet()));
+        return AjaxResultBuilder.buildSuccessfulResult(provinceList);
     }
 
-    @RequestMapping("/book/location/province/{province}/cities")
+    @RequestMapping("/book/location/provinces/{province}/cities")
     public @ResponseBody AjaxResult cities(@PathVariable(value = "province") String province, HttpServletRequest request) {
-        Object cities = data.get(province);
-        Map<String, Object> result = new HashMap<>();
-        if (cities != null && cities instanceof List<?>) {
-            result.put("type", "counties");
-            result.put("counties", cities);
-        } else if (cities != null && cities instanceof Map<?, ?>) {
-            result.put("type", "cities");
-            result.put("cities", ((Map<String, Object>) cities).keySet());
-        }
-        return AjaxResultBuilder.buildSuccessfulResult(result);
+        List<LocationMeta> cities = cityMap.get(Long.valueOf(province));
+
+        return AjaxResultBuilder.buildSuccessfulResult(cities);
     }
 
-    @RequestMapping("/book/location/province/{province}/cities/{city}/counties")
-    public @ResponseBody AjaxResult counties(@PathVariable(value = "province") String province,
-                                             @PathVariable(value = "city") String city, HttpServletRequest request) {
-        Object cities = data.get(province);
-        Object result = null;
-        if (cities != null && cities instanceof List<?>) {
-            result = cities;
+    @RequestMapping("/book/location/cities/{city}/counties")
+    public @ResponseBody AjaxResult counties(@PathVariable(value = "city") String city, HttpServletRequest request) {
+        List<LocationMeta> counties = countyMap.get(Long.valueOf(city));
 
-        } else if (cities != null && cities instanceof Map<?, ?>) {
-            result = ((Map<String, Object>) cities).get(city);
-        }
-        return AjaxResultBuilder.buildSuccessfulResult(result);
+        return AjaxResultBuilder.buildSuccessfulResult(counties);
     }
 
     /**
-     * 暂时用JSON静态资源来描述省市区基本信息。
+     * 
      */
-    private final Map<String, Object> data = new HashMap<>();
-
     @PostConstruct
-    public void init() throws IOException {
-        Reader reader = new InputStreamReader(getClass().getResourceAsStream("/locations.json"), "UTF-8");
-        char[] buffer = new char[128];
-        int num = reader.read(buffer);
-        StringBuilder jsonBuilder = new StringBuilder();
-        while (num > 0) {
-            jsonBuilder.append(buffer, 0, num);
-            num = reader.read(buffer);
-        }
-        reader.close();
-        JSONArray json = JSON.parseArray(jsonBuilder.toString());
-        if (json == null || json.size() < 1) {
-            return;
-        }
-        for (int i = 0; i < json.size(); i++) {
-            JSONObject jsonProvince = json.getJSONObject(i);
-            boolean isDirect = false;
-            if (jsonProvince.containsKey("isDirect")) {
-                isDirect = jsonProvince.getBoolean("isDirect");
+    public void init() {
+
+        Reader reader = null;
+        try {
+            reader = new InputStreamReader(getClass().getResourceAsStream("/locations.json"), "UTF-8");
+            String jsonText = IOUtils.toString(reader);
+            List<LocationMeta> list = JSON.parseArray(jsonText, LocationMeta.class);
+            for (LocationMeta originalLocationMeta : list) {
+                LocationMeta locationMeta = new LocationMeta();
+                locationMeta.setId(originalLocationMeta.getId());
+                locationMeta.setName(originalLocationMeta.getName());
+                locationMeta.setSub(originalLocationMeta.getSub());
+                map.put(originalLocationMeta.getId(), originalLocationMeta.getName());
+                provinceList.add(locationMeta);
             }
-            String name = jsonProvince.getString("name");
-            if (StringUtils.isBlank(name)) {
-                continue;
+
+            for (LocationMeta provinceLocationMeta : provinceList) {
+                List<LocationMeta> citiesList = provinceLocationMeta.getSub();
+                cityMap.put(provinceLocationMeta.getId(), citiesList);
+
+                for (LocationMeta cityLocationMeta : citiesList) {
+                    List<LocationMeta> countyList = cityLocationMeta.getSub();
+                    map.put(cityLocationMeta.getId(), cityLocationMeta.getName());
+
+                    for (LocationMeta locationMeta : countyList) {
+                        map.put(locationMeta.getId(), locationMeta.getName());
+                    }
+
+                    countyMap.put(cityLocationMeta.getId(), countyList);
+                }
+
             }
-            if (isDirect) {
-                List<String> counties = extractCounties(jsonProvince.getJSONArray("counties"));
-                data.put(name, counties);
-            } else {
-                Map<String, List<String>> cities = extractCities(jsonProvince.getJSONArray("cities"));
-                data.put(name, cities);
-            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
         }
+
     }
 
-    private List<String> extractCounties(JSONArray counties) {
-        List<String> result = new ArrayList<>();
-        for (int i = 0; i < counties.size(); i++) {
-            String name = counties.getJSONObject(i).getString("name");
-            if (StringUtils.isNotBlank(name)) {
-                result.add(name);
-            }
-        }
-        return result;
+    public static Map<Long, String> getMap() {
+        return map;
     }
 
-    private Map<String, List<String>> extractCities(JSONArray cities) {
-        if (cities == null || cities.size() < 1) {
-            return null;
-        }
-        Map<String, List<String>> result = new HashMap<>();
-        for (int i = 0; i < cities.size(); i++) {
-            JSONObject city = cities.getJSONObject(i);
-            String name = city.getString("name");
-            if (StringUtils.isBlank(name)) {
-                continue;
-            }
-            List<String> counties = extractCounties(city.getJSONArray("counties"));
-            if (counties == null) {
-                counties = new ArrayList<>(0);
-            }
-            result.put(name, counties);
-        }
-        return result;
-    }
+    // private List<String> extractCounties(JSONArray counties) {
+    // List<String> result = new ArrayList<>();
+    // for (int i = 0; i < counties.size(); i++) {
+    // String name = counties.getJSONObject(i).getString("name");
+    // if (StringUtils.isNotBlank(name)) {
+    // result.add(name);
+    // }
+    // }
+    // return result;
+    // }
+    //
+    // private Map<String, List<String>> extractCities(JSONArray cities) {
+    // if (cities == null || cities.size() < 1) {
+    // return null;
+    // }
+    // Map<String, List<String>> result = new HashMap<>();
+    // for (int i = 0; i < cities.size(); i++) {
+    // JSONObject city = cities.getJSONObject(i);
+    // String name = city.getString("name");
+    // if (StringUtils.isBlank(name)) {
+    // continue;
+    // }
+    // List<String> counties = extractCounties(city.getJSONArray("counties"));
+    // if (counties == null) {
+    // counties = new ArrayList<>(0);
+    // }
+    // result.put(name, counties);
+    // }
+    // return result;
+    // }
 
 }
