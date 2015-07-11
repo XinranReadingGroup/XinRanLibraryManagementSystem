@@ -21,7 +21,7 @@ public interface BookMapper {
     @Select("SELECT * FROM book WHERE isbn = #{isbn}")
     Book findByISBN(@Param("isbn") String isbn);
     
-    @Insert("INSERT INTO book(created_at,updated_at,isbn,title,img_url,author,summary,price,publisher) values(now(),now(),#{isbn},#{title},#{imgURL},#{author},#{summary},#{price},#{publisher})")
+    @Insert("INSERT INTO book(created_at,updated_at,isbn,title,img_url,author,summary,price,publisher) values(now(),now(),#{isbn},#{title},#{imgUrl},#{author},#{summary},#{price},#{publisher})")
     @SelectKey(before = false, keyProperty = "id", resultType = Long.class, statement = { "SELECT LAST_INSERT_ID() AS id" })
     Long add(Book book);
 

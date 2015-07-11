@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.alibaba.fastjson.JSON;
+import com.xinran.controller.util.UserIdenetityUtil;
 import com.xinran.pojo.BookLocation;
 import com.xinran.service.BookLocationService;
 import com.xinran.vo.AjaxResult;
@@ -40,9 +41,11 @@ public class AbstractBookLocationController {
     private final static Map<Long, List<LocationMeta>> cityMap      = new HashMap<Long, List<LocationMeta>>(32);
     private final static Map<Long, List<LocationMeta>> countyMap    = new HashMap<Long, List<LocationMeta>>(32);
 
-    @RequestMapping("/book/location/add")
+    @RequestMapping("/book/address/add")  //该权限需要被登录校验,所以改了个名字.
     public @ResponseBody AjaxResult add(BookLocation location, HttpServletRequest request) {
-        // FIXME 只有admin 才能添加地址库
+        Long currentUserId = UserIdenetityUtil.getCurrentUserId(request);
+
+    	location.setUserId(currentUserId);
         BookLocation add = locationService.add(location);
         return AjaxResultBuilder.buildSuccessfulResult(add);
     }

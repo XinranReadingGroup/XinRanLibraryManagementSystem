@@ -46,6 +46,9 @@ public class UserSessionInterceptor implements HandlerInterceptor {
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
         String requestURI = request.getRequestURI();
+        
+        
+        
         if ("/".equals(requestURI) || "/mobile".equals(requestURI)) {
             return true;
         }

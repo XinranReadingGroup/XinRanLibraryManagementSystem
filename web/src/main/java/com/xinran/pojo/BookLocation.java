@@ -32,6 +32,9 @@ public class BookLocation {
     private Float  lng;
 
     private String type;     // 小范围, 国内的
+    
+    private Long userId;     // 地址所属人Id
+
 
     private String province;
     private String city;

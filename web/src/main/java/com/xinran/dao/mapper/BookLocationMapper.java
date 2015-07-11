@@ -24,7 +24,7 @@ public interface BookLocationMapper {
     @Select("SELECT * FROM book_location WHERE id = #{id}")
     BookLocation findBookLocationById(@Param("id") Long id);
 
-    @Insert("INSERT INTO book_location(created_at,updated_at,province,city,county,detail,lat,lng,type) VALUES(now(),now(),#{province},#{city},#{county},#{detail},#{lat},#{lng},#{type})")
+    @Insert("INSERT INTO book_location(created_at,updated_at,user_id,province,city,county,detail,lat,lng,type) VALUES(now(),now(),#{userId},#{province},#{city},#{county},#{detail},#{lat},#{lng},#{type})")
     @Options(useGeneratedKeys = true)
     void add(BookLocation location);
 

@@ -41,6 +41,10 @@
 			<bean class="com.xinran.springmvc.interceptor.UserSessionInterceptor">
 				<property name="noNeedLoginURLs">
 					<list>
+						<value>/img/</value>
+						<value>/js/</value>
+						<value>/css/</value>
+						<value>/mock/</value>
 						<value>/user/session/signIn</value>
 						<value>/user/session/signUp</value>
 						<value>/book/search</value>

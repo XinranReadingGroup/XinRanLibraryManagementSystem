@@ -40,6 +40,7 @@
                           lat FLOAT(10, 6),
                           lng FLOAT(10, 6),
                           type     VARCHAR(64),
+                          user_id      BIGINT(20),
                           province VARCHAR(128),
                           city     VARCHAR(128),
                           county   VARCHAR(128),
