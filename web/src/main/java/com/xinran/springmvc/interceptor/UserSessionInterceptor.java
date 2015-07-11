@@ -24,7 +24,7 @@ public class UserSessionInterceptor implements HandlerInterceptor {
 	
 	private List<String> noNeedLoginURLs = Lists.newArrayList();
 
-	public UserSessionInterceptor(Logger log, List<String> noNeedLoginURLs) {
+	public UserSessionInterceptor() {
 		noNeedLoginURLs.add("/img/");
 		noNeedLoginURLs.add("/js/");
 		noNeedLoginURLs.add("/css/");
