@@ -25,6 +25,12 @@ public class UserSessionInterceptor implements HandlerInterceptor {
 	private List<String> noNeedLoginURLs = Lists.newArrayList();
 
 	public UserSessionInterceptor() {
+		wtf();
+	}
+
+
+
+	private void wtf() {
 		noNeedLoginURLs.add("/img/");
 		noNeedLoginURLs.add("/js/");
 		noNeedLoginURLs.add("/css/");
@@ -47,6 +53,8 @@ public class UserSessionInterceptor implements HandlerInterceptor {
 	@Override
 	public boolean preHandle(HttpServletRequest request,
 			HttpServletResponse response, Object handler) throws Exception {
+		wtf();//workaround for spring bug, so dont delete now.
+		
 		String requestURI = request.getRequestURI();
 
 		log.debug("requestURI is {} ,noNeedLoginURLs is  ", requestURI,
