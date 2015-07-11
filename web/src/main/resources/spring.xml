@@ -39,7 +39,7 @@
 		<mvc:interceptor>
 			<mvc:mapping path="/**" />
 			<bean class="com.xinran.springmvc.interceptor.UserSessionInterceptor">
-				<!-- <property name="noNeedLoginURLs">  //spring bug,wont work on jdk1.8,so hard code
+				<property name="noNeedLoginURLs">
 					<list>
 						<value>/img/</value>
 						<value>/js/</value>
@@ -57,7 +57,7 @@
                         <value>/book/detail</value>
                         <value>/book/location</value>
 					</list>
-				</property> -->
+				</property>
 			</bean>
 		</mvc:interceptor>
 	</mvc:interceptors>
