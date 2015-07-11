@@ -10,7 +10,7 @@
 	<description />
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<springVersion>4.1.7.RELEASE</springVersion>
+		<springVersion>4.1.1.RELEASE</springVersion>
 	</properties>
 	<build>
 		<finalName>springMVC</finalName>
@@ -239,7 +239,7 @@
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-test</artifactId>
-			<version>4.1.1.RELEASE</version>
+			<version>${springVersion}</version>
 			<scope>test</scope>
 		</dependency>
 

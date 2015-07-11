@@ -14,6 +14,10 @@
             <param-value>prod</param-value>
     </context-param>
  -->
+ 
+ 	<listener>
+    	<listener-class>org.springframework.web.util.Log4jConfigListener</listener-class>
+	</listener>
 
     <servlet>
         <servlet-name>springMVC</servlet-name>
