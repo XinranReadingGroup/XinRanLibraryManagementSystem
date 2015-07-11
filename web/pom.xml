@@ -39,16 +39,6 @@
 
 		</plugins>
 		
-		<resources>
-         <!-- Placeholders that are found from the files located in the configured
-             resource directories are replaced with the property values found from the
-             profile specific configuration file. -->
-         <resource>
-             <directory>${resource.directory}</directory>
-             <filtering>true</filtering>
-         </resource>
-        </resources>
-		
 	</build>
 
 	<dependencies>
