@@ -101,7 +101,7 @@ define(function(require, exports, module) {
                 
                 this.$addressDialogContentEl.modal('hide');
 
-                this.saveDonateBook();
+                this.getLocationId();
 
             },this));
 
@@ -110,7 +110,6 @@ define(function(require, exports, module) {
                 var $el = $(ev.currentTarget);
                 this.$addressDialogContentEl.find('.J-provinces .J-text').html(  $el.html() );
                 this.$addressDialogContentEl.find('.J-provinces .J-text').attr( 'data-id', $el.attr('data-id') );
-
                 this.getCity();
 
             },this));
@@ -233,14 +232,45 @@ define(function(require, exports, module) {
 
     	},
 
+        /**
+            活动位置Id
+            @method getLocationId
+        */
+        getLocationId:function(){
+            var provinceId = this.$addressDialogContentEl.find('.J-provinces .J-text').attr('data-id'),
+                cityId = this.$addressDialogContentEl.find('.J-city .J-text').attr('data-id'),
+                countiesId = this.$addressDialogContentEl.find('.J-counties .J-text').attr('data-id'),
+                getUrl = '/book/address/add';
 
+            $.ajax({
+                url: getUrl,
+                type:'get',
+                dataType: 'json',
+                data:{
+                    province: provinceId,
+                    city: cityId,
+                    county: countiesId
+                },
+                cache: false,
+                success: $.proxy(function( data ){
+                    if( data && data.code == 200 ){
+                        this.saveDonateBook( data.data.id );
 
+                    }else{
+                        
+                         popupMsg.miniTipsAlert('享书失败:' +isbnStr );
+                    }
+                },this)
+
+            });
+
+        },
 
         /**
             通过isbn 共享图书
             @method saveShareBook
         */
-        saveDonateBook:function(){
+        saveDonateBook:function( locationId ){
             var bookId = this.$inputIsbnEl.attr('data-id'),
                 getBookUrl = '/book/donate/' + bookId;
 
@@ -249,9 +279,8 @@ define(function(require, exports, module) {
                 type:'get',
                 dataType: 'json',
                 data:{
-                    loc:'1'
+                    location: locationId
                 },
-
                 cache: false,
                 success: $.proxy(function( data ){
                     if( data && data.code == 200 ){
