@@ -110,7 +110,14 @@ define(function(require, exports, module) {
                 var $el = $(ev.currentTarget);
                 this.$addressDialogContentEl.find('.J-provinces .J-text').html(  $el.html() );
                 this.$addressDialogContentEl.find('.J-provinces .J-text').attr( 'data-id', $el.attr('data-id') );
+
                 this.getCity();
+
+                this.$addressDialogContentEl.find('.J-city .J-text').html( '城市' );
+                this.$addressDialogContentEl.find('.J-city .J-text').attr( 'data-id', '0' );
+
+                this.$addressDialogContentEl.find('.J-counties .J-text').html( '区县' );
+                this.$addressDialogContentEl.find('.J-counties .J-text').attr( 'data-id', '0' );
 
             },this));
             //城市
@@ -120,6 +127,9 @@ define(function(require, exports, module) {
                 this.$addressDialogContentEl.find('.J-city .J-text').html(  $el.html() );
                 this.$addressDialogContentEl.find('.J-city .J-text').attr( 'data-id', $el.attr('data-id') );
                 this.getCounties();
+
+                this.$addressDialogContentEl.find('.J-counties .J-text').html( '区县' );
+                this.$addressDialogContentEl.find('.J-counties .J-text').attr( 'data-id', '0' );
 
             },this));
             //区县
@@ -190,7 +200,6 @@ define(function(require, exports, module) {
                             var countiesItem = this.$dropDownLiTmpEl.clone( true );
                             countiesItem.find('.J-item').html( countiesList[i].name );
                             countiesItem.find('.J-item').attr( 'data-id',countiesList[i].id);
-
                             this.$addressDialogContentEl.find('.J-counties .J-list').append( countiesItem );
                         }
 
@@ -284,10 +293,11 @@ define(function(require, exports, module) {
                 cache: false,
                 success: $.proxy(function( data ){
                     if( data && data.code == 200 ){
-                        popupMsg.miniTipsAlert('享书成功:' +isbnStr );
+                        popupMsg.miniTipsAlert('捐书成功');
+                        window.location.href = '/book/detail/' + data.data.id;
                     }else{
                         
-                         popupMsg.miniTipsAlert('享书失败:' +isbnStr );
+                         popupMsg.miniTipsAlert('享书失败' );
                     }
                 },this)
 
