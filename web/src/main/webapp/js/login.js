@@ -37,6 +37,14 @@ define(function(require, exports, module) {
             return false;
         });
 
+        $(doc).delegate('#password', 'keydown', function(event) {
+            if (event.keycode == 13) {
+                self.login();
+            }
+
+            return false;
+        });
+
         $(doc).delegate('#logout-btn', 'click', function(event) {
             self.logout();
 
