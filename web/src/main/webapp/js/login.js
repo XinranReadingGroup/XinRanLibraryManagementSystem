@@ -38,7 +38,7 @@ define(function(require, exports, module) {
         });
 
         $(doc).delegate('#password', 'keydown', function(event) {
-            if (event.keycode == 13) {
+            if (event.keyCode == 13) {
                 self.login();
                 return false;
             }
