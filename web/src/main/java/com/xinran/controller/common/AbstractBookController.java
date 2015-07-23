@@ -345,6 +345,11 @@ public class AbstractBookController {
     public BookDetail buildBookDetail(Long onOffStockId) {
 
         OnOffStockRecord onOffStockRecord = onOffStockRecordService.findOnOffStockRecordById(onOffStockId);
+        
+        if(onOffStockRecord ==null){
+            return new BookDetail();
+        }
+        
         Book book = bookService.findBookById(onOffStockRecord.getBookId());
 
         Long bookLocationId = onOffStockRecord.getLocation();

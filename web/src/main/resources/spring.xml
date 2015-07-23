@@ -55,6 +55,7 @@
                         <value>/book/borrow/records</value>
                         <value>/book/donate/records</value>
                         <value>/book/detail</value>
+                        <value>/book/isbn</value>
                         <value>/book/location</value>
 					</list>
 				</property>
