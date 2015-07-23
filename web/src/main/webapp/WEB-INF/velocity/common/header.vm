@@ -41,4 +41,5 @@
 seajs.use('//www.xinrandushuba.com/js/common/common.js', function(Common){
     new Common().render();
 });
+document.domain = 'xinrandushuba.com';
 </script>

@@ -65,11 +65,12 @@ define(function(require, exports, module) {
                 success: $.proxy(function( data ){
                     if( data && data.code == 200 ){
 
-                        var provinceList = data.data || ['浙江省','上海','北京' ];
+                        var provinceList = data.data || [];
                         this.$addressDialogContentEl.find('.J-provinces .J-list').empty();
                         for( var i=0,len = provinceList.length; i < len; i++){
                             var provinceItem = this.$dropDownLiTmpEl.clone( true );
-                            provinceItem.find('.J-item').html( provinceList[i]);
+                            provinceItem.find('.J-item').html( provinceList[i].name );
+                            provinceItem.find('.J-item').attr('data-id', provinceList[i].id );
                             this.$addressDialogContentEl.find('.J-provinces .J-list').append( provinceItem );
                         }
 
@@ -100,22 +101,43 @@ define(function(require, exports, module) {
                 
                 this.$addressDialogContentEl.modal('hide');
 
-                this.saveDonateBook();
+                this.getLocationId();
 
             },this));
 
+            //省份
             this.$addressDialogContentEl.find('.J-provinces').delegate('.J-item','click',$.proxy(function( ev ){
                 var $el = $(ev.currentTarget);
                 this.$addressDialogContentEl.find('.J-provinces .J-text').html(  $el.html() );
+                this.$addressDialogContentEl.find('.J-provinces .J-text').attr( 'data-id', $el.attr('data-id') );
 
                 this.getCity();
 
-            },this));
+                this.$addressDialogContentEl.find('.J-city .J-text').html( '城市' );
+                this.$addressDialogContentEl.find('.J-city .J-text').attr( 'data-id', '0' );
 
+                this.$addressDialogContentEl.find('.J-counties .J-text').html( '区县' );
+                this.$addressDialogContentEl.find('.J-counties .J-text').attr( 'data-id', '0' );
+
+            },this));
+            //城市
             this.$addressDialogContentEl.find('.J-city').delegate('.J-item','click',$.proxy(function( ev ){
                 var $el = $(ev.currentTarget);
                 
                 this.$addressDialogContentEl.find('.J-city .J-text').html(  $el.html() );
+                this.$addressDialogContentEl.find('.J-city .J-text').attr( 'data-id', $el.attr('data-id') );
+                this.getCounties();
+
+                this.$addressDialogContentEl.find('.J-counties .J-text').html( '区县' );
+                this.$addressDialogContentEl.find('.J-counties .J-text').attr( 'data-id', '0' );
+
+            },this));
+            //区县
+            this.$addressDialogContentEl.find('.J-counties').delegate('.J-item','click',$.proxy(function( ev ){
+                var $el = $(ev.currentTarget);
+                
+                this.$addressDialogContentEl.find('.J-counties .J-text').html(  $el.html() );
+                this.$addressDialogContentEl.find('.J-counties .J-text').attr( 'data-id', $el.attr('data-id') );
 
 
             },this));
@@ -127,8 +149,8 @@ define(function(require, exports, module) {
             @method getCity
         */
         getCity:function(){
-            var provinceStr = this.$addressDialogContentEl.find('.J-provinces .J-text').html(),
-                getUrl = '/book/location/cities/province=' + provinceStr;
+            var provinceIdStr = this.$addressDialogContentEl.find('.J-provinces .J-text').attr('data-id'),
+                getUrl = '/book/location/provinces/' + provinceIdStr + '/cities';
 
             $.ajax({
                 url: getUrl,
@@ -138,11 +160,12 @@ define(function(require, exports, module) {
                 success: $.proxy(function( data ){
                     if( data && data.code == 200 ){
 
-                        var cityList = ['杭州','温州','萧山' ];
+                        var cityList = data.data;
                         this.$addressDialogContentEl.find('.J-city .J-list').empty();
                         for( var i=0,len = cityList.length; i < len; i++){
                             var cityItem = this.$dropDownLiTmpEl.clone( true );
-                            cityItem.find('.J-item').html( cityList[i]);
+                            cityItem.find('.J-item').html( cityList[i].name);
+                            cityItem.find('.J-item').attr( 'data-id',cityList[i].id);
                             this.$addressDialogContentEl.find('.J-city .J-list').append( cityItem );
                         }
 
@@ -155,7 +178,40 @@ define(function(require, exports, module) {
             });
 
         },
+          /**
+            通过isbn 获取区县
+            @method getCounties
+        */
+        getCounties:function(){
+            var cityIdStr = this.$addressDialogContentEl.find('.J-city .J-text').attr('data-id'),
+                getUrl = '/book/location/cities/' + cityIdStr + '/counties';
 
+            $.ajax({
+                url: getUrl,
+                type:'get',
+                dataType: 'json',
+                cache: false,
+                success: $.proxy(function( data ){
+                    if( data && data.code == 200 ){
+
+                        var countiesList = data.data;
+                        this.$addressDialogContentEl.find('.J-counties .J-list').empty();
+                        for( var i=0,len = countiesList.length; i < len; i++){
+                            var countiesItem = this.$dropDownLiTmpEl.clone( true );
+                            countiesItem.find('.J-item').html( countiesList[i].name );
+                            countiesItem.find('.J-item').attr( 'data-id',countiesList[i].id);
+                            this.$addressDialogContentEl.find('.J-counties .J-list').append( countiesItem );
+                        }
+
+                    }else{
+                        
+                         popupMsg.miniTipsAlert('无法找到省份所属城市' );
+                    }
+                },this)
+
+            });
+
+        },
 
 
     	/**
@@ -185,14 +241,45 @@ define(function(require, exports, module) {
 
     	},
 
+        /**
+            活动位置Id
+            @method getLocationId
+        */
+        getLocationId:function(){
+            var provinceId = this.$addressDialogContentEl.find('.J-provinces .J-text').attr('data-id'),
+                cityId = this.$addressDialogContentEl.find('.J-city .J-text').attr('data-id'),
+                countiesId = this.$addressDialogContentEl.find('.J-counties .J-text').attr('data-id'),
+                getUrl = '/book/address/add';
 
+            $.ajax({
+                url: getUrl,
+                type:'get',
+                dataType: 'json',
+                data:{
+                    province: provinceId,
+                    city: cityId,
+                    county: countiesId
+                },
+                cache: false,
+                success: $.proxy(function( data ){
+                    if( data && data.code == 200 ){
+                        this.saveDonateBook( data.data.id );
 
+                    }else{
+                        
+                         popupMsg.miniTipsAlert('享书失败:' +isbnStr );
+                    }
+                },this)
+
+            });
+
+        },
 
         /**
             通过isbn 共享图书
             @method saveShareBook
         */
-        saveDonateBook:function(){
+        saveDonateBook:function( locationId ){
             var bookId = this.$inputIsbnEl.attr('data-id'),
                 getBookUrl = '/book/donate/' + bookId;
 
@@ -201,16 +288,16 @@ define(function(require, exports, module) {
                 type:'get',
                 dataType: 'json',
                 data:{
-                    loc:'1'
+                    location: locationId
                 },
-
                 cache: false,
                 success: $.proxy(function( data ){
                     if( data && data.code == 200 ){
-                        popupMsg.miniTipsAlert('享书成功:' +isbnStr );
+                        popupMsg.miniTipsAlert('捐书成功');
+                        window.location.href = '/book/detail/' + data.data.id;
                     }else{
                         
-                         popupMsg.miniTipsAlert('享书失败:' +isbnStr );
+                         popupMsg.miniTipsAlert('享书失败' );
                     }
                 },this)
 

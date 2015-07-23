@@ -31,6 +31,15 @@
 	                
 	              </ul>
 	            </li>
+	            <li class="J-counties dropdown">
+	              <a id="drop-counties" href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+	                <span class="J-text">区县</span>
+	                <span class="caret"></span>
+	              </a>
+	              <ul class="J-list dropdown-menu" aria-labelledby="drop2">
+	                
+	              </ul>
+	            </li>
           </ul>
  		</div>
 
