@@ -15,6 +15,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.alibaba.fastjson.JSON;
 import com.google.common.collect.Lists;
+import com.xinran.constant.ApplicationConstant;
 import com.xinran.controller.util.UserIdenetityUtil;
 import com.xinran.exception.AuthorizationException;
 
@@ -72,6 +73,7 @@ public class UserSessionInterceptor implements HandlerInterceptor {
 		Long currentUserIdFromSession = UserIdenetityUtil
 				.getCurrentUserId(request);
 		if (currentUserIdFromSession == null) {
+		
 			// see
 			// http://stackoverflow.com/questions/12713873/spring-3-1-how-do-you-send-all-exception-to-one-page
 			throw new AuthorizationException();

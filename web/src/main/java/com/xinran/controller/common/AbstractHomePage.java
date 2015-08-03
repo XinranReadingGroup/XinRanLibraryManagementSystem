@@ -3,12 +3,11 @@ package com.xinran.controller.common;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.xinran.constant.ApplicationConstant;
+import com.xinran.controller.util.UserIdenetityUtil;
 import com.xinran.pojo.Book;
 import com.xinran.pojo.User;
 import com.xinran.service.BookService;
@@ -37,10 +36,9 @@ public class AbstractHomePage {
         HomePageVO homePageVO = new HomePageVO();
 
         // String accessTokenFromRequest = request.getParameter(ApplicationConstant.ACCESS_TOKEN);
-        HttpSession session = request.getSession();
         // String accessTokenFromSession = (String) session.getAttribute(ApplicationConstant.ACCESS_TOKEN);
         // if (null != accessTokenFromSession && StringUtils.equals(accessTokenFromRequest, accessTokenFromSession)) {
-        Long userId = (Long) session.getAttribute(ApplicationConstant.USER_ID);
+        Long userId = UserIdenetityUtil.getCurrentUserId(request);
         if (null != userId) {
             homePageVO.setLogined(true);
             User user = userService.findUserByUserId(userId);

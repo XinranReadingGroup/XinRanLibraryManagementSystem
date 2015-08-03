@@ -10,7 +10,14 @@ import com.xinran.constant.ApplicationConstant;
 public abstract class UserIdenetityUtil {
 
     public static Long getCurrentUserId(HttpServletRequest request) {
-        return (Long) request.getSession().getAttribute(ApplicationConstant.USER_ID);
+        Long userId =  (Long) request.getSession().getAttribute(ApplicationConstant.USER_ID);
+        if(null != userId){
+            return userId;
+        }else{
+            String accessToken = request.getParameter(ApplicationConstant.ACCESS_TOKEN);
+              userId = MobileSessionHolder.getCurrentUserIdByAccessToken(accessToken); 
+              return userId;
+        }
     }
 
     public static String getCurrentAccessToken(HttpServletRequest request) {
