@@ -12,10 +12,16 @@ public abstract class MobileSessionHolder {
     private static Map<String, Long> map = new ConcurrentHashMap<String, Long>(1024);
 
     public  static void attachUserIdToAccessToken(String accessToken, Long userId) {
+        if(null == accessToken){
+            return;
+        }
         map.put(accessToken, userId);
     }
 
     public static Long getCurrentUserIdByAccessToken(String accessToken) {
+        if(null == accessToken){
+            return null;
+        }
         return map.get(accessToken);
     }
 }
