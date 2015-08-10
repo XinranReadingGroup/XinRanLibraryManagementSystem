@@ -61,7 +61,7 @@ public class UserController extends AbstractUserController {
         session.setAttribute(ApplicationConstant.USER_NAME, nickName);
 
         session.setAttribute(ApplicationConstant.ACCESS_TOKEN, radomAccessToken);
-        MobileSessionHolder.attachUserIdToAccessToken(radomAccessToken, userId);
+        
 
         Cookie cookie = new Cookie(ApplicationConstant.ACCESS_TOKEN, radomAccessToken);
         cookie.setHttpOnly(true);

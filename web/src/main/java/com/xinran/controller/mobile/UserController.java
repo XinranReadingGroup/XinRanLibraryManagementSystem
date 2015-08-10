@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.google.common.collect.Maps;
 import com.xinran.constant.ApplicationConstant;
 import com.xinran.controller.common.AbstractUserController;
+import com.xinran.controller.util.MobileSessionHolder;
 import com.xinran.exception.UserException;
 import com.xinran.vo.AjaxResult;
 import com.xinran.vo.builder.AjaxResultBuilder;
@@ -55,6 +56,7 @@ public class UserController extends AbstractUserController {
         String radomAccessToken = RandomStringUtils.randomAlphanumeric(10);
         session.setAttribute(ApplicationConstant.USER_ID, userId);
         session.setAttribute(ApplicationConstant.ACCESS_TOKEN, radomAccessToken);
+        MobileSessionHolder.attachUserIdToAccessToken(radomAccessToken, userId);
         jsonMap.put(ApplicationConstant.ACCESS_TOKEN, radomAccessToken);
         return AjaxResultBuilder.buildSuccessfulResult(jsonMap);
     }
