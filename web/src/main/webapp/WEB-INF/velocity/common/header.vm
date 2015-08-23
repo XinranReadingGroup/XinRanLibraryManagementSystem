@@ -38,7 +38,7 @@
     </div>
 </header>
 <script type="text/javascript">
-seajs.use('//www.xinrandushuba.com/js/common/common.js', function(Common){
+seajs.use('/js/common/common.js', function(Common){
     new Common().render();
 });
 document.domain = 'xinrandushuba.com';
