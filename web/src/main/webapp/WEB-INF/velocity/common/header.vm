@@ -13,10 +13,10 @@
         </div>
         <nav class="navbar-collapse bs-navbar-collapse collapse header-nav" aria-expanded="false" style="height: 1px;">
             <ul class="nav navbar-nav">
-                <li #if($!{currentPage == 'home'}) class="active" #end><a href="/">首页</a></li>
-                <li #if($!{currentPage == 'donate'}) class="active" #end><a href="/book/donate/new">捐赠图书</a></li>
-                <li #if($!{currentPage == 'share'}) class="active" #end><a href="/book/share/new">共享图书</a></li>
-                <li #if($!{currentPage == 'user'}) class="active" #end><a href="/user/profile">个人中心</a></li>
+                <li #if($!{currentPage == "home"}) class="active" #end><a href="/">首页</a></li>
+                <li #if($!{currentPage == "donate"}) class="active" #end><a href="/book/donate/new">捐赠图书</a></li>
+                <li #if($!{currentPage == "share"}) class="active" #end><a href="/book/share/new">共享图书</a></li>
+                <li #if($!{currentPage == "user"}) class="active" #end><a href="/user/profile">个人中心</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <li>
