@@ -22,7 +22,7 @@
 <body>
 
 <!-- 顶部 -->
-#set(currentPage = "share")
+#set($currentPage = "share")
 #parse("common/header.vm")
 
 

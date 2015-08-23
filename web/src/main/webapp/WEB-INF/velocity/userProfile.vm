@@ -21,7 +21,7 @@
 <body>
 
 <!-- 顶部 -->
-#set(currentPage = "user")
+#set($currentPage = "user")
 #parse("common/header.vm")
 
 <div class="body-wrap container-fluid" id="body-wrap">
