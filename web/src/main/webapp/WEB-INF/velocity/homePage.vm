@@ -13,21 +13,17 @@
 
     <!-- 公用静态资源 -->
     #parse("common/baseStyle.vm")
-    
+
     <!-- 页面静态资源 -->
     <link rel="stylesheet" type="text/css" href="/css/home.css" media="all">
 
 </head>
 <body>
-<div class="body-wrap container-fluid" id="body-wrap">
 
 <!-- 顶部 -->
 #parse("common/header.vm")
 
-
-<div class="login-ad">
-</div>
-
+<div class="main-stage container-fluid" id="main-stage">
 <div class="ui-banner-box">
     <div class="ui-center-box">
         <h3 class="ui-color-darkgreen">与其让你书落满灰尘 不如把它共享</h3>
@@ -50,12 +46,9 @@
             <div class="item-title"> $!{bookItem.title} </div>
         </a>
     </div>
-
     #end
-
 </div>
 </div>
-
 
 <script >
 seajs.use('/js/home.js', function( homeObj ){

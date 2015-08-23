@@ -2,11 +2,7 @@
     <div class="ui-footer-main">
         <p>&copy;2015  绿色兑换-欣然流动读书吧</p>
         <p>
-            <a rel="nofollow" href="#">关于读书吧</a>
-            - <a rel="nofollow" href="#">联系我们</a>
-            - <a rel="nofollow" href="#">免责声明</a>
-            - <a rel="nofollow" href="#"> 帮助中心</a>
-            - <a rel="nofollow" href="#"> APP下载</a>
+            <a href="#">关于读书吧</a> - <a href="#">联系我们</a> - <a href="#">免责声明</a> - <a href="#"> 帮助中心</a> - <a href="#"> APP下载</a>
         </p>
     </div>
 </footer>
