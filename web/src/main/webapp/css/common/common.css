@@ -162,3 +162,7 @@ body {
 .ui-footer-wrapper .ui-footer-link:link, .ui-footer-wrapper .ui-footer-link:visited {
 	color: #333;
 }
+
+.main-stage{
+	width: 960px;
+}

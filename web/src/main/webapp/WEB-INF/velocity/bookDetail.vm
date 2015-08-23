@@ -25,6 +25,7 @@
 #set($userInfo = $bookDetail.ownerUserVO)
 
 <!-- 顶部 -->
+#set(currentPage = "detail")
 #parse("common/header.vm")
 
 <div class="main-stage container-fluid" id="main-stage">

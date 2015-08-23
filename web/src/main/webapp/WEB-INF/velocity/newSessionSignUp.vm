@@ -9,7 +9,8 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black"/>
     <meta name="format-detection" content="telephone=no"/>
     <meta name="format-detection" content="email=no"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=0"/>
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=0"/>
 
     <!-- 公用静态资源 -->
     #parse("common/baseStyle.vm")
@@ -18,62 +19,64 @@
     <link rel="stylesheet" type="text/css" href="../../css/register.css" media="all">
 </head>
 <body>
-<div class="body-wrap container-fluid" id="body-wrap">
 
 <!-- 顶部 -->
+#set(currentPage = "register")
 #parse("common/header.vm")
 
-<div class="login-panel-wrap row">
-    <div class="login-panel">
-        <div class="login-banner">
-            <h1>欣然读书</h1>
-            <p>谈笑有鸿儒，往来无白丁。</p>
-        </div>
-        <div class="login-form">
-			<div class="form-horizontal">
-				<div class="form-group">
-					<div class="col-sm-8">
-						<input type="email" class="form-control" id="account" placeholder="邮箱或者手机">
-					</div>
-				</div>
-				<div class="form-group">
-					<div class="col-sm-8">
-						<input type="text" class="form-control" id="nickname" placeholder="昵称">
-					</div>
-				</div>
-				<div class="form-group">
-					<div class="col-sm-8">
-						<input type="password" class="form-control" id="password" placeholder="密码">
-					</div>
-				</div>
-				<div class="form-group">
-					<div class="col-sm-8">
-						<div class="checkbox">
-							<label>
-								<input type="checkbox"> <a href="#" target="_blank">同意网站协议</a>
-							</label>
-						</div>
-					</div>
-				</div>
-				<div class="form-group">
-					<div class="col-sm-8">
-						<button type="submit" class="btn btn-default" id="register-btn">注册</button>
-					</div>
-				</div>
+<div class="body-wrap container-fluid" id="body-wrap">
+    <div class="login-panel-wrap row">
+        <div class="login-panel">
+            <div class="login-banner">
+                <h1>欣然读书</h1>
+
+                <p>谈笑有鸿儒，往来无白丁。</p>
+            </div>
+            <div class="login-form">
+                <div class="form-horizontal">
+                    <div class="form-group">
+                        <div class="col-sm-8">
+                            <input type="email" class="form-control" id="account" placeholder="邮箱或者手机">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-8">
+                            <input type="text" class="form-control" id="nickname" placeholder="昵称">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-8">
+                            <input type="password" class="form-control" id="password" placeholder="密码">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-8">
+                            <div class="checkbox">
+                                <label>
+                                    <input type="checkbox"> <a href="#" target="_blank">同意网站协议</a>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-8">
+                            <button type="submit" class="btn btn-default" id="register-btn">注册</button>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
-</div>
 
-<div class="login-ad">
-</div>
+    <div class="login-ad">
+    </div>
 
 </div>
 <script type="text/javascript">
-seajs.use('//xinrandushuba.com/js/login.js', function(Login){
-    var login = new Login();
-    login.render();
-});
+    seajs.use('//xinrandushuba.com/js/login.js', function (Login) {
+        var login = new Login();
+        login.render();
+    });
 </script>
 </body>
 </html>
