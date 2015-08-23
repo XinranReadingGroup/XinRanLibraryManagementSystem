@@ -1,11 +1,10 @@
 <!-- 公用静态资源 -->
-#set($webHost = "//www.xinrandushuba.com")
-<link rel="stylesheet" type="text/css" href="$!{webHost}/css/common/bootstrap.css" media="all">
-<link rel="stylesheet" type="text/css" href="$!{webHost}/css/common/common.css" media="all">
-<link rel="stylesheet" type="text/css" href="$!{webHost}/js/common/artdialog/css/ui-dialog.css" media="all">
-<script src="$!{webHost}/js/common/sea.js"></script>
-<script src="$!{webHost}/js/common/jquery.js"></script>
-<script src="$!{webHost}/js/common/bootstrap.js"></script>
-<script src="$!{webHost}/js/common/seajs-css.js"></script>
-<script src="$!{webHost}/js/common/seajs-text.js"></script>
-<script src="$!{webHost}/js/common/sea-config.js"></script>
+<link rel="stylesheet" type="text/css" href="/css/common/bootstrap.css" media="all">
+<link rel="stylesheet" type="text/css" href="/css/common/common.css" media="all">
+<link rel="stylesheet" type="text/css" href="/js/common/artdialog/css/ui-dialog.css" media="all">
+<script src="/js/common/sea.js"></script>
+<script src="/js/common/jquery.js"></script>
+<script src="/js/common/bootstrap.js"></script>
+<script src="/js/common/seajs-css.js"></script>
+<script src="/js/common/seajs-text.js"></script>
+<script src="/js/common/sea-config.js"></script>

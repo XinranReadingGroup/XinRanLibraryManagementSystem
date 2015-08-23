@@ -15,7 +15,7 @@
     #parse("common/baseStyle.vm")
     
     <!-- 页面静态资源 -->
-    <link rel="stylesheet" type="text/css" href="$!{webHost}/css/home.css" media="all">
+    <link rel="stylesheet" type="text/css" href="/css/home.css" media="all">
 
 </head>
 <body>
@@ -58,7 +58,7 @@
 
 
 <script >
-seajs.use('$!{webHost}/js/home.js', function( homeObj ){
+seajs.use('/js/home.js', function( homeObj ){
     //页面处理初始化
     homeObj.init();
 });

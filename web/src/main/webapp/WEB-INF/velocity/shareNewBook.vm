@@ -15,8 +15,8 @@
     #parse("common/baseStyle.vm")
     
     <!-- 页面静态资源 -->
-    <link rel="stylesheet" type="text/css" href="$!{webHost}/css/register.css" media="all">
-    <link rel="stylesheet" type="text/css" href="$!{webHost}/css/share.css" media="all">
+    <link rel="stylesheet" type="text/css" href="/css/register.css" media="all">
+    <link rel="stylesheet" type="text/css" href="/css/share.css" media="all">
 </head>
 <body>
 <div class="body-wrap container-fluid" id="body-wrap">
@@ -119,8 +119,7 @@
 
 
 <script >
-seajs.use('$!{webHost}/js/share.js', function( shareObj ){
-    //页面处理初始化
+seajs.use('/js/share.js', function( shareObj ){
     shareObj.init();
 });
 </script>
