@@ -36,14 +36,10 @@
             </div>
             <div class="userinfo_middle">
                 <div class="userinfo_title">
-                    <span class="userinfo_username ">happyangelcp</span>
+                    <span class="userinfo_username ">$!{session.getAttribute("userName")}</span>
                 </div>
                 <div class="userinfo_num">
                     <div class="userinfo_userdata">
-                        <span class="userinfo_sex userinfo_sex_male"></span>
-                        <span>书龄: 300天</span>
-                        <span class="userinfo_split"></span>
-                        <span>分享书: 100册</span>
                     </div>
                 </div>
             </div>
