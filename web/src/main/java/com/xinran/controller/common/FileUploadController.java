@@ -48,7 +48,7 @@ public class FileUploadController {
                                          BindingResult result,
                        ModelMap modelMap, HttpServletRequest request, HttpServletResponse response) {
 
-        // 保存文件路径 profile
+        //TODO 保存文件路径 profile,在测试环境下支持选择在临时目录选择
         String saveDirectory = "/home/admin/xinran/upload/avatar/";
 
         MultipartFile multipartFile = uploadForm.getFile();
