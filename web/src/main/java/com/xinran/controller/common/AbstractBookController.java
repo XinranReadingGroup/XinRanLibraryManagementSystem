@@ -6,6 +6,7 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.commons.collections.CollectionUtils;
+import org.apache.commons.lang.math.NumberUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -67,7 +68,12 @@ public class AbstractBookController {
     @RequestMapping("/book/isbn/{isbn}")
     public @ResponseBody AjaxResult getBookByISBN(@PathVariable(value = "isbn") String isbn, HttpServletRequest request) {
         Book book = bookService.findBookByISBN(isbn);
-        return AjaxResultBuilder.buildSuccessfulResult(book);
+        if(null == book){
+            return AjaxResultBuilder.buildFailedResult(404, "it's a illegal isbn ?");
+        }else{
+            return AjaxResultBuilder.buildSuccessfulResult(book);
+
+        }
     }
 
     @RequestMapping("/book/donate/{bookId}")
@@ -395,6 +401,22 @@ public class AbstractBookController {
         }
         return basicUserVO;
     }
+    
+    @RequestMapping("/book/search")
+    public @ResponseBody AjaxResult search(@RequestParam("q") String  query,
+                                           HttpServletRequest request) {
+      boolean isIsbn=   NumberUtils.isNumber(query);
+      if(isIsbn){
+    	  //精确匹配
+    	  
+      }else{
+    	  //根据标题like查询
+      }
+      
+        return AjaxResultBuilder.buildSuccessfulResult(null);
+    }
 
+    
+   
 
 }

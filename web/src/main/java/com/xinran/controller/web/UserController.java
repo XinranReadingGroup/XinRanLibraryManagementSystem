@@ -19,7 +19,6 @@ import org.springframework.web.servlet.ModelAndView;
 import com.google.common.collect.Maps;
 import com.xinran.constant.ApplicationConstant;
 import com.xinran.controller.common.AbstractUserController;
-import com.xinran.controller.util.MobileSessionHolder;
 import com.xinran.exception.UserException;
 import com.xinran.vo.AjaxResult;
 import com.xinran.vo.builder.AjaxResultBuilder;

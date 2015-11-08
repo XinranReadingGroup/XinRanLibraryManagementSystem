@@ -79,7 +79,14 @@ public class BookServiceImpl implements BookService {
 			if(douBanData != null){
 				book = convertDouBanData2Book(douBanData);
 				try{
-					bookMapper.add(book);
+					//TODO 未来可以考虑在db层使用unique 来优化. 解决https://github.com/XinranReadingGroup/XinRanLibraryManagementSystem/issues/5 
+					synchronized(this){
+						book = bookMapper.findByISBN(isbn);
+						if(null ==book){
+							bookMapper.add(book);
+						}
+
+					}
 				}catch(Exception e){
 					LOG.error("Error to add book to db", e);
 				}
@@ -102,6 +109,17 @@ public class BookServiceImpl implements BookService {
 	private Book convertDouBanData2Book(JSONObject douBanData) {
 		
 		Book book = new Book();
+		
+		// ISBN
+		String isbn = douBanData.getString("isbn13");
+		if(StringUtils.isBlank(isbn)){
+			//说明该书的isbn不正确,或者在douban中未收录
+			return null;
+		}else{
+			book.setIsbn(isbn);
+		}
+		
+		
 		// 书名
 		book.setTitle(douBanData.getString("title"));
 		
@@ -125,8 +143,7 @@ public class BookServiceImpl implements BookService {
 		book.setPrice(douBanData.getString("price"));
 		// 出版社
 		book.setPublisher(douBanData.getString("publisher"));
-		// ISBN
-		book.setIsbn(douBanData.getString("isbn13"));
+		
 		// 概述
 		book.setSummary(douBanData.getString("summary"));
 		// 图片
