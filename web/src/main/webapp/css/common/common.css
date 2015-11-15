@@ -121,16 +121,10 @@ body{
 	margin-top: 20px;
 }
 
-/*  layout end */
-#footer {
-	border-top: none;
-	margin: 10px 0 0 0;
-	padding: 0 0 10px;
-	text-align: left;
-}
 
-/*box*/
+/*footer*/
 .ui-footer {
+	border-top: 1px solid #4d5256;
 	padding-bottom: 20px;
 }
 .ui-footer-wrapper {
