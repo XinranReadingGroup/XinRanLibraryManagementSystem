@@ -124,13 +124,11 @@ body{
 
 /*footer*/
 .ui-footer {
-	border-top: 1px solid #4d5256;
 	padding-bottom: 20px;
 }
 .ui-footer-wrapper {
 	background-color: #707880;
 	color: #e9ecf1;
-	font-weight: 900;
 }
 .ui-footer-wrapper p {
 	text-align: center;
