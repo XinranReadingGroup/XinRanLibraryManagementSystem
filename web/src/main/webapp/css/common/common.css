@@ -134,28 +134,22 @@ body{
 	margin-top: 10px;
 	padding-bottom: 20px;
 }
+.ui-footer-wrapper {
+	background-color: #707880;
+	color: #e9ecf1;
+	font-weight: 900;
+}
 .ui-footer-wrapper p {
 	text-align: center;
-}
-.ui-footer-wrapper {
-	background-color: whiteSmoke;
 }
 .ui-footer-main {
 	padding: 20px 0 0 0;
 }
-.ui-footer-wrapper hr {
-	border: 0 none;
-	border-top: 1px solid #ccc;
-	margin: 0;
-}
 .ui-footer-wrapper a:link, .ui-footer-wrapper a:visited {
-	color: #666;
+	color: #e9ecf1;
 	text-decoration: none;
 }
 .ui-footer-wrapper a:focus, .ui-footer-wrapper a:hover {
-	color: #333;
-	text-decoration: underline;
-}
-.ui-footer-wrapper .ui-footer-link:link, .ui-footer-wrapper .ui-footer-link:visited {
-	color: #333;
+	color: #e9ecf1;
+	text-decoration: none;
 }
