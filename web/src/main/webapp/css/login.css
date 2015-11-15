@@ -2,12 +2,12 @@
  * 
  */
 html{
-	background: #f1f5f8;
+	background: #e1e8f0;
 }
 .login-panel-wrap{
 	height: 360px;
 	position: relative;
-	background: #007903 url(../img/login/light.png) center 0 no-repeat;
+	background: #6bd4d0 url(../img/login/light.png) center 0 no-repeat;
 }
 .login-panel {
 	width: 740px;
@@ -22,7 +22,7 @@ html{
 	top: 50%;
 	left: 0;
 	margin-top: -60px;
-	color: #f7f7f7;
+	color: #fff;
 }
 .login-banner h1{
 	font-size: 56px;

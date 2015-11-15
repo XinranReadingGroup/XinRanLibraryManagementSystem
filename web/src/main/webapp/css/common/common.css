@@ -1,8 +1,6 @@
 html {
 	font-size: 14px;
 	font-family: "微软雅黑", arial, Helvetica, STHeiTi, sans-serif;
-}
-body {
 	background: #e1e8f0;
 }
 .main-stage{
@@ -16,9 +14,18 @@ body {
 	top: 0;
 	left: 0;
 	width: 100%;
-	background-color: #55585d;
+	background-color: #4d5256;
 	border-color: #4d5256;
-	color: #828999;
+	color: #fff;
+}
+.navbar-nav > .active > a, .navbar-nav > .active > a:hover, .navbar-nav > .active > a:focus{
+	background-color: #55585d;
+}
+.navbar-nav > li > a{
+	color: #fff;
+}
+.navbar-brand{
+	color: #fff;
 }
 .navbar-right .input-group {
 	width: 280px;
