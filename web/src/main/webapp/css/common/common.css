@@ -3,6 +3,10 @@ html {
 	font-family: "微软雅黑", arial, Helvetica, STHeiTi, sans-serif;
 }
 body {
+	background: #e1e8f0;
+}
+.main-stage{
+	width: 980px;
 }
 .navbar{
 	margin-bottom: 0;
@@ -12,28 +16,9 @@ body {
 	top: 0;
 	left: 0;
 	width: 100%;
-	background-color: #222;
-	border-color: #080808;
-}
-.header-wrap.ui-green {
-	position: fixed;
-	top: 0;
-	left: 0;
-	width: 100%;
-	background: -moz-linear-gradient(center top, #66cc00, white) repeat scroll 0 0 transparent;
-	background: -webkit-linear-gradient(top, #66cc00, white) repeat scroll 0 0 transparent;
-	background: -o-linear-gradient(top, #66cc00#66cc00 0, white 100%) repeat scroll 0 0 transparent;
-	background: -ms-linear-gradient(top, #66cc00 0, white 100%) repeat scroll 0 0 transparent;
-	border-bottom: 1px solid rgba(0, 0, 0, 0.17);
-}
-.bs-docs-nav .header-wrap.ui-green  .navbar-brand, .bs-docs-nav .header-wrap.ui-green  .navbar-nav>li>a {
-	font-weight: 500;
-	color: #333;
-}
-@media screen and (max-width:768px) {
-	.header-nav {
-		background-color: #fff;
-	}
+	background-color: #55585d;
+	border-color: #4d5256;
+	color: #828999;
 }
 .navbar-right .input-group {
 	width: 280px;
@@ -54,6 +39,9 @@ body {
 	clear: both;
 	visibility: hidden;
 }
+
+
+/* banner start */
 .ui-banner-box {
 	width: auto;
 	border: none;
@@ -161,8 +149,4 @@ body {
 }
 .ui-footer-wrapper .ui-footer-link:link, .ui-footer-wrapper .ui-footer-link:visited {
 	color: #333;
-}
-
-.main-stage{
-	width: 980px;
 }

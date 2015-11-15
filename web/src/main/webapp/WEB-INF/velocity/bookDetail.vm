@@ -9,14 +9,13 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black"/>
     <meta name="format-detection" content="telephone=no"/>
     <meta name="format-detection" content="email=no"/>
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=0"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=0"/>
 
     <!-- 公用静态资源 -->
     #parse("common/baseStyle.vm")
 
     <!-- 页面静态资源 -->
-    <link rel="stylesheet" type="text/css" href="../../css/detail.css" media="all">
+    <link rel="stylesheet" type="text/css" href="/css/detail.css" media="all">
 </head>
 <body>
 
@@ -41,68 +40,54 @@
                 <p class="xy-detail-info-title">
                     $bookDetailInfo.title
                 </p>
-
                 <p class="xy-detail-info-des">
                     <span class="xy-detail-info-des-left">共享日期:</span>
                     <span class="xy-detail-info-des-right">$date.format($bookBorrow.createdAt)</span>
                 </p>
-
                 <p class="xy-detail-info-des">
-        <span class="xy-detail-info-des-left">
-          #if ($bookDetailInfo.bookType)
-            捐书人:
-          #else
-            共享人:
-          #end
-        </span>
-        <span class="xy-detail-info-des-right">
-          $userInfo.nickName
-        </span>
+                    <span class="xy-detail-info-des-left">
+                        #if ($bookDetailInfo.bookType)
+                            捐书人:
+                        #else
+                            共享人:
+                        #end
+                    </span>
+                    <span class="xy-detail-info-des-right">$userInfo.nickName</span>
                 </p>
 
                 <p class="xy-detail-info-des">
                     <span class="xy-detail-info-des-left">目前状态:</span>
-        <span class="xy-detail-info-des-right xy-detail-book-status">
-        <!--  borrow_status
-              UNBORROWED(0), BORROWED(1)
-
-              book_type
-               DONATED(0), SHARED(1);  -->
-          #if ($bookBorrow.borrowStatus == 1)
-            已借
-          #else
-            可借
-          #end
-        </span>
+                    <span class="xy-detail-info-des-right xy-detail-book-status">
+                    #if ($bookBorrow.borrowStatus == 1)
+                        已借
+                    #else
+                        可借
+                    #end
+                    </span>
                 </p>
 
                 <p class="xy-detail-info-control">
-
                     ## 书是被共享的
                     #if($bookBorrow.bookType == 1)
-                    ##且共享人是当前登录用户
-                    #if($bookBorrow.ownerUserId == $!session.getAttribute("userId"))
-                    <a href="javascript:;" data-id="$bookBorrow.bookId" data-role="detail-dis-share"
-                       class="btn btn-default">取消共享</a>
-                    #end
+                        ##且共享人是当前登录用户
+                        #if($bookBorrow.ownerUserId == $!session.getAttribute("userId"))
+                            <a href="javascript:;" data-id="$bookBorrow.bookId" data-role="detail-dis-share" class="btn btn-default">取消共享</a>
+                        #end
                     #end
 
                     ## 书是被借的
                     #if($bookBorrow.bookType == 0)
-                    ## 书的状态是未借
-                    #if($bookBorrow.borrowStatus == 0)
-                    <a href="javascript:;" data-id="$bookBorrow.bookId" data-role="detail-borrow-book"
-                       class="btn btn-default btn-success">借书</a>
-                    #else
-                    ## 书的状态是已借
-                    ## 且借书人是自己
-                    #if($bookBorrow.borrowUserId == $session.getAttribute("userId"))
-                    <a href="javascript:;" data-id="$bookBorrow.bookId" data-role="detail-return-book"
-                       class="btn btn-default btn-success">还书</a>
+                        ## 书的状态是未借
+                        #if($bookBorrow.borrowStatus == 0)
+                        <a href="javascript:;" data-id="$bookBorrow.bookId" data-role="detail-borrow-book" class="btn btn-default btn-success">借书</a>
+                        #else
+                            ## 书的状态是已借
+                            ## 且借书人是自己
+                            #if($bookBorrow.borrowUserId == $session.getAttribute("userId"))
+                                <a href="javascript:;" data-id="$bookBorrow.bookId" data-role="detail-return-book" class="btn btn-default btn-success">还书</a>
+                            #end
+                        #end
                     #end
-                    #end
-                    #end
-
                 </p>
             </div>
         </div>
@@ -112,28 +97,22 @@
                 <span class="xy-detail-head">出版信息</span>
                 <span class="xy-detail-head-hr"></span>
             </p>
-
             <p class="xy-detail-publish-item">
                 <span class="xy-detail-publish-left">作者:</span>
                 <span class="xy-detail-publish-right">$bookDetailInfo.author</span>
             </p>
-
-
             <p class="xy-detail-publish-item">
                 <span class="xy-detail-publish-left">出版社:</span>
                 <span class="xy-detail-publish-right">$bookDetailInfo.publisher</span>
             </p>
-
             <p class="xy-detail-publish-item">
                 <span class="xy-detail-publish-left">定价:</span>
                 <span class="xy-detail-publish-right">$bookDetailInfo.price</span>
             </p>
-
             <p class="xy-detail-publish-item">
                 <span class="xy-detail-publish-left">ISBN:</span>
                 <span class="xy-detail-publish-right">$bookDetailInfo.isbn</span>
             </p>
-
         </div>
 
         <div class="xy-detail-content">
@@ -141,15 +120,12 @@
                 <span class="xy-detail-head">内容简介</span>
                 <span class="xy-detail-head-hr"></span>
             </p>
-
             <div class="xy-detail-content-info">
                 <div class="xy-detail-des">
                     <pre>$bookDetailInfo.summary</pre>
                 </div>
-
                 <p class="xy-detail-content-control">
-                    <a href="javascript:void(0);" class="xy-detail-content-seek"
-                       data-role="xy-detail-seek-more">{展开全部}</a>
+                    <a href="javascript:void(0);" class="xy-detail-content-seek" data-role="xy-detail-seek-more">{展开全部}</a>
                 </p>
             </div>
         </div>
@@ -159,102 +135,79 @@
                 <span class="xy-detail-head">借阅历史</span>
                 <span class="xy-detail-head-hr"></span>
             </p>
-
             <div class="xy-detail-history-content">
                 #if ($bookDetail.histroicBorrowedRecordList)
-                #foreach($history in $bookDetail.histroicBorrowedRecordList)
-                <a target="_blank" href="http://xinrandushuba.com/user/$history.id" class="xy-detail-history-item"
-                   data-id="$history.id">
-                    <img src="$history.imgId">
-        <span href="javascript:;" class="xy-detail-history-name">
-            $history.nickName
-        </span>
-                </a>
-                #end
+                    #foreach($history in $bookDetail.histroicBorrowedRecordList)
+                    <a target="_blank" href="http://xinrandushuba.com/user/$history.id" class="xy-detail-history-item" data-id="$history.id">
+                        <img src="$history.imgId">
+                        <span href="javascript:;" class="xy-detail-history-name">
+                            $history.nickName
+                        </span>
+                    </a>
+                    #end
                 #else
                 <p>
-        <span class="xy-detail-trips">
-        暂时没有人借阅此书
-      </span>
+                    <span class="xy-detail-trips">暂时没有人借阅此书</span>
                 </p>
-
                 #end
-
             </div>
         </div>
     </div>
+</div>
 
-    <div class="xy-footer">
-        <p class="xy-footer-trips">&copy;2015 绿色兑换－欣然流动读书吧</p>
-
-        <p class="xy-footer-trips">
-            <a href="javascript:;" class="xy-footer-link">关于读书吧</a>
-            &middot;
-            <a href="javascript:;" class="xy-footer-link">联系我们</a>
-            &middot;
-            <a href="javascript:;" class="xy-footer-link">免责声明</a>
-            &middot;
-            <a href="javascript:;" class="xy-footer-link">帮助中心</a>
-            &middot;
-            <a href="javascript:;" class="xy-footer-link">APP下载</a>
-        </p>
-    </div>
-
-
-    <div class="modal fade" id="disShare-modal" tabindex="-1" role="dialog" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                    <h4 class="modal-title">取消共享</h4>
-                </div>
-                <div class="modal-body">
-                    确认取消共享此图书吗？
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
-                    <button type="button" class="btn btn-primary" id="donate-book-btn">确定</button>
-                </div>
+<div class="modal fade" id="disShare-modal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title">取消共享</h4>
+            </div>
+            <div class="modal-body">
+                确认取消共享此图书吗？
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                <button type="button" class="btn btn-primary" id="donate-book-btn">确定</button>
             </div>
         </div>
     </div>
-    <div class="modal fade" id="borrow-modal" tabindex="-1" role="dialog" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                    <h4 class="modal-title">共享图书</h4>
-                </div>
-                <div class="modal-body">
-                    确认借阅此图书吗？
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
-                    <button type="button" class="btn btn-primary" id="borrow-book-btn">确定</button>
-                </div>
+</div>
+<div class="modal fade" id="borrow-modal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title">共享图书</h4>
+            </div>
+            <div class="modal-body">
+                确认借阅此图书吗？
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                <button type="button" class="btn btn-primary" id="borrow-book-btn">确定</button>
             </div>
         </div>
     </div>
-    <div class="modal fade" id="return-modal" tabindex="-1" role="dialog" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                    <h4 class="modal-title">还图书</h4>
-                </div>
-                <div class="modal-body">
-                    确认还此图书吗？
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
-                    <button type="button" class="btn btn-primary" id="return-book-btn">确定</button>
-                </div>
+</div>
+<div class="modal fade" id="return-modal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title">还图书</h4>
+            </div>
+            <div class="modal-body">
+                确认还此图书吗？
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                <button type="button" class="btn btn-primary" id="return-book-btn">确定</button>
             </div>
         </div>
     </div>

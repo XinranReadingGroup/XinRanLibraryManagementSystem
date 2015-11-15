@@ -29,11 +29,11 @@
                     </div>
                 </li>
                 #if($!{session.getAttribute("userName")})
-                <li class="active"><a href="/user/profile">$!{session.getAttribute("userName")}</a></li>
-                <li><a class="logout-btn" id="logout-btn">退出</a></li>
+                    <li class="active"><a href="/user/profile">$!{session.getAttribute("userName")}</a></li>
+                    <li><a class="logout-btn" id="logout-btn">退出</a></li>
                 #else
-                <li><a href="/user/session/signIn">登录</a></li>
-                <li><a href="/user/session/signUp">注册</a></li>
+                    <li><a href="/user/session/signIn">登录</a></li>
+                    <li><a href="/user/session/signUp">注册</a></li>
                 #end
             </ul>
         </nav>
