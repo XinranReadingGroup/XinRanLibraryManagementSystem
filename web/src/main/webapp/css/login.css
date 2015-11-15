@@ -7,7 +7,7 @@ html{
 .login-panel-wrap{
 	height: 360px;
 	position: relative;
-	background: #6bd4d0 url(../img/login/light.png) center 0 no-repeat;
+	background: #6bd4d0;
 }
 .login-panel {
 	width: 740px;
