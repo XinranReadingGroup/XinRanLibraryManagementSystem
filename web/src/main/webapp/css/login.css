@@ -42,14 +42,17 @@ body{
 	right: 0;
 	top: 50%;
 	margin-top: -90px;
-	color: #ddd;
+	color: #fff;
 }
 .login-form input{
 	width: 180px;
 }
 .login-form a{
-	color: #333;
+	color: #fff;
 }
 .login-form .active{
 	font-size: 18px;
+}
+.login-ad{
+	min-height: 260px;
 }

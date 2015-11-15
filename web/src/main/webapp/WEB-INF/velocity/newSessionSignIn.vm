@@ -62,13 +62,16 @@
 
         <div class="login-ad">
         </div>
-
     </div>
-    <script type="text/javascript">
-        seajs.use('//xinrandushuba.com/js/login.js', function (Login) {
-            var login = new Login();
-            login.render();
-        });
-    </script>
+</div>
+
+<script type="text/javascript">
+    seajs.use('//xinrandushuba.com/js/login.js', function (Login) {
+        var login = new Login();
+        login.render();
+    });
+</script>
+
+#parse("common/footer.vm")
 </body>
 </html>
