@@ -7,6 +7,9 @@ body{
 }
 .main-stage{
 	width: 980px;
+	background: #fff;
+	margin-bottom: 20px;
+	margin-top: 20px;
 }
 .navbar{
 	margin-bottom: 0;
