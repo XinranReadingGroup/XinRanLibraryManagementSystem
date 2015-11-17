@@ -14,7 +14,7 @@ public interface BookService {
     
     Book findBookByISBN(String isbn);
     
-    Book findBookByISBN(String isbn, boolean local);
+//    Book findBookByISBN(String isbn, boolean local);
     
     Book findBookById(Long id);
 

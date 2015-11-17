@@ -48,42 +48,44 @@ public class BookServiceImpl implements BookService {
 
     
 
-	@Override
-	public Book findBookByISBN(String isbn, boolean local) {
-		if(StringUtils.isBlank(isbn)){
-			return null;
-		}
-		Book book = bookMapper.findByISBN(isbn);
-		if(book == null && !local){
-			JSONObject douBanData = douBanService.getBookByISBN(isbn);
-			if(douBanData != null){
-				book = convertDouBanData2Book(douBanData);
-				try{
-					bookMapper.add(book);
-				}catch(Exception e){
-					LOG.error("Error to add book to db", e);
-				}
-			}
-		}
-		return book;
-	}
+//	@Override
+//	public Book findBookByISBN(String isbn, boolean local) {
+//		if(StringUtils.isBlank(isbn)){
+//			return null;
+//		}
+//		Book book = bookMapper.findByISBN(isbn);
+//		if(book == null && !local){
+//			JSONObject douBanData = douBanService.getBookByISBN(isbn);
+//			if(douBanData != null){
+//				book = convertDouBanData2Book(douBanData);
+//				try{
+//					bookMapper.add(book);
+//				}catch(Exception e){
+//					LOG.error("Error to add book to db", e);
+//				}
+//			}
+//		}
+//		return book;
+//	}
 	
 	@Override
 	public Book findBookByISBN(String isbn) {
 		if(StringUtils.isBlank(isbn)){
 			return null;
 		}
-		Book book = bookMapper.findByISBN(isbn);
-		if(book == null){
+		Book bookFromDB = bookMapper.findByISBN(isbn);
+		if(bookFromDB == null){
 			JSONObject douBanData = douBanService.getBookByISBN(isbn);
 			if(douBanData != null){
-				book = convertDouBanData2Book(douBanData);
+				Book bookFromDouban		 = convertDouBanData2Book(douBanData);
 				try{
-					//TODO 未来可以考虑在db层使用unique 来优化. 解决https://github.com/XinranReadingGroup/XinRanLibraryManagementSystem/issues/5 
+					//FIXME 未来可以考虑在db层使用unique 来优化. 解决https://github.com/XinranReadingGroup/XinRanLibraryManagementSystem/issues/5 
 					synchronized(this){
-						book = bookMapper.findByISBN(isbn);
-						if(null ==book){
-							bookMapper.add(book);
+						bookFromDB = bookMapper.findByISBN(isbn);
+						if(null ==bookFromDB && bookFromDouban!=null){
+							//豆瓣可能抓取失败,或者该书籍不存在时
+							Long bookId = bookMapper.add(bookFromDouban);
+							bookFromDouban = bookMapper.findById(bookId);
 						}
 
 					}
@@ -92,7 +94,7 @@ public class BookServiceImpl implements BookService {
 				}
 			}
 		}
-		return book;
+		return bookFromDB ;
 	}
 	
 	@Override
