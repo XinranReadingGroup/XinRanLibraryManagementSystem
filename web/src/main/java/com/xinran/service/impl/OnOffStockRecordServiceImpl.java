@@ -130,7 +130,7 @@ public class OnOffStockRecordServiceImpl implements OnOffStockRecordService {
         OnOffStockRecord record = new OnOffStockRecord();
         record.setOwnerUserId(userId);
         record.setBookType(BookType.SHARED.getType());
-        return onOffStockRecordMapper.findRecordsByUserId(record, page);
+        return onOffStockRecordMapper.findOnlyOnStockRecordListByCondition(record, page);
     }
 
     @Override
@@ -144,6 +144,15 @@ public class OnOffStockRecordServiceImpl implements OnOffStockRecordService {
         OnOffStockRecord record = new OnOffStockRecord();
         record.setOwnerUserId(userId);
         record.setBookType(BookType.DONATED.getType());
-        return onOffStockRecordMapper.findRecordsByUserId(record, page);
+        return onOffStockRecordMapper.findOnlyOnStockRecordListByCondition(record, page);
     }
+    
+    @Override
+    public List<OnOffStockRecord> findOnlyOnStockRecordList( Pagination page) {
+        if (page == null) {
+            page = new Pagination();
+        }
+        return onOffStockRecordMapper.findOnlyOnStockRecordList( page);
+    }
+    
 }

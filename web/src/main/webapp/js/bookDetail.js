@@ -36,7 +36,7 @@ define(function(require, exports, module) {
                 id = target.attr('data-id');
 
             $.ajax({
-                url: 'http://xinrandushuba.com/mobile/book/borrow/'+onOffStockId,
+                url: '//mobile/book/borrow/'+onOffStockId,
                 dataType: 'json',
                 timeout: 15000,
                 success: function(json){
@@ -66,7 +66,7 @@ define(function(require, exports, module) {
                 id = target.attr('data-id');
 
             $.ajax({
-                url: 'http://xinrandushuba.com/mobile/book/return/'+onOffStockId,
+                url: '//mobile/book/return/'+onOffStockId,
                 dataType: 'json',
                 timeout: 15000,
                 success: function(json){

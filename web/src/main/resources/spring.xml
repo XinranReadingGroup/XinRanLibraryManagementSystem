@@ -93,7 +93,7 @@
 		<property name="contentType">
 			<value>text/html;charset=UTF-8</value>
 		</property>
-		<property name="toolboxConfigLocation" value="/WEB-INF/velocity/veclocityToolbox.xml" />
+		<property name="toolboxConfigLocation" value="/WEB-INF/velocity/velocityToolbox.xml" />
 
 	</bean>
 

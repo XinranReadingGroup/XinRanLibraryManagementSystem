@@ -56,4 +56,6 @@ public interface OnOffStockRecordService {
      * @return
      */
     List<OnOffStockRecord> findDonated(Long userId, Pagination page);
+
+	List<OnOffStockRecord> findOnlyOnStockRecordList(Pagination page);
 }

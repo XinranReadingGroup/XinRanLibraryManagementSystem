@@ -31,6 +31,10 @@ public interface OnOffStockRecordMapper {
     
     // TODO add index
     @Select("SELECT * FROM on_off_stock_record WHERE off_stock_date is null and owner_user_id = #{record.ownerUserId} and book_type = #{record.bookType} order by id desc limit #{page.start},#{page.end}")
-    List<OnOffStockRecord> findRecordsByUserId(@Param("record") OnOffStockRecord record, @Param("page") Pagination page);
+    List<OnOffStockRecord> findOnlyOnStockRecordListByCondition(@Param("record") OnOffStockRecord record, @Param("page") Pagination page);
+    
+ // TODO add index
+    @Select("SELECT * FROM on_off_stock_record WHERE off_stock_date is null  order by id desc limit #{page.start},#{page.end}")
+    List<OnOffStockRecord> findOnlyOnStockRecordList( @Param("page") Pagination page);
 
 }

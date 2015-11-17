@@ -31,7 +31,7 @@ public class BookLocation {
     private Float  lat;
     private Float  lng;
 
-    private String type;     // 小范围, 国内的
+    private String type;     // 捐书, 享书
     
     private Long userId;     // 地址所属人Id
 

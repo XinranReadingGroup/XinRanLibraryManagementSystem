@@ -138,7 +138,7 @@
             <div class="xy-detail-history-content">
                 #if ($bookDetail.histroicBorrowedRecordList)
                     #foreach($history in $bookDetail.histroicBorrowedRecordList)
-                    <a target="_blank" href="http://xinrandushuba.com/user/$history.id" class="xy-detail-history-item" data-id="$history.id">
+                    <a target="_blank" href="//user/$history.id" class="xy-detail-history-item" data-id="$history.id">
                         <img src="$history.imgId">
                         <span href="javascript:;" class="xy-detail-history-name">
                             $history.nickName
