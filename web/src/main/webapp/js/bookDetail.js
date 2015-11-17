@@ -36,7 +36,7 @@ define(function(require, exports, module) {
                 id = target.attr('data-id');
 
             $.ajax({
-                url: '//mobile/book/borrow/'+onOffStockId,
+                url: '/book/borrow/'+onOffStockId,
                 dataType: 'json',
                 timeout: 15000,
                 success: function(json){
@@ -66,7 +66,7 @@ define(function(require, exports, module) {
                 id = target.attr('data-id');
 
             $.ajax({
-                url: '//mobile/book/return/'+onOffStockId,
+                url: '/book/return/'+onOffStockId,
                 dataType: 'json',
                 timeout: 15000,
                 success: function(json){
