@@ -65,7 +65,7 @@
             <div class="detail-title">你要捐赠的图书信息</div>
             <div class="clearfix">
                 <div class="box-pic">
-                    <img class="J-book-pic" src=""/>
+                    <img class="J-book-pic" src="/mock/img/ad.png"/>
                 </div>
                 <div class="box-info">
                     <p><span class="J-book-title book-title">欣然图书</span></p>

@@ -98,7 +98,6 @@ html{
 	border:1px solid #ddd;
 	padding: 1px;
 	overflow: hidden;
-	background: url(/mock/img/ad.png) no-repeat 0 0;
 }
 .book-detail-main .box-pic img{
 	height: 142px;
