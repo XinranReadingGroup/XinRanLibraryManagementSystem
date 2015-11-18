@@ -45,7 +45,7 @@ public abstract class AbstractUserController {
             userId = userService.signUpForMobileIndentifier(identifier, password, nickName);
             return doSignInOrSignUp(request, response, userId, nickName);
         } catch (UserException e) {
-            return AjaxResultBuilder.buildFailedResult(400, e.getCode());
+            return AjaxResultBuilder.buildFailedResult(e);
         }
 
     }
@@ -63,7 +63,7 @@ public abstract class AbstractUserController {
             String nickName = userService.findUserByUserId(userId).getNickName();
             return doSignInOrSignUp(request, response, userId, nickName);
         } catch (UserException e) {
-            return AjaxResultBuilder.buildFailedResult(400, e.getCode());
+            return AjaxResultBuilder.buildFailedResult(e);
         }
 
     }
@@ -95,7 +95,7 @@ public abstract class AbstractUserController {
             return AjaxResultBuilder.buildSuccessfulResult(userVO);
 
         } else {
-            throw new UserException(ExceptionCode.CantViewUserProfilerIfItIsNotYours.getCode());
+            throw new UserException(ExceptionCode.CantViewUserProfilerIfItIsNotYours );
         }
 
     }
@@ -118,7 +118,7 @@ public abstract class AbstractUserController {
             return AjaxResultBuilder.buildSuccessfulResult("ok");
 
         } else {
-            throw new UserException(ExceptionCode.CantViewUserProfilerIfItIsNotYours.getCode());
+            throw new UserException(ExceptionCode.CantViewUserProfilerIfItIsNotYours );
         }
 
     }

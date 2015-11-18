@@ -69,7 +69,7 @@ public class AbstractBookController {
     public @ResponseBody AjaxResult getBookByISBN(@PathVariable(value = "isbn") String isbn, HttpServletRequest request) {
         Book book = bookService.findBookByISBN(isbn);
         if(null == book){
-            return AjaxResultBuilder.buildFailedResult(404, "it's a illegal isbn ?");
+            return AjaxResultBuilder.buildFailedResult(404, "cant find the book by the isbn :" +isbn);
         }else{
             return AjaxResultBuilder.buildSuccessfulResult(book);
 
@@ -85,7 +85,7 @@ public class AbstractBookController {
         try {
             onStock = this.onStock(bookId, location, phone, request, BookType.DONATED);
         } catch (StockException e) {
-            return AjaxResultBuilder.buildFailedResult(400, e.getCode());
+            return AjaxResultBuilder.buildFailedResult(e);
         }
         return AjaxResultBuilder.buildSuccessfulResult(onStock);
     }
@@ -98,7 +98,7 @@ public class AbstractBookController {
         try {
             onStock = this.onStock(bookId, location, null, request, BookType.SHARED);
         } catch (StockException e) {
-            return AjaxResultBuilder.buildFailedResult(400, e.getCode());
+            return AjaxResultBuilder.buildFailedResult(e);
         }
         return AjaxResultBuilder.buildSuccessfulResult(onStock);
     }
@@ -112,7 +112,7 @@ public class AbstractBookController {
         try {
             onOffStockRecordService.offStock(record);
         } catch (StockException e) {
-            return AjaxResultBuilder.buildFailedResult(400, e.getCode());
+            return AjaxResultBuilder.buildFailedResult(e);
         }
         return AjaxResultBuilder.buildSuccessfulResult(null);
     }
@@ -123,11 +123,11 @@ public class AbstractBookController {
                                                                                                                          throws BorrowOrReturnValidationException {
         OnOffStockRecord onOffStockRecord = onOffStockRecordService.findOnOffStockRecordById(onStockId);
         if (null == onOffStockRecord) {
-            throw new BorrowOrReturnValidationException(ExceptionCode.InvalidOnOffStockId.getCode());
+            throw new BorrowOrReturnValidationException(ExceptionCode.InvalidOnOffStockId);
         } else {
             Integer borrowStatus = onOffStockRecord.getBorrowStatus();
             if (BorrowStatus.UNBORROWED.getStatus() != borrowStatus) {
-                throw new BorrowOrReturnValidationException(ExceptionCode.TheBookHasBeenBorrowed.getCode());
+                throw new BorrowOrReturnValidationException(ExceptionCode.TheBookHasBeenBorrowed);
             }
 
             Long currentUserId = UserIdenetityUtil.getCurrentUserId(request);
@@ -147,7 +147,7 @@ public class AbstractBookController {
         try {
             this.returnBook(onStockId, currentUserId);
         } catch (BorrowOrReturnValidationException e) {
-            return AjaxResultBuilder.buildFailedResult(400, e.getCode());
+            return AjaxResultBuilder.buildFailedResult(e);
         }
 
         return AjaxResultBuilder.buildSuccessfulResult(null);
@@ -320,18 +320,18 @@ public class AbstractBookController {
         OnOffStockRecord onOffStockRecord = onOffStockRecordService.findOnOffStockRecordById(onStockId);
 
         if (null == onOffStockRecord) {
-            throw new BorrowOrReturnValidationException(ExceptionCode.InvalidOnOffStockId.getCode());
+            throw new BorrowOrReturnValidationException(ExceptionCode.InvalidOnOffStockId);
         } else {
 
             Integer borrowStatus = onOffStockRecord.getBorrowStatus();
             if (BorrowStatus.BORROWED.getStatus() != borrowStatus) {
-                throw new BorrowOrReturnValidationException(ExceptionCode.TheBookShouldBeInBorrowedStatus.getCode());
+                throw new BorrowOrReturnValidationException(ExceptionCode.TheBookShouldBeInBorrowedStatus);
 
             }
 
             if (!onOffStockRecord.getBorrowUserId().equals(currentUserId)) {
                 throw new BorrowOrReturnValidationException(
-                                                            ExceptionCode.TheBookYouReturnedShouldBeBorrowedByYou.getCode());
+                                                            ExceptionCode.TheBookYouReturnedShouldBeBorrowedByYou );
 
             }
 

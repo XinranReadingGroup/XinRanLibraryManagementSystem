@@ -1,5 +1,7 @@
 package com.xinran.exception;
 
+import com.xinran.constant.ExceptionCode;
+
 /**
  * @author 高海军 帝奇 Apr 8, 2015 10:03:06 PM
  */
@@ -8,10 +10,15 @@ public class StockException extends XinranCheckedException {
     /**
      * @param code
      */
-    public StockException(int code) {
-        super(code);
+    public StockException(int code,String message) {
+    	super(code, message);
     }
-
+    
+    public StockException(ExceptionCode code) {
+    	super(code);
+    }
+    
+    
     /**
      *
      */

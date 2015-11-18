@@ -49,13 +49,6 @@ public class TestLogin {
         System.out.println(JSONObject.toJSONString(result));
     }
 
-    @Test
-    public void borrowFailed() {
-        Map<String, String> jsonMap = Maps.newHashMapWithExpectedSize(1);
-        jsonMap.put("memo", "borrowed already");
-
-        AjaxResult result = AjaxResultBuilder.buildFailedResult(700, jsonMap);
-        System.out.println(JSONObject.toJSONString(result));
-    }
+   
 
 }

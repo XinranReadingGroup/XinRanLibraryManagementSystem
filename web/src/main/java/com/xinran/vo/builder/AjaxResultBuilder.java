@@ -1,6 +1,7 @@
 
 package com.xinran.vo.builder;
 
+import com.xinran.exception.XinranCheckedException;
 import com.xinran.vo.AjaxResult;
 
 /**
@@ -20,5 +21,9 @@ public class AjaxResultBuilder {
         ajaxResult.setCode(code);
         ajaxResult.setData(data);
         return ajaxResult;
+    }
+    
+    public static AjaxResult buildFailedResult(XinranCheckedException e) {
+        return buildFailedResult(e.getCode(),e.getMessage());
     }
 }

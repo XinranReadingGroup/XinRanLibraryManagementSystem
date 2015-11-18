@@ -52,7 +52,7 @@ public class OnOffStockRecordServiceImpl implements OnOffStockRecordService {
             }
             // 如果提交者不为管理员，则不能帮别人进行捐、享书
             else if(!userService.isAdmin(submitter)){
-                throw new StockException(ExceptionCode.OnlyAdminHelpToOnStock.getCode());
+                throw new StockException(ExceptionCode.OnlyAdminHelpToOnStock );
             }
         }
         // 如果提交者存在，手机账户不存在
@@ -63,7 +63,7 @@ public class OnOffStockRecordServiceImpl implements OnOffStockRecordService {
             owner = submitter;
 
             // }else{
-            // throw new StockException(ExceptionCode.OnlyAdminHelpToOnStock.getCode());
+            // throw new StockException(ExceptionCode.OnlyAdminHelpToOnStock );
             // }
         }
         // 如果提交者不存在，手机账户存在，则以手机账户为准————目前不存在这种情况
@@ -71,7 +71,7 @@ public class OnOffStockRecordServiceImpl implements OnOffStockRecordService {
             owner = mobileUser;
         }
         if (owner == null) {
-            throw new StockException(ExceptionCode.NoOwnerWhenOnStock.getCode());
+            throw new StockException(ExceptionCode.NoOwnerWhenOnStock );
         }
         record.setOwnerUserId(owner.getId());
         Long id = onOffStockRecordMapper.add(record);
@@ -90,15 +90,15 @@ public class OnOffStockRecordServiceImpl implements OnOffStockRecordService {
         OnOffStockRecord exist = onOffStockRecordMapper.findOnOffStockRecordById(record.getId());
         // 如果未存在或者已下架
         if (exist == null) {
-            throw new StockException(ExceptionCode.NoStockToOff.getCode());
+            throw new StockException(ExceptionCode.NoStockToOff );
         }
         // 如果处于借出状态
         if (exist.getBorrowStatus() != null && exist.getBorrowStatus() == BorrowStatus.BORROWED.getStatus()) {
-            throw new StockException(ExceptionCode.ReturnItBeforeOffStock.getCode());
+            throw new StockException(ExceptionCode.ReturnItBeforeOffStock );
         }
         // 如果不是享书则无法下架
         if (exist.getBookType() != null && exist.getBookType() != BookType.SHARED.getType()) {
-            throw new StockException(ExceptionCode.OnlySharedCanOffStock.getCode());
+            throw new StockException(ExceptionCode.OnlySharedCanOffStock );
         }
         exist.setOffStockDate(new Date());
         onOffStockRecordMapper.updateOnOffStockRecord(exist);
