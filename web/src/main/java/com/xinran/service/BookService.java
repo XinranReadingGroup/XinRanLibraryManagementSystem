@@ -10,7 +10,7 @@ import com.xinran.pojo.Book;
  */
 public interface BookService {
 
-    public List<Book> findAllWithPagenate(int limit, int offset);
+    List<Book> findAllWithPagenate(int limit, int offset);
     
     Book findBookByISBN(String isbn);
     
@@ -19,5 +19,7 @@ public interface BookService {
     Book findBookById(Long id);
 
 	List<Book> queryByTitle(String keyword);
+
+    List<Book> queryByTitleWithPagenate(String keyword, int limit, int offset);
 
 }

@@ -32,7 +32,8 @@
                           summary    VARCHAR(4096),
                           price      VARCHAR(32),
                           publisher  VARCHAR(64)
-             );CREATE TABLE IF NOT EXISTS book_location
+             );
+             CREATE TABLE IF NOT EXISTS book_location
              (
                           id         BIGINT(20) UNSIGNED PRIMARY KEY auto_increment,
                           created_at DATETIME,
@@ -45,7 +46,8 @@
                           city     VARCHAR(128),
                           county   VARCHAR(128),
                           detail   VARCHAR(256)
-             );CREATE TABLE IF NOT EXISTS on_off_stock_record
+             );
+             CREATE TABLE IF NOT EXISTS on_off_stock_record
              (
                           id             BIGINT(20) UNSIGNED PRIMARY KEY auto_increment,
                           created_at     DATETIME,
@@ -60,7 +62,8 @@
                           borrow_id      BIGINT(20),
                           borrow_user_id BIGINT(20),
                           borrow_status  TINYINT
-             );CREATE TABLE IF NOT EXISTS borrow_return_record
+             );
+             CREATE TABLE IF NOT EXISTS borrow_return_record
              (
                           id              BIGINT(20) UNSIGNED PRIMARY KEY auto_increment,
                           created_at      DATETIME,
@@ -73,7 +76,8 @@
                           borrow_date     DATETIME,
                           return_date     DATETIME,
                           borrow_status   TINYINT
-             );CREATE TABLE IF NOT EXISTS score
+             );
+             CREATE TABLE IF NOT EXISTS score
              (
                           id           BIGINT(20) UNSIGNED PRIMARY KEY auto_increment,
                           created_at   DATETIME,

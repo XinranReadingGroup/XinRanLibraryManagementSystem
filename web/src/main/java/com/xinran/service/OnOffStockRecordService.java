@@ -19,8 +19,8 @@ public interface OnOffStockRecordService {
     OnOffStockRecord onStock(OnOffStockRecord record) throws StockException;
 
     /**
-     * 书本下架。目前下架逻辑通过offStockDate来标识。
-     * 如果该值不为空，则已经下架，否则在架。
+     * 书本下架。目前下架逻辑通过offStockDate来标识。 如果该值不为空，则已经下架，否则在架。
+     * 
      * @param record 记录Id
      * @throws StockException 如果下架失败会抛出异常
      */
@@ -28,15 +28,13 @@ public interface OnOffStockRecordService {
     
     OnOffStockRecord findOnOffStockRecordById(Long id);
 
+    List<OnOffStockRecord> findOnOffStockRecordByBookIds(Long... bookId);
+
     int updateOnOffStockRecord(OnOffStockRecord record);
 
     
     /**
-     * 获取用户的享书记录(含书本信息)。
-     * 
-     * 查询条件分为两部分，一个为业务条件，一个为分页数据。
-     * 业务条件中目前只支持UserId.
-     * 分页数据如果为空，则使用默认数据，第一页，每页20.
+     * 获取用户的享书记录(含书本信息)。 查询条件分为两部分，一个为业务条件，一个为分页数据。 业务条件中目前只支持UserId. 分页数据如果为空，则使用默认数据，第一页，每页20.
      * 
      * @param userId 用户Id
      * @param page 分页
@@ -45,11 +43,7 @@ public interface OnOffStockRecordService {
     List<OnOffStockRecord> findShared(Long userId, Pagination page);
     
     /**
-     *  获取用户的享书记录(含书本信息)。
-     * 
-     * 查询条件分为两部分，一个为业务条件，一个为分页数据。
-     * 业务条件中目前只支持UserId.
-     * 分页数据如果为空，则使用默认数据，第一页，每页20.
+     * 获取用户的享书记录(含书本信息)。 查询条件分为两部分，一个为业务条件，一个为分页数据。 业务条件中目前只支持UserId. 分页数据如果为空，则使用默认数据，第一页，每页20.
      * 
      * @param userId 用户Id
      * @param page 分页

@@ -14,9 +14,11 @@ import com.xinran.pojo.Book;
 public interface BookMapper {    
     
     @Select("SELECT * FROM book   order by created_at asc LIMIT #{limit} OFFSET #{offset} ")
-    public List<Book> findAllWithPagenate(@Param("limit") int limit, @Param("offset") int offset);
+    List<Book> findAllWithPagenate(@Param("limit") int limit, @Param("offset") int offset);
     
-    
+    @Select("SELECT * FROM book  where title like '%#{keyword}%' order by created_at asc LIMIT #{limit} OFFSET #{offset} ")
+    List<Book> queryByTitleWithPagenate(@Param("keyword") String keyword, @Param("limit") int limit,
+                                        @Param("offset") int offset);
 
     @Select("SELECT * FROM book WHERE isbn = #{isbn}")
     Book findByISBN(@Param("isbn") String isbn);

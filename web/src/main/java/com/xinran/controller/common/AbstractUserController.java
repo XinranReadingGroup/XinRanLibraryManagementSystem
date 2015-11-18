@@ -1,6 +1,5 @@
 package com.xinran.controller.common;
 
-import java.util.Objects;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -25,7 +24,7 @@ import com.xinran.vo.UserVO;
 import com.xinran.vo.builder.AjaxResultBuilder;
 
 /**
- * @author 高海军 帝奇 Apr 25, 2015 11:16:35 AM
+ * @author ��������� ������ Apr 25, 2015 11:16:35 AM
  */
 public abstract class AbstractUserController {
 
@@ -88,7 +87,7 @@ public abstract class AbstractUserController {
     public @ResponseBody AjaxResult viewOtherUser(@PathVariable(value = ApplicationConstant.USER_ID) Long userId,
                                              HttpServletRequest request) throws UserException {
         Long userIdInSession = UserIdenetityUtil.getCurrentUserId(request);
-        if (Objects.equals(userIdInSession, userId)) {
+        if (userIdInSession == userId) {
             User user = userService.findUserByUserId(userIdInSession);
             UserVO userVO = new UserVO();
             BeanUtils.copyProperties(user, userVO);
@@ -108,7 +107,7 @@ public abstract class AbstractUserController {
 
                                              HttpServletRequest request) throws UserException {
         Long userIdInSession = UserIdenetityUtil.getCurrentUserId(request);
-        if (Objects.equals(userIdInSession, userId)) {
+        if (userIdInSession == userId) {
             User user = userService.findUserByUserId(userIdInSession);
             user.setNickName(nickName);
             user.setImgId(imgId);

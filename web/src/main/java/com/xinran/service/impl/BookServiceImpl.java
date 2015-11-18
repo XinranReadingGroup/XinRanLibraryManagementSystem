@@ -79,7 +79,8 @@ public class BookServiceImpl implements BookService {
 			if(douBanData != null){
 				book = convertDouBanData2Book(douBanData);
 				try{
-					//TODO 未来可以考虑在db层使用unique 来优化. 解决https://github.com/XinranReadingGroup/XinRanLibraryManagementSystem/issues/5 
+                    // TODO 未来可以考虑在db层使用unique 来优化.
+                    // 解决https://github.com/XinranReadingGroup/XinRanLibraryManagementSystem/issues/5
 					synchronized(this){
 						book = bookMapper.findByISBN(isbn);
 						if(null ==book){
@@ -105,6 +106,16 @@ public class BookServiceImpl implements BookService {
 		return bookMapper.queryByTitle(keyword);
 	}
 
+    @Override
+    public List<Book> queryByTitleWithPagenate(String keyword, int limit, int offset) {
+        List<Book> books = null;
+        if (StringUtils.isBlank(keyword)) {
+            return books;
+        }
+
+        return bookMapper.queryByTitleWithPagenate(keyword, limit, offset);
+    }
+
 	
 	private Book convertDouBanData2Book(JSONObject douBanData) {
 		
@@ -113,17 +124,17 @@ public class BookServiceImpl implements BookService {
 		// ISBN
 		String isbn = douBanData.getString("isbn13");
 		if(StringUtils.isBlank(isbn)){
-			//说明该书的isbn不正确,或者在douban中未收录
+            // 说明该书的isbn不正确,或者在douban中未收录
 			return null;
 		}else{
 			book.setIsbn(isbn);
 		}
 		
 		
-		// 书名
+        // 书名
 		book.setTitle(douBanData.getString("title"));
 		
-		// 作者，如果多个作者，以逗号拼接
+        // 作者，如果多个作者，以逗号拼接
 		JSONArray authors = douBanData.getJSONArray("author");
 		if(authors != null && authors.size() == 1){
 			book.setAuthor(authors.getString(0));
@@ -139,14 +150,14 @@ public class BookServiceImpl implements BookService {
 		}else{
 			book.setAuthor(StringUtils.EMPTY);
 		}
-		// 价格
+        // 价格
 		book.setPrice(douBanData.getString("price"));
-		// 出版社
+        // 出版社
 		book.setPublisher(douBanData.getString("publisher"));
 		
-		// 概述
+        // 概述
 		book.setSummary(douBanData.getString("summary"));
-		// 图片
+        // 图片
         book.setImgUrl(douBanData.getString("image"));
 		return book;
 	}
