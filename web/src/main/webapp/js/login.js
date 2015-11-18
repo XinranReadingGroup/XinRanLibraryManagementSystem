@@ -56,7 +56,7 @@ define(function(require, exports, module) {
             uid = $('#account').val(),
             pswd = $('#password').val();
 
-        $('.form-group').removeClass('has-error);
+        $('.form-group').removeClass('has-error');
         $.post('/user/signIn', {
             'userIdentifier': uid,
             'password': pswd
