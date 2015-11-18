@@ -39,7 +39,8 @@
 
     <div id="book-share-box-root" class="book-share-box-root">
         <div class="book-isbn-sub-box">
-            <div class="box-pic"></div>
+            <div class="box-pic">
+            </div>
             <div class="box-info">
                 <h3>第一步：输入你私人书籍的条形码（ISBN码）:</h3>
 
