@@ -56,3 +56,12 @@ body{
 .login-ad{
 	min-height: 300px;
 }
+.help-block{
+	display: none;
+}
+.has-error .help-block{
+	display: block;
+}
+.has-error .control-label{
+	color: #fff;
+}
