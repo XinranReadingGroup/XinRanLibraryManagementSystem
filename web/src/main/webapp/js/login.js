@@ -66,6 +66,7 @@ define(function(require, exports, module) {
                 top.location.href = '/';
             } else{
                 $('.form-group').addClass('has-error');
+                $('#helpBlock').text(json.desc);
             }
         }, 'json');
     };
