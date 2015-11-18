@@ -78,12 +78,12 @@ public class AbstractBookController {
 
     @RequestMapping("/book/donate/{bookId}")
     public @ResponseBody AjaxResult donate(@PathVariable(value = "bookId") Long bookId,
-                                           @RequestParam("location") Long location,
+                                           @RequestParam("locationId") Long locationId,
                                            @RequestParam(value = "phone", required = false) String phone,
                                            HttpServletRequest request) {
         OnOffStockRecord onStock = null;
         try {
-            onStock = this.onStock(bookId, location, phone, request, BookType.DONATED);
+            onStock = this.onStock(bookId, locationId, phone, request, BookType.DONATED);
         } catch (StockException e) {
             return AjaxResultBuilder.buildFailedResult(e);
         }
@@ -92,11 +92,11 @@ public class AbstractBookController {
 
     @RequestMapping("/book/share/{bookId}")
     public @ResponseBody AjaxResult share(@PathVariable(value = "bookId") Long bookId,
-                                          @RequestParam("location") Long location,
+                                          @RequestParam("locationId") Long locationId,
                                           HttpServletRequest request) {
         OnOffStockRecord onStock = null;
         try {
-            onStock = this.onStock(bookId, location, null, request, BookType.SHARED);
+            onStock = this.onStock(bookId, locationId, null, request, BookType.SHARED);
         } catch (StockException e) {
             return AjaxResultBuilder.buildFailedResult(e);
         }
