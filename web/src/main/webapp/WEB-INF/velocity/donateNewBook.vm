@@ -9,14 +9,12 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black"/>
     <meta name="format-detection" content="telephone=no"/>
     <meta name="format-detection" content="email=no"/>
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=0"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=0"/>
 
     <!-- 公用静态资源 -->
     #parse("common/baseStyle.vm")
 
     <!-- 页面静态资源 -->
-    <link rel="stylesheet" type="text/css" href="/css/register.css" media="all">
     <link rel="stylesheet" type="text/css" href="/css/share.css" media="all">
 </head>
 <body>
