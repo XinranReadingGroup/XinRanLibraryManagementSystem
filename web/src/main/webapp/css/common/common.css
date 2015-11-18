@@ -20,12 +20,12 @@ body{
 	top: 0;
 	left: 0;
 	width: 100%;
-	background-color: #4d5256;
-	border-color: #4d5256;
+	background-color: #545652;
+	border-color: #545652;
 	color: #d5d5d5;
 }
 .navbar-inverse .navbar-nav > .active > a,.navbar-inverse .navbar-nav > .active > a:hover,.navbar-inverse .navbar-nav > .active > a:focus{
-	background-color: #545652;
+	background-color: #4d5256;
 }
 .navbar-inverse .navbar-nav > li > a{
 	color: #d5d5d5;

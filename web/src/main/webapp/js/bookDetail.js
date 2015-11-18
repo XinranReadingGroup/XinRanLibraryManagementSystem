@@ -23,7 +23,7 @@ define(function(require, exports, module) {
         var self = this,
             doc = document;
 
-        var onOffStockId =$('#main-stage');
+        var onOffStockId =$('#main-stage').data('id');
 
         $(doc).delegate('[data-role=detail-dis-share]', 'click', function(event) {
             $('#disShare-modal').modal('show');
