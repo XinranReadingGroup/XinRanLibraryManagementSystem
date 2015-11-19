@@ -56,6 +56,7 @@ define(function(require, exports, module) {
             uid = $('#account').val(),
             pswd = $('#password').val();
 
+        $('.form-group').removeClass('has-error');
         $.post('/user/signIn', {
             'userIdentifier': uid,
             'password': pswd
@@ -63,6 +64,9 @@ define(function(require, exports, module) {
             if (json.code == 200) {
                 Util.setCookie('accessToken', json.data.accessToken);
                 top.location.href = '/';
+            } else{
+                $('.form-group').addClass('has-error');
+                $('#helpBlock').text(json.desc);
             }
         }, 'json');
     };

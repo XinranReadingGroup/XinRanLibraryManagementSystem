@@ -82,7 +82,7 @@ define(function(require, exports, module) {
     	*/
     	getBookInfo:function(){
     		var isbnStr = this.$inputIsbnEl.val(),
-    			getBookUrl = '/mobile/book/isbn/' + isbnStr;
+    			getBookUrl = '/book/isbn/' + isbnStr;
 
     		$.ajax({
 				url: getBookUrl,
@@ -115,7 +115,7 @@ define(function(require, exports, module) {
                 type:'get',
                 dataType: 'json',
                 data:{
-                    loc:'1'
+                    locationId: '1'
                 },
                 cache: false,
                 success: $.proxy(function( data ){

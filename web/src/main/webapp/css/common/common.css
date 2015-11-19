@@ -7,6 +7,7 @@ body{
 }
 .main-stage{
 	width: 980px;
+	min-height: 600px;
 	background: #fff;
 	margin-bottom: 20px;
 	margin-top: 20px;
@@ -19,28 +20,25 @@ body{
 	top: 0;
 	left: 0;
 	width: 100%;
-	background-color: #4d5256;
-	border-color: #4d5256;
-	color: #fff;
+	background-color: #545652;
+	border-color: #545652;
+	color: #d5d5d5;
 }
 .navbar-inverse .navbar-nav > .active > a,.navbar-inverse .navbar-nav > .active > a:hover,.navbar-inverse .navbar-nav > .active > a:focus{
-	background-color: #55585d;
+	background-color: #4d5256;
 }
 .navbar-inverse .navbar-nav > li > a{
-	color: #fff;
+	color: #d5d5d5;
 }
 .navbar-inverse .navbar-brand{
-	color: #fff;
+	color: #d5d5d5;
 }
 .navbar-right .input-group {
 	width: 280px;
 	padding: 8px 20px;
 }
 .clearfix {
-	display: inline-table;
 	zoom: 1;
-	_height: 1%;
-	display: block;
 }
 .clearfix:after {
 	content: ".";
@@ -127,7 +125,7 @@ body{
 
 /*footer*/
 .ui-footer {
-	padding-bottom: 20px;
+	padding-bottom: 15px;
 }
 .ui-footer-wrapper {
 	background-color: #707880;

@@ -23,11 +23,11 @@ define(function(require, exports, module) {
         var self = this,
             doc = document;
 
-        var onOffStockId = window.location.href.substr(37,1);
+        var onOffStockId =$('#main-stage').data('id');
+
         $(doc).delegate('[data-role=detail-dis-share]', 'click', function(event) {
             $('#disShare-modal').modal('show');
         });
-
         $(doc).delegate('[data-role=detail-borrow-book]', 'click', function(event) {
             $('#borrow-modal').modal('show');
         });
@@ -91,8 +91,6 @@ define(function(require, exports, module) {
             });
 
         });
-
-
         $(doc).delegate('[data-role=detail-return-book]', 'click', function(event) {
             $('#return-modal').modal('show');
         });

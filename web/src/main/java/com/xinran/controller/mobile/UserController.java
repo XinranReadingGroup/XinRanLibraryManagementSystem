@@ -40,7 +40,7 @@ public class UserController extends AbstractUserController {
             return AjaxResultBuilder.buildSuccessfulResult("ok");
 
         } catch (UserException e) {
-            return AjaxResultBuilder.buildFailedResult(400, e.getCode());
+            return AjaxResultBuilder.buildFailedResult(e);
 
         }
 

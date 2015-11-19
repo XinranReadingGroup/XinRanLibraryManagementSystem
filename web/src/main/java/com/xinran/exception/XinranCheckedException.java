@@ -1,5 +1,7 @@
 package com.xinran.exception;
 
+import com.xinran.constant.ExceptionCode;
+
 /**
  * @author 高海军 帝奇 Apr 9, 2015 10:09:07 PM
  */
@@ -12,10 +14,15 @@ public class XinranCheckedException extends Exception {
 
     private int               code;
 
-    public XinranCheckedException(int code) {
-        super();
+    public XinranCheckedException(int code,String message) {
+        super(message);
         this.code = code;
     }
+    
+    public XinranCheckedException(ExceptionCode code) {
+       this(code.getCode(),code.getDesc());
+    }
+
 
     /**
      * 

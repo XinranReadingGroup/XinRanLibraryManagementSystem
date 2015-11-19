@@ -97,6 +97,7 @@ html{
 	margin-right: -100%;
 	border:1px solid #ddd;
 	padding: 1px;
+	overflow: hidden;
 }
 .book-detail-main .box-pic img{
 	height: 142px;

@@ -23,12 +23,10 @@ define(function(require, exports, module) {
         setCookie: function(name, value) {
             var nowDate = new Date();
             nowDate.setTime(nowDate.getTime() + 30 * 24 * 60 * 60 * 1000);
-            document.cookie = name + '=' + window.escape(value) + '; expires=' + nowDate.toUTCString() + '; path=/; domain=alibaba.com';
+            document.cookie = name + '=' + window.escape(value) + '; expires=' + nowDate.toUTCString() + '; path=/; domain=xinrandushuba.com';
         },
         clearCookie: function(name) {
-            var nowDate = new Date();
-            nowDate.setTime(nowDate.getTime());
-            document.cookie = name + '= ; expires=' + nowDate.toUTCString() + '; path=/; domain=alibaba.com';
+            document.cookie = name + '= ; expires=' +  new Date().toUTCString() + '; path=/; domain=xinrandushuba.com';
         }
     };
 

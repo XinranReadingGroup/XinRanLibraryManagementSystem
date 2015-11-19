@@ -56,7 +56,7 @@ public class UserServiceImpl implements UserService {
             userMapper.addUser(signUpUser);
             return signUpUser.getId();
         } else {
-            throw new UserException(ExceptionCode.IndentifierAlreadyBeenTaken.getCode());
+            throw new UserException(ExceptionCode.IndentifierAlreadyBeenTaken );
         }
 
     }
@@ -75,7 +75,7 @@ public class UserServiceImpl implements UserService {
 
         // TODO 非激活校验
         if (null == user) {
-            throw new UserException(ExceptionCode.InvalidUserNameOrPassowrd.getCode());
+            throw new UserException(ExceptionCode.InvalidUserNameOrPassowrd );
         }
 
         String actualHash = user.getPassword();
@@ -88,7 +88,7 @@ public class UserServiceImpl implements UserService {
             userMapper.updateUser(user);
             return user.getId();
         } else {
-            throw new UserException(ExceptionCode.InvalidUserNameOrPassowrd.getCode());
+            throw new UserException(ExceptionCode.InvalidUserNameOrPassowrd );
         }
 
     }

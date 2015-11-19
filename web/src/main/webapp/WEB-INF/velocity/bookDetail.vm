@@ -27,7 +27,7 @@
 #set($currentPage = "detail")
 #parse("common/header.vm")
 
-<div class="main-stage container-fluid" id="main-stage">
+<div class="main-stage container-fluid" id="main-stage" data-id="$bookBorrow.id">
     <div class="xy-detail">
         <div class="xy-detail-header">
             让书流动起来，传递知识分享爱，欣然读书吧
@@ -81,8 +81,7 @@
                         #if($bookBorrow.borrowStatus == 0)
                         <a href="javascript:;" data-id="$bookBorrow.id" data-role="detail-borrow-book" class="btn btn-default btn-success">借书</a>
                         #else
-                            ## 书的状态是已借
-                            ## 且借书人是自己
+                            ## 书的状态是已借且借书人是自己
                             #if($bookBorrow.borrowUserId == $session.getAttribute("userId"))
                                 <a href="javascript:;" data-id="$bookBorrow.id" data-role="detail-return-book" class="btn btn-default btn-success">还书</a>
                             #end

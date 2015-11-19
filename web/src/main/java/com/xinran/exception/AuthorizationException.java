@@ -11,8 +11,8 @@ public class AuthorizationException extends XinranCheckedException {
         return this;
     }
 
-    public AuthorizationException(int code) {
-        super(code);
+    public AuthorizationException(int code,String message) {
+    	super(code, message);
     }
 
 
