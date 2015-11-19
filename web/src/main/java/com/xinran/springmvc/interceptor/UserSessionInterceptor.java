@@ -15,7 +15,6 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.alibaba.fastjson.JSON;
 import com.google.common.collect.Lists;
-import com.xinran.constant.ApplicationConstant;
 import com.xinran.controller.util.UserIdenetityUtil;
 import com.xinran.exception.AuthorizationException;
 

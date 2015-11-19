@@ -71,7 +71,7 @@
                     #if($bookBorrow.bookType == 1)
                         ##且共享人是当前登录用户
                         #if($bookBorrow.ownerUserId == $!session.getAttribute("userId"))
-                            <a href="javascript:;" data-id="$bookBorrow.bookId" data-role="detail-dis-share" class="btn btn-default">取消共享</a>
+                            <a href="javascript:;" data-id="$bookBorrow.id" data-role="detail-dis-share" class="btn btn-default">取消共享</a>
                         #end
                     #end
 
@@ -79,12 +79,12 @@
                     #if($bookBorrow.bookType == 0)
                         ## 书的状态是未借
                         #if($bookBorrow.borrowStatus == 0)
-                        <a href="javascript:;" data-id="$bookBorrow.bookId" data-role="detail-borrow-book" class="btn btn-default btn-success">借书</a>
+                        <a href="javascript:;" data-id="$bookBorrow.id" data-role="detail-borrow-book" class="btn btn-default btn-success">借书</a>
                         #else
                             ## 书的状态是已借
                             ## 且借书人是自己
                             #if($bookBorrow.borrowUserId == $session.getAttribute("userId"))
-                                <a href="javascript:;" data-id="$bookBorrow.bookId" data-role="detail-return-book" class="btn btn-default btn-success">还书</a>
+                                <a href="javascript:;" data-id="$bookBorrow.id" data-role="detail-return-book" class="btn btn-default btn-success">还书</a>
                             #end
                         #end
                     #end

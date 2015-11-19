@@ -42,18 +42,18 @@ public class BookController extends AbstractBookController {
     }
     
     
-    @RequestMapping("/book/search/{keyword}")
-    public @ResponseBody AjaxResult search(@PathVariable(value = "keyword") String keyword, HttpServletRequest request) {
-    	List<Book> books = null;
-    	Book book = bookService.findBookByISBN(keyword, true);
-    	if(book != null){
-    		books = new ArrayList<Book>();
-    		books.add(book);
-    	}else{
-    		books = bookService.queryByTitle(keyword);
-    	}
-    	return AjaxResultBuilder.buildSuccessfulResult(books);
-    }
+//    @RequestMapping("/book/search/{keyword}")
+//    public @ResponseBody AjaxResult search(@PathVariable(value = "keyword") String keyword, HttpServletRequest request) {
+//    	List<Book> books = null;
+//    	Book book = bookService.findBookByISBN(keyword, true);
+//    	if(book != null){
+//    		books = new ArrayList<Book>();
+//    		books.add(book);
+//    	}else{
+//    		books = bookService.queryByTitle(keyword);
+//    	}
+//    	return AjaxResultBuilder.buildSuccessfulResult(books);
+//    }
 
 
 }

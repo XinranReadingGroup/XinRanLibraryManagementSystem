@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.google.common.collect.Lists;
 import com.xinran.controller.util.UserIdenetityUtil;
-import com.xinran.dao.mapper.OnOffStockRecordMapper;
 import com.xinran.pojo.Book;
 import com.xinran.pojo.OnOffStockRecord;
 import com.xinran.pojo.Pagination;
