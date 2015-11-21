@@ -111,7 +111,7 @@ public class OnOffStockRecordServiceImpl implements OnOffStockRecordService {
     }
 
     @Override
-    public List<OnOffStockRecord> findOnOffStockRecordByBookIds(Long[] bookIds) {
+    public List<OnOffStockRecord> findOnOffStockRecordByBookIds(Long... bookIds) {
         return onOffStockRecordMapper.findOnOffStockRecordByBookIds(bookIds);
     }
 

@@ -97,3 +97,4 @@
                           score_reason INT,
                           score_value  INT
              );
+             ALTER TABLE book ADD UNIQUE KEY `isbn` (`isbn`);
