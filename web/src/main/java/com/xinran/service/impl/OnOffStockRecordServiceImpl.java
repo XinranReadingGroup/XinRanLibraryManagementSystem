@@ -3,11 +3,11 @@ package com.xinran.service.impl;
 import java.util.Date;
 import java.util.List;
 
-import com.xinran.constant.BorrowStatus;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.xinran.constant.BookType;
+import com.xinran.constant.BorrowStatus;
 import com.xinran.constant.ExceptionCode;
 import com.xinran.dao.mapper.OnOffStockRecordMapper;
 import com.xinran.dao.mapper.UserMapper;
@@ -108,6 +108,11 @@ public class OnOffStockRecordServiceImpl implements OnOffStockRecordService {
     public OnOffStockRecord findOnOffStockRecordById(Long id) {
         OnOffStockRecord record = onOffStockRecordMapper.findOnOffStockRecordById(id);
         return record;
+    }
+
+    @Override
+    public List<OnOffStockRecord> findOnOffStockRecordByBookIds(Long[] bookIds) {
+        return onOffStockRecordMapper.findOnOffStockRecordByBookIds(bookIds);
     }
 
     /*
