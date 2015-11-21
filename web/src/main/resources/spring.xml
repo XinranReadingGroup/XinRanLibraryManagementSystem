@@ -50,10 +50,6 @@
 						<value>/book/search</value>
 						<value>/user/signUp</value>
                         <value>/user/signIn</value>
-                        <value>/book/share/records </value>
-                        <value>/book/return/records</value>
-                        <value>/book/borrow/records</value>
-                        <value>/book/donate/records</value>
                         <value>/book/detail</value>
                         <value>/book/isbn</value>
                         <value>/book/location</value>
@@ -68,6 +64,8 @@
 		<property name="exceptionMappings">
 			<props>
 				<prop key="com.xinran.exception.AuthorizationException">redirect:/user/session/signIn</prop>
+				<prop key="com.xinran.exception.MobileAuthorizationException">redirect:/mobile/user/session/signIn</prop>
+				
 			</props>
 		</property>
 	</bean>

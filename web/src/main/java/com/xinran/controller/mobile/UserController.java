@@ -13,9 +13,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.google.common.collect.Maps;
 import com.xinran.constant.ApplicationConstant;
+import com.xinran.constant.SystemResultCode;
 import com.xinran.controller.common.AbstractUserController;
 import com.xinran.controller.util.MobileSessionHolder;
 import com.xinran.exception.UserException;
@@ -62,6 +64,13 @@ public class UserController extends AbstractUserController {
     }
 
 
+    /**
+     * 登录页面
+     */
+    @RequestMapping("/user/session/signIn")
+    public @ResponseBody AjaxResult newSessionSignIn(HttpServletRequest request, HttpServletResponse response) {
+        return AjaxResultBuilder.buildFailedResult(SystemResultCode.UserNotLoginedInOrAccessTokenInvalid.getCode(), SystemResultCode.UserNotLoginedInOrAccessTokenInvalid.getDesc());
 
+    }
 
 }

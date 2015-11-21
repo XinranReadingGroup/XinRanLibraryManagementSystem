@@ -1,6 +1,6 @@
 package com.xinran.exception;
 
-import com.xinran.constant.ExceptionCode;
+import com.xinran.constant.SystemResultCode;
 
 /**
  * @author 高海军 帝奇 Apr 9, 2015 10:09:07 PM
@@ -19,7 +19,7 @@ public class XinranCheckedException extends Exception {
         this.code = code;
     }
     
-    public XinranCheckedException(ExceptionCode code) {
+    public XinranCheckedException(SystemResultCode code) {
        this(code.getCode(),code.getDesc());
     }
 

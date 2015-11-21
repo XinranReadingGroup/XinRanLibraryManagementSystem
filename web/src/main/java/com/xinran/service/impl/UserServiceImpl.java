@@ -16,7 +16,7 @@ import org.springframework.stereotype.Service;
 
 import com.google.common.base.Charsets;
 import com.google.common.hash.Hashing;
-import com.xinran.constant.ExceptionCode;
+import com.xinran.constant.SystemResultCode;
 import com.xinran.dao.mapper.UserMapper;
 import com.xinran.exception.UserException;
 import com.xinran.pojo.User;
@@ -56,7 +56,7 @@ public class UserServiceImpl implements UserService {
             userMapper.addUser(signUpUser);
             return signUpUser.getId();
         } else {
-            throw new UserException(ExceptionCode.IndentifierAlreadyBeenTaken );
+            throw new UserException(SystemResultCode.IndentifierAlreadyBeenTaken );
         }
 
     }
@@ -75,7 +75,7 @@ public class UserServiceImpl implements UserService {
 
         // TODO 非激活校验
         if (null == user) {
-            throw new UserException(ExceptionCode.InvalidUserNameOrPassowrd );
+            throw new UserException(SystemResultCode.InvalidUserNameOrPassowrd );
         }
 
         String actualHash = user.getPassword();
@@ -88,7 +88,7 @@ public class UserServiceImpl implements UserService {
             userMapper.updateUser(user);
             return user.getId();
         } else {
-            throw new UserException(ExceptionCode.InvalidUserNameOrPassowrd );
+            throw new UserException(SystemResultCode.InvalidUserNameOrPassowrd );
         }
 
     }

@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.xinran.constant.BookType;
 import com.xinran.constant.BorrowStatus;
-import com.xinran.constant.ExceptionCode;
+import com.xinran.constant.SystemResultCode;
 import com.xinran.dao.mapper.OnOffStockRecordMapper;
 import com.xinran.dao.mapper.UserMapper;
 import com.xinran.exception.StockException;
@@ -52,7 +52,7 @@ public class OnOffStockRecordServiceImpl implements OnOffStockRecordService {
             }
             // 如果提交者不为管理员，则不能帮别人进行捐、享书
             else if(!userService.isAdmin(submitter)){
-                throw new StockException(ExceptionCode.OnlyAdminHelpToOnStock );
+                throw new StockException(SystemResultCode.OnlyAdminHelpToOnStock );
             }
         }
         // 如果提交者存在，手机账户不存在
@@ -71,7 +71,7 @@ public class OnOffStockRecordServiceImpl implements OnOffStockRecordService {
             owner = mobileUser;
         }
         if (owner == null) {
-            throw new StockException(ExceptionCode.NoOwnerWhenOnStock );
+            throw new StockException(SystemResultCode.NoOwnerWhenOnStock );
         }
         record.setOwnerUserId(owner.getId());
         Long id = onOffStockRecordMapper.add(record);
@@ -90,15 +90,15 @@ public class OnOffStockRecordServiceImpl implements OnOffStockRecordService {
         OnOffStockRecord exist = onOffStockRecordMapper.findOnOffStockRecordById(record.getId());
         // 如果未存在或者已下架
         if (exist == null) {
-            throw new StockException(ExceptionCode.NoStockToOff );
+            throw new StockException(SystemResultCode.NoStockToOff );
         }
         // 如果处于借出状态
         if (exist.getBorrowStatus() != null && exist.getBorrowStatus() == BorrowStatus.BORROWED.getStatus()) {
-            throw new StockException(ExceptionCode.ReturnItBeforeOffStock );
+            throw new StockException(SystemResultCode.ReturnItBeforeOffStock );
         }
         // 如果不是享书则无法下架
         if (exist.getBookType() != null && exist.getBookType() != BookType.SHARED.getType()) {
-            throw new StockException(ExceptionCode.OnlySharedCanOffStock );
+            throw new StockException(SystemResultCode.OnlySharedCanOffStock );
         }
         exist.setOffStockDate(new Date());
         onOffStockRecordMapper.updateOnOffStockRecord(exist);

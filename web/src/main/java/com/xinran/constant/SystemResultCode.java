@@ -3,8 +3,10 @@ package com.xinran.constant;
 /**
  * @author 高海军 帝奇 Apr 9, 2015 10:18:41 PM
  */
-public enum ExceptionCode {
+public enum SystemResultCode {
 	
+	
+	UserNotLoginedInOrAccessTokenInvalid(403,"用户未登录,或者登录Token已经失效"),
 	
     // sign up
     IndentifierAlreadyBeenTaken(10000,"该账号已经被注册,请替换成一个新的账号"),
@@ -55,7 +57,7 @@ public enum ExceptionCode {
 		return desc;
 	}
 
-	private ExceptionCode(int code,String desc) {
+	private SystemResultCode(int code,String desc) {
         this.code = code;
         this.desc = desc;
     }

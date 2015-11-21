@@ -13,7 +13,7 @@
 		<springVersion>4.1.1.RELEASE</springVersion>
 	</properties>
 	<build>
-		<finalName>springMVC</finalName>
+		<finalName>xinranweb</finalName>
 		<plugins>
 			<plugin>
 				<artifactId>maven-compiler-plugin</artifactId>
@@ -37,7 +37,7 @@
 					<webAppConfig implementation="org.eclipse.jetty.maven.plugin.JettyWebAppContext">
       					<sessionHandler implementation="org.eclipse.jetty.server.session.SessionHandler">
        				   	 	<sessionManager implementation="org.eclipse.jetty.server.session.HashSessionManager">
-          						<storeDirectory>${project.basedir}/not_delete_jetty-sessions</storeDirectory>
+          						<storeDirectory>${project.basedir}/not_delete_jetty_sessions</storeDirectory>
           						<idleSavePeriod>1</idleSavePeriod>
         					</sessionManager>
      					 </sessionHandler>

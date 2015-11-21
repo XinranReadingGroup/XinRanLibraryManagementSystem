@@ -1,6 +1,6 @@
 package com.xinran.exception;
 
-import com.xinran.constant.ExceptionCode;
+import com.xinran.constant.SystemResultCode;
 
 /**
  * @author 高海军 帝奇 Apr 8, 2015 10:03:06 PM
@@ -14,7 +14,7 @@ public class BorrowOrReturnValidationException extends XinranCheckedException {
     	super(code, message);
     }
     
-    public BorrowOrReturnValidationException(ExceptionCode code) {
+    public BorrowOrReturnValidationException(SystemResultCode code) {
     	super(code);
     }
     

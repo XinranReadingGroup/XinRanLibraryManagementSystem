@@ -1,6 +1,6 @@
 package com.xinran.exception;
 
-import com.xinran.constant.ExceptionCode;
+import com.xinran.constant.SystemResultCode;
 
 /**
  * @author 高海军 帝奇 Apr 8, 2015 10:03:06 PM
@@ -14,7 +14,7 @@ public class UserException extends XinranCheckedException {
     	super(code, message);
     }
     
-    public UserException(ExceptionCode code) {
+    public UserException(SystemResultCode code) {
     	super(code);
     }
     

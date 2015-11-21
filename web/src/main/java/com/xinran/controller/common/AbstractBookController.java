@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.xinran.constant.BookType;
 import com.xinran.constant.BorrowStatus;
-import com.xinran.constant.ExceptionCode;
+import com.xinran.constant.SystemResultCode;
 import com.xinran.controller.util.UserIdenetityUtil;
 import com.xinran.event.Event;
 import com.xinran.event.impl.BookOnStockEvent;
@@ -123,11 +123,11 @@ public class AbstractBookController {
                                                                                                                          throws BorrowOrReturnValidationException {
         OnOffStockRecord onOffStockRecord = onOffStockRecordService.findOnOffStockRecordById(onStockId);
         if (null == onOffStockRecord) {
-            throw new BorrowOrReturnValidationException(ExceptionCode.InvalidOnOffStockId);
+            throw new BorrowOrReturnValidationException(SystemResultCode.InvalidOnOffStockId);
         } else {
             Integer borrowStatus = onOffStockRecord.getBorrowStatus();
             if (BorrowStatus.UNBORROWED.getStatus() != borrowStatus) {
-                throw new BorrowOrReturnValidationException(ExceptionCode.TheBookHasBeenBorrowed);
+                throw new BorrowOrReturnValidationException(SystemResultCode.TheBookHasBeenBorrowed);
             }
 
             Long currentUserId = UserIdenetityUtil.getCurrentUserId(request);
@@ -320,18 +320,18 @@ public class AbstractBookController {
         OnOffStockRecord onOffStockRecord = onOffStockRecordService.findOnOffStockRecordById(onStockId);
 
         if (null == onOffStockRecord) {
-            throw new BorrowOrReturnValidationException(ExceptionCode.InvalidOnOffStockId);
+            throw new BorrowOrReturnValidationException(SystemResultCode.InvalidOnOffStockId);
         } else {
 
             Integer borrowStatus = onOffStockRecord.getBorrowStatus();
             if (BorrowStatus.BORROWED.getStatus() != borrowStatus) {
-                throw new BorrowOrReturnValidationException(ExceptionCode.TheBookShouldBeInBorrowedStatus);
+                throw new BorrowOrReturnValidationException(SystemResultCode.TheBookShouldBeInBorrowedStatus);
 
             }
 
             if (!onOffStockRecord.getBorrowUserId().equals(currentUserId)) {
                 throw new BorrowOrReturnValidationException(
-                                                            ExceptionCode.TheBookYouReturnedShouldBeBorrowedByYou );
+                                                            SystemResultCode.TheBookYouReturnedShouldBeBorrowedByYou );
 
             }
 

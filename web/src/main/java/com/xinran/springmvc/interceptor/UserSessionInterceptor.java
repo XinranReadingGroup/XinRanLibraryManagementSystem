@@ -17,6 +17,7 @@ import com.alibaba.fastjson.JSON;
 import com.google.common.collect.Lists;
 import com.xinran.controller.util.UserIdenetityUtil;
 import com.xinran.exception.AuthorizationException;
+import com.xinran.exception.MobileAuthorizationException;
 
 public class UserSessionInterceptor implements HandlerInterceptor {
 	private Logger log = LoggerFactory.getLogger(this.getClass());
@@ -58,7 +59,13 @@ public class UserSessionInterceptor implements HandlerInterceptor {
 		log.debug("requestURI is {} ,noNeedLoginURLs is  ", requestURI,
 				JSON.toJSONString(noNeedLoginURLs));
 
-		if ("/".equals(requestURI) || "/mobile".equals(requestURI)) {
+		boolean mobileHomePage = "/mobile".equals(requestURI);
+		boolean webHomePage = "/".equals(requestURI);
+		
+		
+		boolean requestFromMobile = (-1 != requestURI.indexOf("mobile"));
+
+		if (webHomePage || mobileHomePage) {
 			return true;
 		}
 
@@ -73,9 +80,14 @@ public class UserSessionInterceptor implements HandlerInterceptor {
 				.getCurrentUserId(request);
 		if (currentUserIdFromSession == null) {
 		
+			if(requestFromMobile){
+				throw new MobileAuthorizationException();
+			}
 			// see
 			// http://stackoverflow.com/questions/12713873/spring-3-1-how-do-you-send-all-exception-to-one-page
 			throw new AuthorizationException();
+			
+			
 		} else {
 			return true;
 		}
