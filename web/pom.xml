@@ -27,14 +27,23 @@
 			<plugin>
 				<groupId>org.eclipse.jetty</groupId>
 				<artifactId>jetty-maven-plugin</artifactId>
-				<version>9.2.10.v20150310</version>
+				<version>9.3.6.v20151106</version>
 				<configuration>
 					<waitForChild>false</waitForChild>
 					<scanIntervalSeconds>0</scanIntervalSeconds>
 					<stopKey>stopApp</stopKey>
 					<stopPort>9988</stopPort>
 					<jvmArgs>-server -javaagent:${settings.localRepository}/org/springframework/spring-instrument/${springVersion}/spring-instrument-${springVersion}.jar -Xmx1g -Xms1g -XX:+HeapDumpOnOutOfMemoryError -XX:+UseG1GC -XX:+UnlockExperimentalVMOptions -XX:+AggressiveOpts -XX:MaxGCPauseMillis=400 -XX:GCPauseIntervalMillis=8000 -XX:+PrintGCTimeStamps -XX:+PrintGCApplicationStoppedTime -XX:+PrintGCApplicationConcurrentTime -Xloggc:gc.log -XX:+UseGCLogFileRotation -XX:NumberOfGCLogFiles=4 -XX:GCLogFileSize=10240K</jvmArgs>
+					<webAppConfig implementation="org.eclipse.jetty.maven.plugin.JettyWebAppContext">
+      					<sessionHandler implementation="org.eclipse.jetty.server.session.SessionHandler">
+       				   	 	<sessionManager implementation="org.eclipse.jetty.server.session.HashSessionManager">
+          						<storeDirectory>${project.basedir}/not_delete_jetty-sessions</storeDirectory>
+          						<idleSavePeriod>1</idleSavePeriod>
+        					</sessionManager>
+     					 </sessionHandler>
+    				</webAppConfig>
 				</configuration>
+				
 			</plugin>
 
 		</plugins>

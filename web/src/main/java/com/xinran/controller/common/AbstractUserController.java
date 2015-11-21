@@ -34,15 +34,16 @@ public abstract class AbstractUserController {
 
     @Autowired
     protected UserService userService;
-
+    
+    
+    //注册
     @RequestMapping("/user/signUp")
     public @ResponseBody AjaxResult signUp(@RequestParam(value = "userIdentifier") String identifier,
                                            @RequestParam(value = "password") String password,
                                            @RequestParam(value = "nickName") String nickName,
                                            HttpServletRequest request, HttpServletResponse response) {
-        Long userId;
         try {
-            userId = userService.signUpForMobileIndentifier(identifier, password, nickName);
+        	Long  userId = userService.signUpForMobileIndentifier(identifier, password, nickName);
             return doSignInOrSignUp(request, response, userId, nickName);
         } catch (UserException e) {
             return AjaxResultBuilder.buildFailedResult(e);
@@ -53,13 +54,14 @@ public abstract class AbstractUserController {
     protected abstract AjaxResult doSignInOrSignUp(HttpServletRequest request, HttpServletResponse response,
                                                    Long userId, String nickName);
 
+    
+    //登录
     @RequestMapping("/user/signIn")
     public @ResponseBody AjaxResult signIn(@RequestParam(value = "userIdentifier") String identifier,
                                            @RequestParam(value = "password") String password,
                                            HttpServletRequest request, HttpServletResponse response) {
-        Long userId;
         try {
-            userId = userService.signIn(identifier, password);
+        	Long   userId = userService.signIn(identifier, password);
             String nickName = userService.findUserByUserId(userId).getNickName();
             return doSignInOrSignUp(request, response, userId, nickName);
         } catch (UserException e) {
