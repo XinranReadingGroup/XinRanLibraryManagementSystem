@@ -1,65 +1,9 @@
-/**
- * 
- */
-html{
-	background: #f1f5f8;
-}
-
-.book-share-box-root{
-	margin: 0;
-	padding: 20px;
-	width: auto;
-	text-align: center;
-}
-.book-share-box-root .book-isbn-sub-box{
-	display: inline-block;
-	position: relative;
-	margin:0 auto;
-	text-align: left;
-	width: 800px;
-	padding: 10px;
+.xinran-desc{
+	height: 490px;
+	background: url(../img/share/desc.png);
 }
 
 
-.book-isbn-sub-box .box-pic{
-	float: left;
-	height: 160px;
-	width: 240px;
-	margin-right: -100%;
-	margin-top: 25px;
-	border:1px solid #ddd;
-}
-
-.book-isbn-sub-box .box-info{
-	float: left;
-	width: 100%;
-	padding: 10px 10px 10px 240px;
-}
-.book-isbn-sub-box .box-info h3{
-	color: #333;
-	font-size: 16px;
-	font-weight: 700;
-	margin: 10px 0 10px 45px;
-	padding: 0 0 10px 0;
-}
-
-
-.book-isbn-sub-box .field-item{
-	padding: 10px;
-	width: 100%;
-}
-.book-isbn-sub-box .field-item .title{
-	float: left;
-	width: 100px;
-	text-align: right;
-	margin-right: -100%;
-}
-.book-isbn-sub-box .field-item .content{
-	float: left;
-	width: 100%;
-	text-align: left;
-	padding: 0 0 0 100px;
-}
 
 
 .bookinfo-detail-root{
@@ -120,7 +64,6 @@ html{
 	margin: 10px 0 10px 45px;
 	padding: 0 0 10px 0;
 }
-
 .book-detail-main p{
 	margin: 0;
 	padding: 5px 0 0 0;
