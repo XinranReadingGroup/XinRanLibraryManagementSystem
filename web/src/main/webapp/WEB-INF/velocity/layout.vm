@@ -16,7 +16,6 @@
     <!-- 公用静态资源 -->
     <link rel="stylesheet" type="text/css" href="/css/common/bootstrap.css" media="all">
     <link rel="stylesheet" type="text/css" href="/css/common/common.css" media="all">
-    <link rel="stylesheet" type="text/css" href="/js/common/artdialog/css/ui-dialog.css" media="all">
     <script src="/js/common/sea.js"></script>
     <script src="/js/common/jquery.js"></script>
     <script src="/js/common/bootstrap.js"></script>
