@@ -57,15 +57,19 @@ body{
 	padding: 15px 0;
 	background-color: #707880;
 	color: #e9ecf1;
+    font-size: 14px;
 }
 .ui-footer p{
 	text-align: center;
+    padding: 0;
+    margin: 0;
+    line-height: 24px;
 }
 .ui-footer a:link, .ui-footer a:visited {
 	color: #e9ecf1;
 	text-decoration: none;
 }
 .ui-footer a:focus, .ui-footer a:hover {
-	color: #e9ecf1;
+	color: #fff;
 	text-decoration: none;
 }
