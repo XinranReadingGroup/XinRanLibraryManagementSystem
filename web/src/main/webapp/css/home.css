@@ -1,47 +1,7 @@
-.home-main-box-root{
-	display: block;
-	position: relative;
-	margin:0 auto;
-	text-align: left;
-	width: 100%;
-	padding: 10px;
-}
-
-.home-book-count-title{
-	color: #666;
-	padding: 5px 10px 5px 20px;
-}
-
-
-.home-main-box-root .book-item{
-	position: relative;
-	width: 132px;
-	height: auto;
-	float: left;
-	padding: 0 10px 5px 10px;
-	display: inline-block;
-	margin: 10px 5px;
-
-}
-.home-main-box-root .book-item .item-pic{
-	width: 102px;
-	height: 144px;
-	border:1px solid #ddd;
-
-}
-.home-main-box-root .book-item .item-pic img{
-	width: 100px;
-	height: 142px;
-}
-.home-main-box-root .book-item .item-title{
-	color: #666;
-	font-size: 12px;
-	height: 18px;
-	overflow: hidden;
-	padding: 5px;
-	line-height: 16px;
-	text-overflow:ellipsis;
-	-o-text-overflow:ellipsis;
-	white-space: nowrap;
-
+.home-title {
+	font-size: 18px;
+	font-weight: bold;
+	padding-bottom: 3px;
+	margin-bottom: 16px;
+	border-bottom: 1px solid #ddd;
 }

@@ -1,36 +1,22 @@
 /**
- * [首页部分]
- * @param  {[type]} require [description]
- * @param  {[type]} exports [description]
- * @param  {[type]} module) {               module.exports [description]
- * @return {[type]}         [description]
+ * @author  leiling.cp
+ * @version 1.0
+ * @desc    首页
  */
 
-define(function(require, exports, module) {
+define(function (require, exports, module) {
+    /**
+     * module dependenices
+     */
+    var $ = require('jquery');
 
-   var $ = require('jquery');
-
-
-
-   var homeObj = {
-
-   		hasInit:false,
-
-    	/**
-    		共享图书页面初始化
-    		@method init
-    	*/
-    	init:function(){
-
-    		if( this.hasInit === false ){
-    			this.hasInit = true;
-
-    		    $('[data-toggle="tooltip"]').tooltip();
-    		}
-    	}
-    	
+    var Home = function () {
 
     };
 
-    module.exports = homeObj;
+    Home.prototype.render = function(){
+
+    };
+
+    module.exports = Home;
 });
