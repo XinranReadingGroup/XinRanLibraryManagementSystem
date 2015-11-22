@@ -6,160 +6,123 @@
  * @return {[type]}         [description]
  */
 
-define(function(require, exports, module) {
+define(function (require, exports, module) {
+    var $ = require('jquery'),
+        popupMsg = require('/js/common/popup-msg/popup-msg.js');
 
-   var $ = require('jquery'),
-       popupMsg = require('/js/common/popup-msg/popup-msg.js');
+    var shareObj = {
+        hasInit: false,
+        init: function () {
 
+            if (this.hasInit === false) {
+                this.hasInit = true;
+                this.$rootEl = $('#book-share-box-root');
+                this.$inputIsbnEl = this.$rootEl.find('.J-input-isbn');
+                this.$inputDonorEl = this.$rootEl.find('.J-input-donor');
+                this.$btnGetBookEl = this.$rootEl.find('.J-btn-get-book');
 
-
-   var shareObj = {
-
-   		hasInit:false,
-
-    	/**
-    		共享图书页面初始化
-    		@method init
-    	*/
-    	init:function(){
-
-    		if( this.hasInit === false ){
-    			this.hasInit = true;
-    			this.$rootEl = $('#book-share-box-root');
-	    		this.$inputIsbnEl = this.$rootEl.find('.J-input-isbn');
-	    		this.$inputDonorEl = this.$rootEl.find('.J-input-donor');
-	    		this.$btnGetBookEl = this.$rootEl.find('.J-btn-get-book');
-
-	    		//book info
-	    		this.$bookInfoRootEl =  $('#bookinfo-box-root');
-	    		this.$btnShareBookEl = this.$bookInfoRootEl.find('.J-btn-share-book');
-	    		this.initEvents();
-               
-    		}
-    	},
-
-        /**
-            初始化dialog对象
-            @method initEvents
-        */
-        initDialog:function(){
-
-            popupMsg.runtimeConfirm('请确认选择？',$.proxy(function( isConfirm ){
-                if( isConfirm === true ){
-                    alert('yes');
-                }else{
-                     alert('no');
-                }
-
-            },this));
+                //book info
+                this.$bookInfoRootEl = $('#bookinfo-box-root');
+                this.$btnShareBookEl = this.$bookInfoRootEl.find('.J-btn-share-book');
+                this.initEvents();
+            }
         },
-    	/**
-    		事件初始化
-    		@method initEvents
-    	*/
-    	initEvents:function(){
+        initDialog: function () {
+            popupMsg.runtimeConfirm('请确认选择？', $.proxy(function (isConfirm) {
+                if (isConfirm === true) {
+                    alert('yes');
+                } else {
+                    alert('no');
+                }
+            }, this));
+        },
+        initEvents: function () {
+            this.$btnGetBookEl.on('click', $.proxy(function (ev) {
+                var $el = $(ev.currentTarget);
+                this.getBookInfo();
+            }, this));
 
-    		this.$btnGetBookEl.on('click',$.proxy(function( ev ){
-    			var $el = $(ev.currentTarget);
-    			this.getBookInfo();
-    		},this));
-
-    		this.$btnShareBookEl.on('click',$.proxy(function( ev ){
-    			 popupMsg.runtimeConfirm('确认共享此图书？',$.proxy(function( isConfirm ){
-                    if( isConfirm === true ){
+            this.$btnShareBookEl.on('click', $.proxy(function (ev) {
+                popupMsg.runtimeConfirm('确认共享此图书？', $.proxy(function (isConfirm) {
+                    if (isConfirm === true) {
                         this.saveShareBook();
                     }
 
-                },this));
-    		},this));
-
-
-
-    	},
-    	/**
-    		通过isbn 获得图书信息
-    		@method getBookInfo
-    	*/
-    	getBookInfo:function(){
-    		var isbnStr = this.$inputIsbnEl.val(),
-    			getBookUrl = '/book/isbn/' + isbnStr;
-
-    		$.ajax({
-				url: getBookUrl,
-				type:'get',
-				dataType: 'json',
-				cache: false,
-				success: $.proxy(function( data ){
-					if( data && data.code == 200 ){
-						this.setBookInfo( data.data );
-						this.changeToBookInfoUI( true);
-					}else{
-                        
-                         popupMsg.miniTipsAlert('无法找到对应的书籍信息：isbn' +isbnStr );
-                    }
-				},this)
-
-			});
-
-    	},
+                }, this));
+            }, this));
+        },
         /**
-            通过isbn 共享图书
-            @method saveShareBook
-        */
-        saveShareBook:function(){
+         * 通过isbn 获得图书信息
+         */
+        getBookInfo: function () {
+            var isbnStr = this.$inputIsbnEl.val(),
+                getBookUrl = '/book/isbn/' + isbnStr;
+
+            $.ajax({
+                url: getBookUrl,
+                type: 'get',
+                dataType: 'json',
+                cache: false,
+                success: $.proxy(function (data) {
+                    if (data && data.code == 200) {
+                        this.setBookInfo(data.data);
+                        this.changeToBookInfoUI(true);
+                    } else {
+
+                        popupMsg.miniTipsAlert('无法找到对应的书籍信息：isbn' + isbnStr);
+                    }
+                }, this)
+            });
+        },
+        /**
+         * 通过isbn 共享图书
+         */
+        saveShareBook: function () {
             var bookId = this.$inputIsbnEl.attr('data-id'),
                 getBookUrl = '/book/share/' + bookId;
 
             $.ajax({
                 url: getBookUrl,
-                type:'get',
+                type: 'get',
                 dataType: 'json',
-                data:{
+                data: {
                     locationId: '1'
                 },
                 cache: false,
-                success: $.proxy(function( data ){
-                    if( data && data.code == 200 ){
-                        popupMsg.miniTipsAlert('享书成功:' +isbnStr );
-                    }else{
-                        
-                         popupMsg.miniTipsAlert('享书失败:' +isbnStr );
+                success: $.proxy(function (data) {
+                    if (data && data.code == 200) {
+                        popupMsg.miniTipsAlert('享书成功:' + isbnStr);
+                    } else {
+
+                        popupMsg.miniTipsAlert('享书失败:' + isbnStr);
                     }
-                },this)
-
+                }, this)
             });
-
         },
-		/**
-    		设置图书信息
-    		@method setBookInfo
-    	*/
-    	setBookInfo:function( bookInfo ){
-
-    		this.$bookInfoRootEl.find('.J-book-pic').attr('src', bookInfo.imgUrl  );
-    		this.$bookInfoRootEl.find('.J-book-title').html(bookInfo.title );
-    		this.$bookInfoRootEl.find('.J-author').html( bookInfo.author || ''); 
-    		this.$bookInfoRootEl.find('.J-publisher').html( bookInfo.publisher );
-    		this.$bookInfoRootEl.find('.J-price').html( bookInfo.price );
-    		this.$bookInfoRootEl.find('.J-summary').html( bookInfo.summary  );
-            this.$inputIsbnEl.attr('data-id', bookInfo.id );
-
-    	},
-    	/**
-    		设置图书信息
-    		@method setBookInfo
-    	*/
-    	changeToBookInfoUI:function( isTrue ){
-    		if( isTrue === true ){
-    			this.$rootEl.hide();
-    			this.$bookInfoRootEl.show();
-    		}else{
-    			this.$rootEl.show();
-    			this.$bookInfoRootEl.hide();
-    		}
-
-    	}
-
+        /**
+         * 设置图书信息
+         */
+        setBookInfo: function (bookInfo) {
+            this.$bookInfoRootEl.find('.J-book-pic').attr('src', bookInfo.imgUrl);
+            this.$bookInfoRootEl.find('.J-book-title').html(bookInfo.title);
+            this.$bookInfoRootEl.find('.J-author').html(bookInfo.author || '');
+            this.$bookInfoRootEl.find('.J-publisher').html(bookInfo.publisher);
+            this.$bookInfoRootEl.find('.J-price').html(bookInfo.price);
+            this.$bookInfoRootEl.find('.J-summary').html(bookInfo.summary);
+            this.$inputIsbnEl.attr('data-id', bookInfo.id);
+        },
+        /**
+         * 设置图书信息
+         */
+        changeToBookInfoUI: function (isTrue) {
+            if (isTrue === true) {
+                this.$rootEl.hide();
+                this.$bookInfoRootEl.show();
+            } else {
+                this.$rootEl.show();
+                this.$bookInfoRootEl.hide();
+            }
+        }
     };
 
     module.exports = shareObj;

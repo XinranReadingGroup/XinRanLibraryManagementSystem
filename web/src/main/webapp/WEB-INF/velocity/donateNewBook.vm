@@ -44,7 +44,6 @@
 
 <script>
     seajs.use('/js/donate.js', function (donateObj) {
-        //页面处理初始化
         donateObj.init();
     });
 </script>
