@@ -24,7 +24,18 @@ public interface OnOffStockRecordMapper {
     @Select("SELECT * FROM on_off_stock_record WHERE off_stock_date is null and id = #{id}")
     public OnOffStockRecord findOnOffStockRecordById(@Param("id") Long id);
 
-    @Select("SELECT * FROM on_off_stock_record WHERE off_stock_date is null and book_id in{ #{bookIds})")
+//    @Select("SELECT * FROM on_off_stock_record WHERE off_stock_date is null and book_id =ANY(#{bookIds}::long[])")
+    @Select({"<script>",
+        " SELECT * ", 
+        "FROM on_off_stock_record ",
+        " WHERE off_stock_date is null and book_id  IN ", 
+          " <foreach item='item' index='index' collection='list' ",
+            " open='(' separator=',' close=')'> ",
+            " #{item} ",
+          " </foreach> ",
+        "</script>"})
+
+//    @SelectProvider(type = OnOffStockRecordMapperProvider.class, method="in")
     public List<OnOffStockRecord> findOnOffStockRecordByBookIds(@Param("bookIds") Long[] bookIds);
 
     @Update("update  on_off_stock_record set   updated_At = #{updatedAt},off_Stock_Date =  #{offStockDate},"
