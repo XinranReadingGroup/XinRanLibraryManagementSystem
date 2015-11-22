@@ -2,6 +2,10 @@
     width: 590px;
 }
 
+.home-content a{
+    color: #1686cc;
+}
+
 .home-sidebar {
     width: 310px;
     background: #000;
@@ -23,27 +27,31 @@
 }
 
 .c-book-list li {
-    float: none;
-    display: inline-block;
-    zoom: 1;
-    vertical-align: top;
+    float: left;
+    display: block;
     width: 295px;
-    margin-bottom: 30px
+    overflow: hidden;
+    margin-bottom: 30px;
 }
 
 .c-book-item .cover {
     float: left;
-    margin-right: 18px
+    margin-right: 18px;
+}
+
+.c-book-item .cover img{
+    width: 68px;
+    height: 96px;
 }
 
 .c-book-item .info {
     font-size: 12px;
-    margin-right: 20px
+    margin-right: 20px;
 }
 
 .c-book-item .info p {
     margin: 0;
-    word-wrap: break-word
+    word-wrap: break-word;
 }
 
 .c-book-item .title {
@@ -54,11 +62,7 @@
     background: 0
 }
 
-.c-book-item .extra-info {
-    color: #aaa
-}
-
-.c-book-item .reviews {
+.c-book-item .summary {
     color: #666;
     clear: both;
     padding-top: 15px
