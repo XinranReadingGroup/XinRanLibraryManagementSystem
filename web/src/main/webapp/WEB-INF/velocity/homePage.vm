@@ -3,46 +3,32 @@
 
 <link rel="stylesheet" type="text/css" href="/css/home.css" media="all">
 <div class="main-stage container-fluid" id="main-stage">
-    <h3 class="home-title">目前共有图书 $!{homepageVO.bookList.size()} 册</h3>
-    <ul class="home-content">
-        #foreach( $!bookItem in $!{homepageVO.bookList} )
-        <li class="book-item" title="$!{bookItem.title}">
-            <a target="_blank" href="/book/detail/$!{bookItem.id}">
-                <div class="item-pic">
-                    <img class="img-pic" src="$!{bookItem.imgUrl}"/>
+    <div class="home-content">
+        <h3 class="c-title">所有图书 <span>($!{homepageVO.bookList.size()}册)</span></h3>
+        <ul class="c-book-list">
+            #foreach( $!bookItem in $!{homepageVO.bookList} )
+            <li class="c-book-item">
+                <div class="cover">
+                    <a href="/book/detail/$!{bookItem.id}" target="_blank">
+                        <img src="$!{bookItem.imgUrl}" alt="$!{bookItem.title}" >
+                    </a>
                 </div>
-                <div class="item-title"> $!{bookItem.title}</div>
-                $!{bookItem}
-            </a>
-        </li>
-        <li class="book-item">
-            <div class="cover">
-                <a href="/book/detail/$!{bookItem.id}" target="_blank">
-                    <img src="$!{bookItem.imgUrl}" alt="$!{bookItem.title}" >
-                </a>
-            </div>
-            <div class="info">
-                <h4 class="title">
-                    <a href="/book/detail/$!{bookItem.id}" target="_blank">$!{bookItem.title}</a>
-                </h4>
-                <p class="entry-star-small">
-                    <span class="allstar45 star-img"></span>
-                    <span class="average-rating">9.0</span>
-                </p>
-                <p class="author">作者：[美] 安迪·威尔</p>
-                <p class="book-list-classification">
-                    科幻小说&nbsp;/&nbsp;外国文学&nbsp;/&nbsp;外星求生
-                </p>
-                <p class="extra-info">
-                    <span class="meta-label">有电子书</span>
-                </p>
-                <p class="reviews">
-                    硬科幻有种种，但能硬到《火星救援》这个程度的，并且还很好看的，真是不太多。
-                </p>
-            </div>
-        </li>
-        #end
-    </ul>
+                <div class="info">
+                    <h4 class="title">
+                        <a href="/book/detail/$!{bookItem.id}" target="_blank">$!{bookItem.title}</a>
+                    </h4>
+                    <p class="author">$!{bookItem.author}</p>
+                    <p class="publisher">$!{bookItem.publisher}</p>
+                    <p class="price">$!{bookItem.price}</p>
+                    <p class="summary">$!{bookItem.summary}</p>
+                </div>
+            </li>
+            #end
+        </ul>
+    </div>
+    <div class="home-sidebar">
+
+    </div>
 </div>
 
 <script>

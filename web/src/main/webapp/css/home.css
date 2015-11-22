@@ -1,7 +1,65 @@
-.home-title {
-	font-size: 18px;
-	font-weight: bold;
-	padding-bottom: 3px;
-	margin-bottom: 16px;
-	border-bottom: 1px solid #ddd;
+.home-content {
+    width: 590px;
+}
+
+.home-sidebar {
+    width: 310px;
+    background: #000;
+}
+
+/*content*/
+.c-title {
+    font-size: 18px;
+    font-weight: bold;
+    padding-bottom: 3px;
+    margin-bottom: 16px;
+    border-bottom: 1px solid #ddd;
+}
+
+.c-book-list {
+    list-style: none;
+    padding: 15px 0;
+    margin: 0;
+}
+
+.c-book-list li {
+    float: none;
+    display: inline-block;
+    zoom: 1;
+    vertical-align: top;
+    width: 295px;
+    margin-bottom: 30px
+}
+
+.c-book-item .cover {
+    float: left;
+    margin-right: 18px
+}
+
+.c-book-item .info {
+    font-size: 12px;
+    margin-right: 20px
+}
+
+.c-book-item .info p {
+    margin: 0;
+    word-wrap: break-word
+}
+
+.c-book-item .title {
+    font-size: 14px;
+    height: auto;
+    margin: 0;
+    line-height: auto;
+    background: 0
+}
+
+.c-book-item .extra-info {
+    color: #aaa
+}
+
+.c-book-item .reviews {
+    color: #666;
+    clear: both;
+    padding-top: 15px
 }
