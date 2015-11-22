@@ -8,7 +8,8 @@ $bookSearchResultList11
     <div class="home-content">
         <h3 class="c-title">图书搜索结果 <span>($!{bookSearchResultList.size()}册)</span></h3>
         <ul class="c-book-list clearfix">
-            #foreach( $!bookItem in $!{bookSearchResultList} )
+            #foreach( $!bookDetailObj in $!{bookSearchResultList} )
+            #set($bookItem = $!{bookDetailObj.book} )
             <li class="c-book-item">
                 <div class="cover">
                     <a href="/book/detail/$!{bookItem.id}" target="_blank">
