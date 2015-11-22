@@ -1,3 +1,7 @@
+#set($bookSearchResultList11 = $bookSearchResultList)
+
+$bookSearchResultList11
+
 
 <link rel="stylesheet" type="text/css" href="/css/home.css" media="all">
 <div class="main-stage container-fluid" id="main-stage">
