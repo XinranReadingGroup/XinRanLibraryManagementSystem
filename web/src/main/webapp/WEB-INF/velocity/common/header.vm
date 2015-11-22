@@ -19,16 +19,16 @@
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <li>
-                    <div class="input-group">
-                        <form id="headerSearchForm" method="get" name="searchForm" action="/book/search" >
-                            <input id="input-search-text" name="q" type="text" class="form-control" placeholder="Search for...">
-                            <span class="input-group-btn">
-                                <button class="btn btn-default" type="submit"><span class="glyphicon glyphicon-search"></span>
-                                </button>
-                            </span>
-                        </form>
-
-                    </div>
+                    <form id="headerSearchForm" method="get" name="searchForm" action="/book/search" >
+                        <div class="input-group">
+                                <input id="input-search-text" name="q" type="text" class="form-control" placeholder="Search for...">
+                                <span class="input-group-btn">
+                                    <button class="btn btn-default" type="submit"><span class="glyphicon glyphicon-search"></span>
+                                    </button>
+                                </span>
+                            </form>
+                        </div>
+                    </form>
                 </li>
                 #if($!{session.getAttribute("userName")})
                     <li class="active"><a href="/user/profile">$!{session.getAttribute("userName")}</a></li>
