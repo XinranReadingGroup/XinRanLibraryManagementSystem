@@ -134,7 +134,8 @@ define(function (require, exports, module) {
     };
 
     Donate.prototype.getLocationId = function () {
-        var provinceId = $('.j-provinces').val(),
+        var self = this;
+            provinceId = $('.j-provinces').val(),
             cityId = $('.j-citys').val(),
             countiesId = $('.j-counties').val();
 
