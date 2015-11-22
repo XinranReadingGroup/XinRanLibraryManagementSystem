@@ -2,10 +2,13 @@
 package com.xinran.controller.web;
 
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -40,5 +43,13 @@ public class BookController extends AbstractBookController {
     public ModelAndView getBookById(@PathVariable(value = "id") Long id, HttpServletRequest request) {
         BookDetail bookDetail = super.buildBookDetail(id);
         return new ModelAndView("bookDetail", "bookDetail", bookDetail);
+    }
+    
+    @RequestMapping("/book/search")
+    public ModelAndView   search(@RequestParam("q") String  query,
+                                           HttpServletRequest request) {
+      List<BookDetail> bookDetailList = super.buildSearchResult(query);
+
+      return new ModelAndView("bookSearchResultList", "bookSearchResultList", bookDetailList);
     }
 }

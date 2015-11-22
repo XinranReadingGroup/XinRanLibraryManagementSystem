@@ -402,35 +402,34 @@ public class AbstractBookController {
         return basicUserVO;
     }
     
-    @RequestMapping("/book/search")
-    public @ResponseBody AjaxResult search(@RequestParam("q") String  query,
-                                           HttpServletRequest request) {
-      boolean isIsbn=   NumberUtils.isNumber(query);
-        List<OnOffStockRecord> onOffStockRecordList = null;
+  
 
-      if(isIsbn){
-            // 精确匹配
-            Book book = bookService.findBookByISBN(query);
-            onOffStockRecordList = onOffStockRecordService.findOnOffStockRecordByBookIds(book.getId());
-      }else{
-            // 根据标题like查询
-            List<Book> bookList = bookService.queryByTitleWithPagenate(query, 10, 0);
-            if (CollectionUtils.isNotEmpty(bookList)) {
-                Long[] bookIds = new Long[bookList.size()];
-                for (int i = 0; i < bookList.size(); i++) {
-                    bookIds[i]=bookList.get(i).getId();
-                }
-                onOffStockRecordList = onOffStockRecordService.findOnOffStockRecordByBookIds(bookIds);
-            }
-      }
-      
-        List<BookDetail> bookDetailList = new ArrayList<BookDetail>();
-        if (CollectionUtils.isNotEmpty(onOffStockRecordList)) {
-            for (OnOffStockRecord onOffStockRecord : onOffStockRecordList) {
-                bookDetailList.add(buildBookDetail(onOffStockRecord.getId()));
-            }
-        }
+	protected List<BookDetail> buildSearchResult(String query) {
+		boolean isIsbn=   NumberUtils.isNumber(query);
+		    List<OnOffStockRecord> onOffStockRecordList = null;
 
-        return AjaxResultBuilder.buildSuccessfulResult(bookDetailList);
-    }
+		  if(isIsbn){
+		        // 精确匹配
+		        Book book = bookService.findBookByISBN(query);
+		        onOffStockRecordList = onOffStockRecordService.findOnOffStockRecordByBookIds(book.getId());
+		  }else{
+		        // 根据标题like查询
+		        List<Book> bookList = bookService.queryByTitleWithPagenate(query, 10, 0);
+		        if (CollectionUtils.isNotEmpty(bookList)) {
+		            Long[] bookIds = new Long[bookList.size()];
+		            for (int i = 0; i < bookList.size(); i++) {
+		                bookIds[i]=bookList.get(i).getId();
+		            }
+		            onOffStockRecordList = onOffStockRecordService.findOnOffStockRecordByBookIds(bookIds);
+		        }
+		  }
+		  
+		    List<BookDetail> bookDetailList = new ArrayList<BookDetail>();
+		    if (CollectionUtils.isNotEmpty(onOffStockRecordList)) {
+		        for (OnOffStockRecord onOffStockRecord : onOffStockRecordList) {
+		            bookDetailList.add(buildBookDetail(onOffStockRecord.getId()));
+		        }
+		    }
+		return bookDetailList;
+	}
 }

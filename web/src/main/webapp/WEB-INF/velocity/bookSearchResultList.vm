@@ -1,0 +1,3 @@
+#set($bookSearchResultList11 = $bookSearchResultList)
+
+$bookSearchResultList11
