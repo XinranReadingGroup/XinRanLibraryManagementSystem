@@ -46,6 +46,8 @@ public enum SystemResultCode {
     // return 还书时,只能还自己借的书
     TheBookYouReturnedShouldBeBorrowedByYou(40001,"还书时,只能还自己借的书"),
 
+    // 错误的活动状态查询
+    WrongActivityQueryStatus(50001,"错误的活动状态查询");
 
     ;
 

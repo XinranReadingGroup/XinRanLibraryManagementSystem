@@ -22,14 +22,17 @@ public interface ActivityMapper {
     @Select("SELECT * FROM activity order by id desc limit #{page.start},#{page.end}")
     List<Activity> findActivities(@Param("page") Pagination page);
 
-    @Insert("insert into activity (created_At, updated_At,title, memo,start_date,end_date,type,action,score)  values ( now(),now(),#{title}, #{memo},"
-            + " #{startDate}, #{endDate}, #{type}, #{action}, #{score} )")
+    @Select("SELECT * FROM activity where status=0 and now() > start_date and now() < end_data order by id desc limit #{page.start},#{page.end}")
+    List<Activity> findAvailableActivities(@Param("page") Pagination page);
+
+    @Insert("insert into activity (created_At, updated_At,title, memo,start_date,end_date,type,action,score,status,img_id)  values ( now(),now(),#{title}, #{memo},"
+            + " #{startDate}, #{endDate}, #{type}, #{action}, #{score}, #{status}, #{imgId} )")
     // @Options(useGeneratedKeys = true, keyProperty = "id")
     @Options(useGeneratedKeys = true)
     public void addActivity(Activity activity);
 
     @Update("update  activity set   updated_At = #{updatedAt},title =  #{title}, memo = #{memo},start_date=#{startDate},"
-            + " end_date=#{endDate},type=#{type}, action= #{action},score =#{score} where id = #{id}")
+            + " end_date=#{endDate},type=#{type}, action= #{action},score =#{score},status=#{status},img_id=#{imgId} where id = #{id}")
     public int updateActivity(Activity activity);
 
 }

@@ -92,9 +92,14 @@
                           id           BIGINT(20) UNSIGNED PRIMARY KEY auto_increment,
                           created_at   DATETIME,
                           updated_at   DATETIME,
-                          user_id      BIGINT(20),
-                          fact_id      BIGINT(20),
-                          score_reason INT,
-                          score_value  INT
+                          title        VARCHAR(128),
+                          memo         VARCHAR(4096),
+                          start_date   DATETIME,
+                          end_date     DATETIME,
+                          type         VARCHAR(16),
+                          action       VARCHAR(16),
+                          score        BIGINT(20),
+                          status       INT,
+                          img_id       VARCHAR(128)
              );
              ALTER TABLE book ADD UNIQUE KEY `isbn` (`isbn`);

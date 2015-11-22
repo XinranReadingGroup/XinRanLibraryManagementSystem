@@ -144,6 +144,7 @@ public class UserServiceImpl implements UserService {
                 String phone = reader.readLine();
                 while (phone != null && phone.length() > 0) {
                     administrators.add(phone.trim());
+                    phone = reader.readLine();
                 }
             } catch (Exception e) {
                 LOG.error("Error to load administrators.", e);

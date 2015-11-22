@@ -5,6 +5,7 @@ import java.util.Date;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.xinran.util.DateUtil;
 import lombok.Data;
+import org.springframework.format.annotation.DateTimeFormat;
 
 /**
  * @author 高海军 帝奇 Jun 1, 2015 8:04:54 PM
@@ -28,13 +29,21 @@ public class Activity {
     private String title;
     private String memo;
 
+    @DateTimeFormat(pattern="yyyy-MM-dd HH:mm:ss")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss")
     private Date   startDate;
+    @DateTimeFormat(pattern="yyyy-MM-dd HH:mm:ss")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss")
     private Date   endDate;
+
+    private int status;
 
     private String type;     // score 积分活动, 返券活动...
 
     private String action;   // 减积分 sub,add 加积分
     
     private Long   score;    // 分值
+
+    private String  imgId;
 
 }
