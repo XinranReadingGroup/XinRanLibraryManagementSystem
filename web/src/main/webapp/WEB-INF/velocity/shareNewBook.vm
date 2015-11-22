@@ -27,15 +27,17 @@
                 <h4 class="modal-title" id="myModalLabel">确认共享此图书?</h4>
             </div>
             <div class="modal-body">
-                <div class="book-pic">
-                    <img class="j-book-pic" src=""/>
+                <div class="clearfix">
+                    <div class="book-pic">
+                        <img class="j-book-pic" src=""/>
+                    </div>
+                    <div class="book-info">
+                        <p><span class="book-title j-title"></span></p>
+                        <p>作者: <span class="j-author"></span></p>
+                        <p>出版社: <span class="j-publisher"></span></p>
+                    </div>
                 </div>
-                <div class="book-info">
-                    <p><span class="book-title j-title"></span></p>
-                    <p>作者: <span class="j-author"></span></p>
-                    <p>出版社: <span class="j-publisher"></span></p>
-                    <p class="j-summary"></p>
-                </div>
+                <div class="book-summary j-summary"></div>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
