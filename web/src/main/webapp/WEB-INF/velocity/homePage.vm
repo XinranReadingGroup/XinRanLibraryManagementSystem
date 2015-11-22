@@ -1,64 +1,26 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="utf-8">
-    <title>欣然读书</title>
-    <meta name="description" content="">
-    <meta name="keywords" content="">
-    <meta name="apple-mobile-web-app-capable" content="yes"/>
-    <meta name="apple-mobile-web-app-status-bar-style" content="black"/>
-    <meta name="format-detection" content="telephone=no"/>
-    <meta name="format-detection" content="email=no"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=0"/>
-
-    <!-- 公用静态资源 -->
-    #parse("common/baseStyle.vm")
-
-    <!-- 页面静态资源 -->
-    <link rel="stylesheet" type="text/css" href="/css/home.css" media="all">
-
-</head>
-<body>
-
-<!-- 顶部 -->
+#set($layout = "./layout.vm")
 #set($currentPage = "home")
-#parse("common/header.vm")
 
+<link rel="stylesheet" type="text/css" href="/css/home.css" media="all">
 <div class="main-stage container-fluid" id="main-stage">
-<div class="ui-banner-box">
-    <div class="ui-center-box">
-        <h3 class="ui-color-darkgreen">与其让你书落满灰尘 不如把它共享</h3>
-        <p>1. 共享的书籍依然归属你，只需供大家借阅，随时收回</p>
-        <p>2. 共享后，你将获得绿色兑换公益幸福团的公益积分</p>
-        <p>3. 如果你想直接捐赠给欣然流动读书吧，请直接点击</p>
+    <div class="home-book-count-title"> 目前共有图书 $!{homepageVO.bookList.size()} 册</div>
+    <div id="home-main-box-root" class="home-main-box-root clearfix" >
+
+        #foreach( $!bookItem in $!{homepageVO.bookList} )
+        <div class="book-item" title="$!{bookItem.title}" data-toggle="tooltip" data-placement="bottom" >
+            <a target="_blank" href="$!{webHost}/book/detail/$!{bookItem.id}">
+                <div class="item-pic">
+                    <img class="img-pic" src="$!{bookItem.imgUrl}" />
+                </div>
+                <div class="item-title"> $!{bookItem.title} </div>
+            </a>
+        </div>
+        #end
     </div>
-
-</div>
-
-<div class="home-book-count-title"> 目前共有图书 $!{homepageVO.bookList.size()} 册</div>
-<div id="home-main-box-root" class="home-main-box-root clearfix" >
-
-    #foreach( $!bookItem in $!{homepageVO.bookList} )
-    <div class="book-item" title="$!{bookItem.title}" data-toggle="tooltip" data-placement="bottom" >
-        <a target="_blank" href="$!{webHost}/book/detail/$!{bookItem.id}">
-            <div class="item-pic">
-                <img class="img-pic" src="$!{bookItem.imgUrl}" />
-            </div>
-            <div class="item-title"> $!{bookItem.title} </div>
-        </a>
-    </div>
-    #end
-</div>
 </div>
 
 <script >
 seajs.use('/js/home.js', function( homeObj ){
-    //页面处理初始化
     homeObj.init();
 });
 </script>
-
-#parse("common/footer.vm")
-
-</body>
-</html>

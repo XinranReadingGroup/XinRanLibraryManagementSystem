@@ -1,33 +1,12 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="utf-8">
-    <title>欣然读书--登录</title>
-    <meta name="description" content="">
-    <meta name="keywords" content="">
-    <meta name="apple-mobile-web-app-capable" content="yes"/>
-    <meta name="apple-mobile-web-app-status-bar-style" content="black"/>
-    <meta name="format-detection" content="telephone=no"/>
-    <meta name="format-detection" content="email=no"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=0"/>
-
-    <!-- 公用静态资源 -->
-    #parse("common/baseStyle.vm")
-
-    <!-- 页面静态资源 -->
-    <link rel="stylesheet" type="text/css" href="../../css/login.css" media="all">
-</head>
-<body>
-<!-- 顶部 -->
+#set($layout = "./layout.vm")
 #set($currentPage = "login")
-#parse("common/header.vm")
 
+<link rel="stylesheet" type="text/css" href="../../css/login.css" media="all">
 <div class="body-wrap container-fluid" id="body-wrap">
     <div class="login-panel-wrap row">
         <div class="login-panel">
             <div class="login-banner">
                 <h1>欣然读书</h1>
-
                 <p>谈笑有鸿儒，往来无白丁。</p>
             </div>
             <div class="login-form">
@@ -63,13 +42,9 @@
     </div>
 </div>
 
-<script type="text/javascript">
+<script>
     seajs.use('/js/login.js', function (Login) {
         var login = new Login();
         login.render();
     });
 </script>
-
-#parse("common/footer.vm")
-</body>
-</html>

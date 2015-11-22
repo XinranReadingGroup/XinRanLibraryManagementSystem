@@ -1,32 +1,10 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="utf-8">
-    <title>欣然读书--详情</title>
-    <meta name="description" content="">
-    <meta name="keywords" content="">
-    <meta name="apple-mobile-web-app-capable" content="yes"/>
-    <meta name="apple-mobile-web-app-status-bar-style" content="black"/>
-    <meta name="format-detection" content="telephone=no"/>
-    <meta name="format-detection" content="email=no"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=0"/>
-
-    <!-- 公用静态资源 -->
-    #parse("common/baseStyle.vm")
-
-    <!-- 页面静态资源 -->
-    <link rel="stylesheet" type="text/css" href="/css/detail.css" media="all">
-</head>
-<body>
-
+#set($layout = "./layout.vm")
 #set($bookDetailInfo = $bookDetail.book)
 #set($bookBorrow = $bookDetail.onOffStockRecord)
 #set($userInfo = $bookDetail.ownerUserVO)
-
-<!-- 顶部 -->
 #set($currentPage = "detail")
-#parse("common/header.vm")
 
+<link rel="stylesheet" type="text/css" href="/css/detail.css" media="all">
 <div class="main-stage container-fluid" id="main-stage" data-id="$bookBorrow.id">
     <div class="xy-detail">
         <div class="xy-detail-header">
@@ -153,7 +131,6 @@
         </div>
     </div>
 </div>
-
 <div class="modal fade" id="disShare-modal" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -212,13 +189,9 @@
     </div>
 </div>
 
-<script type="text/javascript">
+<script>
     seajs.use('/js/bookDetail.js', function (bookDetail) {
         var bookDetail = new bookDetail();
         bookDetail.start();
     });
 </script>
-
-#parse("common/footer.vm")
-</body>
-</html>

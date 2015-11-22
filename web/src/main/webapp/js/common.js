@@ -7,9 +7,8 @@
  */
 
 define(function(require, exports, module) {
-
     var $ = require('jquery'),
-        Util = require('./util');
+        Util = require('./common/util');
 
     function Common(config) {
 

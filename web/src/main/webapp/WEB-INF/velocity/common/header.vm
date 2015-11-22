@@ -1,4 +1,3 @@
-<!-- 顶部 -->
 <header class="navbar navbar-static-top navbar-inverse" id="header" role="banner">
     <div class="container header-wrap">
         <div class="navbar-header">
@@ -40,8 +39,7 @@
     </div>
 </header>
 <script type="text/javascript">
-     
-    seajs.use('/js/common/common.js', function (Common) {
+    seajs.use('/js/common.js', function (Common) {
         new Common().render();
     });
 </script>

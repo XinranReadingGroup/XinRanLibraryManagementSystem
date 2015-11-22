@@ -1,28 +1,7 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="utf-8">
-    <title>欣然读书</title>
-    <meta name="description" content="">
-    <meta name="keywords" content="">
-    <meta name="apple-mobile-web-app-capable" content="yes"/>
-    <meta name="apple-mobile-web-app-status-bar-style" content="black"/>
-    <meta name="format-detection" content="telephone=no"/>
-    <meta name="format-detection" content="email=no"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=0"/>
-
-    <!-- 公用静态资源 -->
-    #parse("common/baseStyle.vm")
-
-    <!-- 页面静态资源 -->
-    <link rel="stylesheet" type="text/css" href="/css/share.css" media="all">
-</head>
-<body>
-
-<!-- 顶部 -->
+#set($layout = "./layout.vm")
 #set($currentPage = "donate")
-#parse("common/header.vm")
 
+<link rel="stylesheet" type="text/css" href="/css/share.css" media="all">
 <div class="main-stage container-fluid" id="main-stage">
     <div class="ui-banner-box">
         <div class="ui-center-box">
@@ -95,8 +74,3 @@
         donateObj.init();
     });
 </script>
-
-#parse("common/footer.vm")
-
-</body>
-</html>
