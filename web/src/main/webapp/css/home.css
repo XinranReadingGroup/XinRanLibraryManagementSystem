@@ -64,11 +64,10 @@
 }
 
 .c-book-item .info .author,
-.c-book-item .info .publisher,
-.c-book-item .info .summary{
+.c-book-item .info .publisher{
     line-height: 16px;
     color: #333;
-    margin: 0;
+    margin: 0 0 3px 0;
     word-wrap: break-word;
 }
 
@@ -79,4 +78,5 @@
     height: 48px;
     overflow: hidden;
     text-overflow: ellipsis;
+    margin: 0;
 }
