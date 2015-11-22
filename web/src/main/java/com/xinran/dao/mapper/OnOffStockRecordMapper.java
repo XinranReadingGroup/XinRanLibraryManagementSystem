@@ -29,7 +29,7 @@ public interface OnOffStockRecordMapper {
         " SELECT * ", 
         "FROM on_off_stock_record ",
         " WHERE off_stock_date is null and book_id  IN ", 
-          " <foreach item='item' index='index' collection='list' ",
+          " <foreach item='item' index='index' collection='bookIds' ",
             " open='(' separator=',' close=')'> ",
             " #{item} ",
           " </foreach> ",
