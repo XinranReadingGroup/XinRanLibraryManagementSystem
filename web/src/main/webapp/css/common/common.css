@@ -5,6 +5,18 @@ html {
 body{
 	background: #e1e8f0;
 }
+.clearfix {
+	zoom: 1;
+}
+.clearfix:after {
+	content: ".";
+	display: block;
+	font-size: 0;
+	line-height: 0;
+	height: 0;
+	clear: both;
+	visibility: hidden;
+}
 .main-stage{
 	width: 980px;
 	min-height: 600px;
@@ -12,9 +24,8 @@ body{
 	margin-bottom: 20px;
 	margin-top: 20px;
 }
-.navbar{
-	margin-bottom: 0;
-}
+
+/*header*/
 .header-wrap {
 	position: fixed;
 	top: 0;
@@ -23,6 +34,9 @@ body{
 	background-color: #545652;
 	border-color: #545652;
 	color: #d5d5d5;
+}
+.navbar{
+	margin-bottom: 0;
 }
 .navbar-inverse .navbar-nav > .active > a,.navbar-inverse .navbar-nav > .active > a:hover,.navbar-inverse .navbar-nav > .active > a:focus{
 	background-color: #4d5256;
@@ -37,111 +51,21 @@ body{
 	width: 280px;
 	padding: 8px 20px;
 }
-.clearfix {
-	zoom: 1;
-}
-.clearfix:after {
-	content: ".";
-	display: block;
-	font-size: 0;
-	line-height: 0;
-	height: 0;
-	clear: both;
-	visibility: hidden;
-}
-
-
-/* banner start */
-.ui-banner-box {
-	width: auto;
-	border: none;
-	background-color: #f9f9f9;
-	padding: 25px 10px 25px 10px;
-	font-size: 12px;
-	text-align: center;
-	margin: 10px 0 10px 0;
-	border: 1px solid #ddd;
-}
-.ui-banner-box.ui-bgcolor-white {
-	background-color: #fff;
-}
-.ui-banner-box.ui-normal {
-	padding: 10px;
-}
-.ui-banner-box .ui-color-darkgreen {
-	color: #669900;
-}
-.ui-banner-box h3 {
-	color: #333;
-	font-size: 16px;
-	font-weight: 700;
-	margin: 0;
-	padding: 0 0 10px 0;
-}
-.ui-banner-box p {
-	color: #666;
-	font-size: 12px;
-	font-weight: normal;
-}
-.ui-banner-box .ui-center-box {
-	display: inline-block;
-	margin: 0 auto;
-	text-align: left;
-}
-.ui-banner-box .ui-normal-box {
-	display: inline-block;
-	margin: 0 auto;
-	width: 100%;
-	padding: 10px;
-	text-align: left;
-}
-.ui-banner-box h3.ui-large {
-	font-size: 18px;
-}
-
-/* banner end */
-
-/*  layout begin */
-.ui-layout-box {
-	margin-left: auto;
-	margin-right: auto;
-	width: 100%;
-}
-.ui-layout-box .ui-col-main {
-	float: left;
-	width: 100%;
-}
-.ui-layout-box .ui-main-wrap {
-	margin-left: 230px;
-	margin-top: 20px;
-}
-.ui-layout-box .ui-col-sub {
-	float: left;
-	width: 210px;
-	margin-left: -100%;
-	margin-top: 20px;
-}
-
 
 /*footer*/
 .ui-footer {
-	padding-bottom: 15px;
-}
-.ui-footer-wrapper {
+	padding: 15px 0;
 	background-color: #707880;
 	color: #e9ecf1;
 }
-.ui-footer-wrapper p {
+.ui-footer p{
 	text-align: center;
 }
-.ui-footer-main {
-	padding: 20px 0 0 0;
-}
-.ui-footer-wrapper a:link, .ui-footer-wrapper a:visited {
+.ui-footer a:link, .ui-footer a:visited {
 	color: #e9ecf1;
 	text-decoration: none;
 }
-.ui-footer-wrapper a:focus, .ui-footer-wrapper a:hover {
+.ui-footer a:focus, .ui-footer a:hover {
 	color: #e9ecf1;
 	text-decoration: none;
 }

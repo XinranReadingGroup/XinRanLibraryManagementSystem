@@ -1,12 +1,10 @@
-<footer id="footer" class="ui-footer ui-footer-wrapper">
-    <div class="ui-footer-main">
-        <p>&copy;2015  绿色兑换-欣然流动读书吧</p>
-        <p>
-            <a href="#">关于我们</a> -
-            <a href="#">联系我们</a> -
-            <a href="#">免责声明</a> -
-            <a href="#">帮助中心</a> -
-            <a href="#">APP下载</a>
-        </p>
-    </div>
+<footer id="footer" class="ui-footer">
+    <p>&copy;2015  绿色兑换-欣然流动读书吧</p>
+    <p>
+        <a href="#">关于我们</a> -
+        <a href="#">联系我们</a> -
+        <a href="#">免责声明</a> -
+        <a href="#">帮助中心</a> -
+        <a href="#">APP下载</a>
+    </p>
 </footer>
