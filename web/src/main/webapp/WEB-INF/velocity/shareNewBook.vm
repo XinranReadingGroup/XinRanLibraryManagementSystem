@@ -46,7 +46,7 @@
 </div>
 
 <script>
-    seajs.use('/js/share.js', function (shareObj) {
-        shareObj.init();
+    seajs.use('/js/share.js', function (Share) {
+        new Share().render();
     });
 </script>

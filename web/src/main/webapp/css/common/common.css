@@ -19,11 +19,12 @@ body{
 }
 .main-stage{
 	width: 980px;
-	min-height: 600px;
+	min-height: 640px;
 	background: #fff;
 	margin-bottom: 20px;
 	margin-top: 20px;
     padding: 15px;
+    border-radius: 3px;
 }
 
 /*header*/
