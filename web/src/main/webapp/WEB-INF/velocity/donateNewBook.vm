@@ -10,40 +10,57 @@
         <div class="book-share-box-root col-xs-6" id="book-share-box-root">
             <h3>第一步：输入你私人书籍的条形码（ISBN码）:</h3>
             <div class="form-group">
-                <input type="text" class="J-input-isbn" placeholder="请输入iSBN" />
-                <input type="hidden" class="J-input-donor" value=""/>
+                <input type="text" class="j-input-isbn" placeholder="请输入iSBN" />
+                <input type="hidden" class="j-input-user" value=""/>
+                <input type="hidden" class="j-book-id" value=""/>
+                <input type="hidden" class="j-location-id" value=""/>
             </div>
-            <button class="btn btn-default J-btn-get-book">提交</button>
+            <button class="btn btn-default j-get-book">提交</button>
         </div>
     </div>
 </div>
 
-<div id="bookinfo-box-root" class="bookinfo-detail-root" style="display:none;">
-    <div class="book-detail-main">
-        <div class="detail-title">你要分享的图书信息</div>
-        <div class="clearfix">
-            <div class="box-pic">
-                <img class="J-book-pic" src=""/>
+<div class="modal fade" id="book-info" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">确认共享此图书?</h4>
             </div>
-            <div class="box-info">
-                <p><span class="J-book-title book-title"></span></p>
-                <p>作者: <span class="J-author"></span></p>
-                <p>出版社: <span class="J-publisher"></span></p>
-                <p>定价: <span class="J-price"></span></p>
-                <button class="J-btn-share-book">共享图书</button>
+            <div class="modal-body">
+                <div class="clearfix">
+                    <div class="book-pic">
+                        <img class="j-book-pic" src=""/>
+                    </div>
+                    <div class="book-info">
+                        <p><span class="book-title j-title"></span></p>
+                        <p>作者: <span class="j-author"></span></p>
+                        <p>出版社: <span class="j-publisher"></span></p>
+                    </div>
+                </div>
+                <div class="book-summary j-summary"></div>
+                <div class="location-select">
+                    <select class="j-provinces">
+                        <option value="0">请选择省份</option>
+                    </select>
+                    <select class="j-citys">
+                        <option value="0">请选择城市</option>
+                    </select>
+                    <select class="j-counties">
+                        <option value="0">请选择区县</option>
+                    </select>
+                </div>
             </div>
-        </div>
-        <div class="ui-banner-box ui-normal">
-            <div class="ui-normal-box">
-                <h3>内容介绍</h3>
-                <div class="J-summary"></div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                <button type="button" class="btn btn-primary j-donate-btn">捐赠图书图书</button>
             </div>
         </div>
     </div>
 </div>
 
 <script>
-    seajs.use('/js/donate.js', function (donateObj) {
-        donateObj.init();
+    seajs.use('/js/donate.js', function (Donate) {
+        new Donate().render();
     });
 </script>

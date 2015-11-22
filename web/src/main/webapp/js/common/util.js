@@ -11,7 +11,7 @@ define(function(require, exports, module) {
 
     Util.prototype = {
         getQueryString: function(name) {
-            var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i"),
+            var reg = new RegExp('(^|&)' + name + '=([^&]*)(&|$)', 'i'),
                 r = window.location.search.substr(1).match(reg);
             if (r != null) return window.unescape(r[2]);
             return null;
@@ -31,5 +31,4 @@ define(function(require, exports, module) {
     };
 
     module.exports = new Util();
-
 });

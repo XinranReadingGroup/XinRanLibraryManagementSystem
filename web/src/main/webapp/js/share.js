@@ -63,22 +63,18 @@ define(function (require, exports, module) {
         var bookId = $('.j-book-id').val(),
             getBookUrl = '/book/share/' + bookId;
 
-        $.ajax({
-            url: getBookUrl,
-            type: 'get',
-            dataType: 'json',
-            data: {
-                locationId: '1'
-            },
-            cache: false,
-            success: function (data) {
-                if (data && data.code == 200) {
-                    window.alert('享书成功');
-                } else {
-                    window.alert('享书失败');
-                }
+        $('#book-info').modal('hide');
+        $.get(getBookUrl, {
+            locationId: '1'
+        },function(data){
+            if (data && data.code == 200) {
+                window.alert('享书成功');
+                location.href = '/';
+            } else {
+                window.alert('享书失败');
+                location.href = '/';
             }
-        });
+        }, 'json');
     };
 
     module.exports = Share;
