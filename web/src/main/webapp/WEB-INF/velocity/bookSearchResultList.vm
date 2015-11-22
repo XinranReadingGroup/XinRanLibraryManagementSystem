@@ -1,21 +1,20 @@
-#set($layout = "./layout.vm")
-#set($currentPage = "home")
 
 <link rel="stylesheet" type="text/css" href="/css/home.css" media="all">
 <div class="main-stage container-fluid" id="main-stage">
     <div class="home-content">
-        <h3 class="c-title">所有图书 <span>($!{homepageVO.bookList.size()}册)</span></h3>
+        <h3 class="c-title">图书搜索结果 <span>($!{bookSearchResultList.size()}册)</span></h3>
         <ul class="c-book-list clearfix">
-            #foreach( $!bookItem in $!{homepageVO.bookList} )
+            #foreach( $!bookDetailObj in $!{bookSearchResultList} )
+            #set($bookItem = $!{bookDetailObj.book} )
             <li class="c-book-item">
                 <div class="cover">
-                    <a href="/book/detail/$!{bookItem.id}" target="_blank">
+                    <a href="/book/detail/$!{bookDetailObj.OnOffStockRecord.id}" target="_blank">
                         <img src="$!{bookItem.imgUrl}" alt="$!{bookItem.title}" >
                     </a>
                 </div>
                 <div class="info">
                     <h4 class="title">
-                        <a href="/book/detail/$!{bookItem.id}" target="_blank">$!{bookItem.title}</a>
+                        <a href="/book/detail/$!{bookDetailObj.OnOffStockRecord.id}" target="_blank">$!{bookItem.title}</a>
                     </h4>
                     <p class="author">$!{bookItem.author}</p>
                     <p class="publisher">$!{bookItem.publisher}</p>
@@ -31,7 +30,7 @@
 </div>
 
 <script>
-    seajs.use('/js/home.js', function (Home) {
-        new Home().render();
+    seajs.use('/js/searchResultList.js', function ( searchList ) {
+        new searchList().render();
     });
 </script>

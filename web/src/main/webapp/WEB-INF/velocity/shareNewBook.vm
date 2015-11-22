@@ -3,84 +3,52 @@
 
 <link rel="stylesheet" type="text/css" href="/css/share.css" media="all">
 <div class="main-stage container-fluid" id="main-stage">
-    <div class="ui-banner-box">
-        <div class="ui-center-box">
-            <h3 class="ui-color-darkgreen">与其让你书落满灰尘 不如把它共享</h3>
+    <div class="row">
+        <div class="xinran-desc col-xs-6">
 
-            <p>1. 共享的书籍依然归属你，只需供大家借阅，随时收回</p>
-
-            <p>2. 共享后，你将获得绿色兑换公益幸福团的公益积分</p>
-
-            <p>3. 如果你想直接捐赠给欣然流动读书吧，请直接点击</p>
+        </div>
+        <div class="book-share-box-root col-xs-6" id="book-share-box-root">
+            <h3>第一步：输入你私人书籍的条形码（ISBN码）:</h3>
+            <div class="form-group">
+                <input type="text" class="j-input-isbn" placeholder="请输入iSBN" />
+                <input type="hidden" class="j-input-user" value=""/>
+                <input type="hidden" class="j-book-id" value=""/>
+            </div>
+            <button class="btn btn-default j-get-book">提交</button>
         </div>
     </div>
+</div>
 
-    <div id="book-share-box-root" class="book-share-box-root">
-        <div class="book-isbn-sub-box">
-            <div class="box-pic">
-                <img src="/mock/img/ad.png" style="width: 100%;"/>
+<div class="modal fade" id="book-info" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">确认共享此图书?</h4>
             </div>
-            <div class="box-info">
-                <h3>第一步：输入你私人书籍的条形码（ISBN码）:</h3>
-
-                <div class="field-item clearfix">
-                    <div class="title">ISBN码：</div>
-                    <div class="content">
-                        <input type="text" class="J-input-isbn" value="9787111128069"/>
+            <div class="modal-body">
+                <div class="clearfix">
+                    <div class="book-pic">
+                        <img class="j-book-pic" src=""/>
+                    </div>
+                    <div class="book-info">
+                        <p><span class="book-title j-title"></span></p>
+                        <p>作者: <span class="j-author"></span></p>
+                        <p>出版社: <span class="j-publisher"></span></p>
                     </div>
                 </div>
-                <div class="field-item clearfix" style="display:none;">
-                    <div class="title">捐赠人：</div>
-                    <div class="content">
-                        <input type="text" class="J-input-donor" value=""/>
-                    </div>
-                </div>
-                <div class="field-item">
-                    <div class="title">&nbsp;</div>
-                    <div class="content">
-                        <input type="button" class="J-btn-get-book" value="提交"/>
-                    </div>
-                </div>
+                <div class="book-summary j-summary"></div>
             </div>
-        </div>
-    </div>
-
-    <div id="bookinfo-box-root" class="bookinfo-detail-root" style="display:none;">
-        <div class="book-detail-main">
-            <div class="detail-title">你要分享的图书信息</div>
-            <div class="clearfix">
-                <div class="box-pic">
-                    <img class="J-book-pic" src=""/>
-                </div>
-                <div class="box-info">
-                    <p><span class="J-book-title book-title">欣然图书</span></p>
-
-                    <p>作者: <span class="J-author">欣然图书</span></p>
-
-                    <p>出版社: <span class="J-publisher">湖南文艺出版社</span></p>
-
-                    <p>定价: <span class="J-price">36.00元</span></p>
-
-                    <p>
-                        <input type="button" class="J-btn-share-book" value="共享图书"/>
-                    </p>
-                </div>
-            </div>
-            <div class="ui-banner-box ui-normal">
-                <div class="ui-normal-box">
-                    <h3>内容介绍</h3>
-
-                    <div class="J-summary">
-                    </div>
-                </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                <button type="button" class="btn btn-primary j-share-btn">共享图书</button>
             </div>
         </div>
     </div>
 </div>
 
-
 <script>
-    seajs.use('/js/share.js', function (shareObj) {
-        shareObj.init();
+    seajs.use('/js/share.js', function (Share) {
+        new Share().render();
     });
 </script>

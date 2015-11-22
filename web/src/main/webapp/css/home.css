@@ -1,4 +1,5 @@
 .home-content {
+    float: left;
     width: 590px;
 }
 
@@ -7,16 +8,18 @@
 }
 
 .home-sidebar {
+    float: right;
     width: 310px;
-    background: #000;
+    height: 550px;
+    background: url(../img/home/sider.png) no-repeat 0 0;
 }
 
 /*content*/
 .c-title {
-    font-size: 18px;
+    font-size: 16px;
     font-weight: bold;
-    padding-bottom: 3px;
-    margin-bottom: 16px;
+    padding-bottom: 6px;
+    margin: 0 0 16px 0;
     border-bottom: 1px solid #ddd;
 }
 
@@ -42,6 +45,7 @@
 .c-book-item .cover img{
     width: 68px;
     height: 96px;
+    vertical-align: middle;
 }
 
 .c-book-item .info {
@@ -49,21 +53,26 @@
     margin-right: 20px;
 }
 
-.c-book-item .info p {
-    margin: 0;
-    word-wrap: break-word;
-}
-
 .c-book-item .title {
     font-size: 14px;
-    height: auto;
-    margin: 0;
-    line-height: auto;
-    background: 0
+    line-height: 18px;
+    margin: 0 0 6px 0;
+}
+
+.c-book-item .info .author,
+.c-book-item .info .publisher{
+    line-height: 16px;
+    color: #333;
+    margin: 0 0 3px 0;
+    word-wrap: break-word;
 }
 
 .c-book-item .summary {
     color: #666;
     clear: both;
-    padding-top: 15px
+    padding-top: 16px;
+    height: 48px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin: 0;
 }

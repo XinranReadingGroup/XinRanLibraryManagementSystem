@@ -3,10 +3,13 @@ package com.xinran.controller.mobile;
 
 
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -50,6 +53,14 @@ public class BookController extends AbstractBookController {
 //    	}
 //    	return AjaxResultBuilder.buildSuccessfulResult(books);
 //    }
+    
+    @RequestMapping("/book/search")
+    public @ResponseBody AjaxResult search(@RequestParam("q") String  query,
+                                           HttpServletRequest request) {
+      List<BookDetail> bookDetailList = super.buildSearchResult(query);
+
+        return AjaxResultBuilder.buildSuccessfulResult(bookDetailList);
+    }
 
 
 }
