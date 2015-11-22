@@ -414,7 +414,7 @@ public class AbstractBookController {
             onOffStockRecordList = onOffStockRecordService.findOnOffStockRecordByBookIds(book.getId());
       }else{
             // 根据标题like查询
-            List<Book> bookList = bookService.queryByTitleWithPagenate(query, 0, 10);
+            List<Book> bookList = bookService.queryByTitleWithPagenate(query, 10, 0);
             if (CollectionUtils.isNotEmpty(bookList)) {
                 Long[] bookIds = new Long[bookList.size()];
                 for (int i = 0; i < bookList.size(); i++) {
