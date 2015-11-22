@@ -1,4 +1,9 @@
+.main-stage {
+    padding: 15px;
+}
+
 .home-content {
+    float: left;
     width: 590px;
 }
 
@@ -7,16 +12,18 @@
 }
 
 .home-sidebar {
+    float: right;
     width: 310px;
-    background: #000;
+    height: 550px;
+    background: url(../img/home/sider.png) no-repeat 0 0;
 }
 
 /*content*/
 .c-title {
-    font-size: 18px;
+    font-size: 16px;
     font-weight: bold;
-    padding-bottom: 3px;
-    margin-bottom: 16px;
+    padding-bottom: 6px;
+    margin: 0 0 16px 0;
     border-bottom: 1px solid #ddd;
 }
 
