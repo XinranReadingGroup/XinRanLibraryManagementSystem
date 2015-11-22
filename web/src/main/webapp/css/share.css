@@ -18,6 +18,7 @@
 }
 .form-group input:focus, .form-group input:hover{
     border-color: #1686cc;
+    box-shadow: none;
 }
 
 
