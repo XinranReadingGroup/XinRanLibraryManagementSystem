@@ -42,6 +42,7 @@
 .c-book-item .cover img{
     width: 68px;
     height: 96px;
+    vertical-align: middle;
 }
 
 .c-book-item .info {
@@ -50,20 +51,24 @@
 }
 
 .c-book-item .info p {
+    line-height: 16px;
     margin: 0;
     word-wrap: break-word;
 }
 
 .c-book-item .title {
     font-size: 14px;
-    height: auto;
-    margin: 0;
-    line-height: auto;
-    background: 0
+    line-height: 18px;
+    margin: 0 0 6px 0;
+}
+
+.c-book-item .info .publisher,
+.c-book-item .info .summary{
+    color: #333;
 }
 
 .c-book-item .summary {
     color: #666;
     clear: both;
-    padding-top: 15px
+    padding-top: 15px;
 }
