@@ -188,7 +188,8 @@ public class AbstractActivityController {
             user.setScore(sumScore);
             userService.updateUser(user);
         }catch(Exception e){
-            
+            log.error(String.format("update convert activity error, activityId is {},user is {}",activityId,uid),e);
+            return false;
         }
         return true;
     }
