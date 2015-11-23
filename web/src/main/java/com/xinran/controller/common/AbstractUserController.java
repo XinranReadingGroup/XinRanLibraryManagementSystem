@@ -24,7 +24,7 @@ import com.xinran.vo.UserVO;
 import com.xinran.vo.builder.AjaxResultBuilder;
 
 /**
- * @author ��������� ������ Apr 25, 2015 11:16:35 AM
+ * @author 帝奇 Apr 25, 2015 11:16:35 AM
  */
 public abstract class AbstractUserController {
 

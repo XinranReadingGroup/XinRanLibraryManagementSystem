@@ -1,5 +1,19 @@
 package com.xinran.controller.common;
 
+import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
+
 import com.xinran.constant.ScoreReason;
 import com.xinran.constant.SystemResultCode;
 import com.xinran.controller.util.UserIdenetityUtil;
@@ -13,15 +27,6 @@ import com.xinran.service.ScoreService;
 import com.xinran.service.UserService;
 import com.xinran.vo.AjaxResult;
 import com.xinran.vo.builder.AjaxResultBuilder;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
-
-import javax.servlet.http.HttpServletRequest;
-
-import java.util.List;
 
 /**
  * @author gsy
@@ -41,9 +46,7 @@ public class AbstractActivityController {
     protected ScoreService scoreService;
 
     @RequestMapping("/activities")
-    public
-    @ResponseBody
-    AjaxResult listActivities(@RequestParam(value = "pageNo", required = false) Integer pageNo,
+    public ModelAndView listActivities(@RequestParam(value = "pageNo", required = false) Integer pageNo,
                               @RequestParam(value = "pageSize", required = false) Integer pageSize,
                               @RequestParam(value = "status", required = true) String status,
                               HttpServletRequest request) {
@@ -54,9 +57,10 @@ public class AbstractActivityController {
         } else if ("available".equals(status)) {
             activities = listAvailableActivities(uid, pageNo, pageSize);
         } else {
-            return AjaxResultBuilder.buildFailedResult(new XinranCheckedException(SystemResultCode.WrongActivityQueryStatus));
+        	throw new XinranCheckedException(SystemResultCode.BAD_ACTIVITY_STATUS);
         }
-        return AjaxResultBuilder.buildSuccessfulResult(activities);
+        return new  ModelAndView("activityList", "activityList", activities);
+
     }
 
 

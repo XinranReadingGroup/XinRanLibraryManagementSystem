@@ -5,7 +5,7 @@ import com.xinran.constant.SystemResultCode;
 /**
  * @author 高海军 帝奇 Apr 9, 2015 10:09:07 PM
  */
-public class XinranCheckedException extends Exception {
+public class XinranCheckedException extends RuntimeException {
 
     /**
      * 

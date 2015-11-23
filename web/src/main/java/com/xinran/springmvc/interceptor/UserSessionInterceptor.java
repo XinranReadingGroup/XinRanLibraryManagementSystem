@@ -25,34 +25,11 @@ public class UserSessionInterceptor implements HandlerInterceptor {
 	
 	private List<String> noNeedLoginURLs = Lists.newArrayList();
 
-//
-//	private void wtf() {
-//		noNeedLoginURLs = Lists.newArrayList();
-//
-//		noNeedLoginURLs.add("/img/");
-//		noNeedLoginURLs.add("/js/");
-//		noNeedLoginURLs.add("/css/");
-//		noNeedLoginURLs.add("/mock/");
-//		noNeedLoginURLs.add("/user/session/signIn");
-//		noNeedLoginURLs.add("/user/session/signUp");
-//		noNeedLoginURLs.add("/book/search");
-//		noNeedLoginURLs.add("/user/signUp");
-//		noNeedLoginURLs.add("/user/signIn");
-//		noNeedLoginURLs.add("/book/share/records ");
-//		noNeedLoginURLs.add("/book/return/records");
-//		noNeedLoginURLs.add("/book/borrow/records");
-//		noNeedLoginURLs.add("/book/donate/records");
-//		noNeedLoginURLs.add("/book/detail");
-//		noNeedLoginURLs.add("/book/location");
-//	}
-
-
 
 	@Override
 	public boolean preHandle(HttpServletRequest request,
 			HttpServletResponse response, Object handler) throws Exception {
 
-//		wtf();//workaround for spring bug, so dont delete now.
 		
 		String requestURI = request.getRequestURI();
 
