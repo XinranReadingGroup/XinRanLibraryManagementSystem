@@ -13,16 +13,23 @@ import com.xinran.service.ScoreService;
 import com.xinran.service.UserService;
 import com.xinran.vo.AjaxResult;
 import com.xinran.vo.builder.AjaxResultBuilder;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
+
 import java.util.List;
 
 /**
  * @author gsy
  */
 public class AbstractActivityController {
+	
+	private Logger log = LoggerFactory.getLogger(this.getClass());
+
 
     @Autowired
     protected UserService userService;
@@ -155,6 +162,7 @@ public class AbstractActivityController {
             activityService.createActivity(activity);
             return true;
         }
+        log.error("current user id is not the admin role,user id is {}",uid);
         return false;
     }
 
