@@ -1,12 +1,15 @@
 package com.xinran.controller.common;
 
+import com.xinran.constant.ScoreReason;
 import com.xinran.constant.SystemResultCode;
 import com.xinran.controller.util.UserIdenetityUtil;
 import com.xinran.exception.XinranCheckedException;
 import com.xinran.pojo.Activity;
 import com.xinran.pojo.Pagination;
+import com.xinran.pojo.Score;
 import com.xinran.pojo.User;
 import com.xinran.service.ActivityService;
+import com.xinran.service.ScoreService;
 import com.xinran.service.UserService;
 import com.xinran.vo.AjaxResult;
 import com.xinran.vo.builder.AjaxResultBuilder;
@@ -26,6 +29,9 @@ public class AbstractActivityController {
 
     @Autowired
     protected ActivityService activityService;
+
+    @Autowired
+    protected ScoreService scoreService;
 
     @RequestMapping("/activities")
     public
@@ -80,12 +86,24 @@ public class AbstractActivityController {
     @RequestMapping("/activity/cancel/{activityId}")
     public
     @ResponseBody
-    AjaxResult cancelactivity(@PathVariable(value = "activityId") Long activityId,
+    AjaxResult cancelActivity(@PathVariable(value = "activityId") Long activityId,
                               HttpServletRequest request) {
         Long uid = UserIdenetityUtil.getCurrentUserId(request);
         boolean ret = cancelActivity(uid,activityId);
         return AjaxResultBuilder.buildSuccessfulResult(ret);
     }
+
+    @RequestMapping("/activity/convert/{activityId}")
+    public
+    @ResponseBody
+    AjaxResult convertActivity(@PathVariable(value = "activityId") Long activityId,
+                              HttpServletRequest request) {
+        Long uid = UserIdenetityUtil.getCurrentUserId(request);
+        boolean ret = convertActivity(uid,activityId);
+        return AjaxResultBuilder.buildSuccessfulResult(ret);
+    }
+
+
 
     protected List<Activity> listActivities(Long uid, Integer pageNo, Integer pageSize) {
         User user = userService.findUserByUserId(uid);
@@ -138,6 +156,33 @@ public class AbstractActivityController {
             return true;
         }
         return false;
+    }
+
+
+    protected boolean convertActivity(Long uid, Long activityId){
+        try {
+            Activity activity = activityService.findActivityById(activityId);
+
+            Score score = new Score();
+            score.setUserId(uid);
+            score.setFactId(activity.getId());
+            score.setScoreReason(ScoreReason.PARTY.getReason());
+
+            Long scoreVal = activity.getScore();
+            if ("add".equals(activity.getAction()) && scoreVal < 0 || "sub".equals(activity.getAction()) && scoreVal > 0) {
+                scoreVal = -scoreVal;
+            }
+            score.setScoreValue(scoreVal.intValue());
+            scoreService.addScore(score);
+
+            Integer sumScore = scoreService.queryTotalScoreByUserId(uid);
+            User user = userService.findUserByUserId(uid);
+            user.setScore(sumScore);
+            userService.updateUser(user);
+        }catch(Exception e){
+            
+        }
+        return true;
     }
 
 }
