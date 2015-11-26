@@ -22,7 +22,7 @@ public interface ActivityMapper {
     @Select("SELECT * FROM activity order by id desc limit #{page.start},#{page.end}")
     List<Activity> findActivities(@Param("page") Pagination page);
 
-    @Select("SELECT * FROM activity where status=0 and now() > start_date and now() < end_data order by id desc limit #{page.start},#{page.end}")
+    @Select("SELECT * FROM activity where status=0 and now() > start_date and now() < end_date order by id desc limit #{page.start},#{page.end}")
     List<Activity> findAvailableActivities(@Param("page") Pagination page);
 
     @Insert("insert into activity (created_At, updated_At,title, memo,start_date,end_date,type,action,score,status,img_id)  values ( now(),now(),#{title}, #{memo},"
