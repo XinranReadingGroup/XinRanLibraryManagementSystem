@@ -21,7 +21,7 @@ import java.util.Map;
 @RestController(value = "webActivityController")
 public class ActivityController extends AbstractActivityController{
     @RequestMapping("/admin/activity/new")
-    public ModelAndView newActivity(@RequestParam(value = "id") Long activityId,
+    public ModelAndView newActivity(@RequestParam(value = "id", required = false) Long activityId,
                                     HttpServletRequest request) {
         User user = userService.findUserByUserId(UserIdenetityUtil.getCurrentUserId(request));
         if (user !=null && userService.isAdmin(user)) {
