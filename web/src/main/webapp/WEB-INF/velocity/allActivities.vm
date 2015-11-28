@@ -79,7 +79,7 @@ jQuery('.publish-button').click(function(e){
 });
 </script>
 
-#if($page)
+#if($page && $totalPage > 0)
     <script type="text/javascript">
     jQuery(function () {
         var config={
