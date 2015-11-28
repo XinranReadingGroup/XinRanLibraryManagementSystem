@@ -46,7 +46,9 @@ public class AbstractActivityController {
     protected ScoreService scoreService;
 
     @RequestMapping("/activities")
-    public ModelAndView listActivities(@RequestParam(value = "pageNo", required = false) Integer pageNo,
+    public
+    @ResponseBody
+    AjaxResult listActivities(@RequestParam(value = "pageNo", required = false) Integer pageNo,
                               @RequestParam(value = "pageSize", required = false) Integer pageSize,
                               @RequestParam(value = "status", required = true) String status,
                               HttpServletRequest request) {
@@ -59,7 +61,7 @@ public class AbstractActivityController {
         } else {
         	throw new XinranCheckedException(SystemResultCode.BAD_ACTIVITY_STATUS);
         }
-        return new  ModelAndView("activityList", "activityList", activities);
+        return AjaxResultBuilder.buildSuccessfulResult(activities);
 
     }
 
@@ -185,6 +187,12 @@ public class AbstractActivityController {
                 scoreVal = -scoreVal;
             }
             score.setScoreValue(scoreVal.intValue());
+
+            Integer currentScore = scoreService.queryTotalScoreByUserId(uid);
+            if("sub".equals(activity.getAction()) && currentScore+scoreVal < 0 ){
+                return false;
+            }
+
             scoreService.addScore(score);
 
             Integer sumScore = scoreService.queryTotalScoreByUserId(uid);
