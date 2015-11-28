@@ -1,0 +1,141 @@
+#set($layout = "./layout.vm")
+#set($currentPage = "newActivity")
+
+<link rel="stylesheet" type="text/css" href="/css/common/bootstrap-datepicker3.min.css" media="all">
+<script type="text/javascript" src="/js/common/bootstrap-datepicker.min.js"></script>
+<div class="container-fluid" id="main-stage" >
+    <div class="row">
+        <div class="col-xs-4 col-md-2 col-md-offset-1">
+            <div class="row">
+                <h2>活动管理</h2>
+                <ul>
+                    <li><a href="/admin/activity/new">添加活动</a></li>
+                    <li><a href="/admin/activities">所有活动</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="col-xs-14 col-md-8">
+            <div class="row">
+            <form class="form-horizontal" id="activityForm">
+                <div class="form-group">
+                    <label for="title" class="col-sm-2 control-label">活动标题：</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="title" name="title" placeholder="不超过50个字符" value="$!{activity.title}">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="memo" class="col-sm-2 control-label">活动详情：</label>
+                    <div class="col-sm-10">
+                        <textarea rows=5 class="form-control" id="memo" name="memo" placeholder="不超过1000个字符">$!{activity.memo}</textarea>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="time" class="col-sm-2 control-label">活动时间：</label>
+                    <div class="col-sm-10">
+                        <div id="time" class="row">
+                            <div class="col-sm-8">
+                            <div class="col-sm-5 input-daterange input-group" id="datepicker">
+                                <input type="text" class="input-sm form-control" name="startDate" value="$!{date.format($!{activity.startDate})}" />
+                                <span class="input-group-addon">至</span>
+                                <input type="text" class="input-sm form-control" name="endDate" value="$!{date.format($!{activity.endDate})}" />
+                            </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="score" class="col-sm-2 control-label">需要积分：</label>
+                    <div class="col-sm-1">
+                        <input type="text" class="form-control" id="score" name="score" value="$!{activity.score}">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="image" class="col-sm-2 control-label">活动图片：</label>
+                    <div class="col-sm-6">
+                        <input type="file" id="file" />
+                        <input type="hidden" name="imgId" id="imgId" value="$!{activity.imgId}" />
+                        <div id="img-div">
+                        #if($!{activity.imgId})
+                            <img src="$!{activity.imgId}" alt="$!{activity.imgId}"/>
+                        #end
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-offset-2 col-sm-6">
+                    <input type="hidden" name="status" value="1" />
+                    <input type="hidden" name="type" value="score" />
+                    <input type="hidden" name="action" value="sub" />
+                    <input type="hidden" name="id" value="$!{activity.id}" />
+                        <button id="submit" type="button" class="btn btn-primary">提交</button>
+                    </div>
+                </div>
+            </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script>
+jQuery('.input-daterange').datepicker({
+    format: 'yyyy-mm-dd 00:00:00',
+    clearBtn: true,
+    todayHighlight: true
+});
+jQuery('#submit').click(function(){
+    jQuery.ajax({
+        url: '/activity/new',
+        type: 'GET',
+        success:function(data) {
+            location.href = "/admin/activities";
+        },
+        error: errorHandler = function() {
+            alert("submit fail");
+        },
+        data: jQuery('#activityForm').serialize(),
+    });
+});
+jQuery('#file').on("change",function(){
+    var file = this.files[0];
+    name = file.name;
+    size = file.size;
+    type = file.type;
+
+    if(file.name.length < 1) {
+    }else if(file.size > 1000000) {
+        alert("File is to big");
+    }else if(file.type != 'image/png' && file.type != 'image/jpg' && !file.type != 'image/gif' && file.type != 'image/jpeg' ) {
+        alert("File doesnt match png, jpg or gif");
+    }else {
+        var formData = new FormData();
+        formData.append('file', jQuery('#file')[0].files[0]);
+
+        jQuery.ajax({
+            url: '/activity/upload',
+            type: 'POST',
+            xhr: function() {
+                myXhr = jQuery.ajaxSettings.xhr();
+                if(myXhr.upload){ // if upload property exists
+                    //myXhr.upload.addEventListener('progress', progressHandlingFunction, false); // progressbar
+                }
+                return myXhr;
+            },
+            success:function(data) {
+                console.log(data);
+                if(data.data!="false"){
+                    jQuery('#imgId').attr("value",data.data);
+                    jQuery('#img-div').empty();
+                    jQuery('#img-div').append('<img src="'+data.data+'" alt="'+data.data+'"/>');
+                }
+            },
+            error: errorHandler = function() {
+                alert("upload fail");
+            },
+            data: formData,
+            processData: false,  // tell jQuery not to process the data
+            contentType: false   // tell jQuery not to set contentType
+        });
+    }
+});
+</script>

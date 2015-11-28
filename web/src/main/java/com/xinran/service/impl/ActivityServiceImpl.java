@@ -30,12 +30,19 @@ public class ActivityServiceImpl implements ActivityService {
     }
 
     @Override
+    public boolean updateActivity(Activity activity) {
+        return activityMapper.updateActivity(activity)==1;
+    }
+
+    @Override
     public List<Activity> queryActivityWithPagination(Pagination page) {
+        page.setTotal(activityMapper.countActivities());
         return activityMapper.findActivities(page);
     }
 
     @Override
     public List<Activity> queryAvailableActivityWithPagination(Long userId, Pagination page) {
+        page.setTotal(activityMapper.countAvailableActivities());
         return activityMapper.findAvailableActivities(page);
     }
 

@@ -14,6 +14,8 @@ public interface ActivityService {
 
     void createActivity(Activity activity);
 
+    boolean updateActivity(Activity activity);
+
     List<Activity> queryActivityWithPagination(Pagination page);
 
     List<Activity> queryAvailableActivityWithPagination(Long userId, Pagination page);

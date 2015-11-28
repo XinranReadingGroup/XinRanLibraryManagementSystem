@@ -1,19 +1,5 @@
 package com.xinran.controller.common;
 
-import java.util.List;
-
-import javax.servlet.http.HttpServletRequest;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.servlet.ModelAndView;
-
 import com.xinran.constant.ScoreReason;
 import com.xinran.constant.SystemResultCode;
 import com.xinran.controller.util.UserIdenetityUtil;
@@ -27,6 +13,24 @@ import com.xinran.service.ScoreService;
 import com.xinran.service.UserService;
 import com.xinran.vo.AjaxResult;
 import com.xinran.vo.builder.AjaxResultBuilder;
+import org.apache.commons.lang.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.ui.ModelMap;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.File;
+import java.io.IOException;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * @author gsy
@@ -53,15 +57,15 @@ public class AbstractActivityController {
                               @RequestParam(value = "status", required = true) String status,
                               HttpServletRequest request) {
         Long uid = UserIdenetityUtil.getCurrentUserId(request);
-        List<Activity> activities = null;
+        Map<String,Object> map;
         if ("all".equals(status)) {
-            activities = listActivities(uid, pageNo, pageSize);
+            map = listActivities(uid, pageNo, pageSize);
         } else if ("available".equals(status)) {
-            activities = listAvailableActivities(uid, pageNo, pageSize);
+            map = listAvailableActivities(uid, pageNo, pageSize);
         } else {
         	throw new XinranCheckedException(SystemResultCode.BAD_ACTIVITY_STATUS);
         }
-        return AjaxResultBuilder.buildSuccessfulResult(activities);
+        return AjaxResultBuilder.buildSuccessfulResult(map);
 
     }
 
@@ -72,8 +76,13 @@ public class AbstractActivityController {
     AjaxResult createActivity(@ModelAttribute Activity activity,
                               HttpServletRequest request) {
         Long uid = UserIdenetityUtil.getCurrentUserId(request);
-        boolean ret = addActivity(uid,activity);
-        return AjaxResultBuilder.buildSuccessfulResult(ret);
+        if(activity!=null&activity.getId()!=null){
+            boolean ret = upateActivity(uid,activity);
+            return AjaxResultBuilder.buildSuccessfulResult(ret);
+        }else{
+            boolean ret = addActivity(uid,activity);
+            return AjaxResultBuilder.buildSuccessfulResult(ret);
+        }
     }
 
     @RequestMapping("/activity/{activityId}")
@@ -116,9 +125,46 @@ public class AbstractActivityController {
         return AjaxResultBuilder.buildSuccessfulResult(ret);
     }
 
+    @InitBinder("uploadItem")
+    void initBinder(WebDataBinder binder) {
+        binder.setValidator(new UploadValidator());
+    }
+    @RequestMapping(value = "/activity/upload", method = RequestMethod.POST)
+    public @ResponseBody AjaxResult upload(@Validated @ModelAttribute("uploadItem") FileUploadForm uploadForm,
+                                           BindingResult result,
+                                           ModelMap modelMap, HttpServletRequest request, HttpServletResponse response) {
+
+        String saveDirectory = "/home/admin/xinran/upload/img/activity/";
+        //String saveDirectory = "d:\\workspace\\jdw\\XinRanLibraryManagementSystem\\";
+
+        MultipartFile multipartFile = uploadForm.getFile();
+
+        if (null != multipartFile) {
+            try {
+                String fileName = System.currentTimeMillis() + File.pathSeparatorChar +getFileName(multipartFile.getOriginalFilename());
+                multipartFile.transferTo(new File(saveDirectory + fileName));
+                return AjaxResultBuilder.buildSuccessfulResult("/img/activity/"+fileName);
+            } catch (IllegalStateException | IOException e) {
+                log.error(e.getMessage(), e);
+            }
+        }
+        return AjaxResultBuilder.buildSuccessfulResult(false);
+    }
+
+    private String getFileName(String path){
+        if(StringUtils.isNotBlank(path)){
+            if(path.lastIndexOf("/")!=-1){
+                return path.substring(path.lastIndexOf("/")+1,path.length());
+            }else if(path.lastIndexOf("\\")!=-1){
+                return path.substring(path.lastIndexOf("\\")+1,path.length());
+            }
+            return path;
+        }
+        return "1.jpg";
+    }
 
 
-    protected List<Activity> listActivities(Long uid, Integer pageNo, Integer pageSize) {
+    protected Map<String,Object> listActivities(Long uid, Integer pageNo, Integer pageSize) {
         User user = userService.findUserByUserId(uid);
         if (user !=null && userService.isAdmin(user)) {
             Pagination page = new Pagination();
@@ -129,12 +175,16 @@ public class AbstractActivityController {
                 page.setSize(pageSize);
             }
             List<Activity> activities = activityService.queryActivityWithPagination(page);
-            return activities;
+            Map<String,Object> map = new HashMap<>(2);
+            map.put("activities",activities);
+            map.put("page",page);
+            map.put("totalPage",page.getTotal()==0?0:(page.getTotal()-1)/page.getSize()+1);
+            return map;
         }
         return null;
     }
 
-    protected List<Activity> listAvailableActivities(Long uid, Integer pageNo, Integer pageSize) {
+    protected Map<String,Object> listAvailableActivities(Long uid, Integer pageNo, Integer pageSize) {
         Pagination page = new Pagination();
         if (pageNo != null && pageNo >= 0) {
             page.setCurrent(pageNo);
@@ -143,7 +193,11 @@ public class AbstractActivityController {
             page.setSize(pageSize);
         }
         List<Activity> activities = activityService.queryAvailableActivityWithPagination(uid, page);
-        return activities;
+        Map<String,Object> map = new HashMap<>(2);
+        map.put("activities",activities);
+        map.put("page",page);
+        map.put("totalPage",page.getTotal()==0?0:(page.getTotal()-1)/page.getSize()+1);
+        return map;
     }
 
     protected boolean cancelActivity(Long uid, Long activityId){
@@ -166,6 +220,16 @@ public class AbstractActivityController {
         User user = userService.findUserByUserId(uid);
         if (user !=null && userService.isAdmin(user)) {
             activityService.createActivity(activity);
+            return true;
+        }
+        log.error("current user id is not the admin role,user id is {}",uid);
+        return false;
+    }
+
+    protected boolean upateActivity(Long uid, Activity activity){
+        User user = userService.findUserByUserId(uid);
+        if (user !=null && userService.isAdmin(user)) {
+            activityService.updateActivity(activity);
             return true;
         }
         log.error("current user id is not the admin role,user id is {}",uid);

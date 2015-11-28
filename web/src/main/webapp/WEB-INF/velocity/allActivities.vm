@@ -1,0 +1,150 @@
+#set($layout = "./layout.vm")
+#set($currentPage = "allActivity")
+
+<link rel="stylesheet" type="text/css" href="/css/common/bootstrap-datepicker3.min.css" media="all">
+<script type="text/javascript" src="/js/common/bootstrap-datepicker.min.js"></script>
+<div class="container-fluid" id="main-stage" >
+    <div class="row">
+        <div class="col-xs-4 col-md-2 col-md-offset-1">
+            <div class="row">
+                <h2>活动管理</h2>
+                <ul>
+                    <li><a href="/admin/activity/new">添加活动</a></li>
+                    <li><a href="/admin/activities">所有活动</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="col-xs-14 col-md-8">
+            <div class="row">
+                <h2>所有活动</h2>
+                <table class="table table-bordered table-hover">
+                <tr>
+                    <th>#</th>
+                    <th>活动标题</th>
+                    <th>活动日期</th>
+                    <th>积分</th>
+                    <th>活动状态</th>
+                    <th>活动操作</th>
+                </tr>
+                #foreach($activity in $!{activities})
+                <tr>
+                    <td>$activity.id</td>
+                    <td><a href="/admin/activity/new?id=$activity.id">$!{activity.title}</a></td>
+                    <td>$!{date.format($!{activity.startDate})}-$!{date.format($!{activity.endDate})}</td>
+                    <td>$!{activity.score}</td>
+                    <td>#if($!{activity.status}==0)进行中#end#if($!{activity.status}==1)已取消#end
+                        #if($!{activity.status}==2)已结束#end#if($!{activity.status}==3)未开始#end</td>
+                    <td>#if($!{activity.status}==0 || $!{activity.status}==3)<a data-id="$activity.id" class="btn btn-warning cancel-button">取消活动</a>#end
+                        #if($!{activity.status}==1)<a data-id="$activity.id" class="btn btn-success publish-button">发布活动</a>#end</td>
+                </tr>
+                #end
+                </table>
+            </div>
+
+            <div class="text-center">
+                <nav>
+                  <ul class="pagination pagination-lg">
+                  </ul>
+                </nav>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script>
+jQuery('.cancel-button').click(function(e){
+    jQuery.ajax({
+        url: '/activity/cancel/'+jQuery(e.target).attr("data-id"),
+        type: 'GET',
+        success:function(data) {
+            location.reload();
+        },
+        error: errorHandler = function() {
+            alert("cancel fail");
+        },
+    });
+});
+jQuery('.publish-button').click(function(e){
+    jQuery.ajax({
+        url: '/activity/publish/'+jQuery(e.target).attr("data-id"),
+        type: 'GET',
+        success:function(data) {
+            location.reload();
+        },
+        error: errorHandler = function() {
+            alert("cancel fail");
+        },
+    });
+});
+</script>
+
+#if($page)
+    <script type="text/javascript">
+    jQuery(function () {
+        var config={
+            page_size:$page.size,
+            current_page:$page.current,
+            total_page:$totalPage,
+            page_list:5,
+            show_first_end:true,
+            form:"paginationForm"
+        };
+        var disable = ' class="disabled"';
+        if(config.show_first_end){
+            var enfirst=config.current_page==1?disable:'';
+            jQuery('.pagination').append('<li'+enfirst+'><a href="#" class="page-first" aria-label="First"><span aria-hidden="true">&laquo;</span></a></li>');
+        }
+        jQuery('.pagination').append('<li'+enfirst+'><a href="#" class="page-pre" aria-label="Pre"><span aria-hidden="true">&lt;</span></a></li>');
+        var s=config.current_page-Math.floor(config.page_list/2);
+        if(s<=0)s=1;
+        var e=s+config.page_list;
+        if(e>config.total_page){
+            e=config.total_page;
+            if(e-config.page_list+1<s)s=e-config.page_list+1;
+            if(s<=0)s=1;
+        }
+        var i;
+        for(i=s;i<=e;i++){
+            if(i==config.current_page){
+                jQuery('.pagination').append('<li class="active"><a href="#" class="page-num" >'+i+'</a></li>');
+            }else{
+                jQuery('.pagination').append('<li><a href="#" class="page-num" >'+i+'</a></li>');
+            }
+        }
+        var enend;
+        if(config.current_page==config.total_page){
+            enend=disable;
+        }else{
+            enend='';
+        }
+        jQuery('.pagination').append('<li'+enend+'><a href="#" class="page-next" aria-label="Next"><span aria-hidden="true">&gt;</span></a></li>');
+        if(config.show_first_end){
+            jQuery('.pagination').append('<li'+enend+'><a href="#" class="page-last" aria-label="End"><span aria-hidden="true">&raquo;</span></a></li>');
+        }
+        jQuery('.pagination').append('<input type="hidden" id="page_num" name="page_num" value="">');
+        jQuery('.pagination').append('<input type="hidden" id="page_size" name="page_size" value="">');
+        jQuery('.pagination>li>a').click(event,function(){
+            var page_num = config.current_page;
+            if(jQuery(event.currentTarget).hasClass("page-num")){
+                page_num = jQuery(event.currentTarget).text();
+            }else if(jQuery(event.currentTarget).hasClass("page-pre") && config.current_page>1){
+                page_num = config.current_page-1;
+            }else if(jQuery(event.currentTarget).hasClass("page-next") && config.current_page<config.total_page){
+                page_num = config.current_page+1;
+            }else if(jQuery(event.currentTarget).hasClass("page-first") && config.current_page!=1){
+                page_num = 1;
+            }else if(jQuery(event.currentTarget).hasClass("page-last") && config.current_page!=config.total_page){
+                page_num = config.total_page;
+            }else{
+                return false;
+            }
+            //jQuery('#page_num').attr("value",page_num);
+            //jQuery('#page_size').attr("value",config.page_size);
+            //jQuery('#'+config.form).submit();
+            location.href="/admin/activities?pageSize="+config.page_size+"&pageNo="+page_num;
+            return true;
+        });
+    });
+    </script>
+#end

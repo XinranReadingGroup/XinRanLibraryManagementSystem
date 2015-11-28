@@ -9,6 +9,10 @@ public enum ActivityStatus {
 
     CANCEL(1),
 
+    FINISHED(2),
+
+    NOT_START(3),
+
     ;
 
     private int status;

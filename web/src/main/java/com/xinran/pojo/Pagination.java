@@ -35,14 +35,14 @@ public class Pagination {
 	 * Value 0 for first, MYSQL first.
 	 */
 	public Integer getStart(){
-		return (current - 1) * 20;
+		return (current - 1) * size;
 	}
 	
 	/**
 	 * Get end index for this page, calculated from current index and page size.
 	 */
 	public Integer getEnd(){
-		return current * 20 - 1;
+		return size;
 	}
 	
 	

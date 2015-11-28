@@ -19,8 +19,14 @@ public interface ActivityMapper {
     @Select("SELECT * FROM activity WHERE id = #{id}")
     public Activity findById(@Param("id") Long id);
 
+    @Select("SELECT count(*) FROM activity")
+    int countActivities();
+
     @Select("SELECT * FROM activity order by id desc limit #{page.start},#{page.end}")
     List<Activity> findActivities(@Param("page") Pagination page);
+
+    @Select("SELECT * FROM activity where status=0 and now() > start_date and now() < end_date")
+    int countAvailableActivities();
 
     @Select("SELECT * FROM activity where status=0 and now() > start_date and now() < end_date order by id desc limit #{page.start},#{page.end}")
     List<Activity> findAvailableActivities(@Param("page") Pagination page);
