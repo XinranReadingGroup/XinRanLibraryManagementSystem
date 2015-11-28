@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.servlet.ModelAndView;
 
 import com.xinran.constant.ApplicationConstant;
 import com.xinran.constant.SystemResultCode;
@@ -71,13 +70,9 @@ public abstract class AbstractUserController {
 
 
 
-    @RequestMapping("/user/profile")
-    public ModelAndView viewMyselfUser(HttpServletRequest request) throws UserException {
-        UserVO userVO = buildUserVO(request);
-        return new ModelAndView("userProfile", "userVO", userVO);
-    }
 
-    private UserVO buildUserVO(HttpServletRequest request) {
+
+    protected UserVO buildUserVO(HttpServletRequest request) {
         Long userIdInSession = UserIdenetityUtil.getCurrentUserId(request);
         User user = userService.findUserByUserId(userIdInSession);
         UserVO userVO = new UserVO();

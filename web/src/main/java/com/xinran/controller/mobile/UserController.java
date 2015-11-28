@@ -21,6 +21,7 @@ import com.xinran.controller.common.AbstractUserController;
 import com.xinran.controller.util.MobileSessionHolder;
 import com.xinran.exception.UserException;
 import com.xinran.vo.AjaxResult;
+import com.xinran.vo.UserVO;
 import com.xinran.vo.builder.AjaxResultBuilder;
 
 /**
@@ -70,6 +71,12 @@ public class UserController extends AbstractUserController {
     public @ResponseBody AjaxResult newSessionSignIn(HttpServletRequest request, HttpServletResponse response) {
         return AjaxResultBuilder.buildFailedResult(SystemResultCode.UserNotLoginedInOrAccessTokenInvalid.getCode(), SystemResultCode.UserNotLoginedInOrAccessTokenInvalid.getDesc());
 
+    }
+    
+    @RequestMapping("/user/profile")
+    public @ResponseBody AjaxResult viewMyselfUser(HttpServletRequest request) throws UserException {
+        UserVO userVO = buildUserVO(request);
+        return AjaxResultBuilder.buildSuccessfulResult(userVO);
     }
 
 }

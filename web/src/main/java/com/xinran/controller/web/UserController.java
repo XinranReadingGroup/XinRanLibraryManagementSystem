@@ -21,6 +21,7 @@ import com.xinran.constant.ApplicationConstant;
 import com.xinran.controller.common.AbstractUserController;
 import com.xinran.exception.UserException;
 import com.xinran.vo.AjaxResult;
+import com.xinran.vo.UserVO;
 import com.xinran.vo.builder.AjaxResultBuilder;
 
 /**
@@ -98,4 +99,10 @@ public class UserController extends AbstractUserController {
 
     }
 
+    
+    @RequestMapping("/user/profile")
+    public ModelAndView viewMyselfUser(HttpServletRequest request) throws UserException {
+        UserVO userVO = buildUserVO(request);
+        return new ModelAndView("userProfile", "userVO", userVO);
+    }
 }
