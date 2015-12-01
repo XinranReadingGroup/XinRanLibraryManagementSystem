@@ -1,22 +1,5 @@
 package com.xinran.controller.common;
 
-import java.io.InputStreamReader;
-import java.io.Reader;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
-import javax.annotation.PostConstruct;
-import javax.servlet.http.HttpServletRequest;
-
-import org.apache.commons.io.IOUtils;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
-
 import com.alibaba.fastjson.JSON;
 import com.xinran.controller.util.UserIdenetityUtil;
 import com.xinran.pojo.BookLocation;
@@ -24,6 +7,21 @@ import com.xinran.service.BookLocationService;
 import com.xinran.vo.AjaxResult;
 import com.xinran.vo.LocationMeta;
 import com.xinran.vo.builder.AjaxResultBuilder;
+import org.apache.commons.io.IOUtils;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import javax.annotation.PostConstruct;
+import javax.servlet.http.HttpServletRequest;
+import java.io.InputStreamReader;
+import java.io.Reader;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * Created by zhuangyao.zy on 2015/5/23.
@@ -31,21 +29,22 @@ import com.xinran.vo.builder.AjaxResultBuilder;
 public class AbstractBookLocationController {
 
     @Autowired
-    private BookLocationService                 locationService;
+    private BookLocationService                        locationService;
 
     /**
      * 暂时用JSON静态资源来描述省市区基本信息。
      */
-    private final static Map<Long, String>             map          = new HashMap<Long, String>(64);             // id/name
+    private final static Map<Long, String>             map          = new HashMap<Long, String>(64);            // id/name
     private final static List<LocationMeta>            provinceList = new ArrayList<LocationMeta>(32);
     private final static Map<Long, List<LocationMeta>> cityMap      = new HashMap<Long, List<LocationMeta>>(32);
     private final static Map<Long, List<LocationMeta>> countyMap    = new HashMap<Long, List<LocationMeta>>(32);
 
-    @RequestMapping("/book/address/add")  //该权限需要被登录校验,所以改了个名字.
+    @RequestMapping("/book/address/add")
+    // 该权限需要被登录校验,所以改了个名字.
     public @ResponseBody AjaxResult add(BookLocation location, HttpServletRequest request) {
         Long currentUserId = UserIdenetityUtil.getCurrentUserId(request);
 
-    	location.setUserId(currentUserId);
+        location.setUserId(currentUserId);
         BookLocation add = locationService.add(location);
         return AjaxResultBuilder.buildSuccessfulResult(add);
     }
@@ -61,21 +60,19 @@ public class AbstractBookLocationController {
 
     @RequestMapping("/book/location/provinces")
     public @ResponseBody AjaxResult provinces(HttpServletRequest request) {
-        return AjaxResultBuilder.buildSuccessfulResult(provinceList);
+        return AjaxResultBuilder.buildSuccessfulResult(locationService.queryProvince());
     }
 
     @RequestMapping("/book/location/provinces/{province}/cities")
     public @ResponseBody AjaxResult cities(@PathVariable(value = "province") String province, HttpServletRequest request) {
-        List<LocationMeta> cities = cityMap.get(Long.valueOf(province));
-
-        return AjaxResultBuilder.buildSuccessfulResult(cities);
+        return AjaxResultBuilder.buildSuccessfulResult(locationService.queryCities(province));
     }
 
-    @RequestMapping("/book/location/cities/{city}/counties")
-    public @ResponseBody AjaxResult counties(@PathVariable(value = "city") String city, HttpServletRequest request) {
-        List<LocationMeta> counties = countyMap.get(Long.valueOf(city));
-
-        return AjaxResultBuilder.buildSuccessfulResult(counties);
+    @RequestMapping("/book/location/{province}/{city}/counties")
+    public @ResponseBody AjaxResult counties(@PathVariable(value = "city") String city,
+                                             @PathVariable(value = "province") String province,
+                                             HttpServletRequest request) {
+        return AjaxResultBuilder.buildSuccessfulResult(locationService.queryCounties(province,city));
     }
 
     /**

@@ -1,13 +1,13 @@
 package com.xinran.service.impl;
 
-import java.util.List;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
 import com.xinran.dao.mapper.BookLocationMapper;
 import com.xinran.pojo.BookLocation;
 import com.xinran.service.BookLocationService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
+
+import java.util.List;
 
 /**
  * Created by zhuangyao.zy on 2015/5/24.
@@ -28,8 +28,39 @@ public class BookLocationServiceImpl implements BookLocationService {
     }
 
     @Override
+    public List<BookLocation> queryProvince() {
+        return locationMapper.queryProvince();
+    }
+
+    @Override
+    public List<BookLocation> queryCities(String province) {
+        if (StringUtils.isEmpty(province)) {
+            return null;
+        }
+        return locationMapper.queryCities(province);
+    }
+
+    @Override
+    public List<BookLocation> queryCounties(String province, String city) {
+        if (StringUtils.isEmpty(province) || StringUtils.isEmpty(city)) {
+            return null;
+        }
+        return locationMapper.queryCounties(province, city);
+    }
+
+    @Override
     public BookLocation add(BookLocation location) {
         locationMapper.add(location);
         return location;
+    }
+
+    @Override
+    public int updateBookLocation(BookLocation location) {
+        return locationMapper.update(location);
+    }
+
+    @Override
+    public int delete(Long id) {
+        return locationMapper.delete(id);
     }
 }
