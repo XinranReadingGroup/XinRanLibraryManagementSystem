@@ -41,11 +41,11 @@ public class BookLocationServiceImpl implements BookLocationService {
     }
 
     @Override
-    public List<BookLocation> queryCounties(String province, String city) {
-        if (StringUtils.isEmpty(province) || StringUtils.isEmpty(city)) {
+    public List<BookLocation> queryCounties( String city) {
+        if ( StringUtils.isEmpty(city)) {
             return null;
         }
-        return locationMapper.queryCounties(province, city);
+        return locationMapper.queryCounties(city);
     }
 
     @Override

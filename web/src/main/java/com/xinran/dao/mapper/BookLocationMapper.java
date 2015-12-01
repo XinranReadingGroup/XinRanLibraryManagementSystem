@@ -28,8 +28,8 @@ public interface BookLocationMapper {
     @Select("select * from book_location where province=#{province}")
     List<BookLocation> queryCities(@Param("province") String province);
 
-    @Select("select * from book_location where province=#{province} and city=#{city}")
-    List<BookLocation> queryCounties(@Param("province") String province,@Param("city") String city);
+    @Select("select * from book_location where city=#{city}")
+    List<BookLocation> queryCounties(@Param("city") String city);
 
     @Select("SELECT * FROM book_location WHERE id = #{id}")
     BookLocation findBookLocationById(@Param("id") Long id);

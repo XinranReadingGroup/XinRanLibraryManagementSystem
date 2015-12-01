@@ -17,7 +17,7 @@ public interface BookLocationService {
 
     List<BookLocation> queryCities(String province);
 
-    List<BookLocation> queryCounties(String province, String city);
+    List<BookLocation> queryCounties(String city);
 
     BookLocation add(BookLocation location);
 

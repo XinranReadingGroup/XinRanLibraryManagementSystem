@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.annotation.PostConstruct;
 import javax.servlet.http.HttpServletRequest;
@@ -68,12 +69,17 @@ public class AbstractBookLocationController {
         return AjaxResultBuilder.buildSuccessfulResult(locationService.queryCities(province));
     }
 
-    @RequestMapping("/book/location/{province}/{city}/counties")
+    @RequestMapping("/book/location/cities/{city}/counties")
     public @ResponseBody AjaxResult counties(@PathVariable(value = "city") String city,
-                                             @PathVariable(value = "province") String province,
                                              HttpServletRequest request) {
-        return AjaxResultBuilder.buildSuccessfulResult(locationService.queryCounties(province,city));
+        return AjaxResultBuilder.buildSuccessfulResult(locationService.queryCounties(city));
     }
+
+    @RequestMapping("/book/location/new")
+    public ModelAndView bookLocation(HttpServletRequest request) {
+        return new ModelAndView("bookLocation");
+    }
+
 
     /**
      * 
