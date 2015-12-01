@@ -1,0 +1,66 @@
+#set($layout = "./layout.vm")
+#set($currentPage = "donate")
+
+<link rel="stylesheet" type="text/css" href="/css/share.css" media="all">
+<div class="main-stage container-fluid" id="main-stage">
+    <div class="row">
+        <div class="xinran-desc col-xs-6">
+
+        </div>
+        <div class="book-share-box-root col-xs-6" id="book-share-box-root">
+            <h3>第一步：输入你私人书籍的条形码（ISBN码）:</h3>
+            <div class="form-group">
+                <input type="text" class="j-input-isbn" placeholder="请输入iSBN" />
+                <input type="hidden" class="j-input-user" value=""/>
+                <input type="hidden" class="j-book-id" value=""/>
+                <input type="hidden" class="j-location-id" value=""/>
+            </div>
+            <button class="btn btn-default j-get-book">提交</button>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="book-info" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">确认共享此图书?</h4>
+            </div>
+            <div class="modal-body">
+                <div class="clearfix">
+                    <div class="book-pic">
+                        <img class="j-book-pic" src=""/>
+                    </div>
+                    <div class="book-info">
+                        <p><span class="book-title j-title"></span></p>
+                        <p>作者: <span class="j-author"></span></p>
+                        <p>出版社: <span class="j-publisher"></span></p>
+                    </div>
+                </div>
+                <div class="book-summary j-summary"></div>
+                <div class="location-select">
+                    <select class="j-provinces">
+                        <option value="0">请选择省份</option>
+                    </select>
+                    <select class="j-citys">
+                        <option value="0">请选择城市</option>
+                    </select>
+                    <select class="j-counties">
+                        <option value="0">请选择区县</option>
+                    </select>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                <button type="button" class="btn btn-primary j-donate-btn">捐赠图书图书</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    seajs.use('/js/donate.js', function (Donate) {
+        new Donate().render();
+    });
+</script>

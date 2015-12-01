@@ -75,6 +75,11 @@ public class AbstractBookLocationController {
         return AjaxResultBuilder.buildSuccessfulResult(locationService.queryCounties(city));
     }
 
+    @RequestMapping("/book/location/new")
+    public ModelAndView bookLocation(HttpServletRequest request) {
+        return new ModelAndView("bookLocation");
+    }
+
     /**
      * 
      */
