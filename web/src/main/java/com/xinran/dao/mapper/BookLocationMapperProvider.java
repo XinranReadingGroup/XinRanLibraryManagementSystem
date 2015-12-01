@@ -11,9 +11,9 @@ public class BookLocationMapperProvider {
         StringBuilder buffer = new StringBuilder(32);
         buffer.append("SELECT * FROM book_location WHERE 1=1 ");
         
-        if (params.get("userId") != null) {
+        /*if (params.get("userId") != null) {
             buffer.append(" and user_id = #{userId}");
-        }
+        }*/
         
         if (params.get("province") != null) {
             buffer.append(" and province = #{province}");
