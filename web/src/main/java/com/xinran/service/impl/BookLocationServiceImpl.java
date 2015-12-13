@@ -28,6 +28,11 @@ public class BookLocationServiceImpl implements BookLocationService {
     }
 
     @Override
+    public List<BookLocation> queryAll() {
+        return locationMapper.queryAll();
+    }
+
+    @Override
     public List<BookLocation> queryProvince() {
         return locationMapper.queryProvince();
     }

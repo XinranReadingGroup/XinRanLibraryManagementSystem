@@ -13,6 +13,8 @@ public interface BookLocationService {
 
     List<BookLocation> query(String province, String city, String county);
 
+    List<BookLocation> queryAll();
+
     List<BookLocation> queryProvince();
 
     List<BookLocation> queryCities(String province);

@@ -50,6 +50,24 @@ public class AbstractBookLocationController {
         return AjaxResultBuilder.buildSuccessfulResult(add);
     }
 
+    @RequestMapping("/book/address/query")
+    public @ResponseBody AjaxResult query(HttpServletRequest request) {
+        List<BookLocation> result = locationService.queryAll();
+        return AjaxResultBuilder.buildSuccessfulResult(result);
+    }
+
+    @RequestMapping("/book/address/update")
+    public @ResponseBody AjaxResult update(HttpServletRequest request,BookLocation location) {
+        int result = locationService.updateBookLocation(location);
+        return AjaxResultBuilder.buildSuccessfulResult(result);
+    }
+
+    @RequestMapping("/book/address/delete")
+    public @ResponseBody AjaxResult delete(HttpServletRequest request,long id) {
+        int result = locationService.delete(id);
+        return AjaxResultBuilder.buildSuccessfulResult(result);
+    }
+
     @RequestMapping("/book/location/query")
     public @ResponseBody AjaxResult query(@RequestParam(value = "province", required = false) String province,
                                           @RequestParam(value = "city", required = false) String city,
@@ -58,6 +76,8 @@ public class AbstractBookLocationController {
         List<BookLocation> query = locationService.query(province, city, county);
         return AjaxResultBuilder.buildSuccessfulResult(query);
     }
+
+
 
     @RequestMapping("/book/location/provinces")
     public @ResponseBody AjaxResult provinces(HttpServletRequest request) {

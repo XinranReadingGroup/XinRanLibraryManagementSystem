@@ -25,6 +25,10 @@ public interface BookLocationMapper {
     @Select("select * from book_location group by province")
     List<BookLocation> queryProvince();
 
+    @Select("select * from book_location")
+    List<BookLocation> queryAll();
+
+
     @Select("select * from book_location where province=#{province}")
     List<BookLocation> queryCities(@Param("province") String province);
 
@@ -38,7 +42,7 @@ public interface BookLocationMapper {
     @Options(useGeneratedKeys = true)
     void add(BookLocation location);
 
-    @Update("update  book_location set   updated_at = now(),user_id = #{userId},province = #{province},city=#{city},county=#{county},detail=#{detail},lat=#{lat},lng=#{lng},type=#{type} where id = #{id}")
+    @Update("update  book_location set   updated_at = now(),province = #{province},city=#{city},county=#{county},detail=#{detail},type=#{type} where id = #{id}")
     int update(BookLocation location);
 
     @Delete("delete from book_location where id= #{id}")
