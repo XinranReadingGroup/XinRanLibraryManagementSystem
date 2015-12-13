@@ -68,6 +68,8 @@ define(function (require, exports, module) {
             this.$rootEl.delegate('.J-del', 'click', function(event){
                 var $el = $(evnet.targetElment),
                     dataId = $el.attr('data-id');
+
+                 self.$locationDelEl.find('.J-location-id').val( dataId );
                  self.$locationDelEl.find('.J-location-action').val( 'del' );
                  self.$locationDelEl.modal('show');
 

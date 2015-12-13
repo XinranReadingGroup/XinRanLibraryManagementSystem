@@ -98,6 +98,9 @@
                 <h4 class="modal-title" id="myModalLabel">删除确认</h4>
             </div>
             <div class="modal-body">
+                <input type="hidden" class="J-location-id" value="" />
+                <input type="hidden" class="J-location-action" value="" />
+                
                 <p>确认删除该地址信息？</p>     
             </div>
             <div class="modal-footer">
