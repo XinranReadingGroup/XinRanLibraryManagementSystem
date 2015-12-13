@@ -7,7 +7,7 @@
 	    <div class="col-xs-4 col-md-2"> 
 
 
-	    	<a class="J-edit btn btn-default btn-sm" data-id="{{this.id}}" href="javascript:void(0);">编辑</a>
+	    	<a class="J-edit btn btn-default btn-sm" data-id="{{this.id}}" data-province="{{this.province}}" data-city="{{this.city}}"  data-county="{{this.county}}" href="javascript:void(0);">编辑</a>
 	    	&nbsp; ｜&nbsp; 
 	    	<a class="J-del btn btn-default btn-sm" data-id="{{this.id}}" href="javascript:void(0);">删除</a>
 

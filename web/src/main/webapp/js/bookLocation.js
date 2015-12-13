@@ -23,6 +23,7 @@ define(function (require, exports, module) {
             this.$rootEl = $('#location-manager-content');
             this.$locationDataEl =$('#location-data-info');
             this.$locationListContentEl = this.$rootEl.find('.J-info-list-content');
+            this.$locationDelEl = $('#location-data-del');
 
             this.getProvinces();
             this.refreshListInfo();
@@ -46,14 +47,30 @@ define(function (require, exports, module) {
                 self.refreshListInfo();
             });
             this.$rootEl.delegate('.J-add-new', 'click', function(event){
+                self.$locationDataEl.find('.J-location-id').val('');
+                self.$locationDataEl.find('.J-location-action').val( 'add' );
                 self.$locationDataEl.modal('show');
             });
             this.$rootEl.delegate('.J-edit', 'click', function(event){
+                var $el = $(evnet.targetElment),
+                    dataId = $el.attr('data-id');
+
                 
+                self.$locationDataEl.find('.J-location-id').val( dataId );
+                self.$locationDataEl.find('.J-location-action').val( 'edit' );
+                self.$locationDataEl.find('.J-input-provinces').val( $el.attr('data-province') );
+                self.$locationDataEl.find('.J-input-citys').val( $el.attr('data-city') );
+                self.$locationDataEl.find('.J-input-counties').val( $el.attr('data-countie') );
+
+                self.$locationDataEl.modal('show');
             });
 
             this.$rootEl.delegate('.J-del', 'click', function(event){
-               
+                var $el = $(evnet.targetElment),
+                    dataId = $el.attr('data-id');
+                 self.$locationDelEl.find('.J-location-action').val( 'del' );
+                 self.$locationDelEl.modal('show');
+
             });
 
 
@@ -64,6 +81,22 @@ define(function (require, exports, module) {
                  self.getProvinces();
             });
 
+            this.$locationDelEl.delegate('.J-save-btn', 'click', function(event){
+                var self = this,
+                    dataId =  self.$locationDelEl.find('.J-location-id').val();
+                $.get('/book/address/delete', {
+                    id: dataId
+                },function(data){
+                    if (data && data.code == 200) {
+                       window.alert('删除成功！');
+                    } else {
+                        window.alert('捐书失败:获取地址失败');
+                    }
+                }, 'json');
+
+                self.$locationDelEl.modal('hide');
+                 
+            });
             
 
         },
@@ -144,22 +177,41 @@ define(function (require, exports, module) {
             @des 添加一个地址
         */
         addLocationData : function () {
-            var self = this;
+            var self = this,
+                dataId =  self.$locationDataEl.find('.J-location-id').val(),
                 provinceId = this.$locationDataEl.find('.J-input-provinces').val(),
                 cityId = this.$locationDataEl.find('.J-input-citys').val(),
-                countiesId = this.$locationDataEl.find('.J-input-counties').val();
+                countiesId = this.$locationDataEl.find('.J-input-counties').val(),
+                action =  this.$locationDataEl.find('.J-location-action').val();
+            if( action === 'add'){
+                $.get('/book/address/add', {
+                    province: provinceId,
+                    city: cityId,
+                    county: countiesId
+                },function(data){
+                    if (data && data.code == 200) {
+                       window.alert('添加成功');
+                    } else {
+                        window.alert('捐书失败:获取地址失败');
+                    }
+                }, 'json');
+            }else if( action === 'edit'){
+                $.get('/book/address/update', {
+                    id: dataId,
+                    province: provinceId,
+                    city: cityId,
+                    county: countiesId
+                },function(data){
+                    if (data && data.code == 200) {
+                       window.alert('修改成功');
+                    } else {
+                        window.alert('捐书失败:获取地址失败');
+                    }
+                }, 'json');
+            }
 
-            $.get('/book/address/add', {
-                province: provinceId,
-                city: cityId,
-                county: countiesId
-            },function(data){
-                if (data && data.code == 200) {
-                   
-                } else {
-                    window.alert('捐书失败:获取地址失败');
-                }
-            }, 'json');
+
+           
         }
 
 
