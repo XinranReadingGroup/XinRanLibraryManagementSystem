@@ -1,66 +1,96 @@
 #set($layout = "./layout.vm")
 #set($currentPage = "donate")
 
-<link rel="stylesheet" type="text/css" href="/css/share.css" media="all">
+<link rel="stylesheet" type="text/css" href="/css/bookLocation.css" media="all">
 <div class="main-stage container-fluid" id="main-stage">
-    <div class="row">
-        <div class="xinran-desc col-xs-6">
+    <div class="location-manager-box">
+        <h3>地址管理</h3>
+        <div id="location-manager-content" class="location-manager-content">
+
+            <div class="manger-controller">
+                <div class="container-fluid">
+                    <div class="col-xs-4 col-md-2"> 
+                        <select class="J-provinces form-control input-sm">
+                            <option value="0">请选择省份</option>
+                        </select>
+                    </div>
+                    <div class="col-xs-4 col-md-2"> 
+                        <select class="J-citys form-control input-sm">
+                            <option value="0">请选择城市</option>
+                        </select>
+                    </div>
+                    <div class="col-xs-4 col-md-2"> 
+                        <select class="J-counties form-control input-sm">
+                            <option value="0">请选择区县</option>
+                        </select>
+                    </div>
+                    <div class="col-xs-4 col-md-2"> 
+                        <a class="J-add-new btn btn-default btn-sm" href="javascript:void(0);">添加新地址</a>
+                    </div>
+
+                </div>
+            </div>
+
+
+            <div class="container-fluid location-info-list">
+                <div class="row row-header">
+                    <div class="col-xs-4 col-md-2"> 省份</div>
+                    <div class="col-xs-4 col-md-2"> 城市</div>
+                    <div class="col-xs-4 col-md-2"> 地址</div>
+                    <div class="col-xs-4 col-md-2"> 操作</div>
+                </div>
+                <div class="J-info-list-content info-list-content">
+                   
+
+
+
+                </div>
+
+
+            </div>
+
 
         </div>
-        <div class="book-share-box-root col-xs-6" id="book-share-box-root">
-            <h3>第一步：输入你私人书籍的条形码（ISBN码）:</h3>
-            <div class="form-group">
-                <input type="text" class="j-input-isbn" placeholder="请输入iSBN" />
-                <input type="hidden" class="j-input-user" value=""/>
-                <input type="hidden" class="j-book-id" value=""/>
-                <input type="hidden" class="j-location-id" value=""/>
-            </div>
-            <button class="btn btn-default j-get-book">提交</button>
-        </div>
+
     </div>
 </div>
 
-<div class="modal fade" id="book-info" role="dialog">
+<div class="modal fade" id="location-data-info" role="dialog">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="myModalLabel">确认共享此图书?</h4>
+                <h4 class="modal-title" id="myModalLabel">添加／更新地址</h4>
             </div>
             <div class="modal-body">
-                <div class="clearfix">
-                    <div class="book-pic">
-                        <img class="j-book-pic" src=""/>
-                    </div>
-                    <div class="book-info">
-                        <p><span class="book-title j-title"></span></p>
-                        <p>作者: <span class="j-author"></span></p>
-                        <p>出版社: <span class="j-publisher"></span></p>
-                    </div>
-                </div>
-                <div class="book-summary j-summary"></div>
-                <div class="location-select">
-                    <select class="j-provinces">
-                        <option value="0">请选择省份</option>
-                    </select>
-                    <select class="j-citys">
-                        <option value="0">请选择城市</option>
-                    </select>
-                    <select class="j-counties">
-                        <option value="0">请选择区县</option>
-                    </select>
-                </div>
+
+                <form id="J-location-form">
+                      <input type="hidden" class="J-location-id" value="" />
+                      <div class="form-group">
+                        <label for="exampleInputEmail1">省份（provinces）</label>
+                        <input type="email" class="J-input-provinces form-control" placeholder="省份">
+                      </div>
+                      <div class="form-group">
+                        <label for="exampleInputEmail1">城市（citys）</label>
+                        <input type="email" class="J-input-provinces form-control" placeholder="省份">
+                      </div>
+                      <div class="form-group">
+                        <label for="exampleInputEmail1">区县（counties）</label>
+                        <input type="email" class="J-input-provinces form-control" placeholder="省份">
+                      </div>
+                </form>
+                
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
-                <button type="button" class="btn btn-primary j-donate-btn">捐赠图书图书</button>
+                <button type="button" class="btn btn-primary J-save-btn">添加／更新</button>
             </div>
         </div>
     </div>
 </div>
 
 <script>
-    seajs.use('/js/donate.js', function (Donate) {
-        new Donate().render();
+    seajs.use('/js/bookLocation.js', function ( BookLocation ) {
+        new BookLocation().render();
     });
 </script>

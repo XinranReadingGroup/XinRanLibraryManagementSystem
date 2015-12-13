@@ -5,7 +5,9 @@
  */
 
 define(function (require, exports, module) {
-    var $ = require('jquery');
+    var $ = require('jquery'),
+        Handlebars = require('handelbars'),
+        locationRowTmp = require('./tpl/locationrow.tpl');
 
     var bookLocation : function(){
 
@@ -18,6 +20,14 @@ define(function (require, exports, module) {
         */
         render:function( cfg ){
 
+            this.$rootEl = $('#location-manager-content');
+            this.$locationDataEl =$('#location-data-info');
+            this.$locationListContentEl = this.$rootEl.find('.J-info-list-content');
+
+            this.getProvinces();
+            this.refreshListInfo();
+
+            this.bindEvents();
         },
 
         /**
@@ -27,18 +37,51 @@ define(function (require, exports, module) {
             var self = this,
                 $doc = $(document);
 
-            $doc.delegate('.j-get-book', 'click', function(event){
-                self.getBookInfo();
-            });
-            $doc.delegate('.j-donate-btn', 'click', function(event){
-                self.getLocationId();
-            });
-            $doc.delegate('.j-provinces', 'change', function(event){
+            this.$rootEl.delegate('.J-provinces', 'change', function(event){
                 self.getCitys();
+                self.refreshListInfo();
             });
-            $doc.delegate('.j-citys', 'change', function(event){
+            this.$rootEl.delegate('.J-citys', 'change', function(event){
                 self.Counties();
+                self.refreshListInfo();
             });
+            this.$rootEl.delegate('.J-add-new', 'click', function(event){
+                self.$locationDataEl.modal('show');
+            });
+            this.$rootEl.delegate('.J-edit', 'click', function(event){
+                
+            });
+
+            this.$rootEl.delegate('.J-del', 'click', function(event){
+               
+            });
+
+
+            this.$locationDataEl.delegate('.J-save-btn', 'click', function(event){
+
+                 self.addLocationData();
+                 self.$locationDataEl.modal('hide');
+                 self.getProvinces();
+            });
+
+            
+
+        },
+
+         /**
+            @des 刷新地址列表
+        */
+        refreshListInfo:function(){
+            var self = this;
+
+            $.get('/book/address/query', function(data){
+                if(data && data.code == 200){
+                    var options = [],
+                        locationList = data.data;
+                    var listEl = Handlebars.compile(locationRowTmp)(locationList);
+                    self.$locationListContentEl.html( listEl );
+                }
+            }, 'json');
         },
 
         /**
@@ -55,7 +98,7 @@ define(function (require, exports, module) {
                     for (var i = 0, len = provinceList.length; i < len; i++) {
                         options.push('<option value='+provinceList[i].id + '>'+ provinceList[i].name+'</option>');
                     }
-                    $('.j-provinces').html(options.join(' '));
+                    self.$rootEl.find('.J-provinces').html(options.join(' '));
                 }
             }, 'json');
         },
@@ -74,7 +117,7 @@ define(function (require, exports, module) {
                     for (var i = 0, len = cityList.length; i < len; i++) {
                         options.push('<option value='+cityList[i].id + '>'+ cityList[i].name+'</option>');
                     }
-                    $('.j-citys').html(options.join(' '));
+                    self.$rootEl.find('.J-citys').html(options.join(' '));
                 }
             }, 'json');
         },
@@ -83,7 +126,7 @@ define(function (require, exports, module) {
         */
         Counties : function(){
             var self = this,
-                cityId = $('.j-citys').val();
+                cityId = this.$rootEl.find('.J-citys').val();
 
             $.get('/book/location/cities/' + cityId + '/counties', function(data){
                 if(data && data.code == 200){
@@ -93,7 +136,7 @@ define(function (require, exports, module) {
                     for (var i = 0, len = countiesList.length; i < len; i++) {
                         options.push('<option value='+countiesList[i].id + '>'+ countiesList[i].name+'</option>');
                     }
-                    $('.j-counties').html(options.join(' '));
+                    self.$rootEl.find('.J-counties').html(options.join(' '));
                 }
             }, 'json');
         },
@@ -102,9 +145,9 @@ define(function (require, exports, module) {
         */
         addLocationData : function () {
             var self = this;
-                provinceId = $('.j-provinces').val(),
-                cityId = $('.j-citys').val(),
-                countiesId = $('.j-counties').val();
+                provinceId = this.$locationDataEl.find('.J-input-provinces').val(),
+                cityId = this.$locationDataEl.find('.J-input-citys').val(),
+                countiesId = this.$locationDataEl.find('.J-input-counties').val();
 
             $.get('/book/address/add', {
                 province: provinceId,
