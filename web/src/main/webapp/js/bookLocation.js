@@ -38,11 +38,11 @@ define(function (require, exports, module) {
             var self = this,
                 $doc = $(document);
 
-            this.$rootEl.delegate('.J-provinces', 'click', function(event){
+            this.$rootEl.delegate('.J-provinces', 'change', function(event){
                 self.getCitys();
                 self.refreshListInfo();
             });
-            this.$rootEl.delegate('.J-citys', 'click', function(event){
+            this.$rootEl.delegate('.J-citys', 'change', function(event){
                 self.Counties();
                 self.refreshListInfo();
             });
@@ -134,6 +134,7 @@ define(function (require, exports, module) {
                         options.push('<option value='+provinceList[i].province + '>'+ provinceList[i].province+'</option>');
                     }
                     self.$rootEl.find('.J-provinces').html(options.join(' '));
+                    self.getCitys();
                 }
             }, 'json');
         },
@@ -153,6 +154,7 @@ define(function (require, exports, module) {
                         options.push('<option value='+cityList[i].city + '>'+ cityList[i].city+'</option>');
                     }
                     self.$rootEl.find('.J-citys').html(options.join(' '));
+                    self.Counties();
                 }
             }, 'json');
         },

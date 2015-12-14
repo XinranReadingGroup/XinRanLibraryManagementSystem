@@ -95,6 +95,7 @@ define(function (require, exports, module) {
                     options.push('<option value='+provinceList[i].province + '>'+ provinceList[i].province+'</option>');
                 }
                 $('.j-provinces').html(options.join(' '));
+                 self.getCitys();
             }
         }, 'json');
     };
@@ -112,6 +113,7 @@ define(function (require, exports, module) {
                     options.push('<option value='+cityList[i].city + '>'+ cityList[i].city+'</option>');
                 }
                 $('.j-citys').html(options.join(' '));
+                self.Counties();
             }
         }, 'json');
     };
