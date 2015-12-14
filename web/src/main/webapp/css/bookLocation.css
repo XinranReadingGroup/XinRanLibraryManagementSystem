@@ -12,12 +12,12 @@
 
 .location-manager-box .location-info-list{
 	margin-top: 10px;
-	padding: 10px 0 10px 0;
+	overflow: hidden;
 }
 
 .location-manager-box .location-info-list .row{
-	padding: 10px 0 10px 0;
-	border-bottom: 1px solid #999;
+	padding: 15px 0 15px 0;
+	border-bottom: 1px solid #ddd;
 }
 
 .location-manager-box .location-info-list .row.row-header{
