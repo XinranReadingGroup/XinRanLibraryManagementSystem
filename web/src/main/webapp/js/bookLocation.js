@@ -38,11 +38,11 @@ define(function (require, exports, module) {
             var self = this,
                 $doc = $(document);
 
-            this.$rootEl.delegate('.J-provinces', 'change', function(event){
+            this.$rootEl.delegate('.J-provinces', 'click', function(event){
                 self.getCitys();
                 self.refreshListInfo();
             });
-            this.$rootEl.delegate('.J-citys', 'change', function(event){
+            this.$rootEl.delegate('.J-citys', 'click', function(event){
                 self.Counties();
                 self.refreshListInfo();
             });
@@ -159,7 +159,7 @@ define(function (require, exports, module) {
         /**
             @des 获得城市下的区县列表
         */
-        Counties : function(){
+        Counties:function(){
             var self = this,
                 cityVal = this.$rootEl.find('.J-citys').val();
 
