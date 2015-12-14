@@ -9,7 +9,7 @@ define(function (require, exports, module) {
         Handlebars = require('handelbars'),
         locationRowTmp = require('./tpl/locationrow.tpl');
 
-    var bookLocation : function(){
+    var bookLocation ＝ function(){
 
     };
 
