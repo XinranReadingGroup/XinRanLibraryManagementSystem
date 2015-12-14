@@ -52,7 +52,7 @@ define(function (require, exports, module) {
                 self.$locationDataEl.modal('show');
             });
             this.$rootEl.delegate('.J-edit', 'click', function(event){
-                var $el = $(evnet.targetElment),
+                var $el = $(event.target),
                     dataId = $el.attr('data-id');
 
                 
@@ -66,7 +66,7 @@ define(function (require, exports, module) {
             });
 
             this.$rootEl.delegate('.J-del', 'click', function(event){
-                var $el = $(evnet.targetElment),
+                var $el = $(event.target),
                     dataId = $el.attr('data-id');
 
                  self.$locationDelEl.find('.J-location-id').val( dataId );
