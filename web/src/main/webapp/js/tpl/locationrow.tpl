@@ -1,15 +1,15 @@
 
-{{#each locationList}}
+{{#each data}}
 	<div class="row">
-	    <div class="col-xs-4 col-md-2"> {{this.province}}</div>
-	    <div class="col-xs-4 col-md-2"> {{this.city}}</div>
-	    <div class="col-xs-4 col-md-2"> {{this.county}}</div>
+	    <div class="col-xs-4 col-md-2"> {{province}}</div>
+	    <div class="col-xs-4 col-md-2"> {{city}}</div>
+	    <div class="col-xs-4 col-md-2"> {{county}}</div>
 	    <div class="col-xs-4 col-md-2"> 
 
 
-	    	<a class="J-edit btn btn-default btn-sm" data-id="{{this.id}}" data-province="{{this.province}}" data-city="{{this.city}}"  data-county="{{this.county}}" href="javascript:void(0);">编辑</a>
+	    	<a class="J-edit btn btn-default btn-sm" data-id="{{id}}" data-province="{{province}}" data-city="{{city}}"  data-county="{{county}}" href="javascript:void(0);">编辑</a>
 	    	&nbsp; ｜&nbsp; 
-	    	<a class="J-del btn btn-default btn-sm" data-id="{{this.id}}" href="javascript:void(0);">删除</a>
+	    	<a class="J-del btn btn-default btn-sm" data-id="{{id}}" href="javascript:void(0);">删除</a>
 
 	    </div>
 	</div>
