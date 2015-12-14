@@ -81,6 +81,7 @@ define(function (require, exports, module) {
                  self.addLocationData();
                  self.$locationDataEl.modal('hide');
                  self.getProvinces();
+
             });
 
             this.$locationDelEl.delegate('.J-save-btn', 'click', function(event){
@@ -93,6 +94,7 @@ define(function (require, exports, module) {
                     } else {
                         window.alert('捐书失败:获取地址失败');
                     }
+                    self.refreshListInfo();
                 }, 'json');
 
                 self.$locationDelEl.modal('hide');
@@ -197,6 +199,7 @@ define(function (require, exports, module) {
                     } else {
                         window.alert('捐书失败:获取地址失败');
                     }
+                    self.refreshListInfo();
                 }, 'json');
             }else if( action === 'edit'){
                 $.get('/book/address/update', {
@@ -210,6 +213,7 @@ define(function (require, exports, module) {
                     } else {
                         window.alert('捐书失败:获取地址失败');
                     }
+                    self.refreshListInfo();
                 }, 'json');
             }
 
