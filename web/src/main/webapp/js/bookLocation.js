@@ -112,8 +112,8 @@ define(function (require, exports, module) {
             $.get('/book/address/query', function(data){
                 if(data && data.code == 200){
                     var options = [],
-                        locationList = data.data;
-                    var listEl = Handlebars.compile(locationRowTmp)(locationList);
+                        data = data.data;
+                    var listEl = Handlebars.compile(locationRowTmp)(data);
                     self.$locationListContentEl.html( listEl );
                 }
             }, 'json');
