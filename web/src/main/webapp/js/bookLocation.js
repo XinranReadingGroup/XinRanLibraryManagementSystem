@@ -142,7 +142,7 @@ define(function (require, exports, module) {
         */
         getCitys : function(){
             var self = this,
-                provinceVal = self.$rootEl.('.J-provinces').val();
+                provinceVal = self.$rootEl.find('.J-provinces').val();
 
             $.get('/book/location/provinces/' + provinceVal + '/cities', function(data){
                 if(data && data.code == 200){
