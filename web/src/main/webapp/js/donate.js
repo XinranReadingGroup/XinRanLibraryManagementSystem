@@ -90,9 +90,13 @@ define(function (require, exports, module) {
             if(data && data.code == 200){
                 var options = [],
                     provinceList = data.data;
+                var map = {};
 
                 for (var i = 0, len = provinceList.length; i < len; i++) {
-                    options.push('<option value='+provinceList[i].province + '>'+ provinceList[i].province+'</option>');
+                    if(map[provinceList[i].province] !== true ){
+                       map[provinceList[i].province] = true;
+                       options.push('<option value='+provinceList[i].province + '>'+ provinceList[i].province+'</option>'); 
+                    }
                 }
                 $('.j-provinces').html(options.join(' '));
                  self.getCitys();
@@ -108,9 +112,12 @@ define(function (require, exports, module) {
             if(data && data.code == 200){
                 var options = [],
                     cityList = data.data;
-
+                var map = {};
                 for (var i = 0, len = cityList.length; i < len; i++) {
-                    options.push('<option value='+cityList[i].city + '>'+ cityList[i].city+'</option>');
+                    if(map[cityList[i].city] !== true ){
+                       map[cityList[i].city] = true;
+                       options.push('<option value='+cityList[i].city + '>'+ cityList[i].city+'</option>');
+                    }
                 }
                 $('.j-citys').html(options.join(' '));
                 self.Counties();
@@ -126,9 +133,13 @@ define(function (require, exports, module) {
             if(data && data.code == 200){
                 var options = [],
                     countiesList = data.data;
-
+                var map = {};    
                 for (var i = 0, len = countiesList.length; i < len; i++) {
-                    options.push('<option value='+countiesList[i].county + '>'+ countiesList[i].county+'</option>');
+                    if(map[countiesList[i].county] !== true ){
+                       map[countiesList[i].county] = true;
+                       options.push('<option value='+countiesList[i].county + '>'+ countiesList[i].county+'</option>');
+                    }
+                    
                 }
                 $('.j-counties').html(options.join(' '));
             }

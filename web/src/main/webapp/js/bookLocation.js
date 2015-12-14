@@ -177,9 +177,13 @@ define(function (require, exports, module) {
                 if(data && data.code == 200){
                     var options = [],
                         countiesList = data.data;
-
+                    var map = {};    
                     for (var i = 0, len = countiesList.length; i < len; i++) {
-                        options.push('<option value='+countiesList[i].county + '>'+ countiesList[i].county+'</option>');
+                        if(map[countiesList[i].county] !== true ){
+                           map[countiesList[i].county] = true;
+                           options.push('<option value='+countiesList[i].county + '>'+ countiesList[i].county+'</option>');
+                        }
+                        
                     }
                     self.$rootEl.find('.J-counties').html(options.join(' '));
                 }
