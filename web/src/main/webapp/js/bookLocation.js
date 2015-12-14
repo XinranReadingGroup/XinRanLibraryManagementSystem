@@ -84,8 +84,7 @@ define(function (require, exports, module) {
             });
 
             this.$locationDelEl.delegate('.J-save-btn', 'click', function(event){
-                var self = this,
-                    dataId =  self.$locationDelEl.find('.J-location-id').val();
+                var dataId =  self.$locationDelEl.find('.J-location-id').val();
                 $.get('/book/address/delete', {
                     id: dataId
                 },function(data){
