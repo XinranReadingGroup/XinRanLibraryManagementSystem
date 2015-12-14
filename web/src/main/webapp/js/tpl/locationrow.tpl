@@ -1,5 +1,5 @@
 
-{{#each data}}
+{{#each locationList}}
 	<div class="row">
 	    <div class="col-xs-4 col-md-2"> {{this.province}}</div>
 	    <div class="col-xs-4 col-md-2"> {{this.city}}</div>
