@@ -73,11 +73,11 @@
                       </div>
                       <div class="form-group">
                         <label for="exampleInputEmail1">城市（citys）</label>
-                        <input type="email" class="J-input-citys form-control" placeholder="省份">
+                        <input type="email" class="J-input-citys form-control" placeholder="城市">
                       </div>
                       <div class="form-group">
                         <label for="exampleInputEmail1">区县（counties）</label>
-                        <input type="email" class="J-input-counties form-control" placeholder="省份">
+                        <input type="email" class="J-input-counties form-control" placeholder="区县">
                       </div>
                 </form>
                 

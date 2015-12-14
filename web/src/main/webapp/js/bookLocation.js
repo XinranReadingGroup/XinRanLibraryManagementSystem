@@ -60,7 +60,7 @@ define(function (require, exports, module) {
                 self.$locationDataEl.find('.J-location-action').val( 'edit' );
                 self.$locationDataEl.find('.J-input-provinces').val( $el.attr('data-province') );
                 self.$locationDataEl.find('.J-input-citys').val( $el.attr('data-city') );
-                self.$locationDataEl.find('.J-input-counties').val( $el.attr('data-countie') );
+                self.$locationDataEl.find('.J-input-counties').val( $el.attr('data-county') );
 
                 self.$locationDataEl.modal('show');
             });
