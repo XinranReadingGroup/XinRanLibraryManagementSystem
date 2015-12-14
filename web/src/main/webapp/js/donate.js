@@ -92,7 +92,7 @@ define(function (require, exports, module) {
                     provinceList = data.data;
 
                 for (var i = 0, len = provinceList.length; i < len; i++) {
-                    options.push('<option value='+provinceList[i].id + '>'+ provinceList[i].province+'</option>');
+                    options.push('<option value='+provinceList[i].province + '>'+ provinceList[i].province+'</option>');
                 }
                 $('.j-provinces').html(options.join(' '));
             }
@@ -109,7 +109,7 @@ define(function (require, exports, module) {
                     cityList = data.data;
 
                 for (var i = 0, len = cityList.length; i < len; i++) {
-                    options.push('<option value='+cityList[i].id + '>'+ cityList[i].city+'</option>');
+                    options.push('<option value='+cityList[i].city + '>'+ cityList[i].city+'</option>');
                 }
                 $('.j-citys').html(options.join(' '));
             }
@@ -126,7 +126,7 @@ define(function (require, exports, module) {
                     countiesList = data.data;
 
                 for (var i = 0, len = countiesList.length; i < len; i++) {
-                    options.push('<option value='+countiesList[i].id + '>'+ countiesList[i].county+'</option>');
+                    options.push('<option value='+countiesList[i].county + '>'+ countiesList[i].county+'</option>');
                 }
                 $('.j-counties').html(options.join(' '));
             }
