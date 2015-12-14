@@ -226,5 +226,5 @@ define(function (require, exports, module) {
 
     
 
-    module.exports = Donate;
+    module.exports = bookLocation;
 });
