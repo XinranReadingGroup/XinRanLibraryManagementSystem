@@ -16,12 +16,13 @@
                 <li #if($!{currentPage} == "donate") class="active" #end><a href="/book/donate/new">捐赠图书</a></li>
                 <li #if($!{currentPage} == "share") class="active" #end><a href="/book/share/new">共享图书</a></li>
                 <li #if($!{currentPage} == "user") class="active" #end><a href="/user/profile">个人中心</a></li>
+                <li #if($!{currentPage} == "user") class="active" #end><a href="/admin/activities">管理员</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <li>
                     <form id="headerSearchForm" method="get" name="searchForm" action="/book/search" >
                         <div class="input-group">
-                                <input id="input-search-text" name="q" type="text" class="form-control" placeholder="Search for...">
+                                <input id="input-search-text" name="q" type="text" class="form-control" placeholder="输入书号或者ISBN号">
                                 <span class="input-group-btn">
                                     <button class="btn btn-default" type="submit"><span class="glyphicon glyphicon-search"></span>
                                     </button>
