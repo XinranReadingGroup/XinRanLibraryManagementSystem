@@ -25,7 +25,7 @@ public interface ActivityMapper {
     @Select("SELECT * FROM activity order by id desc limit #{page.start},#{page.end}")
     List<Activity> findActivities(@Param("page") Pagination page);
 
-    @Select("SELECT * FROM activity where status=0 and now() > start_date and now() < end_date")
+    @Select("SELECT count(*) FROM activity where status=0 and now() > start_date and now() < end_date")
     int countAvailableActivities();
 
     @Select("SELECT * FROM activity where status=0 and now() > start_date and now() < end_date order by id desc limit #{page.start},#{page.end}")
