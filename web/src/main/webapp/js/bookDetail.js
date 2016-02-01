@@ -28,6 +28,9 @@ define(function (require, exports, module) {
         $doc.delegate('[data-role=detail-borrow-book]', 'click', function (event) {
             $('#borrow-modal').modal('show');
         });
+        $doc.delegate('[data-role=detail-return-book]', 'click', function (event) {
+            $('#return-modal').modal('show');
+        });
         $doc.delegate('#borrow-book-btn', 'click', function (event) {
             var target = $('[data-role=detail-borrow-book]'),
                 id = target.attr('data-id');
@@ -62,8 +65,22 @@ define(function (require, exports, module) {
             });
 
         });
-        $doc.delegate('[data-role=detail-return-book]', 'click', function (event) {
-            $('#return-modal').modal('show');
+        $doc.delegate('#cancel-donate-book-btn', 'click', function (event) {
+            var target = $('[data-role=detail-return-book]'),
+                id = target.attr('data-id');
+
+            $.ajax({
+                url: '/book/offstock/' + onOffStockId,
+                dataType: 'json',
+                timeout: 15000,
+                success: function (json) {
+                    top.location.reload();
+                },
+                error: function () {
+                    top.location.reload();
+                }
+            });
+
         });
     };
 
