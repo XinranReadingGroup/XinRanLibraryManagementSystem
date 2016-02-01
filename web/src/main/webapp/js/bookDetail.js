@@ -37,23 +37,10 @@ define(function (require, exports, module) {
                 dataType: 'json',
                 timeout: 15000,
                 success: function (json) {
-                    if (json && json.code == 200) {
-                        alert('借阅成功');
-                        var parent = $('[data-role=detail-borrow-book]').parent('.xy-detail-info-control');
-                        $('[data-role=detail-borrow-book]').remove();
-                        parent.append('<a href="javascript:;" data-id="' + onOffStockId + '" data-role="detail-return-book" class="btn btn-default btn-success">还书</a>');
-
-                        $('.xy-detail-book-status').text('已借');
-                    } else {
-                        alert('借阅失败');
-                    }
-                    $('#borrow-modal').modal('hide');
+                    top.location.reload();
                 },
                 error: function () {
-                    //console.log(arguments);
-                    // do something
-                    alert('借阅失败');
-                    $('#borrow-modal').modal('hide');
+                    top.location.reload();
                 }
             });
 
@@ -67,23 +54,10 @@ define(function (require, exports, module) {
                 dataType: 'json',
                 timeout: 15000,
                 success: function (json) {
-                    if (json && json.code == 200) {
-                        alert('还书成功');
-                        var parent = $('[data-role=detail-return-book]').parent('.xy-detail-info-control');
-                        $('[data-role=detail-return-book]').remove();
-                        parent.append('<a href="javascript:;" data-id="' + onOffStockId + '" data-role="detail-borrow-book" class="btn btn-default btn-success">借书</a>');
-
-                        $('.xy-detail-book-status').text('已还');
-                    } else {
-                        alert('还书失败');
-                    }
-                    $('#return-modal').modal('hide');
+                    top.location.reload();
                 },
                 error: function () {
-                    //console.log(arguments);
-                    // do something
-                    alert('还书失败');
-                    $('#return-modal').modal('hide');
+                    top.location.reload();
                 }
             });
 
