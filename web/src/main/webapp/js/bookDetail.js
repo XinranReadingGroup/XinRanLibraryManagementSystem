@@ -74,10 +74,10 @@ define(function (require, exports, module) {
                 dataType: 'json',
                 timeout: 15000,
                 success: function (json) {
-                    top.location.reload();
+                    top.location.href='/user/profile';
                 },
                 error: function () {
-                    top.location.reload();
+                    top.location.href='/user/profile';
                 }
             });
 
