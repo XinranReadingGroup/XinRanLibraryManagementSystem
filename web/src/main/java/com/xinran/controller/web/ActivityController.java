@@ -40,13 +40,15 @@ public class ActivityController extends AbstractActivityController{
                                    @RequestParam(value = "pageSize", required = false) Integer pageSize,
                                    HttpServletRequest request) {
         Map<String,Object> map = listActivities(UserIdenetityUtil.getCurrentUserId(request), pageNo, pageSize);
-        for(Activity activity : (List<Activity>)map.get("activities")){
-            if(activity.getStatus()==0){
-                long now = System.currentTimeMillis();
-                if(activity.getStartDate()!=null && activity.getStartDate().getTime()>now){
-                    activity.setStatus(3);
-                }else if(activity.getEndDate()!=null && activity.getEndDate().getTime()<now){
-                    activity.setStatus(2);
+        if(map!=null) {
+            for (Activity activity : (List<Activity>) map.get("activities")) {
+                if (activity.getStatus() == 0) {
+                    long now = System.currentTimeMillis();
+                    if (activity.getStartDate() != null && activity.getStartDate().getTime() > now) {
+                        activity.setStatus(3);
+                    } else if (activity.getEndDate() != null && activity.getEndDate().getTime() < now) {
+                        activity.setStatus(2);
+                    }
                 }
             }
         }
