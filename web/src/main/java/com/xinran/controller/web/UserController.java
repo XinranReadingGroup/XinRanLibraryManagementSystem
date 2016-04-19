@@ -20,6 +20,7 @@ import com.google.common.collect.Maps;
 import com.xinran.constant.ApplicationConstant;
 import com.xinran.controller.common.AbstractUserController;
 import com.xinran.exception.UserException;
+import com.xinran.pojo.User;
 import com.xinran.vo.AjaxResult;
 import com.xinran.vo.UserVO;
 import com.xinran.vo.builder.AjaxResultBuilder;
@@ -47,18 +48,28 @@ public class UserController extends AbstractUserController {
         }
 
     }
-
-    protected AjaxResult doSignInOrSignUp(HttpServletRequest request, HttpServletResponse response, Long userId,
-                                          String nickName) {
+    
+    @Override
+    protected AjaxResult doSignInOrSignUp(HttpServletRequest request, HttpServletResponse response,User   user) {
         HttpSession session = request.getSession();
+        
+        boolean isAdmin =  userService.isAdmin(user.getUserName());
+        if(isAdmin){
+            session.setAttribute(ApplicationConstant.ROLE_TYPE, ApplicationConstant.ADMIN_ROLE_VALUE);
+        }else{
+            session.setAttribute(ApplicationConstant.ROLE_TYPE, ApplicationConstant.TYPICAL_ROLE_VALUE);
+
+        }
 
         Map<String, String> jsonMap = Maps.newHashMapWithExpectedSize(1);
+        
         // TODO test 60天不过期
         int cookieAndSessionLiveTime = Long.valueOf(TimeUnit.DAYS.toSeconds(60L)).intValue();
         session.setMaxInactiveInterval(cookieAndSessionLiveTime);
         String radomAccessToken = RandomStringUtils.randomAlphanumeric(10);
-        session.setAttribute(ApplicationConstant.USER_ID, userId);
-        session.setAttribute(ApplicationConstant.USER_NAME, nickName);
+        session.setAttribute(ApplicationConstant.USER_ID, user.getId());
+        session.setAttribute(ApplicationConstant.USER_NAME, user.getNickName());
+        
 
         session.setAttribute(ApplicationConstant.ACCESS_TOKEN, radomAccessToken);
         

@@ -16,7 +16,10 @@
                 <li #if($!{currentPage} == "donate") class="active" #end><a href="/book/donate/new">捐赠图书</a></li>
                 <li #if($!{currentPage} == "share") class="active" #end><a href="/book/share/new">共享图书</a></li>
                 <li #if($!{currentPage} == "user") class="active" #end><a href="/user/profile">个人中心</a></li>
-                <li #if($!{currentPage} == "user") class="active" #end><a href="/admin/activities">管理员</a></li>
+                
+                #if(  $!{session.getAttribute("role_type")} == "admin" ) 
+                <li class="active" ><a href="/admin/activities">管理员</a></li>
+                #end
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <li>

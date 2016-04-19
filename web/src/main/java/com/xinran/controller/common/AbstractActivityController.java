@@ -166,7 +166,7 @@ public class AbstractActivityController {
 
     protected Map<String,Object> listActivities(Long uid, Integer pageNo, Integer pageSize) {
         User user = userService.findUserByUserId(uid);
-        if (user !=null && userService.isAdmin(user)) {
+        if (user !=null && userService.isAdmin(user.getUserName())) {
             Pagination page = new Pagination();
             if (pageNo != null && pageNo >= 0) {
                 page.setCurrent(pageNo);
@@ -202,7 +202,7 @@ public class AbstractActivityController {
 
     protected boolean cancelActivity(Long uid, Long activityId){
         User user = userService.findUserByUserId(uid);
-        if (user !=null && userService.isAdmin(user)) {
+        if (user !=null && userService.isAdmin(user.getUserName())) {
             return activityService.cancelActivity(activityId);
         }
         return false;
@@ -210,7 +210,7 @@ public class AbstractActivityController {
 
     protected boolean publishActivity(Long uid, Long activityId){
         User user = userService.findUserByUserId(uid);
-        if (user !=null && userService.isAdmin(user)) {
+        if (user !=null && userService.isAdmin(user.getUserName())) {
             return activityService.publishActivity(activityId);
         }
         return false;
@@ -218,7 +218,7 @@ public class AbstractActivityController {
 
     protected boolean addActivity(Long uid, Activity activity){
         User user = userService.findUserByUserId(uid);
-        if (user !=null && userService.isAdmin(user)) {
+        if (user !=null && userService.isAdmin(user.getUserName())) {
             activityService.createActivity(activity);
             return true;
         }
@@ -228,7 +228,7 @@ public class AbstractActivityController {
 
     protected boolean upateActivity(Long uid, Activity activity){
         User user = userService.findUserByUserId(uid);
-        if (user !=null && userService.isAdmin(user)) {
+        if (user !=null && userService.isAdmin(user.getUserName())) {
             activityService.updateActivity(activity);
             return true;
         }

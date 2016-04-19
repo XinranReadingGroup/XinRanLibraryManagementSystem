@@ -1,13 +1,13 @@
 package com.xinran.service.impl;
 
 import java.io.BufferedReader;
-import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.locks.ReentrantLock;
 
+import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -40,8 +40,7 @@ public class UserServiceImpl implements UserService {
      * @see com.xinran.service.UserService#signUp(java.lang.String, java.lang.String)
      */
     @Override
-    public Long signUpForMobileIndentifier(String identifier, String password, String nickName)
- throws UserException {
+    public User signUpForMobileIndentifier(String identifier, String password, String nickName) throws UserException {
         User userIfExists = userMapper.findUserByMobile(identifier);
 
         if (null == userIfExists) {
@@ -54,7 +53,10 @@ public class UserServiceImpl implements UserService {
             signUpUser.setNickName(nickName);
             signUpUser.setPassword(hash);
             userMapper.addUser(signUpUser);
-            return signUpUser.getId();
+            
+            User user = userMapper.findUserById(signUpUser.getId());
+            
+            return user;
         } else {
             throw new UserException(SystemResultCode.IndentifierAlreadyBeenTaken );
         }
@@ -70,7 +72,7 @@ public class UserServiceImpl implements UserService {
      * @see com.xinran.service.UserService#signIn(java.lang.String, java.lang.String)
      */
     @Override
-    public Long signIn(String identifier, String password) throws UserException {
+    public User signIn(String identifier, String password) throws UserException {
         User user = userMapper.findUserByMobile(identifier);
 
         // TODO 非激活校验
@@ -86,7 +88,8 @@ public class UserServiceImpl implements UserService {
             user.setCurrentSignInAt(DateUtil.getCurrentDate());
             user.setSignInCount(user.getSignInCount() + 1);
             userMapper.updateUser(user);
-            return user.getId();
+            
+            return user;
         } else {
             throw new UserException(SystemResultCode.InvalidUserNameOrPassowrd );
         }
@@ -134,31 +137,26 @@ public class UserServiceImpl implements UserService {
     private List<String> administrators;
     private ReentrantLock adminLocker = new ReentrantLock();
     @Override
-    public boolean isAdmin(User user) {
+    
+    public boolean isAdmin(String userLoginName) {
         if (administrators == null && adminLocker.tryLock()) {
             BufferedReader reader = null;
             try {
                 administrators = new ArrayList<>();
                 InputStream resourceAsStream = getClass().getClassLoader().getResourceAsStream("/administrators");
                 reader = new BufferedReader(new InputStreamReader(resourceAsStream, "UTF-8"));
-                String phone = reader.readLine();
-                while (phone != null && phone.length() > 0) {
-                    administrators.add(phone.trim());
-                    phone = reader.readLine();
+                String userName = reader.readLine();
+                while (userName != null && userName.length() > 0) {
+                    administrators.add(userName.trim());
+                    userName = reader.readLine();
                 }
             } catch (Exception e) {
                 LOG.error("Error to load administrators.", e);
             }finally {
                 adminLocker.unlock();
-                if (reader != null) {
-                    try {
-                        reader.close();
-                    } catch (IOException e) {
-                        LOG.error("Error to close reader", e);
-                    }
-                }
+                IOUtils.closeQuietly(reader);
             }
         }
-        return administrators.contains(user.getMobile());
+        return administrators.contains(userLoginName);
     }
 }

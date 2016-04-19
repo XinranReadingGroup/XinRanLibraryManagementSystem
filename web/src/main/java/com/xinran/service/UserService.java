@@ -13,9 +13,9 @@ public interface UserService {
      * @param password
      * @return
      */
-    public Long signUpForMobileIndentifier(String identifier, String password, String nickName) throws UserException;
+    public User signUpForMobileIndentifier(String identifier, String password, String nickName) throws UserException;
 
-    public Long signIn(String identifier, String password) throws UserException;
+    public User signIn(String identifier, String password) throws UserException;
 
     /**
      * @param identifier
@@ -59,5 +59,5 @@ public interface UserService {
      * @param user
      * @return
      */
-    public boolean isAdmin(User user);
+    public boolean isAdmin(String userLoginName);
 }

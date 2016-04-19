@@ -32,7 +32,7 @@ public class OnOffStockRecordServiceImpl implements OnOffStockRecordService {
     private UserMapper userMapper;
 
     /*
-     * TODO submitter 必须存在
+     * TODO submitter 必须存在,根据微信集成后修改
      */
     @Override
     public OnOffStockRecord onStock(OnOffStockRecord record) throws StockException {
@@ -51,7 +51,7 @@ public class OnOffStockRecordServiceImpl implements OnOffStockRecordService {
                 owner = mobileUser;
             }
             // 如果提交者不为管理员，则不能帮别人进行捐、享书
-            else if(!userService.isAdmin(submitter)){
+            else if(!userService.isAdmin(submitter.getUserName())){
                 throw new StockException(SystemResultCode.OnlyAdminHelpToOnStock );
             }
         }

@@ -20,6 +20,7 @@ import com.xinran.constant.SystemResultCode;
 import com.xinran.controller.common.AbstractUserController;
 import com.xinran.controller.util.MobileSessionHolder;
 import com.xinran.exception.UserException;
+import com.xinran.pojo.User;
 import com.xinran.vo.AjaxResult;
 import com.xinran.vo.UserVO;
 import com.xinran.vo.builder.AjaxResultBuilder;
@@ -48,18 +49,27 @@ public class UserController extends AbstractUserController {
 
     }
 
-    protected AjaxResult doSignInOrSignUp(HttpServletRequest request, HttpServletResponse response, Long userId,
-                                          String nickName) {
+    @Override
+    protected AjaxResult doSignInOrSignUp(HttpServletRequest request, HttpServletResponse response, User   user) {
         HttpSession session = request.getSession();
 
         Map<String, String> jsonMap = Maps.newHashMapWithExpectedSize(1);
+        
+        boolean isAdmin =  userService.isAdmin(user.getUserName());
+        if(isAdmin){
+            jsonMap.put(ApplicationConstant.ROLE_TYPE, ApplicationConstant.ADMIN_ROLE_VALUE);
+        }
+        
+        
         // TODO test 60天不过期
         session.setMaxInactiveInterval(Long.valueOf(TimeUnit.DAYS.toSeconds(60L)).intValue());
         String radomAccessToken = RandomStringUtils.randomAlphanumeric(10);
-        session.setAttribute(ApplicationConstant.USER_ID, userId);
+        session.setAttribute(ApplicationConstant.USER_ID, user.getId());
         session.setAttribute(ApplicationConstant.ACCESS_TOKEN, radomAccessToken);
-        MobileSessionHolder.attachUserIdToAccessToken(radomAccessToken, userId);
+        MobileSessionHolder.attachUserIdToAccessToken(radomAccessToken, user.getId());
         jsonMap.put(ApplicationConstant.ACCESS_TOKEN, radomAccessToken);
+       
+        
         return AjaxResultBuilder.buildSuccessfulResult(jsonMap);
     }
 

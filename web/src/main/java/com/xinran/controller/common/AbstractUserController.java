@@ -41,8 +41,8 @@ public abstract class AbstractUserController {
                                            @RequestParam(value = "nickName") String nickName,
                                            HttpServletRequest request, HttpServletResponse response) {
         try {
-        	Long  userId = userService.signUpForMobileIndentifier(identifier, password, nickName);
-            return doSignInOrSignUp(request, response, userId, nickName);
+        	User   user = userService.signUpForMobileIndentifier(identifier, password, nickName);
+            return doSignInOrSignUp(request, response, user);
         } catch (UserException e) {
             return AjaxResultBuilder.buildFailedResult(e);
         }
@@ -50,7 +50,7 @@ public abstract class AbstractUserController {
     }
 
     protected abstract AjaxResult doSignInOrSignUp(HttpServletRequest request, HttpServletResponse response,
-                                                   Long userId, String nickName);
+                                                   User   user);
 
     
     //登录
@@ -59,9 +59,8 @@ public abstract class AbstractUserController {
                                            @RequestParam(value = "password") String password,
                                            HttpServletRequest request, HttpServletResponse response) {
         try {
-        	Long   userId = userService.signIn(identifier, password);
-            String nickName = userService.findUserByUserId(userId).getNickName();
-            return doSignInOrSignUp(request, response, userId, nickName);
+        	User   user = userService.signIn(identifier, password);
+            return doSignInOrSignUp(request, response,    user);
         } catch (UserException e) {
             return AjaxResultBuilder.buildFailedResult(e);
         }
