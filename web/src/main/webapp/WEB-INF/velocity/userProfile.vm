@@ -8,8 +8,9 @@
         <div id="userinfo_wrap" class="userinfo_wrap clearfix">
             <div class="userinfo_left">
                 <div class="userinfo_left_head" id="j_userhead">
-                    <a href="javascript:;" style="" class="userinfo_head">
-                        <img src="../mock/img/portrait.jpg"></a>
+                    <a href="/uploadFile" target="_blank" class="userinfo_head">
+                        <img src="../mock/img/portrait.jpg">
+                    </a>
                 </div>
             </div>
             <div class="userinfo_middle">
