@@ -44,6 +44,9 @@
 .login-form input{
 	width: 180px;
 }
+.login-form input.input-ck{
+	width: 25px;
+}
 .login-form a{
 	color: #fff;
 }

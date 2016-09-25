@@ -30,7 +30,7 @@
                         <div class="col-sm-8">
                             <div class="checkbox">
                                 <label>
-                                    <input id="J-agreement" type="checkbox"> <a href="#" target="_blank">同意网站协议</a>
+                                    <input id="J-agreement" class="input-ck" type="checkbox"> <a href="#" target="_blank">同意网站协议</a>
                                 </label>
                             </div>
                         </div>
