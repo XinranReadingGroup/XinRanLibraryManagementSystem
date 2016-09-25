@@ -45,6 +45,7 @@ body{
 }
 .navbar-inverse .navbar-nav > li > a{
 	color: #d5d5d5;
+	cursor: pointer;
 }
 .navbar-inverse .navbar-brand{
 	color: #d5d5d5;
