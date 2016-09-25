@@ -78,13 +78,13 @@ define(function(require, exports, module) {
             nickname = $('#reg_nickname').val(),
             pswd = $('#reg_password').val();
 
-        if( uid.trim() !== ""){
+        if( uid.trim() == ""){
             $('.form-group').addClass('has-error');
             $('#helpBlock').text('邮箱不能为空！');
-        }else if( nickname.trim() !== "" ){
+        }else if( nickname.trim() == "" ){
             $('.form-group').addClass('has-error');
             $('#helpBlock').text('昵称不能为空！');
-        }else if( pswd.trim() !== "" ){
+        }else if( pswd.trim() == "" ){
             $('.form-group').addClass('has-error');
             $('#helpBlock').text('密码不能为空！');
         }else if( agreement == false ){
