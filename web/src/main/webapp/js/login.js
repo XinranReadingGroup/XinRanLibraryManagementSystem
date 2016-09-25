@@ -77,10 +77,14 @@ define(function(require, exports, module) {
             uid = $('#reg_account').val(),
             nickname = $('#reg_nickname').val(),
             pswd = $('#reg_password').val();
-
+        var filter  = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+ 
         if( uid.trim() == ""){
             $('.form-group').addClass('has-error');
             $('#helpBlock').text('邮箱不能为空！');
+        }else if( filter.test( uid ) == false ){
+            $('.form-group').addClass('has-error');
+            $('#helpBlock').text('邮箱格式不正确！');
         }else if( nickname.trim() == "" ){
             $('.form-group').addClass('has-error');
             $('#helpBlock').text('昵称不能为空！');
