@@ -1,6 +1,5 @@
 #set($layout = "./layout.vm")
 #set($currentPage = "register")
-
 <link rel="stylesheet" type="text/css" href="/css/login.css" media="all">
 <div class="body-wrap container-fluid" id="body-wrap">
     <div class="login-panel-wrap row">
@@ -11,19 +10,20 @@
             </div>
             <div class="login-form">
                 <div class="form-horizontal">
+                    <form id="defaultForm" method="post" class="form-horizontal bv-form" action="/user/signUp" novalidate="novalidate">
                     <div class="form-group">
                         <div class="col-sm-8">
-                            <input type="email" autocomplate="off" class="form-control" id="account" placeholder="请输入您的邮箱">
+                            <input type="email" autocomplate="off" class="form-control" id="reg_account" placeholder="请输入您的邮箱">
                         </div>
                     </div>
                     <div class="form-group">
                         <div class="col-sm-8">
-                            <input type="text" autocomplate="off" class="form-control" id="nickname" placeholder="昵称">
+                            <input type="text" autocomplate="off" class="form-control" id="reg_nickname" placeholder="昵称">
                         </div>
                     </div>
                     <div class="form-group">
                         <div class="col-sm-8">
-                            <input type="password" autocomplate="off" class="form-control" id="password" placeholder="密码">
+                            <input type="password" autocomplate="off" class="form-control" id="reg_password" placeholder="密码">
                         </div>
                     </div>
                     <div class="form-group">
@@ -35,6 +35,7 @@
                             </div>
                         </div>
                     </div>
+                    </form>
                     <div class="form-group">
                         <div class="col-sm-8">
                             <span id="helpBlock" class="help-block">用户名或密码错误</span>

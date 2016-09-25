@@ -74,10 +74,23 @@ define(function(require, exports, module) {
     Login.prototype.register = function() {
         var self = this,
             agreement= $('#J-agreement')[0].checked,
-            uid = $('#account').val(),
-            nickname = $('#nickname').val(),
-            pswd = $('#password').val();
-        if( agreement == true ){
+            uid = $('#reg_account').val(),
+            nickname = $('#reg_nickname').val(),
+            pswd = $('#reg_password').val();
+
+        if( uid.trim() !== ""){
+            $('.form-group').addClass('has-error');
+            $('#helpBlock').text('邮箱不能为空！');
+        }else if( nickname.trim() !== "" ){
+            $('.form-group').addClass('has-error');
+            $('#helpBlock').text('昵称不能为空！');
+        }else if( pswd.trim() !== "" ){
+            $('.form-group').addClass('has-error');
+            $('#helpBlock').text('密码不能为空！');
+        }else if( agreement == false ){
+            $('.form-group').addClass('has-error');
+            $('#helpBlock').text('请阅读网站协议！');
+        }else{
             $.post('/user/signUp', {
                 'userIdentifier': uid,
                 'password': pswd,
@@ -91,9 +104,6 @@ define(function(require, exports, module) {
                     $('#helpBlock').text( json.data );
                 }
             }, 'json');
-        }else{
-            $('.form-group').addClass('has-error');
-            $('#helpBlock').text('请阅读网站协议！');
         }
         
     };
