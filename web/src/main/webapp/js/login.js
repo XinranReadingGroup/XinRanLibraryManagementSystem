@@ -73,20 +73,29 @@ define(function(require, exports, module) {
 
     Login.prototype.register = function() {
         var self = this,
+            agreement= $('#J-agreement')[0].checked,
             uid = $('#account').val(),
             nickname = $('#nickname').val(),
             pswd = $('#password').val();
-
-        $.post('/user/signUp', {
-            'userIdentifier': uid,
-            'password': pswd,
-            'nickName': nickname
-        }, function(json) {
-            if (json.code == 200) {
-                Util.setCookie('accessToken', json.data.accessToken);
-                top.location.href = '/';
-            }
-        }, 'json');
+        if( agreement == true ){
+            $.post('/user/signUp', {
+                'userIdentifier': uid,
+                'password': pswd,
+                'nickName': nickname
+            }, function(json) {
+                if (json.code == 200) {
+                    Util.setCookie('accessToken', json.data.accessToken);
+                    top.location.href = '/';
+                }else{
+                    $('.form-group').addClass('has-error');
+                    $('#helpBlock').text( json.data );
+                }
+            }, 'json');
+        }else{
+            $('.form-group').addClass('has-error');
+            $('#helpBlock').text('请阅读网站协议！');
+        }
+        
     };
 
     Login.prototype.logout = function() {
