@@ -27,6 +27,12 @@ body{
     border-radius: 3px;
 }
 
+.p-tips{
+	color: #999;
+	font-size: 12px;
+	line-height: 22px;
+}
+
 /*header*/
 .header-wrap {
 	position: fixed;

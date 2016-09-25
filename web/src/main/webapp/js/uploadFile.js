@@ -28,6 +28,7 @@ define(function (require, exports, module) {
                     success: function( json ) { 
                         if (json.code == 200) {
                             $('#J-result').text('头像上传成功').show();
+                            $('#J-img').attr('src','http://www.xinrandushuba.com/avatar/' + json.data ).show();
                         } else{
                             $('#J-result').text(json.data).show();
                         }
@@ -44,7 +45,7 @@ define(function (require, exports, module) {
             uploadUrl: '/upload', // you must set a valid URL here else you will get an error
             allowedFileExtensions : ['jpg', 'png','gif'],
             overwriteInitial: false,
-            maxFileSize: 1000,
+            maxFileSize: 100,
             maxFilesNum: 1,
             allowedFileTypes: ['image'],
             slugCallback: function(filename) {
