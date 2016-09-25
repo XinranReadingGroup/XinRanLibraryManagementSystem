@@ -1,5 +1,5 @@
-<link href="/css/fileinput.css" media="all" rel="stylesheet" type="text/css" />
-<script src="/js/fileinput.js" type="text/javascript"></script>
+<link href="/css/common/fileinput.css" media="all" rel="stylesheet" type="text/css" />
+<script src="/js/common/fileinput.js" type="text/javascript"></script>
 
 
 
@@ -9,7 +9,7 @@
     <h1>头像上传： <small></h1>
     <h3 class="text-success">头像上传成功</h2>
     </div>
-    <form enctype="multipart/form-data" method="POST" action="/upload" >
+    <form enctype="multipart/form-data"  >
         <input id="file-0" class="file" type="file" name="file" data-min-file-count="1">
         <br>
         <button type="submit" class="btn btn-primary">上传头像</button>
