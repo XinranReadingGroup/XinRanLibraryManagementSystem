@@ -42,6 +42,8 @@ define(function (require, exports, module) {
 
     UploadFile.prototype.initForm = function(bookInfo){
         $("#file-0").fileinput({
+            showUpload: false,
+            showCaption: false,
             uploadUrl: '/upload', // you must set a valid URL here else you will get an error
             allowedFileExtensions : ['jpg', 'png','gif'],
             overwriteInitial: false,
