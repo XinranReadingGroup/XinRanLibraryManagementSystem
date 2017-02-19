@@ -17,7 +17,9 @@
 ##                <li #if($!{currentPage} == "share") class="active" #end><a href="/book/share/new">共享图书</a></li>
                 <li #if($!{currentPage} == "user") class="active" #end><a href="/user/profile">个人中心</a></li>
                 #if(  $!{session.getAttribute("role")} == "admin" )
-                <li class="active" ><a href="/admin/activities">管理员</a></li>
+                    <li ><a href="/admin/activities">活动管理</a></li>
+                    <li ><a href="/book/location/manager">地址维护</a></li>
+                    <li ><a href="/admin/qrcode/generate/">生成二维码</a></li>
                 #end
             </ul>
             <ul class="nav navbar-nav navbar-right">
