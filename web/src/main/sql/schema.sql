@@ -1,3 +1,4 @@
+      -- drop table activity,book,book_location,borrow_return_record,on_off_stock_record,score,user;
         CREATE TABLE IF NOT EXISTS user
              (
                           id                     BIGINT(20) UNSIGNED PRIMARY KEY auto_increment,
@@ -20,6 +21,8 @@
                           img_id                 VARCHAR(128) ,
                           score INT
              );
+             ALTER TABLE user ADD UNIQUE KEY `user_name` (`user_name`);
+             ALTER TABLE user ADD UNIQUE KEY `email` (`email`);
              CREATE TABLE IF NOT EXISTS book
              (
                           id         BIGINT(20) UNSIGNED PRIMARY KEY auto_increment,

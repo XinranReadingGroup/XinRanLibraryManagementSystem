@@ -45,7 +45,7 @@ public class AvatarUploadController {
         binder.setValidator(new UploadValidator());
     }
     @RequestMapping(value = "/upload", method = RequestMethod.POST)
-    public @ResponseBody AjaxResult upload(@Validated @ModelAttribute("uploadItem") FileUploadForm uploadForm,
+    public @ResponseBody AjaxResult upload1(@Validated @ModelAttribute("uploadItem") FileUploadForm uploadForm,
                         HttpServletRequest request) {
 
         String saveDirectory = SystemConfig.UGC_IMG_DIR +"avatar/";
