@@ -11,7 +11,7 @@ public interface SystemConfig {
 
 //    String commonPrefix = "/Users/ghj/xinran/";
 
-    String UGC_IMG_DIR =commonPrefix+ "upload/";
+    String UGC_IMG_DIR =commonPrefix+ "upload/img/";
 
     String TEMP_IMG_DIR =commonPrefix+ "temp/";
 
