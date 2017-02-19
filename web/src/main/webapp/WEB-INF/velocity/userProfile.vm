@@ -9,7 +9,7 @@
             <div class="userinfo_left">
                 <div class="userinfo_left_head" id="j_userhead">
                     <a href="/uploadFile" target="_blank" class="userinfo_head">
-                        <img src="../mock/img/portrait.jpg">
+                        <img src="/img/avatar/user_avatar_origin_/$!{session.getAttribute("userId")}.jpg">
                     </a>
                 </div>
             </div>
