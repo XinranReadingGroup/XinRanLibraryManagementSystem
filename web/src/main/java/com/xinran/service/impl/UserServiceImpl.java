@@ -42,11 +42,11 @@ public class UserServiceImpl implements UserService {
     @Override
     public User signUp(String email, String password, String userName) throws UserException {
 
-        String regex = "\\w+(\\.\\w)*@\\w+(\\.\\w{2,3}){1,3}";
-
-        if(regex.length()>= 30 || !email.matches(regex)){
-            throw new UserException(SystemResultCode.WrongEmailFormat );
-        }
+//        String regex = "\\w+(\\.\\w)*@\\w+(\\.\\w{2,3}){1,3}";
+//
+//        if(email.length()>= 30 || !email.matches(regex)){
+//            throw new UserException(SystemResultCode.WrongEmailFormat );
+//        }
 
         User userByEmail = userMapper.findUserByEmail(email);
         User userByUserName = userMapper.findUserByUserName(userName);

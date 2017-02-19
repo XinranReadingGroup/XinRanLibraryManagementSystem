@@ -31,3 +31,5 @@ not_delete_jetty-sessions/
 *.log
 
 /not_delete_jetty_sessions/
+
+.well-known/
