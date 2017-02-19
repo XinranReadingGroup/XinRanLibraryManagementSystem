@@ -64,6 +64,7 @@
 		<property name="exceptionMappings">
 			<props>
 				<prop key="com.xinran.exception.AuthorizationException">redirect:/user/session/signIn</prop>
+				<prop key="com.xinran.exception.AdminAuthorizationException">redirect:/user/session/admin</prop>
 				<prop key="com.xinran.exception.MobileAuthorizationException">redirect:/mobile/user/session/signIn</prop>
 				
 			</props>

@@ -85,7 +85,7 @@ public class UserController extends AbstractUserController {
     
     @RequestMapping("/user/profile")
     public @ResponseBody AjaxResult viewMyselfUser(HttpServletRequest request) throws UserException {
-        UserVO userVO = buildUserVO(request);
+        UserVO userVO = super.buildUserVO(request);
         return AjaxResultBuilder.buildSuccessfulResult(userVO);
     }
 

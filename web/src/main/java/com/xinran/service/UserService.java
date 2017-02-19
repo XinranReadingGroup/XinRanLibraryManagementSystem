@@ -13,7 +13,7 @@ public interface UserService {
      * @param password
      * @return
      */
-    public User signUpForMobileIndentifier(String identifier, String password, String nickName) throws UserException;
+    public User signUp(String identifier, String password, String nickName) throws UserException;
 
     public User signIn(String identifier, String password) throws UserException;
 
@@ -56,8 +56,6 @@ public interface UserService {
      *
      * 判断是否为管理员
      *
-     * @param user
-     * @return
      */
     public boolean isAdmin(String userLoginName);
 }

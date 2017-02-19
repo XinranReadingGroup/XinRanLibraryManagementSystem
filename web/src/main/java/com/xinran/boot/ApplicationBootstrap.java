@@ -1,5 +1,8 @@
 package com.xinran.boot;
 
+import com.xinran.event.impl.BorrowBookEvent;
+import com.xinran.event.impl.ReturnBookEvent;
+import com.xinran.listener.impl.DonateOrShareBookListener;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -21,10 +24,18 @@ public class ApplicationBootstrap implements InitializingBean {
     // @PostConstruct
     public void init() {
         // TODO use sping configurable,http://docs.spring.io/spring/docs/current/spring-framework-reference/htmlsingle/
-        Listener bean = (Listener) contextUtil.getBean("donateOrShareBookAddScoreListerner");
+        Listener bean ;
+
+        bean = (Listener) contextUtil.getBean("donateOrShareBookListener");
         EventListenerSupport.addListener(BookOnStockEvent.class, bean);
 
-        // EventListenerSupport.addListener(BookOnStockEvent.class, new DonateOrShareBookAddScoreListerner());
+        bean = (Listener) contextUtil.getBean("borrowBookListener");
+        EventListenerSupport.addListener(BorrowBookEvent.class, bean);
+
+        bean = (Listener) contextUtil.getBean("returnBookListener");
+        EventListenerSupport.addListener(ReturnBookEvent.class, bean);
+
+//        EventListenerSupport.addListener(BookOnStockEvent.class, new DonateOrShareBookListener());
     }
 
     @Override

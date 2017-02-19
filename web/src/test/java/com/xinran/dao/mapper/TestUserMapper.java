@@ -63,8 +63,8 @@ public class TestUserMapper {
         user = userMapper.findUserByEmail(testUser.getEmail());
         assertAllIsPassed(testUser, user);
 
-        user = userMapper.findUserByMobile(testUser.getMobile());
-        assertAllIsPassed(testUser, user);
+//        user = userMapper.findUserByMobile(testUser.getMobile());
+//        assertAllIsPassed(testUser, user);
 
         user = userMapper.findUserByUserName(testUser.getUserName());
         assertAllIsPassed(testUser, user);

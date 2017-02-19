@@ -5,12 +5,10 @@ package com.xinran.constant;
  */
 public interface ScoreValueConstant {
 
-    public static Integer DONATE_SCORE = 4;
+        Integer SHARE_OR_DONATE_SCORE = 10;
 
-    public static Integer SHARE_SCORE  = 4;
+        Integer BORROW_SCORE = 5;
 
-    public static Integer BORROW_SCORE = 2;
-
-    public static Integer RETURN_SCORE = 1;
+        Integer RETURN_SCORE = 5;
 
 }

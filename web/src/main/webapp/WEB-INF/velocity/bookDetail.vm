@@ -46,31 +46,31 @@
                     </span>
                 </p>
 
-                <p class="xy-detail-info-control">
-                    ## 书是被共享的
-                    #if($bookBorrow.bookType == 1)
-                        ##且共享人是当前登录用户
-                        #if($bookBorrow.ownerUserId == $!session.getAttribute("userId"))
-                        <a href="javascript:;" data-id="$bookBorrow.id" data-role="detail-dis-share"
-                           class="btn btn-default">取消共享</a>
-                        #end
-                    #end
-
-                    ## 书是被借的
-                    #if($bookBorrow.bookType == 0)
-                        ## 书的状态是未借
-                        #if($bookBorrow.borrowStatus == 0)
-                        <a href="javascript:;" data-id="$bookBorrow.id" data-role="detail-borrow-book"
-                           class="btn btn-default btn-success">借书</a>
-                        #else
-                            ## 书的状态是已借且借书人是自己
-                            #if($bookBorrow.borrowUserId == $session.getAttribute("userId"))
-                            <a href="javascript:;" data-id="$bookBorrow.id" data-role="detail-return-book"
-                               class="btn btn-default btn-success">还书</a>
-                            #end
-                        #end
-                    #end
-                </p>
+##                <p class="xy-detail-info-control">
+##                    ## 书是被共享的
+##                    #if($bookBorrow.bookType == 1)
+##                        ##且共享人是当前登录用户
+##                        #if($bookBorrow.ownerUserId == $!session.getAttribute("userId"))
+##                        <a href="javascript:;" data-id="$bookBorrow.id" data-role="detail-dis-share"
+##                           class="btn btn-default">取消共享</a>
+##                        #end
+##                    #end
+##
+##                    ## 书是被借的
+##                    #if($bookBorrow.bookType == 0)
+##                        ## 书的状态是未借
+##                        #if($bookBorrow.borrowStatus == 0)
+##                        <a href="javascript:;" data-id="$bookBorrow.id" data-role="detail-borrow-book"
+##                           class="btn btn-default btn-success">借书</a>
+##                        #else
+##                            ## 书的状态是已借且借书人是自己
+##                            #if($bookBorrow.borrowUserId == $session.getAttribute("userId"))
+##                            <a href="javascript:;" data-id="$bookBorrow.id" data-role="detail-return-book"
+##                               class="btn btn-default btn-success">还书</a>
+##                            #end
+##                        #end
+##                    #end
+##                </p>
             </div>
         </div>
 

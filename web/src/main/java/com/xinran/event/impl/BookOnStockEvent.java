@@ -1,25 +1,22 @@
 package com.xinran.event.impl;
 
 import com.xinran.event.AbstractEvent;
+import com.xinran.pojo.OnOffStockRecord;
 
 /**
  * @author 高海军 帝奇 Apr 17, 2015 10:05:10 PM
  */
 public class BookOnStockEvent extends AbstractEvent {
 
-    /**
-     * @param type
-     */
-    public BookOnStockEvent(String type) {
-        super(type);
-        // TODO Auto-generated constructor stub
+
+    private OnOffStockRecord onOffStockRecord;
+    public BookOnStockEvent(OnOffStockRecord onOffStockRecord) {
+       this.onOffStockRecord = onOffStockRecord;
+       super.type=  this.getClass().getSimpleName();
     }
 
-    /**
-     * @param type
-     */
-    public BookOnStockEvent() {
-        super(BookOnStockEvent.class.getName());
+    public OnOffStockRecord getOnOffStockRecord() {
+        return onOffStockRecord;
     }
 
 

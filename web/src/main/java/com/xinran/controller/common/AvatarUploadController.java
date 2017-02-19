@@ -6,6 +6,7 @@ import java.io.IOException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.xinran.constant.SystemConfig;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
@@ -29,9 +30,9 @@ import com.xinran.vo.builder.AjaxResultBuilder;
  * @author 高海军 帝奇 May 31, 2015 11:18:06 AM
  */
 @Controller
-public class FileUploadController {
+public class AvatarUploadController {
 
-    private Logger logger = LoggerFactory.getLogger(FileUploadController.class);
+    private Logger logger = LoggerFactory.getLogger(AvatarUploadController.class);
 
     @RequestMapping(value = "/uploadFile", method = RequestMethod.GET)
     public ModelAndView toUploadForm(HttpServletRequest request, HttpServletResponse response) {
@@ -45,15 +46,12 @@ public class FileUploadController {
     }
     @RequestMapping(value = "/upload", method = RequestMethod.POST)
     public @ResponseBody AjaxResult upload(@Validated @ModelAttribute("uploadItem") FileUploadForm uploadForm,
-                                         BindingResult result,
-                       ModelMap modelMap, HttpServletRequest request, HttpServletResponse response) {
+                        HttpServletRequest request) {
 
-        //TODO 保存文件路径 profile,在测试环境下支持选择在临时目录选择
-        String saveDirectory = "/home/admin/xinran/upload/avatar/";
+        String saveDirectory = SystemConfig.UGC_IMG_DIR +"avatar/";
 
         MultipartFile multipartFile = uploadForm.getFile();
 
-        // TODO file name ?
         String newFileName = "user_avatar_origin_" + UserIdenetityUtil.getCurrentUserId(request) + ".jpg";
 
 
@@ -62,7 +60,7 @@ public class FileUploadController {
             try {
                 multipartFile.transferTo(new File(saveDirectory + newFileName));
             } catch (IllegalStateException | IOException e) {
-                logger.error(e.getMessage(), e);
+                logger.error("failed to upload file", e);
             }
                 // multipartFile.
                 // Handle file content - multipartFile.getInputStream()

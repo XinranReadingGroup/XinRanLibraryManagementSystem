@@ -31,57 +31,49 @@ public class OnOffStockRecordServiceImpl implements OnOffStockRecordService {
     @Autowired
     private UserMapper userMapper;
 
-    /*
-     * TODO submitter 必须存在,根据微信集成后修改
-     */
     @Override
     public OnOffStockRecord onStock(OnOffStockRecord record) throws StockException {
-        User submitter = userMapper.findUserById(record.getOwnerUserId());
-        User mobileUser = userMapper.findUserByMobile(record.getOwnerPhone());
-        User owner = null;
-        // 提交者按目前的逻辑应该是当前登录用户
-        // 全部不存在，以手机号创建用户————目前不存在这种情况
-        if (submitter == null && mobileUser == null) {
-            owner = userService.registerUserByMobile(record.getOwnerPhone());
-        }
-        // 如果全部存在
-        else if (submitter != null && mobileUser != null) {
-            // 是同一个用户，则随便取一个
-            if (submitter.getId() == mobileUser.getId()) {
-                owner = mobileUser;
-            }
-            // 如果提交者不为管理员，则不能帮别人进行捐、享书
-            else if(!userService.isAdmin(submitter.getUserName())){
-                throw new StockException(SystemResultCode.OnlyAdminHelpToOnStock );
-            }
-        }
-        // 如果提交者存在，手机账户不存在
-        else if (submitter != null && mobileUser == null) {
-            // 提交者是管理员则以手机号新建一个用户
-            // if (userService.isAdmin(submitter)) {
-            // owner = userService.registerUserByMobile(record.getOwnerPhone());
-            owner = submitter;
-
-            // }else{
-            // throw new StockException(ExceptionCode.OnlyAdminHelpToOnStock );
-            // }
-        }
-        // 如果提交者不存在，手机账户存在，则以手机账户为准————目前不存在这种情况
-        else if (submitter == null && mobileUser != null) {
-            owner = mobileUser;
-        }
-        if (owner == null) {
-            throw new StockException(SystemResultCode.NoOwnerWhenOnStock );
-        }
-        record.setOwnerUserId(owner.getId());
+//        User submitter = userMapper.findUserById(record.getOwnerUserId());
+//        User mobileUser = userMapper.findUserByMobile(record.getOwnerPhone());
+//        User owner = null;
+//        // 提交者按目前的逻辑应该是当前登录用户
+//        // 全部不存在，以手机号创建用户————目前不存在这种情况
+//        if (submitter == null && mobileUser == null) {
+//            owner = userService.registerUserByMobile(record.getOwnerPhone());
+//        }
+//        // 如果全部存在
+//        else if (submitter != null && mobileUser != null) {
+//            // 是同一个用户，则随便取一个
+//            if (submitter.getId() == mobileUser.getId()) {
+//                owner = mobileUser;
+//            }
+//            // 如果提交者不为管理员，则不能帮别人进行捐、享书
+//            else if(!userService.isAdmin(submitter.getUserName())){
+//                throw new StockException(SystemResultCode.OnlyAdminHelpToOnStock );
+//            }
+//        }
+//        // 如果提交者存在，手机账户不存在
+//        else if (submitter != null && mobileUser == null) {
+//            // 提交者是管理员则以手机号新建一个用户
+//            // if (userService.isAdmin(submitter)) {
+//            // owner = userService.registerUserByMobile(record.getOwnerPhone());
+//            owner = submitter;
+//
+//            // }else{
+//            // throw new StockException(ExceptionCode.OnlyAdminHelpToOnStock );
+//            // }
+//        }
+//        // 如果提交者不存在，手机账户存在，则以手机账户为准————目前不存在这种情况
+//        else if (submitter == null && mobileUser != null) {
+//            owner = mobileUser;
+//        }
+//        if (owner == null) {
+//            throw new StockException(SystemResultCode.NoOwnerWhenOnStock );
+//        }
+//        record.setOwnerUserId(owner.getId());
         Long id = onOffStockRecordMapper.add(record);
-        if (record.getId() == null) {
-            if (id == null) {
-                return null;
-            } else {
-                record.setId(id);
-            }
-        }
+        record.setId(id);
+
         return record;
     }
 

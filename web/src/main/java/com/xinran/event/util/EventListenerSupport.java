@@ -21,6 +21,7 @@ public abstract class EventListenerSupport {
     
     private static Map<Class<?>, CopyOnWriteArrayList<Listener>> holder = Maps.newHashMap();
 
+    //重要: 在ApplicationBootstrap 这个类里面完成监听器设置。
     public static void addListener(Class<?> event, Listener listener) {
         CopyOnWriteArrayList<Listener> arrayList = holder.get(event);
         if (CollectionUtils.isEmpty(arrayList)) {

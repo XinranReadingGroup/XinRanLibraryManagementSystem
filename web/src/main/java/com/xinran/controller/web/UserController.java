@@ -48,6 +48,13 @@ public class UserController extends AbstractUserController {
         }
 
     }
+
+    @RequestMapping("/user/session/admin")
+    public  ModelAndView admin(
+            HttpServletRequest request) {
+        return new ModelAndView("admin");
+
+    }
     
     @Override
     protected AjaxResult doSignInOrSignUp(HttpServletRequest request, HttpServletResponse response,User   user) {
@@ -66,19 +73,19 @@ public class UserController extends AbstractUserController {
         // TODO test 60天不过期
         int cookieAndSessionLiveTime = Long.valueOf(TimeUnit.DAYS.toSeconds(60L)).intValue();
         session.setMaxInactiveInterval(cookieAndSessionLiveTime);
-        String radomAccessToken = RandomStringUtils.randomAlphanumeric(10);
+        String randomAccessToken = RandomStringUtils.randomAlphanumeric(10);
         session.setAttribute(ApplicationConstant.USER_ID, user.getId());
         session.setAttribute(ApplicationConstant.USER_NAME, user.getNickName());
         
 
-        session.setAttribute(ApplicationConstant.ACCESS_TOKEN, radomAccessToken);
+        session.setAttribute(ApplicationConstant.ACCESS_TOKEN, randomAccessToken);
         
 
-        Cookie cookie = new Cookie(ApplicationConstant.ACCESS_TOKEN, radomAccessToken);
+        Cookie cookie = new Cookie(ApplicationConstant.ACCESS_TOKEN, randomAccessToken);
         cookie.setHttpOnly(true);
         cookie.setMaxAge(cookieAndSessionLiveTime);
         response.addCookie(cookie);
-        jsonMap.put(ApplicationConstant.ACCESS_TOKEN, radomAccessToken);
+        jsonMap.put(ApplicationConstant.ACCESS_TOKEN, randomAccessToken);
 
         return AjaxResultBuilder.buildSuccessfulResult(jsonMap);
     }
@@ -113,7 +120,13 @@ public class UserController extends AbstractUserController {
     
     @RequestMapping("/user/profile")
     public ModelAndView viewMyselfUser(HttpServletRequest request) throws UserException {
-        UserVO userVO = buildUserVO(request);
+        UserVO userVO = super.buildUserVO(request);
         return new ModelAndView("userProfile", "userVO", userVO);
+    }
+
+    @RequestMapping("/user/password/reset")
+    public ModelAndView d(HttpServletRequest request) throws UserException {
+        UserVO userVO = super.buildUserVO(request);
+        return new ModelAndView("passwordReset", "userVO", userVO);
     }
 }

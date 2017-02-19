@@ -7,12 +7,12 @@ public abstract class AbstractEvent implements Event {
 
     protected String type;
 
-    public AbstractEvent(String type) {
-        super();
-        this.type = type;
-    }
+//    public AbstractEvent(String type) {
+//        super();
+//        this.type = type;
+//    }
 
-    
+
     public String getType() {
         return type;
     }

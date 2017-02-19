@@ -29,6 +29,8 @@ public class OnOffStockRecord {
     private Long    bookId;
     private Integer bookType;
     private Long    ownerUserId;
+
+    @Deprecated
     private String  ownerPhone;
     private Long    location;    // TODO using locationId?
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss")
@@ -39,6 +41,8 @@ public class OnOffStockRecord {
     private Long    borrowId;    // 当前借书记录的Id
     private Long    borrowUserId; // 当前借书人ID
     private Integer borrowStatus;
+
+    private Long qrCodeId;
 
     // @JSONField(serialize = false)
     // private Book book;

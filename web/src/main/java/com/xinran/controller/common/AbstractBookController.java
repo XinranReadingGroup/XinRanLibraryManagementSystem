@@ -5,6 +5,10 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
+import com.xinran.event.impl.BorrowBookEvent;
+import com.xinran.event.impl.ReturnBookEvent;
+import com.xinran.pojo.*;
+import com.xinran.service.*;
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang.math.NumberUtils;
 import org.springframework.beans.BeanUtils;
@@ -23,17 +27,6 @@ import com.xinran.event.impl.BookOnStockEvent;
 import com.xinran.event.util.EventListenerSupport;
 import com.xinran.exception.BorrowOrReturnValidationException;
 import com.xinran.exception.StockException;
-import com.xinran.pojo.Book;
-import com.xinran.pojo.BookLocation;
-import com.xinran.pojo.BorrowReturnRecord;
-import com.xinran.pojo.OnOffStockRecord;
-import com.xinran.pojo.Pagination;
-import com.xinran.pojo.User;
-import com.xinran.service.BookLocationService;
-import com.xinran.service.BookService;
-import com.xinran.service.BorrowReturnRecordService;
-import com.xinran.service.OnOffStockRecordService;
-import com.xinran.service.UserService;
 import com.xinran.util.DateUtil;
 import com.xinran.util.ThreadLocalUtil;
 import com.xinran.vo.AjaxResult;
@@ -65,25 +58,27 @@ public class AbstractBookController {
     @Autowired
     protected BorrowReturnRecordService borrowReturnRecordService;
 
+    @Autowired
+    protected QRCodeService qrCodeService;
+
     @RequestMapping("/book/isbn/{isbn}")
     public @ResponseBody AjaxResult getBookByISBN(@PathVariable(value = "isbn") String isbn, HttpServletRequest request) {
         Book book = bookService.findBookByISBN(isbn);
         if(null == book){
             return AjaxResultBuilder.buildFailedResult(404, "cant find the book by the isbn :" +isbn);
-        }else{
+        } else {
             return AjaxResultBuilder.buildSuccessfulResult(book);
-
         }
     }
 
     @RequestMapping("/book/donate/{bookId}")
     public @ResponseBody AjaxResult donate(@PathVariable(value = "bookId") Long bookId,
                                            @RequestParam("locationId") Long locationId,
-                                           @RequestParam(value = "phone", required = false) String phone,
+                                           @RequestParam(value = "qrCode") String qrCode,
                                            HttpServletRequest request) {
         OnOffStockRecord onStock = null;
         try {
-            onStock = this.onStock(bookId, locationId, phone, request, BookType.DONATED);
+            onStock = this.onStock(bookId, locationId, qrCode, request, BookType.DONATED);
         } catch (StockException e) {
             return AjaxResultBuilder.buildFailedResult(e);
         }
@@ -92,11 +87,11 @@ public class AbstractBookController {
 
     @RequestMapping("/book/share/{bookId}")
     public @ResponseBody AjaxResult share(@PathVariable(value = "bookId") Long bookId,
-                                          @RequestParam("locationId") Long locationId,
+                                          @RequestParam("locationId") Long locationId, @RequestParam(value = "qrCode") String qrCode,
                                           HttpServletRequest request) {
         OnOffStockRecord onStock = null;
         try {
-            onStock = this.onStock(bookId, locationId, null, request, BookType.SHARED);
+            onStock = this.onStock(bookId, locationId, qrCode, request, BookType.SHARED);
         } catch (StockException e) {
             return AjaxResultBuilder.buildFailedResult(e);
         }
@@ -276,26 +271,27 @@ public class AbstractBookController {
     // @Autowired
     // protected BorrowReturnRecordService borrowReturnRecordService;
 
-    public OnOffStockRecord onStock(Long bookId, Long location, String phone, HttpServletRequest request,
+    public OnOffStockRecord onStock(Long bookId, Long location, String qrcodeContent, HttpServletRequest request,
                                     BookType bookType) throws StockException {
-        OnOffStockRecord record = new OnOffStockRecord();
-        record.setOwnerUserId(UserIdenetityUtil.getCurrentUserId(request));
-        record.setOwnerPhone(phone);
-        record.setBookType(bookType.getType());
-        record.setLocation(location);
-        record.setBookId(bookId);
-        record.setBorrowStatus(BorrowStatus.UNBORROWED.getStatus());
-        record = onOffStockRecordService.onStock(record);
+        QRCode qrCode =  qrCodeService.associate(qrcodeContent);
 
-        try {
-            ThreadLocalUtil.set(record);
-            Event event = new BookOnStockEvent();
-            EventListenerSupport.fireEvent(event);
-        } finally {
-            ThreadLocalUtil.remove(record);
-        }
 
-        return record;
+        OnOffStockRecord onOffStockRecord = new OnOffStockRecord();
+        onOffStockRecord.setOwnerUserId(UserIdenetityUtil.getCurrentUserId(request));
+        onOffStockRecord.setBookType(bookType.getType());
+        onOffStockRecord.setLocation(location);
+        onOffStockRecord.setBookId(bookId);
+        onOffStockRecord.setBorrowStatus(BorrowStatus.UNBORROWED.getStatus());
+        onOffStockRecord.setQrCodeId(qrCode.getId());
+        onOffStockRecord = onOffStockRecordService.onStock(onOffStockRecord);
+
+
+
+        Event event = new BookOnStockEvent(onOffStockRecord);
+        EventListenerSupport.fireEvent(event);
+
+
+        return onOffStockRecord;
 
     }
 
@@ -314,6 +310,10 @@ public class AbstractBookController {
         onOffStockRecord.setBorrowUserId(currentUserId);
         onOffStockRecord.setBorrowStatus(BorrowStatus.BORROWED.getStatus());
         onOffStockRecordService.updateOnOffStockRecord(onOffStockRecord);
+
+        Event event = new BorrowBookEvent(borrowReturnRecord);
+        EventListenerSupport.fireEvent(event);
+
     }
 
     public void returnBook(Long onStockId, Long currentUserId) throws BorrowOrReturnValidationException {
@@ -345,6 +345,9 @@ public class AbstractBookController {
             onOffStockRecord.setBorrowId(null);
             onOffStockRecord.setBorrowUserId(null);
             onOffStockRecordService.updateOnOffStockRecord(onOffStockRecord);
+
+            Event event = new ReturnBookEvent(borrowReturnRecord);
+            EventListenerSupport.fireEvent(event);
         }
     }
 
@@ -362,9 +365,9 @@ public class AbstractBookController {
         BookLocation bookLocation = bookLocationService.findBookLocationById(bookLocationId);
         BookLocationVO bookLocationVO = new BookLocationVO();
         if (null != bookLocation) {
-            bookLocationVO.setProvince(AbstractBookLocationController.getMap().get(bookLocation.getProvince()));
-            bookLocationVO.setCity(AbstractBookLocationController.getMap().get(bookLocation.getCity()));
-            bookLocationVO.setCounty(AbstractBookLocationController.getMap().get(bookLocation.getCity()));
+//            bookLocationVO.setProvince(AbstractBookLocationController.getMap().get(bookLocation.getProvince()));
+//            bookLocationVO.setCity(AbstractBookLocationController.getMap().get(bookLocation.getCity()));
+//            bookLocationVO.setCounty(AbstractBookLocationController.getMap().get(bookLocation.getCity()));
             bookLocationVO.setDetail(bookLocation.getDetail());
         }
 

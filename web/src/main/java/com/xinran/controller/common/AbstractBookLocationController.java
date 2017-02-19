@@ -1,13 +1,9 @@
 package com.xinran.controller.common;
 
-import com.alibaba.fastjson.JSON;
-import com.xinran.controller.util.UserIdenetityUtil;
-import com.xinran.pojo.BookLocation;
-import com.xinran.service.BookLocationService;
-import com.xinran.vo.AjaxResult;
-import com.xinran.vo.LocationMeta;
-import com.xinran.vo.builder.AjaxResultBuilder;
-import org.apache.commons.io.IOUtils;
+import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,30 +11,27 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import javax.annotation.PostConstruct;
-import javax.servlet.http.HttpServletRequest;
-import java.io.InputStreamReader;
-import java.io.Reader;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import com.xinran.controller.util.UserIdenetityUtil;
+import com.xinran.pojo.BookLocation;
+import com.xinran.service.BookLocationService;
+import com.xinran.vo.AjaxResult;
+import com.xinran.vo.builder.AjaxResultBuilder;
+
 
 /**
- * Created by zhuangyao.zy on 2015/5/23.
+ * @author ghj
+ *
  */
 public class AbstractBookLocationController {
 
     @Autowired
     private BookLocationService                        locationService;
 
-    /**
-     * 暂时用JSON静态资源来描述省市区基本信息。
-     */
-    private final static Map<Long, String>             map          = new HashMap<Long, String>(64);            // id/name
-    private final static List<LocationMeta>            provinceList = new ArrayList<LocationMeta>(32);
-    private final static Map<Long, List<LocationMeta>> cityMap      = new HashMap<Long, List<LocationMeta>>(32);
-    private final static Map<Long, List<LocationMeta>> countyMap    = new HashMap<Long, List<LocationMeta>>(32);
+    
+//    private final static Map<Long, String>             map          = new HashMap<Long, String>(64);            // id/name
+//    private final static List<LocationMeta>            provinceList = new ArrayList<LocationMeta>(32);
+//    private final static Map<Long, List<LocationMeta>> cityMap      = new HashMap<Long, List<LocationMeta>>(32);
+//    private final static Map<Long, List<LocationMeta>> countyMap    = new HashMap<Long, List<LocationMeta>>(32);
 
     @RequestMapping("/book/address/add")
     // 该权限需要被登录校验,所以改了个名字.
@@ -103,49 +96,49 @@ public class AbstractBookLocationController {
     /**
      * 
      */
-    @PostConstruct
-    public void init() {
-
-        Reader reader = null;
-        try {
-            reader = new InputStreamReader(getClass().getResourceAsStream("/locations.json"), "UTF-8");
-            String jsonText = IOUtils.toString(reader);
-            List<LocationMeta> list = JSON.parseArray(jsonText, LocationMeta.class);
-            for (LocationMeta originalLocationMeta : list) {
-                LocationMeta locationMeta = new LocationMeta();
-                locationMeta.setId(originalLocationMeta.getId());
-                locationMeta.setName(originalLocationMeta.getName());
-                locationMeta.setSub(originalLocationMeta.getSub());
-                map.put(originalLocationMeta.getId(), originalLocationMeta.getName());
-                provinceList.add(locationMeta);
-            }
-
-            for (LocationMeta provinceLocationMeta : provinceList) {
-                List<LocationMeta> citiesList = provinceLocationMeta.getSub();
-                cityMap.put(provinceLocationMeta.getId(), citiesList);
-
-                for (LocationMeta cityLocationMeta : citiesList) {
-                    List<LocationMeta> countyList = cityLocationMeta.getSub();
-                    map.put(cityLocationMeta.getId(), cityLocationMeta.getName());
-
-                    for (LocationMeta locationMeta : countyList) {
-                        map.put(locationMeta.getId(), locationMeta.getName());
-                    }
-
-                    countyMap.put(cityLocationMeta.getId(), countyList);
-                }
-
-            }
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-    }
-
-    public static Map<Long, String> getMap() {
-        return map;
-    }
+//    @PostConstruct
+//    public void init() {
+//
+//        Reader reader = null;
+//        try {
+//            reader = new InputStreamReader(getClass().getResourceAsStream("/locations.json"), "UTF-8");
+//            String jsonText = IOUtils.toString(reader);
+//            List<LocationMeta> list = JSON.parseArray(jsonText, LocationMeta.class);
+//            for (LocationMeta originalLocationMeta : list) {
+//                LocationMeta locationMeta = new LocationMeta();
+//                locationMeta.setId(originalLocationMeta.getId());
+//                locationMeta.setName(originalLocationMeta.getName());
+//                locationMeta.setSub(originalLocationMeta.getSub());
+//                map.put(originalLocationMeta.getId(), originalLocationMeta.getName());
+//                provinceList.add(locationMeta);
+//            }
+//
+//            for (LocationMeta provinceLocationMeta : provinceList) {
+//                List<LocationMeta> citiesList = provinceLocationMeta.getSub();
+//                cityMap.put(provinceLocationMeta.getId(), citiesList);
+//
+//                for (LocationMeta cityLocationMeta : citiesList) {
+//                    List<LocationMeta> countyList = cityLocationMeta.getSub();
+//                    map.put(cityLocationMeta.getId(), cityLocationMeta.getName());
+//
+//                    for (LocationMeta locationMeta : countyList) {
+//                        map.put(locationMeta.getId(), locationMeta.getName());
+//                    }
+//
+//                    countyMap.put(cityLocationMeta.getId(), countyList);
+//                }
+//
+//            }
+//
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+//
+//    }
+//
+//    public static Map<Long, String> getMap() {
+//        return map;
+//    }
 
     // private List<String> extractCounties(JSONArray counties) {
     // List<String> result = new ArrayList<>();

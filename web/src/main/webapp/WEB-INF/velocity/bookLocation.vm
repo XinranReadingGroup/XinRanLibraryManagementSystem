@@ -10,21 +10,6 @@
             <div class="manger-controller">
                 <div class="container-fluid">
                     <div class="col-xs-2 col-md-2"> 
-                        <select class="J-provinces form-control input-sm">
-                            <option value="0">请选择省份</option>
-                        </select>
-                    </div>
-                    <div class="col-xs-2 col-md-2"> 
-                        <select class="J-citys form-control input-sm">
-                            <option value="0">请选择城市</option>
-                        </select>
-                    </div>
-                    <div class="col-xs-2 col-md-2"> 
-                        <select class="J-counties form-control input-sm">
-                            <option value="0">请选择区县</option>
-                        </select>
-                    </div>
-                    <div class="col-xs-2 col-md-2"> 
                         <a class="J-add-new btn btn-default btn-sm" href="javascript:void(0);">添加新地址</a>
                     </div>
 
@@ -68,23 +53,27 @@
                       <input type="hidden" class="J-location-id" value="" />
                       <input type="hidden" class="J-location-action" value="" />
                       <div class="form-group">
-                        <label for="exampleInputEmail1">省份（provinces）</label>
+                        <label for="exampleInputEmail1">省份</label>
                         <input type="email" class="J-input-provinces form-control" placeholder="省份">
                       </div>
                       <div class="form-group">
-                        <label for="exampleInputEmail1">城市（citys）</label>
+                        <label for="exampleInputEmail1">城市</label>
                         <input type="email" class="J-input-citys form-control" placeholder="城市">
                       </div>
                       <div class="form-group">
-                        <label for="exampleInputEmail1">区县（counties）</label>
+                        <label for="exampleInputEmail1">区县</label>
                         <input type="email" class="J-input-counties form-control" placeholder="区县">
+                      </div>
+                      <div class="form-group">
+                        <label for="exampleInputDetail"> 详细描述</label>
+                        <input type="email" class="J-input-details form-control" placeholder="详细描述">
                       </div>
                 </form>
                 
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
-                <button type="button" class="btn btn-primary J-save-btn">添加／更新</button>
+                <button type="button" class="btn btn-primary J-save-btn">添加</button>
             </div>
         </div>
     </div>

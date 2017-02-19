@@ -15,8 +15,8 @@ public interface UserMapper {
 	@Select("SELECT * FROM user WHERE id = #{userId}")
     public User findUserById(@Param("userId") Long userId);
 
-    @Select("SELECT * FROM user WHERE mobile = #{mobile}")
-    public User findUserByMobile(@Param("mobile") String mobile);
+//    @Select("SELECT * FROM user WHERE mobile = #{mobile}")
+//    public User findUserByMobile(@Param("mobile") String mobile);
 
     @Select("SELECT * FROM user WHERE email = #{email}")
     public User findUserByEmail(@Param("email") String email);

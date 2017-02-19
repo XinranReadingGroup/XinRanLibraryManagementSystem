@@ -54,6 +54,7 @@
                           updated_at     DATETIME,
                           book_id        BIGINT(20),
                           book_type      TINYINT,
+                          qr_code_id     BIGINT(20),
                           owner_user_id  BIGINT(20),
                           owner_phone    VARCHAR(16),
                           location       BIGINT(20),
@@ -103,3 +104,13 @@
                           img_id       VARCHAR(128)
              );
              ALTER TABLE book ADD UNIQUE KEY `isbn` (`isbn`);
+             CREATE TABLE IF NOT EXISTS qrcode
+             (
+                          id           BIGINT(20) UNSIGNED PRIMARY KEY auto_increment,
+                          created_at   DATETIME,
+                          updated_at   DATETIME,
+                          type         VARCHAR(64),
+                          content      VARCHAR(255),
+                          status       INT
+             );
+             ALTER TABLE qrcode ADD UNIQUE KEY `qrcode_content` (`content`);

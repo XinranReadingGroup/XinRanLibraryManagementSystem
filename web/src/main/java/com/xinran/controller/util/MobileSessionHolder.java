@@ -8,7 +8,7 @@ import java.util.concurrent.ConcurrentHashMap;
  */
 public abstract class MobileSessionHolder {
 
-    //TODO 可以考虑未来放在cache之中,并持久化之.
+    //TODO 可以考虑未来放在分布式cache之中,并持久化之.
     private static Map<String, Long> map = new ConcurrentHashMap<String, Long>(1024);
 
     public  static void attachUserIdToAccessToken(String accessToken, Long userId) {

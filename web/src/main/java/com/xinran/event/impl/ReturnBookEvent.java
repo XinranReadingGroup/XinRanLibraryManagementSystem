@@ -1,5 +1,6 @@
 package com.xinran.event.impl;
 
+import com.xinran.pojo.BorrowReturnRecord;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -12,11 +13,12 @@ import com.xinran.event.AbstractEvent;
 @EqualsAndHashCode(callSuper = true)
 public class ReturnBookEvent extends AbstractEvent {
 
-    /**
-     * @param type
-     */
-    public ReturnBookEvent(String type) {
-        super(ReturnBookEvent.class.getName());
+    private BorrowReturnRecord borrowReturnRecord;
+
+
+    public ReturnBookEvent(BorrowReturnRecord borrowReturnRecord) {
+        this.borrowReturnRecord = borrowReturnRecord;
+        super.type=this.getClass().getSimpleName();
     }
 
 }

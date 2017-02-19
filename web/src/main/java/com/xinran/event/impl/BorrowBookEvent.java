@@ -14,16 +14,11 @@ import com.xinran.pojo.BorrowReturnRecord;
 public class BorrowBookEvent extends AbstractEvent {
 
     private BorrowReturnRecord borrowReturnRecord;
-    /**
-     * @param type
-     */
-    public BorrowBookEvent(String type) {
-        super(BorrowBookEvent.class.getName());
-    }
+
 
     public BorrowBookEvent(BorrowReturnRecord borrowReturnRecord) {
-        super(BorrowBookEvent.class.getName());
         this.borrowReturnRecord = borrowReturnRecord;
+        super.type=this.getClass().getSimpleName();
     }
 
 

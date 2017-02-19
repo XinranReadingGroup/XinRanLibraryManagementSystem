@@ -16,8 +16,8 @@ import com.xinran.pojo.Pagination;
 @Repository(value = "onOffStockRecordMapper")
 public interface OnOffStockRecordMapper {    
     
-    @Insert("INSERT INTO on_off_stock_record(created_at,updated_at,book_id,book_type,owner_user_id,owner_phone,location,on_stock_date,off_stock_date,borrow_status) "
-            + " values(now(),now(),#{bookId},#{bookType},#{ownerUserId},#{ownerPhone},#{location},#{onStockDate},#{offStockDate},#{borrowStatus})")
+    @Insert("INSERT INTO on_off_stock_record(created_at,updated_at,book_id,book_type,qr_code_id,owner_user_id,owner_phone,location,on_stock_date,off_stock_date,borrow_status) "
+            + " values(now(),now(),#{bookId},#{bookType},#{qrCodeId},#{ownerUserId},#{ownerPhone},#{location},#{onStockDate},#{offStockDate},#{borrowStatus})")
     @SelectKey(before = false, keyProperty = "id", resultType = Long.class, statement = { "SELECT LAST_INSERT_ID() AS id" })
     Long add(OnOffStockRecord record);
     

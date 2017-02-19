@@ -1,6 +1,7 @@
 package com.xinran.controller.common;
 
 import com.xinran.constant.ScoreReason;
+import com.xinran.constant.SystemConfig;
 import com.xinran.constant.SystemResultCode;
 import com.xinran.controller.util.UserIdenetityUtil;
 import com.xinran.exception.XinranCheckedException;
@@ -134,8 +135,8 @@ public class AbstractActivityController {
                                            BindingResult result,
                                            ModelMap modelMap, HttpServletRequest request, HttpServletResponse response) {
 
-        String saveDirectory = "/home/admin/xinran/upload/img/activity/";
-        //String saveDirectory = "d:\\workspace\\jdw\\XinRanLibraryManagementSystem\\";
+        String saveDirectory = SystemConfig.UGC_IMG_DIR +"activity/";
+
 
         MultipartFile multipartFile = uploadForm.getFile();
 
@@ -247,7 +248,7 @@ public class AbstractActivityController {
             score.setScoreReason(ScoreReason.PARTY.getReason());
 
             Long scoreVal = activity.getScore();
-            if ("add".equals(activity.getAction()) && scoreVal < 0 || "sub".equals(activity.getAction()) && scoreVal > 0) {
+            if ("add".equals( activity.getAction()) && scoreVal < 0 || "sub".equals(activity.getAction()) && scoreVal > 0) {
                 scoreVal = -scoreVal;
             }
             score.setScoreValue(scoreVal.intValue());

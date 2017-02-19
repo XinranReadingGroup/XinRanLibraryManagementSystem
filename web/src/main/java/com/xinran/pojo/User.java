@@ -46,7 +46,7 @@ public class User {
 
     private String  area;               //
     private String  signature;          // 个性签名
-    private Integer score;              // add
+    private Integer score;              // 当前用户总积分
     private String  imgId;              // 头像图片id
 
 

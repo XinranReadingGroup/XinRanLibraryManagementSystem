@@ -1,0 +1,17 @@
+#set($layout = "./layout.vm")
+#set($currentPage = "home")
+
+<link rel="stylesheet" type="text/css" href="/css/home.css" media="all">
+<div class="main-stage container-fluid" id="main-stage">
+    <div class="home-content">
+        <h3 class="c-title">MUST BE ADMIN</span></h3>
+
+
+    </div>
+</div>
+
+<script>
+    seajs.use('/js/home.js', function (Home) {
+        new Home().render();
+    });
+</script>

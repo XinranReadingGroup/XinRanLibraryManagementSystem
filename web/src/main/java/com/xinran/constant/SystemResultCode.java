@@ -9,7 +9,7 @@ public enum SystemResultCode {
 	UserNotLoginedInOrAccessTokenInvalid(403,"用户未登录,或者登录Token已经失效"),
 	
     // sign up
-    IndentifierAlreadyBeenTaken(10000,"该账号已经被注册,请替换成一个新的账号"),
+    IndentifierAlreadyBeenTaken(10000,"该账号(邮箱或者用户名称)已经被注册,请替换成一个新的"),
 
 
     // sign in
@@ -18,6 +18,10 @@ public enum SystemResultCode {
     // view user profiler
     CantViewUserProfilerIfItIsNotYours(20001,"只能查看你自己的用户信息"),
 
+
+    NoPreAssignedQrCodeFound(20100,"不能查到系统中已经分配的二维码"),
+
+    QrcodeAlReadyBeenTaken(20110,"该二维码已与其他书关联,请换一个二维码"),
 
     // borrow
     InvalidOnOffStockId(30000,"该书籍不存在"),
@@ -49,7 +53,10 @@ public enum SystemResultCode {
     // 错误的活动状态查询
     WrongActivityQueryStatus(50001,"错误的活动状态查询"),
 	
-	 BAD_ACTIVITY_STATUS(60001,"营销活动的查询条件错误");
+	BAD_ACTIVITY_STATUS(60001,"营销活动的查询条件错误"),
+
+
+
 
     ;
 

@@ -6,14 +6,12 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.xinran.constant.ApplicationConstant;
-import com.xinran.constant.SystemResultCode;
 import com.xinran.controller.util.UserIdenetityUtil;
 import com.xinran.exception.UserException;
 import com.xinran.pojo.User;
@@ -41,7 +39,7 @@ public abstract class AbstractUserController {
                                            @RequestParam(value = "nickName") String nickName,
                                            HttpServletRequest request, HttpServletResponse response) {
         try {
-        	User   user = userService.signUpForMobileIndentifier(identifier, password, nickName);
+        	User   user = userService.signUp(identifier, password, nickName);
             return doSignInOrSignUp(request, response, user);
         } catch (UserException e) {
             return AjaxResultBuilder.buildFailedResult(e);
@@ -79,42 +77,44 @@ public abstract class AbstractUserController {
         return userVO;
     }
 
-    @RequestMapping("/user/{userId}/profile")
-    public @ResponseBody AjaxResult viewOtherUser(@PathVariable(value = ApplicationConstant.USER_ID) Long userId,
+//    @RequestMapping("/user/profile")
+//    public @ResponseBody AjaxResult viewProfile(
+//                                             HttpServletRequest request) throws UserException {
+//            Long userIdInSession = UserIdenetityUtil.getCurrentUserId(request);
+//            User user = userService.findUserByUserId(userIdInSession);
+//            UserVO userVO = new UserVO();
+//            BeanUtils.copyProperties(user, userVO);
+//            return AjaxResultBuilder.buildSuccessfulResult(userVO);
+//
+//    }
+
+    @RequestMapping(value = "/user/profile", method = RequestMethod.POST)
+    public @ResponseBody AjaxResult editProfile(
+                                             @RequestParam(value = "area",required = false) String area,
+                                             @RequestParam(value = "nickName",required = false) String nickName,
+                                             @RequestParam(value = "imgId",required = false) String imgId,
+                                             @RequestParam(value = "signature",required = false) String signature,
                                              HttpServletRequest request) throws UserException {
-        Long userIdInSession = UserIdenetityUtil.getCurrentUserId(request);
-        if (userIdInSession == userId) {
+            Long userIdInSession = UserIdenetityUtil.getCurrentUserId(request);
             User user = userService.findUserByUserId(userIdInSession);
-            UserVO userVO = new UserVO();
-            BeanUtils.copyProperties(user, userVO);
-            return AjaxResultBuilder.buildSuccessfulResult(userVO);
-
-        } else {
-            throw new UserException(SystemResultCode.CantViewUserProfilerIfItIsNotYours );
-        }
-
-    }
-
-    @RequestMapping(value = "/user/{userId}/profile", method = RequestMethod.POST)
-    public @ResponseBody AjaxResult editUser(@PathVariable(value = ApplicationConstant.USER_ID) Long userId,
-                                             @RequestParam(value = "area") String area,
-                                             @RequestParam(value = "nickName") String nickName,
-                                             @RequestParam(value = "imgId") String imgId,
-
-                                             HttpServletRequest request) throws UserException {
-        Long userIdInSession = UserIdenetityUtil.getCurrentUserId(request);
-        if (userIdInSession == userId) {
-            User user = userService.findUserByUserId(userIdInSession);
-            user.setNickName(nickName);
+            if(!StringUtils.isEmpty(nickName)){
+                user.setNickName(nickName);
+            }
+            if(!StringUtils.isEmpty(imgId)){
             user.setImgId(imgId);
+
+            }
+            if(!StringUtils.isEmpty(area)){
             user.setArea(area);
+
+            }
+            if(!StringUtils.isEmpty(signature)){
+            user.setSignature(signature);
+            }
+
             userService.updateUser(user);
 
             return AjaxResultBuilder.buildSuccessfulResult("ok");
-
-        } else {
-            throw new UserException(SystemResultCode.CantViewUserProfilerIfItIsNotYours );
-        }
 
     }
 

@@ -25,3 +25,7 @@ logs/
 .DS_Store
 
 not_delete_jetty-sessions/
+
+/target/
+
+*.log

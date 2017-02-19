@@ -40,17 +40,18 @@ public class UserServiceImpl implements UserService {
      * @see com.xinran.service.UserService#signUp(java.lang.String, java.lang.String)
      */
     @Override
-    public User signUpForMobileIndentifier(String identifier, String password, String nickName) throws UserException {
-        User userIfExists = userMapper.findUserByMobile(identifier);
+    public User signUp(String identifier, String password, String userName) throws UserException {
+        User userByEmail = userMapper.findUserByEmail(identifier);
+        User userByUserName = userMapper.findUserByUserName(identifier);
 
-        if (null == userIfExists) {
+        if (null == userByEmail && null==userByUserName) {
             String salt = StringUtil.random(8);
             String hash = calcHash(password, salt);
 
             User signUpUser = new User();
             signUpUser.setMobile(identifier);
             signUpUser.setSalt(salt);
-            signUpUser.setNickName(nickName);
+            signUpUser.setUserName(userName);
             signUpUser.setPassword(hash);
             userMapper.addUser(signUpUser);
             
@@ -73,11 +74,17 @@ public class UserServiceImpl implements UserService {
      */
     @Override
     public User signIn(String identifier, String password) throws UserException {
-        User user = userMapper.findUserByMobile(identifier);
+        User user = userMapper.findUserByEmail(identifier);
 
         // TODO 非激活校验
         if (null == user) {
-            throw new UserException(SystemResultCode.InvalidUserNameOrPassowrd );
+
+            user = userMapper.findUserByUserName(identifier);
+
+            if(null == user){
+                throw new UserException(SystemResultCode.InvalidUserNameOrPassowrd );
+            }
+
         }
 
         String actualHash = user.getPassword();
