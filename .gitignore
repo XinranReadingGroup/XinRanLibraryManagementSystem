@@ -29,3 +29,5 @@ not_delete_jetty-sessions/
 /target/
 
 *.log
+
+/not_delete_jetty_sessions/
