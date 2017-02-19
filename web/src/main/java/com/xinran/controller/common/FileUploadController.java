@@ -10,8 +10,6 @@ import com.xinran.constant.SystemConfig;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.ModelMap;
-import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
@@ -30,9 +28,14 @@ import com.xinran.vo.builder.AjaxResultBuilder;
  * @author 高海军 帝奇 May 31, 2015 11:18:06 AM
  */
 @Controller
-public class AvatarUploadController {
+public class FileUploadController {
 
-    private Logger logger = LoggerFactory.getLogger(AvatarUploadController.class);
+    private Logger logger = LoggerFactory.getLogger(FileUploadController.class);
+
+
+
+
+
 
     @RequestMapping(value = "/uploadFile", method = RequestMethod.GET)
     public ModelAndView toUploadForm(HttpServletRequest request, HttpServletResponse response) {
@@ -45,7 +48,7 @@ public class AvatarUploadController {
         binder.setValidator(new UploadValidator());
     }
     @RequestMapping(value = "/upload", method = RequestMethod.POST)
-    public @ResponseBody AjaxResult upload1(@Validated @ModelAttribute("uploadItem") FileUploadForm uploadForm,
+    public @ResponseBody AjaxResult uploadX(@Validated @ModelAttribute("uploadItem") FileUploadForm uploadForm,
                         HttpServletRequest request) {
 
         String saveDirectory = SystemConfig.UGC_IMG_DIR +"avatar/";
