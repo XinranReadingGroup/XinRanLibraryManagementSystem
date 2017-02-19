@@ -11,6 +11,9 @@ public enum SystemResultCode {
     // sign up
     IndentifierAlreadyBeenTaken(10000,"该账号(邮箱或者用户名称)已经被注册,请替换成一个新的"),
 
+    WrongEmailFormat(10001,"邮箱格式不正确"),
+
+
 
     // sign in
     InvalidUserNameOrPassowrd(20000,"用户名或者密码不正确"),

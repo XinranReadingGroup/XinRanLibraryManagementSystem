@@ -40,16 +40,23 @@ public class UserServiceImpl implements UserService {
      * @see com.xinran.service.UserService#signUp(java.lang.String, java.lang.String)
      */
     @Override
-    public User signUp(String identifier, String password, String userName) throws UserException {
-        User userByEmail = userMapper.findUserByEmail(identifier);
-        User userByUserName = userMapper.findUserByUserName(identifier);
+    public User signUp(String email, String password, String userName) throws UserException {
+
+        String regex = "\\w+(\\.\\w)*@\\w+(\\.\\w{2,3}){1,3}";
+
+        if(regex.length()>= 30 || !email.matches(regex)){
+            throw new UserException(SystemResultCode.WrongEmailFormat );
+        }
+
+        User userByEmail = userMapper.findUserByEmail(email);
+        User userByUserName = userMapper.findUserByUserName(userName);
 
         if (null == userByEmail && null==userByUserName) {
             String salt = StringUtil.random(8);
             String hash = calcHash(password, salt);
 
             User signUpUser = new User();
-            signUpUser.setMobile(identifier);
+            signUpUser.setEmail(email);
             signUpUser.setSalt(salt);
             signUpUser.setUserName(userName);
             signUpUser.setPassword(hash);
@@ -127,18 +134,18 @@ public class UserServiceImpl implements UserService {
         userMapper.updateUser(user);
     }
 
-    @Override
-    public User registerUserByMobile(String phone) {
-        String salt = StringUtil.random(8);
-        String hash = calcHash("123456", salt);
-        User signUpUser = new User();
-        signUpUser.setMobile(phone);
-        signUpUser.setSalt(salt);
-        signUpUser.setNickName(phone);
-        signUpUser.setPassword(hash);
-        userMapper.addUser(signUpUser);
-        return signUpUser;
-    }
+//    @Override
+//    public User registerUserByMobile(String phone) {
+//        String salt = StringUtil.random(8);
+//        String hash = calcHash("123456", salt);
+//        User signUpUser = new User();
+//        signUpUser.setMobile(phone);
+//        signUpUser.setSalt(salt);
+//        signUpUser.setNickName(phone);
+//        signUpUser.setPassword(hash);
+//        userMapper.addUser(signUpUser);
+//        return signUpUser;
+//    }
 
 
     private List<String> administrators;

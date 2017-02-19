@@ -48,7 +48,7 @@ public class AbstractHomePage {
             homePageVO.setLogined(true);
             User user = userService.findUserByUserId(userId);
             if (null != user) {
-                String nickName = user.getNickName();
+                String nickName = user.getUserName();
                 if (null != nickName) {
                     homePageVO.setNickName(nickName);
                 } else {

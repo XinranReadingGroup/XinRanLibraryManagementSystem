@@ -26,6 +26,8 @@ public class User {
     private Date    updatedAt;
 
     private String  userName;
+
+
     private String  nickName;           // add
     private String  mobile;
     private String  email;
@@ -48,6 +50,18 @@ public class User {
     private String  signature;          // 个性签名
     private Integer score;              // 当前用户总积分
     private String  imgId;              // 头像图片id
+
+
+
+    public String getNickName() {
+        if(nickName != null){
+            return nickName;
+
+        }else{
+            return userName;
+        }
+
+    }
 
 
 }
