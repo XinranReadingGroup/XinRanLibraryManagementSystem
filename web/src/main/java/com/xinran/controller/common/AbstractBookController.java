@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import com.xinran.event.impl.BorrowBookEvent;
 import com.xinran.event.impl.ReturnBookEvent;
+import com.xinran.exception.XinranCheckedException;
 import com.xinran.pojo.*;
 import com.xinran.service.*;
 import org.apache.commons.collections.CollectionUtils;
@@ -79,7 +80,7 @@ public class AbstractBookController {
         OnOffStockRecord onStock = null;
         try {
             onStock = this.onStock(bookId, locationId, qrCode, request, BookType.DONATED);
-        } catch (StockException e) {
+        } catch (XinranCheckedException e) {
             return AjaxResultBuilder.buildFailedResult(e);
         }
         return AjaxResultBuilder.buildSuccessfulResult(onStock);
@@ -92,7 +93,7 @@ public class AbstractBookController {
         OnOffStockRecord onStock = null;
         try {
             onStock = this.onStock(bookId, locationId, qrCode, request, BookType.SHARED);
-        } catch (StockException e) {
+        } catch (XinranCheckedException e) {
             return AjaxResultBuilder.buildFailedResult(e);
         }
         return AjaxResultBuilder.buildSuccessfulResult(onStock);
