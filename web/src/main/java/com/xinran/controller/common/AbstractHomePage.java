@@ -49,11 +49,7 @@ public class AbstractHomePage {
             User user = userService.findUserByUserId(userId);
             if (null != user) {
                 String nickName = user.getUserName();
-                if (null != nickName) {
-                    homePageVO.setNickName(nickName);
-                } else {
-                    homePageVO.setNickName("TBD");
-                }
+                homePageVO.setNickName(nickName);
             }
         }
 
@@ -61,7 +57,6 @@ public class AbstractHomePage {
         Pagination  page = new Pagination();
         List<OnOffStockRecord>  onOffStockRecordList =   onOffStockRecordService.findOnlyOnStockRecordList(page);
         
-    	List<Book> bookList = Lists.newArrayListWithExpectedSize(20);
 
         for (OnOffStockRecord onOffStockRecord : onOffStockRecordList) {
         	Long bookId = onOffStockRecord.getBookId();
@@ -69,10 +64,9 @@ public class AbstractHomePage {
         	
         	//TODO MAGIC 重新设置了Id,后面最好抽成独立的VO
         	book.setId(onOffStockRecord.getId());
-        	bookList.add(book);
+            homePageVO.getBookList().add(book);
 		}
         
-        homePageVO.setBookList(bookList);
         return homePageVO;
     }
 
