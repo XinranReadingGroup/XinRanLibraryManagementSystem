@@ -19,7 +19,6 @@
                     </h4>
                     <p class="author">$!{bookItem.author}</p>
                     <p class="publisher">$!{bookItem.publisher}</p>
-                    <p class="summary">$!{bookItem.summary.substring(0, 40)}...</p>
                 </div>
             </li>
             #end
