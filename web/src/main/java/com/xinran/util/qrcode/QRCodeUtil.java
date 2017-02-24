@@ -34,8 +34,8 @@ public class QRCodeUtil {
      * 二维码的生成
      */
     public static void createCode(String text,  OutputStream output) throws Exception {
-        int width = 300;
-        int height = 300;
+        int width = 600;
+        int height = 600;
         // 二维码的图片格式
         String format = "png";
         /**

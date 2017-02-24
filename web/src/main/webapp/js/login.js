@@ -87,7 +87,7 @@ define(function(require, exports, module) {
             $('#helpBlock').text('邮箱格式不正确！');
         }else if( nickname.trim() == "" ){
             $('.form-group').addClass('has-error');
-            $('#helpBlock').text('昵称不能为空！');
+            $('#helpBlock').text('用户名不能为空！');
         }else if( pswd.trim() == "" ){
             $('.form-group').addClass('has-error');
             $('#helpBlock').text('密码不能为空！');

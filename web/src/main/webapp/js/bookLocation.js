@@ -198,12 +198,15 @@ define(function (require, exports, module) {
                 provinceId = this.$locationDataEl.find('.J-input-provinces').val(),
                 cityId = this.$locationDataEl.find('.J-input-citys').val(),
                 countiesId = this.$locationDataEl.find('.J-input-counties').val(),
+                detailId = this.$locationDataEl.find('.J-input-details').val(),
+
                 action =  this.$locationDataEl.find('.J-location-action').val();
             if( action === 'add'){
                 $.get('/book/address/add', {
                     province: provinceId,
                     city: cityId,
-                    county: countiesId
+                    county: countiesId,
+                    detail:detailId
                 },function(data){
                     if (data && data.code == 200) {
                        window.alert('添加成功');
@@ -217,7 +220,8 @@ define(function (require, exports, module) {
                     id: dataId,
                     province: provinceId,
                     city: cityId,
-                    county: countiesId
+                    county: countiesId,
+                    detail:detailId
                 },function(data){
                     if (data && data.code == 200) {
                        window.alert('修改成功');

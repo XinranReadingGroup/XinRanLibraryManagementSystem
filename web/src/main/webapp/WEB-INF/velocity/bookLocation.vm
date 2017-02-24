@@ -21,7 +21,8 @@
                 <div class="row row-header">
                     <div class="col-xs-3 col-md-3"> 省份</div>
                     <div class="col-xs-3 col-md-3"> 城市</div>
-                    <div class="col-xs-3 col-md-3"> 地址</div>
+                    <div class="col-xs-3 col-md-3"> 区县</div>
+                    <div class="col-xs-3 col-md-3"> 详细地址</div>
                     <div class="col-xs-3 col-md-3"> 操作</div>
                 </div>
                 <div class="J-info-list-content info-list-content">

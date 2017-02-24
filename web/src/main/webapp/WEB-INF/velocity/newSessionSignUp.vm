@@ -18,7 +18,7 @@
                     </div>
                     <div class="form-group">
                         <div class="col-sm-8">
-                            <input type="text" autocomplate="off" class="form-control" id="reg_nickname" placeholder="昵称">
+                            <input type="text" autocomplate="off" class="form-control" id="reg_nickname" placeholder="用户名">
                         </div>
                     </div>
                     <div class="form-group">

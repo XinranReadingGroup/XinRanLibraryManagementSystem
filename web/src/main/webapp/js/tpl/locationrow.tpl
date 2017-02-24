@@ -4,6 +4,7 @@
 	    <div class="col-xs-3 col-md-3"> {{province}}</div>
 	    <div class="col-xs-3 col-md-3"> {{city}}</div>
 	    <div class="col-xs-3 col-md-3"> {{county}}</div>
+	     <div class="col-xs-3 col-md-3"> {{detail}}</div>
 	    <div class="col-xs-3 col-md-3"> 
 
 
