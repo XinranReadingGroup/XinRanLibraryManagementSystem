@@ -71,8 +71,7 @@ public class OnOffStockRecordServiceImpl implements OnOffStockRecordService {
 //            throw new StockException(SystemResultCode.NoOwnerWhenOnStock );
 //        }
 //        record.setOwnerUserId(owner.getId());
-        Long id = onOffStockRecordMapper.add(record);
-        record.setId(id);
+       onOffStockRecordMapper.add(record);
 
         return record;
     }
