@@ -53,7 +53,7 @@ public class QRCodeController {
             try {
 
 
-                int size = 16;
+                int size = 8;
                 List list = new ArrayList(size);
                 for (int i = 0; i < size; i++) {
                     String uuid = UUID.randomUUID().toString();
