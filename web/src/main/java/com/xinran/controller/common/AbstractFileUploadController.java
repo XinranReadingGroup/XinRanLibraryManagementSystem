@@ -28,9 +28,9 @@ import com.xinran.vo.builder.AjaxResultBuilder;
  * @author 高海军 帝奇 May 31, 2015 11:18:06 AM
  */
 @Controller
-public class FileUploadController {
+public class AbstractFileUploadController {
 
-    private Logger logger = LoggerFactory.getLogger(FileUploadController.class);
+    private Logger logger = LoggerFactory.getLogger(AbstractFileUploadController.class);
 
 
 

@@ -92,7 +92,6 @@ public abstract class AbstractUserController {
     public @ResponseBody AjaxResult editProfile(
                                              @RequestParam(value = "area",required = false) String area,
                                              @RequestParam(value = "nickName",required = false) String nickName,
-                                             @RequestParam(value = "imgId",required = false) String imgId,
                                              @RequestParam(value = "signature",required = false) String signature,
                                              HttpServletRequest request) throws UserException {
             Long userIdInSession = UserIdenetityUtil.getCurrentUserId(request);
@@ -100,10 +99,7 @@ public abstract class AbstractUserController {
             if(!StringUtils.isEmpty(nickName)){
                 user.setNickName(nickName);
             }
-            if(!StringUtils.isEmpty(imgId)){
-            user.setImgId(imgId);
 
-            }
             if(!StringUtils.isEmpty(area)){
             user.setArea(area);
 
