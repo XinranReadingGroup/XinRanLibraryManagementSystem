@@ -19,7 +19,10 @@ public interface OnOffStockRecordMapper {
     Long add(OnOffStockRecord record);
     
     @Select("SELECT * FROM on_off_stock_record WHERE off_stock_date is null and id = #{id}")
-    public OnOffStockRecord findOnOffStockRecordById(@Param("id") Long id);
+      OnOffStockRecord findOnOffStockRecordById(@Param("id") Long id);
+
+    @Select("SELECT * FROM on_off_stock_record WHERE  qr_code_id = #{qrCodeId}")
+    OnOffStockRecord findOnOffStockRecordByQRCodeId(@Param("qrCodeId") Long qrCodeId);
 
 //    @Select("SELECT * FROM on_off_stock_record WHERE off_stock_date is null and book_id =ANY(#{bookIds}::long[])")
     @Select({"<script>",
@@ -33,12 +36,12 @@ public interface OnOffStockRecordMapper {
         "</script>"})
 
 //    @SelectProvider(type = OnOffStockRecordMapperProvider.class, method="in")
-    public List<OnOffStockRecord> findOnOffStockRecordByBookIds(@Param("bookIds") Long[] bookIds);
+      List<OnOffStockRecord> findOnOffStockRecordByBookIds(@Param("bookIds") Long[] bookIds);
 
     @Update("update  on_off_stock_record set   updated_At = #{updatedAt},off_Stock_Date =  #{offStockDate},"
             + "owner_Phone =  #{ownerPhone}, location = #{location},borrow_Status=#{borrowStatus},"
             + " borrow_user_id=#{borrowUserId},borrow_Id=#{borrowId}   where id = #{id}")
-    public int updateOnOffStockRecord(OnOffStockRecord record);
+      int updateOnOffStockRecord(OnOffStockRecord record);
     
     // TODO add index
     @Select("SELECT * FROM on_off_stock_record WHERE off_stock_date is null and owner_user_id = #{record.ownerUserId} and book_type = #{record.bookType} order by id desc limit #{page.start},#{page.end}")

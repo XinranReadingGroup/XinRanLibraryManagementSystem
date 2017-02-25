@@ -29,6 +29,8 @@ public interface OnOffStockRecordService {
     
     OnOffStockRecord findOnOffStockRecordById(Long id);
 
+    OnOffStockRecord findOnOffStockRecordByQRCodeId( Long qrCodeId);
+
     List<OnOffStockRecord> findOnOffStockRecordByBookIds(Long... bookId);
 
     int updateOnOffStockRecord(OnOffStockRecord record);

@@ -22,9 +22,9 @@ public enum SystemResultCode {
     CantViewUserProfilerIfItIsNotYours(20001,"只能查看你自己的用户信息"),
 
 
-    NoPreAssignedQrCodeFound(20100,"不能查到系统中已经分配的二维码"),
+    NoPreAssignedQrCodeFound(20100,"无效验证码。不能在系统中,查到已经分配的二维码"),
 
-    QrcodeAlReadyBeenTaken(20110,"该二维码已与其他书关联,请换一个二维码"),
+    QrcodeAlReadyBeenTaken(20110,"该二维码已与其他书关联,请更换一个二维码"),
 
     // borrow
     InvalidOnOffStockId(30000,"该书籍不存在"),

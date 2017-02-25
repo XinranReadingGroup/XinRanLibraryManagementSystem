@@ -114,20 +114,33 @@ public class AbstractBookController {
     }
 
 
-    @RequestMapping("/book/borrow/{onStockId}")
-    public @ResponseBody AjaxResult borrow(@PathVariable(value = "onStockId") Long onStockId, HttpServletRequest request)
+    @RequestMapping("/book/borrow")
+    public @ResponseBody AjaxResult borrow(@PathVariable(value = "qrCode") String qrCodeContent, HttpServletRequest request)
                                                                                                                          throws BorrowOrReturnValidationException {
-        OnOffStockRecord onOffStockRecord = onOffStockRecordService.findOnOffStockRecordById(onStockId);
-        if (null == onOffStockRecord) {
-            throw new BorrowOrReturnValidationException(SystemResultCode.InvalidOnOffStockId);
-        } else {
-            Integer borrowStatus = onOffStockRecord.getBorrowStatus();
-            if (BorrowStatus.UNBORROWED.getStatus() != borrowStatus) {
-                throw new BorrowOrReturnValidationException(SystemResultCode.TheBookHasBeenBorrowed);
+
+
+        try {
+
+            QRCode qrCode =  qrCodeService.findQRCodeByContent(qrCodeContent);
+            if(qrCode == null){
+                throw new XinranCheckedException(SystemResultCode.NoPreAssignedQrCodeFound);
             }
 
-            Long currentUserId = UserIdenetityUtil.getCurrentUserId(request);
-            this.borrowBook(onOffStockRecord, currentUserId);
+            OnOffStockRecord onOffStockRecord = onOffStockRecordService.findOnOffStockRecordByQRCodeId(qrCode.getId());
+            if (null == onOffStockRecord) {
+                throw new BorrowOrReturnValidationException(SystemResultCode.InvalidOnOffStockId);
+            } else {
+                Integer borrowStatus = onOffStockRecord.getBorrowStatus();
+                if (BorrowStatus.UNBORROWED.getStatus() != borrowStatus) {
+                    throw new BorrowOrReturnValidationException(SystemResultCode.TheBookHasBeenBorrowed);
+                }
+
+                Long currentUserId = UserIdenetityUtil.getCurrentUserId(request);
+                this.borrowBook(onOffStockRecord, currentUserId);
+
+            }
+        }catch (XinranCheckedException e){
+            return AjaxResultBuilder.buildFailedResult(e);
 
         }
 
@@ -136,12 +149,24 @@ public class AbstractBookController {
 
 
 
-    @RequestMapping("/book/return/{onStockId}")
-    public @ResponseBody AjaxResult returnBook(@PathVariable(value = "onStockId") Long onStockId,
+    @RequestMapping("/book/return")
+    public @ResponseBody AjaxResult returnBook(@PathVariable(value = "qrCode") String qrCodeContent,
                                                HttpServletRequest request) throws BorrowOrReturnValidationException {
-        Long currentUserId = UserIdenetityUtil.getCurrentUserId(request);
+
         try {
-            this.returnBook(onStockId, currentUserId);
+        Long currentUserId = UserIdenetityUtil.getCurrentUserId(request);
+        QRCode qrCode =  qrCodeService.findQRCodeByContent(qrCodeContent);
+        if(qrCode == null){
+            throw new XinranCheckedException(SystemResultCode.NoPreAssignedQrCodeFound);
+        }
+
+        OnOffStockRecord onOffStockRecord = onOffStockRecordService.findOnOffStockRecordByQRCodeId(qrCode.getId());
+        if (null == onOffStockRecord) {
+            throw new BorrowOrReturnValidationException(SystemResultCode.InvalidOnOffStockId);
+        }
+
+
+        this.returnBook(onOffStockRecord.getId(), currentUserId);
         } catch (BorrowOrReturnValidationException e) {
             return AjaxResultBuilder.buildFailedResult(e);
         }

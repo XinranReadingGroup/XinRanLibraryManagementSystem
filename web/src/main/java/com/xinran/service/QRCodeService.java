@@ -15,4 +15,6 @@ public interface QRCodeService {
 
     QRCode findQRCodeById(Long id);
 
+    QRCode findQRCodeByContent(String content);
+
 }

@@ -54,8 +54,14 @@ public class QRCodeServiceImpl implements QRCodeService {
 
     }
 
+    @Override
     public QRCode findQRCodeById(Long id) {
         return qrCodeMapper.findQRCodeById(id);
+    }
+
+    @Override
+    public QRCode findQRCodeByContent(String content){
+        return qrCodeMapper.findQRCodeByContent(content);
     }
 
 
