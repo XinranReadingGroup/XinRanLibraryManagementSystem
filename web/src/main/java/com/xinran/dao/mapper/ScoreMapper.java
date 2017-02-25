@@ -9,8 +9,6 @@ import com.xinran.pojo.Score;
 
 public interface ScoreMapper {
 
-    // TODO add index,4个唯一字段
-
     @Select("SELECT * FROM score WHERE id = #{id}")
     public Score findUserById(@Param("id") Long id);
 

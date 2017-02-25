@@ -67,6 +67,10 @@
                           borrow_user_id BIGINT(20),
                           borrow_status  TINYINT
              );
+             ALTER TABLE on_off_stock_record ADD UNIQUE KEY `qr_code_id` (`qr_code_id`);
+             ALTER TABLE on_off_stock_record ADD INDEX `book_type` (`book_type`);
+             ALTER TABLE on_off_stock_record ADD INDEX `owner_user_id` (`owner_user_id`);
+
              CREATE TABLE IF NOT EXISTS borrow_return_record
              (
                           id              BIGINT(20) UNSIGNED PRIMARY KEY auto_increment,
@@ -81,6 +85,10 @@
                           return_date     DATETIME,
                           borrow_status   TINYINT
              );
+              ALTER TABLE borrow_return_record ADD INDEX `borrow_user_id` (`borrow_user_id`);
+              ALTER TABLE borrow_return_record ADD INDEX `borrow_status` (`borrow_status`);
+              ALTER TABLE borrow_return_record ADD INDEX `on_off_stock_id` (`on_off_stock_id`);
+
              CREATE TABLE IF NOT EXISTS score
              (
                           id           BIGINT(20) UNSIGNED PRIMARY KEY auto_increment,
@@ -91,6 +99,8 @@
                           score_reason INT,
                           score_value  INT
              );
+             ALTER TABLE score ADD INDEX `user_id` (`user_id`);
+
              CREATE TABLE IF NOT EXISTS activity
              (
                           id           BIGINT(20) UNSIGNED PRIMARY KEY auto_increment,

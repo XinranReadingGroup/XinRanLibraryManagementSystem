@@ -5,7 +5,7 @@ package com.xinran.constant;
  */
 public interface SystemConfig {
 
-    //     TODO 保存文件路径 profile,在测试环境下支持选择在临时目录选择
+    //     TUNE 保存文件路径 profile,在测试环境下支持选择在临时目录选择
 
     String commonPrefix = "/home/admin/xinran/";
 

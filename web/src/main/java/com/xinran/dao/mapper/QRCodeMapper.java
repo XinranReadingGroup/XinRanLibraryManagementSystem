@@ -6,7 +6,6 @@ import org.apache.ibatis.annotations.*;
 
 public interface QRCodeMapper {
 
-    // TODO add index,4个唯一字段
 
 	@Select("SELECT * FROM qrcode WHERE id = #{id}")
      QRCode findQRCodeById(@Param("id") Long id);

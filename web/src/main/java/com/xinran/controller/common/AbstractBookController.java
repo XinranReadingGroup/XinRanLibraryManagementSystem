@@ -274,7 +274,7 @@ public class AbstractBookController {
 
         List<BookDetail> bookDetailList = new ArrayList<>();
         for (OnOffStockRecord record : records) {
-            // TODO 使用缓存以避免每次查询数据库。以ID查询书本信息在很多场景会使用。
+            // TUNE 使用缓存以避免每次查询数据库。以ID查询书本信息在很多场景会使用。
             BookDetail bookDetail = this.buildBookDetail(record.getId());
             bookDetailList.add(bookDetail);
         }

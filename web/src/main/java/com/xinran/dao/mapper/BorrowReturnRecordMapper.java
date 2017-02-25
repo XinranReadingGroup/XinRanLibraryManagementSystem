@@ -29,14 +29,12 @@ public interface BorrowReturnRecordMapper {
     @Update("update  borrow_return_record set   updated_at = now(),return_date = #{returnDate},borrow_status = #{borrowStatus}  where id = #{id}")
     public int updateBorrowReturnRecord(BorrowReturnRecord record);
 
-    // TODO add index
 
     @Select("SELECT * FROM borrow_return_record WHERE borrow_user_id = #{borrowUserId} and borrow_status = #{borrowStatus} order by id desc limit #{page.start},#{page.end}")
     List<BorrowReturnRecord> findRecordsByBorrowUserId(@Param("borrowUserId") Long borrowUserId,
                                                  @Param("borrowStatus") Integer borrowStatus,
                                                  @Param("page") Pagination page);
 
-    // TODO add index
 
     @Select("SELECT * FROM borrow_return_record WHERE  on_off_stock_id = #{onOffStockId} order by id desc limit #{page.start},#{page.end}")
     List<BorrowReturnRecord> findRecordsByOnOffStockId(@Param("onOffStockId") Long onOffStockId,

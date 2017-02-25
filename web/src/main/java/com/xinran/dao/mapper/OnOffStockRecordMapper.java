@@ -42,12 +42,11 @@ public interface OnOffStockRecordMapper {
             + "owner_Phone =  #{ownerPhone}, location = #{location},borrow_Status=#{borrowStatus},"
             + " borrow_user_id=#{borrowUserId},borrow_Id=#{borrowId}   where id = #{id}")
       int updateOnOffStockRecord(OnOffStockRecord record);
-    
-    // TODO add index
+
+    //TUNE 针对null做优化。
     @Select("SELECT * FROM on_off_stock_record WHERE off_stock_date is null and owner_user_id = #{record.ownerUserId} and book_type = #{record.bookType} order by id desc limit #{page.start},#{page.end}")
     List<OnOffStockRecord> findOnlyOnStockRecordListByCondition(@Param("record") OnOffStockRecord record, @Param("page") Pagination page);
     
- // TODO add index
     @Select("SELECT * FROM on_off_stock_record WHERE off_stock_date is null  order by id desc limit #{page.start},#{page.end}")
     List<OnOffStockRecord> findOnlyOnStockRecordList( @Param("page") Pagination page);
 

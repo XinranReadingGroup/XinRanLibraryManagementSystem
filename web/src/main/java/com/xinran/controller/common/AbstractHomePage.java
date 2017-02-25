@@ -62,7 +62,7 @@ public class AbstractHomePage {
         	Long bookId = onOffStockRecord.getBookId();
         	Book book = 	bookService.findBookById(bookId);
         	
-        	//TODO MAGIC 重新设置了Id,后面最好抽成独立的VO
+        	//TUNE MAGIC 重新设置了Id,后面最好抽成独立的VO
         	book.setId(onOffStockRecord.getId());
             homePageVO.getBookList().add(book);
 		}

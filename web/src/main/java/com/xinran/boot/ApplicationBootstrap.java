@@ -23,7 +23,7 @@ public class ApplicationBootstrap implements InitializingBean {
 
     // @PostConstruct
     public void init() {
-        // TODO use sping configurable,http://docs.spring.io/spring/docs/current/spring-framework-reference/htmlsingle/
+        // TUNE use sping configurable,http://docs.spring.io/spring/docs/current/spring-framework-reference/htmlsingle/
         Listener bean ;
 
         bean = (Listener) contextUtil.getBean("donateOrShareBookListener");

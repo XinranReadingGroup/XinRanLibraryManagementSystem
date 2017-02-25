@@ -38,7 +38,6 @@ public class UserController extends AbstractUserController {
         try {
             request.getSession().invalidate();
 
-            // TODO
             userService.signOut(null);
             return AjaxResultBuilder.buildSuccessfulResult("ok");
 
