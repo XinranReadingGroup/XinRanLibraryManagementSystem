@@ -47,6 +47,7 @@
 						<value>/mock/</value>
 						<value>/user/session/signIn</value>
 						<value>/user/session/signUp</value>
+						<value>/user/password/reset</value>
 						<value>/book/search</value>
 						<value>/user/signUp</value>
                         <value>/user/signIn</value>
