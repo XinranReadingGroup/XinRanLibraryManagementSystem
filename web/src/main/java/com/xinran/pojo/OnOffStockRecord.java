@@ -32,7 +32,7 @@ public class OnOffStockRecord {
 
     @Deprecated
     private String  ownerPhone;
-    private Long    location;    // TODO using locationId?
+    private Long    location;    // TUNE using locationId?
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss")
     private Date    onStockDate;
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss")

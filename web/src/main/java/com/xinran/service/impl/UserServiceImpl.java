@@ -83,7 +83,7 @@ public class UserServiceImpl implements UserService {
     public User signIn(String identifier, String password) throws UserException {
         User user = userMapper.findUserByEmail(identifier);
 
-        // TODO 非激活校验
+        // TUNE 非激活校验
         if (null == user) {
 
             user = userMapper.findUserByUserName(identifier);
@@ -116,7 +116,7 @@ public class UserServiceImpl implements UserService {
      */
     @Override
     public void signOut(Long userId) throws UserException {
-        // TODO empty implement
+        // TUNE empty implement
     }
 
     /*
