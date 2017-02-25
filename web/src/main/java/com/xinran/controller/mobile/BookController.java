@@ -47,7 +47,7 @@ public class BookController extends AbstractBookController {
 //        return AjaxResultBuilder.buildSuccessfulResult(bookDetail);
 //    }
 
-    @RequestMapping("/book/detail/{qrCode}")
+    @RequestMapping("/book/qrCode/{qrCode}")
     public @ResponseBody AjaxResult getBookDetailByQrCode(@PathVariable(value = "qrCode") String qrCodeContent, HttpServletRequest request)
             throws BorrowOrReturnValidationException {
 
