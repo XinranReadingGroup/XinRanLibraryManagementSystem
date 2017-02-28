@@ -209,8 +209,8 @@
     <br/>
 
 <div class="modal-footer">
-    <button type="button" class="btn btn-default J-agbox-btn-agreement" data-dismiss="modal">已阅读</button>
-    <button type="button" class="btn btn-primary J-agbox-btn-cancel">关闭</button>
+    <button type="button" class="btn btn-primary J-agbox-btn-agreement" data-dismiss="modal">已阅读</button>
+    <button type="button" class="btn btn-default J-agbox-btn-cancel">关闭</button>
 </div>
 
 </div>

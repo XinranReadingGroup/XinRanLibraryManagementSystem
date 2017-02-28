@@ -53,10 +53,10 @@ define(function(require, exports, module) {
         });
 
         $('.J-btn-link-agreement').click(function(ev){
-            $('#J-agreement')[0].checked = true;
             self.$agreementBoxEl.modal('show');
         });
         $('.J-agbox-btn-agreement').click(function(ev){
+            $('#J-agreement')[0].checked = true;
             self.$agreementBoxEl.modal('hide');
         });
         $('.J-agbox-btn-cancel').click(function(ev){
