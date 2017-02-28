@@ -54,7 +54,7 @@
 
 
 <div class="modal fade" id="sign-up-agreement-box" role="dialog">
-    <div class="modal-dialog" role="document">
+    <div class="modal-dialog" role="document" style="width:720px;">
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
@@ -207,12 +207,14 @@
     <p>享书</p>
     <p>扫书籍背后右下侧ISBN码 —> 确认书籍信息  —> 享书成功 </p>
     <br/>
+
+<div class="modal-footer">
+    <button type="button" class="btn btn-default J-agbox-btn-agreement" data-dismiss="modal">已阅读</button>
+    <button type="button" class="btn btn-primary J-agbox-btn-cancel">关闭</button>
+</div>
+
 </div>
 <!--  agreement box end -->    
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default J-agbox-btn-agreement" data-dismiss="modal">已阅读</button>
-                <button type="button" class="btn btn-primary J-agbox-btn-cancel">关闭</button>
             </div>
         </div>
     </div>
