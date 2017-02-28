@@ -30,7 +30,8 @@
                         <div class="col-sm-8">
                             <div class="checkbox">
                                 <label>
-                                    <input id="J-agreement" class="input-ck" type="checkbox"> <a href="#" target="_blank">同意网站协议</a>
+                                    <input id="J-agreement" class="input-ck" type="checkbox"> 
+                                    <a href="javascript:void(0)" class="J-btn-link-agreement">同意网站协议</a>
                                 </label>
                             </div>
                         </div>
@@ -210,8 +211,8 @@
 <!--  agreement box end -->    
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-default J-agreement-btn" data-dismiss="modal">已阅读</button>
-                <button type="button" class="btn btn-primary J-cancel-btn">关闭</button>
+                <button type="button" class="btn btn-default J-agbox-btn-agreement" data-dismiss="modal">已阅读</button>
+                <button type="button" class="btn btn-primary J-agbox-btn-cancel">关闭</button>
             </div>
         </div>
     </div>

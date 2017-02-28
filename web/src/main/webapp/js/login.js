@@ -18,6 +18,8 @@ define(function(require, exports, module) {
     Login.prototype.render = function() {
         var self = this;
 
+        this.$agreementBoxEl = $('#sign-up-agreement-box');
+
         self.bindEvents();
     };
 
@@ -49,6 +51,17 @@ define(function(require, exports, module) {
 
             return false;
         });
+
+        $('.J-btn-link-agreement').click(function(ev){
+            self.$agreementBoxEl.modal('show');
+        });
+        $('.J-agbox-btn-agreement').click(function(ev){
+            self.$agreementBoxEl.modal('hide');
+        });
+        $('.J-agbox-btn-cancel').click(function(ev){
+            self.$agreementBoxEl.modal('hide');
+        });
+
     };
 
     Login.prototype.login = function() {
