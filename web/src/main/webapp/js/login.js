@@ -53,6 +53,7 @@ define(function(require, exports, module) {
         });
 
         $('.J-btn-link-agreement').click(function(ev){
+            $('#J-agreement').attr('checked', true);
             self.$agreementBoxEl.modal('show');
         });
         $('.J-agbox-btn-agreement').click(function(ev){
