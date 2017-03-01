@@ -122,7 +122,7 @@ public class QRCodeUtil {
         // 内容所使用编码
         hints.put(EncodeHintType.CHARACTER_SET, "utf-8");
         hints.put(EncodeHintType.ERROR_CORRECTION, ErrorCorrectionLevel.H);//容错等级 L、M、Q、H 其中L为最低,H为最高
-        hints.put(EncodeHintType.MARGIN, 10);
+        hints.put(EncodeHintType.MARGIN, 2);
 
         BitMatrix bitMatrix = new MultiFormatWriter().encode(text, BarcodeFormat.QR_CODE, width, height, hints);
         // 生成二维码
