@@ -64,10 +64,6 @@ public class PictureUtil {
     public static void mergeToOneRow(List<String> piclist, String filePathAndFileName) {// 纵向处理图片
         int size = piclist.size();
 
-
-
-
-
         try {
             String firstFileName = piclist.get(0);
             BufferedImage firstBufferedImage = ImageIO.read(new File(firstFileName));
@@ -93,7 +89,8 @@ public class PictureUtil {
 
             }
 
-
+            File outFile = new File(filePathAndFileName);
+            ImageIO.write(finalImageResult, "png", outFile);
 
         } catch (Exception e) {
             e.printStackTrace();
