@@ -41,11 +41,12 @@ public class BookController extends AbstractBookController {
     // return AjaxResultBuilder.buildSuccessfulResult(book);
     // }
 
-//    @RequestMapping("/book/detail/{id}")
-//    public @ResponseBody AjaxResult getBookById(@PathVariable(value = "id") Long id, HttpServletRequest request) {
-//        BookDetail bookDetail = super.buildBookDetail(id);
-//        return AjaxResultBuilder.buildSuccessfulResult(bookDetail);
-//    }
+    @RequestMapping("/book/detail/{id}")
+    public @ResponseBody AjaxResult getBookById(@PathVariable(value = "id") Long id, HttpServletRequest request) {
+        BookDetail bookDetail = super.buildBookDetail(id);
+        return AjaxResultBuilder.buildSuccessfulResult(bookDetail);
+    }
+
 
     @RequestMapping("/book/qrCode/{qrCode}")
     public @ResponseBody AjaxResult getBookDetailByQrCode(@PathVariable(value = "qrCode") String qrCodeContent, HttpServletRequest request)
