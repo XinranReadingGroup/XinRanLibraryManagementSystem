@@ -1,9 +1,9 @@
 package com.xinran.controller.web;
 
+import com.alibaba.fastjson.util.IOUtils;
 import com.xinran.constant.SystemConfig;
 import com.xinran.controller.util.UserIdenetityUtil;
 import com.xinran.exception.AdminAuthorizationException;
-import com.xinran.pojo.Activity;
 import com.xinran.pojo.User;
 import com.xinran.service.QRCodeService;
 import com.xinran.service.UserService;
@@ -13,17 +13,13 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.FileCopyUtils;
-import org.springframework.util.StreamUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.*;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
@@ -33,6 +29,12 @@ import java.util.UUID;
 @RestController(value = "webQRCodeController")
 
 public class QRCodeController {
+
+    private static final int ROW_SIZE = 5;
+
+    private static final int COL_SIZE = 4;
+    public static final int BUFFER_SIZE = 1024 * 128;
+
 
     private Logger log = LoggerFactory.getLogger(this.getClass());
 
@@ -49,35 +51,49 @@ public class QRCodeController {
         if ( userService.isAdmin(user.getUserName())) {
             response.setContentType("image/png");
 
-
+            InputStream inputStream = null;
             try {
 
-
-                int size = 8;
-                List list = new ArrayList(size);
-                for (int i = 0; i < size; i++) {
-                    String uuid = UUID.randomUUID().toString();
-                    String text = "v1:book:" + uuid;
-                    String fileName = uuid + ".png";
-                    list.add(SystemConfig.TEMP_IMG_DIR + fileName);
-                    qrCodeService.addQRCode(text);
-                    QRCodeUtil.createCode(text, SystemConfig.TEMP_IMG_DIR, fileName);
-
+                List<String> list = new ArrayList<>(COL_SIZE);
+                for (int i = 0; i <COL_SIZE ; i++) {
+                    String filePathAndFileName = SystemConfig.TEMP_IMG_DIR + UUID.randomUUID().toString() + "_merged"+i+".png";
+                    mergePic(filePathAndFileName);
+                    list.add(filePathAndFileName);
                 }
 
-                String filePathAndFileName = SystemConfig.TEMP_IMG_DIR + UUID.randomUUID().toString() + "_merged.png";
-                PictureUtil.merge(list, filePathAndFileName);
+                String finalFileName = SystemConfig.TEMP_IMG_DIR + UUID.randomUUID().toString() + "final_merged.png";
+                PictureUtil.merge(list, finalFileName);
 
-                InputStream inputStream = new BufferedInputStream(new FileInputStream(filePathAndFileName));
+
+                inputStream = new BufferedInputStream(new FileInputStream(finalFileName), BUFFER_SIZE);
                 FileCopyUtils.copy(inputStream, response.getOutputStream());
 
 
             } catch (Exception e) {
                 log.error(e.getMessage(), e);
+            }finally {
+                IOUtils.close(inputStream);
             }
 
         }else{
             throw new AdminAuthorizationException();
         }
+    }
+
+    private String mergePic(String filePathAndFileName) throws Exception {
+        List<String> list = new ArrayList(ROW_SIZE);
+        for (int i = 0; i < ROW_SIZE; i++) {
+            String uuid = UUID.randomUUID().toString();
+            String text = "v1:book:" + uuid;
+            String fileName = uuid + ".png";
+            list.add(SystemConfig.TEMP_IMG_DIR + fileName);
+            qrCodeService.addQRCode(text);
+            QRCodeUtil.createCode(text, SystemConfig.TEMP_IMG_DIR, fileName);
+
+        }
+
+
+        PictureUtil.merge(list, filePathAndFileName);
+        return filePathAndFileName;
     }
 }

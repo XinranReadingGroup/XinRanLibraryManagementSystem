@@ -28,7 +28,7 @@ import java.util.*;
 public class QRCodeUtil {
 
     private static final MatrixToImageConfig DEFAULT_CONFIG = new MatrixToImageConfig();
-    public static final int WIDTH_HEIGHT = 300;
+    public static final int WIDTH_HEIGHT = 200;
 
 
     /**

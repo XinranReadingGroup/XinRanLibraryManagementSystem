@@ -125,8 +125,7 @@ public class UserController extends AbstractUserController {
     }
 
     @RequestMapping("/user/password/reset")
-    public ModelAndView d(HttpServletRequest request) throws UserException {
-        UserVO userVO = super.buildUserVO(request);
-        return new ModelAndView("passwordReset", "userVO", userVO);
+    public ModelAndView resetPassword(HttpServletRequest request) throws UserException {
+        return new ModelAndView("passwordReset");
     }
 }

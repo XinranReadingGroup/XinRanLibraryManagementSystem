@@ -30,12 +30,9 @@ import com.xinran.vo.builder.AjaxResultBuilder;
 @Controller
 public class AbstractFileUploadController {
 
+    private static final String IMG_AVATAR = "/img/avatar/";
+
     private Logger logger = LoggerFactory.getLogger(AbstractFileUploadController.class);
-
-
-
-
-
 
     @RequestMapping(value = "/uploadFile", method = RequestMethod.GET)
     public ModelAndView toUploadForm(HttpServletRequest request, HttpServletResponse response) {
@@ -55,6 +52,7 @@ public class AbstractFileUploadController {
 
         MultipartFile multipartFile = uploadForm.getFile();
 
+
         String newFileName = "user_avatar_origin_" + UserIdenetityUtil.getCurrentUserId(request) + ".jpg";
 
 
@@ -71,6 +69,6 @@ public class AbstractFileUploadController {
         }
 
         // modelMap.addAttribute("files", multipartFile);
-        return AjaxResultBuilder.buildSuccessfulResult(newFileName);
+        return AjaxResultBuilder.buildSuccessfulResult(IMG_AVATAR +newFileName);
     }
 }
