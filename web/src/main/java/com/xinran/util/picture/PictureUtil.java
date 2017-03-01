@@ -8,7 +8,8 @@ import java.util.List;
 
 /**
  * COPY FROM http://www.bkjia.com/ASPjc/989270.html
- * <p>
+ * <p> COPY FORM http://cxr1217.iteye.com/blog/1638681
+ * <p> COPY FROM http://www.cnblogs.com/yzlpersonal/p/3656125.html
  * Created by 高海军 帝奇 74394 on 2017 January  11:53.
  */
 public class PictureUtil {
@@ -19,7 +20,7 @@ public class PictureUtil {
      * @param piclist             文件路径列表
      * @param filePathAndFileName 输出路径
      */
-    public static void merge(List<String> piclist, String filePathAndFileName) {// 纵向处理图片
+    public static void mergeToOneColumn(List<String> piclist, String filePathAndFileName) {// 纵向处理图片
 
         try {
             int height = 0, // 总高度
@@ -54,6 +55,46 @@ public class PictureUtil {
             }
             File outFile = new File(filePathAndFileName);
             ImageIO.write(imageResult, "png", outFile);// 写图片
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+
+    public static void mergeToOneRow(List<String> piclist, String filePathAndFileName) {// 纵向处理图片
+        int size = piclist.size();
+
+
+
+
+
+        try {
+            String firstFileName = piclist.get(0);
+            BufferedImage firstBufferedImage = ImageIO.read(new File(firstFileName));
+            int firstWidth = firstBufferedImage.getWidth();// 图片宽度
+            int firstHeight = firstBufferedImage.getHeight();// 图片高度
+            int[] firstImageArray = new int[firstWidth * firstHeight];// 从图片中读取RGB
+            firstImageArray = firstBufferedImage.getRGB(0, 0, firstWidth, firstHeight, firstImageArray, 0, firstWidth);
+
+            BufferedImage finalImageResult = new BufferedImage(firstWidth * size , firstHeight,BufferedImage.TYPE_INT_RGB);
+            finalImageResult.setRGB(0, 0, firstWidth, firstHeight, firstImageArray, 0, firstWidth);// 设置左半部分的RGB
+
+            for (int i = 1; i < size; i++) {
+                String fileName = piclist.get(i);
+                BufferedImage bufferedImage = ImageIO.read(new File(fileName));
+                int width = bufferedImage.getWidth();// 图片宽度
+                int height = bufferedImage.getHeight();// 图片高度
+                int[] imageArray = new int[width * height];// 从图片中读取RGB
+                imageArray = bufferedImage.getRGB(0, 0, width, height, imageArray, 0, width);
+
+                //设置起始x
+                finalImageResult.setRGB(width*i, 0, firstWidth, firstHeight, imageArray, 0, firstWidth);// 设置左半部分的RGB
+
+
+            }
+
+
+
         } catch (Exception e) {
             e.printStackTrace();
         }

@@ -62,7 +62,7 @@ public class QRCodeController {
                 }
 
                 String finalFileName = SystemConfig.TEMP_IMG_DIR + UUID.randomUUID().toString() + "final_merged.png";
-                PictureUtil.merge(list, finalFileName);
+                PictureUtil.mergeToOneRow(list, finalFileName);
 
 
                 inputStream = new BufferedInputStream(new FileInputStream(finalFileName), BUFFER_SIZE);
@@ -93,7 +93,7 @@ public class QRCodeController {
         }
 
 
-        PictureUtil.merge(list, filePathAndFileName);
+        PictureUtil.mergeToOneColumn(list, filePathAndFileName);
         return filePathAndFileName;
     }
 }
