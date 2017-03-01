@@ -5,6 +5,7 @@ import com.google.zxing.client.j2se.MatrixToImageConfig;
 import com.google.zxing.client.j2se.MatrixToImageWriter;
 import com.google.zxing.common.BitMatrix;
 import com.google.zxing.common.HybridBinarizer;
+import com.google.zxing.qrcode.decoder.ErrorCorrectionLevel;
 
 import javax.imageio.IIOException;
 import javax.imageio.ImageIO;
@@ -120,6 +121,8 @@ public class QRCodeUtil {
         HashMap hints = new HashMap();
         // 内容所使用编码
         hints.put(EncodeHintType.CHARACTER_SET, "utf-8");
+        hints.put(EncodeHintType.ERROR_CORRECTION, ErrorCorrectionLevel.H);//容错等级 L、M、Q、H 其中L为最低,H为最高
+        hints.put(EncodeHintType.MARGIN, 10);
 
         BitMatrix bitMatrix = new MultiFormatWriter().encode(text, BarcodeFormat.QR_CODE, width, height, hints);
         // 生成二维码
