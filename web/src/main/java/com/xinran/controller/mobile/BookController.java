@@ -43,7 +43,7 @@ public class BookController extends AbstractBookController {
 
     @RequestMapping("/book/detail/{id}")
     public @ResponseBody AjaxResult getBookById(@PathVariable(value = "id") Long id, HttpServletRequest request) {
-        BookDetail bookDetail = super.buildBookDetail(id);
+        BookDetail bookDetail = super.buildBookDetailById(id);
         return AjaxResultBuilder.buildSuccessfulResult(bookDetail);
     }
 
@@ -63,7 +63,7 @@ public class BookController extends AbstractBookController {
                 throw new BorrowOrReturnValidationException(SystemResultCode.InvalidOnOffStockId);
             } else {
 
-                BookDetail bookDetail = super.buildBookDetail(onOffStockRecord);
+                BookDetail bookDetail = super.buildBookDetailByOnOffStockRecord(onOffStockRecord);
                 return AjaxResultBuilder.buildSuccessfulResult(bookDetail);
             }
 

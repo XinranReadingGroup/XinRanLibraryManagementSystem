@@ -365,7 +365,7 @@ public class AbstractBookController {
         }
     }
 
-    private BookDetail buildBookDetailById(Long onOffStockId) {
+    protected BookDetail buildBookDetailById(Long onOffStockId) {
 
         OnOffStockRecord onOffStockRecord = onOffStockRecordService.findOnOffStockRecordById(onOffStockId);
 
@@ -373,7 +373,7 @@ public class AbstractBookController {
         return buildBookDetailByOnOffStockRecord(onOffStockRecord);
     }
 
-    private BookDetail buildBookDetailByOnOffStockRecord(OnOffStockRecord onOffStockRecord) {
+    protected BookDetail buildBookDetailByOnOffStockRecord(OnOffStockRecord onOffStockRecord) {
         Book book = bookService.findBookById(onOffStockRecord.getBookId());
 
         Long bookLocationId = onOffStockRecord.getLocation();

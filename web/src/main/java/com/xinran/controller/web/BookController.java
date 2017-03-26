@@ -41,7 +41,7 @@ public class BookController extends AbstractBookController {
 
     @RequestMapping("/book/detail/{id}")
     public ModelAndView getBookById(@PathVariable(value = "id") Long id, HttpServletRequest request) {
-        BookDetail bookDetail = super.buildBookDetail(id);
+        BookDetail bookDetail = super.buildBookDetailById(id);
         return new ModelAndView("bookDetail", "bookDetail", bookDetail);
     }
     
