@@ -417,7 +417,7 @@ public class AbstractBookController {
         if (null != user) {
             BeanUtils.copyProperties(user, basicUserVO);
         }
-        basicUserVO.setImgId("/img/avatar/user_avatar_origin_+"+user.getId()+".jpg");
+        basicUserVO.setImgId("/img/avatar/user_avatar_origin_"+user.getId()+".jpg");
         return basicUserVO;
     }
     
