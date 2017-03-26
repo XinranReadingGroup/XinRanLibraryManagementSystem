@@ -66,7 +66,7 @@
 // record.setBookType(bookType.getType());
 // record.setLocation(location);
 // record.setBookId(bookId);
-// record.setBorrowStatus(BorrowStatus.UNBORROWED.getStatus());
+// record.setBorrowStatus(BorrowStatus.RETURNED.getStatus());
 // record = onOffStockRecordService.onStock(record);
 //
 // try {
@@ -119,12 +119,12 @@
 //
 // BorrowReturnRecord borrowReturnRecord =
 // borrowReturnRecordService.findBorrowReturnRecordById(onOffStockRecord.getBorrowId());
-// borrowReturnRecord.setBorrowStatus(BorrowStatus.UNBORROWED.getStatus());
+// borrowReturnRecord.setBorrowStatus(BorrowStatus.RETURNED.getStatus());
 // borrowReturnRecord.setReturnDate(DateUtil.getCurrentDate());
 //
 // borrowReturnRecordService.updateBorrowReturnRecord(borrowReturnRecord);
 //
-// onOffStockRecord.setBorrowStatus(BorrowStatus.UNBORROWED.getStatus());
+// onOffStockRecord.setBorrowStatus(BorrowStatus.RETURNED.getStatus());
 // onOffStockRecord.setBorrowId(null);
 // onOffStockRecord.setBorrowUserId(null);
 // onOffStockRecordService.updateOnOffStockRecord(onOffStockRecord);

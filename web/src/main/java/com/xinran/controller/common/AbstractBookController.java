@@ -29,7 +29,6 @@ import com.xinran.event.util.EventListenerSupport;
 import com.xinran.exception.BorrowOrReturnValidationException;
 import com.xinran.exception.StockException;
 import com.xinran.util.DateUtil;
-import com.xinran.util.ThreadLocalUtil;
 import com.xinran.vo.AjaxResult;
 import com.xinran.vo.BasicUserVO;
 import com.xinran.vo.BookDetail;
@@ -45,19 +44,19 @@ public class AbstractBookController {
 //    protected this      this;
 
     @Autowired
-    protected BookService               bookService;
+    private BookService               bookService;
 
     @Autowired
     protected UserService               userService;
 
     @Autowired
-    protected BookLocationService       bookLocationService;
+    private BookLocationService       bookLocationService;
 
     @Autowired
     protected OnOffStockRecordService   onOffStockRecordService;
 
     @Autowired
-    protected BorrowReturnRecordService borrowReturnRecordService;
+    private BorrowReturnRecordService borrowReturnRecordService;
 
     @Autowired
     protected QRCodeService qrCodeService;
@@ -125,7 +124,7 @@ public class AbstractBookController {
                 throw new BorrowOrReturnValidationException(SystemResultCode.InvalidOnOffStockId);
             } else {
                 Integer borrowStatus = onOffStockRecord.getBorrowStatus();
-                if (BorrowStatus.UNBORROWED.getStatus() != borrowStatus) {
+                if (BorrowStatus.RETURNED.getStatus() != borrowStatus) {
                     throw new BorrowOrReturnValidationException(SystemResultCode.TheBookHasBeenBorrowed);
                 }
 
@@ -222,10 +221,10 @@ public class AbstractBookController {
             if (pageSize != null && pageSize > 0) {
                 page.setSize(pageSize);
             }
-            List<BorrowReturnRecord> records = borrowReturnRecordService.findBorrowedBooks(userId, page);
+            List<BorrowReturnRecord> records = borrowReturnRecordService.findOnlyBorrowingRecordsByOnOffStockId(userId, page);
             if (CollectionUtils.isNotEmpty(records)) {
                 for (BorrowReturnRecord borrowReturnRecord : records) {
-                    BookDetail bookDetail = this.buildBookDetail(borrowReturnRecord.getOnOffStockId());
+                    BookDetail bookDetail = this.buildBookDetailById(borrowReturnRecord.getOnOffStockId());
                     bookDetailList.add(bookDetail);
                 }
             }
@@ -247,10 +246,10 @@ public class AbstractBookController {
             if (pageSize != null && pageSize > 0) {
                 page.setSize(pageSize);
             }
-            List<BorrowReturnRecord> records = borrowReturnRecordService.findReturnedBooks(userId, page);
+            List<BorrowReturnRecord> records = borrowReturnRecordService.findOnlyReturnedRecordsByOnOffStockId(userId, page);
             if (CollectionUtils.isNotEmpty(records)) {
                 for (BorrowReturnRecord borrowReturnRecord : records) {
-                    BookDetail bookDetail = this.buildBookDetail(borrowReturnRecord.getOnOffStockId());
+                    BookDetail bookDetail = this.buildBookDetailById(borrowReturnRecord.getOnOffStockId());
                     bookDetailList.add(bookDetail);
                 }
             }
@@ -264,7 +263,7 @@ public class AbstractBookController {
         List<BookDetail> bookDetailList = new ArrayList<>();
         for (OnOffStockRecord record : records) {
             // TUNE 使用缓存以避免每次查询数据库。以ID查询书本信息在很多场景会使用。
-            BookDetail bookDetail = this.buildBookDetail(record.getId());
+            BookDetail bookDetail = this.buildBookDetailById(record.getId());
             bookDetailList.add(bookDetail);
         }
         return bookDetailList;
@@ -296,7 +295,7 @@ public class AbstractBookController {
         onOffStockRecord.setBookType(bookType.getType());
         onOffStockRecord.setLocation(location);
         onOffStockRecord.setBookId(bookId);
-        onOffStockRecord.setBorrowStatus(BorrowStatus.UNBORROWED.getStatus());
+        onOffStockRecord.setBorrowStatus(BorrowStatus.RETURNED.getStatus());
         onOffStockRecord.setQrCodeId(qrCode.getId());
         onOffStockRecord = onOffStockRecordService.onStock(onOffStockRecord);
 
@@ -351,12 +350,12 @@ public class AbstractBookController {
             }
 
             BorrowReturnRecord borrowReturnRecord = borrowReturnRecordService.findBorrowReturnRecordById(onOffStockRecord.getBorrowId());
-            borrowReturnRecord.setBorrowStatus(BorrowStatus.UNBORROWED.getStatus());
+            borrowReturnRecord.setBorrowStatus(BorrowStatus.RETURNED.getStatus());
             borrowReturnRecord.setReturnDate(DateUtil.getCurrentDate());
 
             borrowReturnRecordService.updateBorrowReturnRecord(borrowReturnRecord);
 
-            onOffStockRecord.setBorrowStatus(BorrowStatus.UNBORROWED.getStatus());
+            onOffStockRecord.setBorrowStatus(BorrowStatus.RETURNED.getStatus());
             onOffStockRecord.setBorrowId(null);
             onOffStockRecord.setBorrowUserId(null);
             onOffStockRecordService.updateOnOffStockRecord(onOffStockRecord);
@@ -366,18 +365,15 @@ public class AbstractBookController {
         }
     }
 
-    protected BookDetail buildBookDetail(Long onOffStockId) {
+    private BookDetail buildBookDetailById(Long onOffStockId) {
 
         OnOffStockRecord onOffStockRecord = onOffStockRecordService.findOnOffStockRecordById(onOffStockId);
-        
-        if(onOffStockRecord ==null){
-            return new BookDetail();
-        }
 
-        return buildBookDetail(onOffStockRecord);
+
+        return buildBookDetailByOnOffStockRecord(onOffStockRecord);
     }
 
-    protected BookDetail buildBookDetail(OnOffStockRecord onOffStockRecord) {
+    private BookDetail buildBookDetailByOnOffStockRecord(OnOffStockRecord onOffStockRecord) {
         Book book = bookService.findBookById(onOffStockRecord.getBookId());
 
         Long bookLocationId = onOffStockRecord.getLocation();
@@ -394,7 +390,7 @@ public class AbstractBookController {
         BasicUserVO basicUserVO = buildBasicUserVO(ownerUserId);
 
         Pagination pagination = new Pagination();
-        List<BorrowReturnRecord> borrowReturnRecordList = borrowReturnRecordService.findHistroicBorrowedBooks(onOffStockRecord.getId(),
+        List<BorrowReturnRecord> borrowReturnRecordList = borrowReturnRecordService.findAllBorrowedAndReturnedRecordsByOnOffStockId(onOffStockRecord.getId(),
                                                                                                               pagination);
         List<BasicUserVO> basicUserVOList = null;
         if (CollectionUtils.isNotEmpty(borrowReturnRecordList)) {
@@ -421,6 +417,7 @@ public class AbstractBookController {
         if (null != user) {
             BeanUtils.copyProperties(user, basicUserVO);
         }
+        basicUserVO.setImgId("/img/avatar/user_avatar_origin_+"+user.getId()+".jpg");
         return basicUserVO;
     }
     
@@ -449,7 +446,8 @@ public class AbstractBookController {
 		    List<BookDetail> bookDetailList = new ArrayList<BookDetail>();
 		    if (CollectionUtils.isNotEmpty(onOffStockRecordList)) {
 		        for (OnOffStockRecord onOffStockRecord : onOffStockRecordList) {
-		            bookDetailList.add(buildBookDetail(onOffStockRecord.getId()));
+                    BookDetail bookDetail = buildBookDetailByOnOffStockRecord(onOffStockRecord);
+                    bookDetailList.add(bookDetail);
 		        }
 		    }
 		return bookDetailList;

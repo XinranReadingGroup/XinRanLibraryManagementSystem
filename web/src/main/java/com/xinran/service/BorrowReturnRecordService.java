@@ -2,6 +2,7 @@ package com.xinran.service;
 
 import java.util.List;
 
+import com.xinran.constant.BorrowStatus;
 import com.xinran.pojo.BorrowReturnRecord;
 import com.xinran.pojo.Pagination;
 
@@ -16,10 +17,16 @@ public interface BorrowReturnRecordService {
     
     int updateBorrowReturnRecord(BorrowReturnRecord record);
 
-    List<BorrowReturnRecord> findBorrowedBooks(Long userId, Pagination page);
+    List<BorrowReturnRecord> findBorrowedBooksByUserId(Long userId, Pagination page);
 
-    List<BorrowReturnRecord> findReturnedBooks(Long userId, Pagination page);
+    List<BorrowReturnRecord> findReturnedBooksByUserId(Long userId, Pagination page);
 
-    List<BorrowReturnRecord> findHistroicBorrowedBooks(Long onOffStockId, Pagination page);
+
+
+    List<BorrowReturnRecord> findAllBorrowedAndReturnedRecordsByOnOffStockId(Long onOffStockId, Pagination page);
+
+    List<BorrowReturnRecord> findOnlyBorrowingRecordsByOnOffStockId(Long onOffStockId, Pagination page);
+
+    List<BorrowReturnRecord> findOnlyReturnedRecordsByOnOffStockId(Long onOffStockId, Pagination page);
 
 }

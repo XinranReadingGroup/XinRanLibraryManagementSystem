@@ -37,34 +37,42 @@ public class BorrowReturnRecordServiceImpl implements BorrowReturnRecordService 
      * @see com.xinran.service.BorrowReturnRecordService#findBorrowedBooks(java.lang.Long, com.xinran.pojo.Pagination)
      */
     @Override
-    public List<BorrowReturnRecord> findBorrowedBooks(Long userId, Pagination page) {
-        List<BorrowReturnRecord> borrowReturnRecordList = borrowReturnRecordMapper.findRecordsByBorrowUserId(userId,
+    public List<BorrowReturnRecord> findBorrowedBooksByUserId(Long userId, Pagination page) {
+        List<BorrowReturnRecord> borrowReturnRecordList = borrowReturnRecordMapper.findBorrowedOrReturnedRecordsByBorrowUserId(userId,
                                                                                                     BorrowStatus.BORROWED.getStatus(),
                                                                                                     page);
         return borrowReturnRecordList;
     }
 
-    /*
-     * (non-Javadoc)
-     * @see com.xinran.service.BorrowReturnRecordService#findReturnedBooks(java.lang.Long, com.xinran.pojo.Pagination)
-     */
+
+
     @Override
-    public List<BorrowReturnRecord> findReturnedBooks(Long userId, Pagination page) {
-        List<BorrowReturnRecord> borrowReturnRecordList = borrowReturnRecordMapper.findRecordsByBorrowUserId(userId,
-                                                                                                       BorrowStatus.UNBORROWED.getStatus(),
+    public List<BorrowReturnRecord> findReturnedBooksByUserId(Long userId, Pagination page) {
+        List<BorrowReturnRecord> borrowReturnRecordList = borrowReturnRecordMapper.findBorrowedOrReturnedRecordsByBorrowUserId(userId,
+                                                                                                       BorrowStatus.RETURNED.getStatus(),
                                                                                                        page);
         return borrowReturnRecordList;
     }
 
-    /*
-     * (non-Javadoc)
-     * @see com.xinran.service.BorrowReturnRecordService#findHistroicBorrowedBooks(java.lang.Long,
-     * com.xinran.pojo.Pagination)
-     */
     @Override
-    public List<BorrowReturnRecord> findHistroicBorrowedBooks(Long onOffStockId, Pagination page) {
-        List<BorrowReturnRecord> borrowReturnRecordList = borrowReturnRecordMapper.findRecordsByOnOffStockId(onOffStockId,
+    public List<BorrowReturnRecord> findAllBorrowedAndReturnedRecordsByOnOffStockId(Long onOffStockId, Pagination page) {
+        List<BorrowReturnRecord> borrowReturnRecordList = borrowReturnRecordMapper.findAllBorrowedAndReturnedRecordsByOnOffStockId(onOffStockId,
+                page);
+        return borrowReturnRecordList;
+    }
+
+
+    @Override
+    public List<BorrowReturnRecord> findOnlyBorrowingRecordsByOnOffStockId(Long onOffStockId, Pagination page) {
+        List<BorrowReturnRecord> borrowReturnRecordList = borrowReturnRecordMapper.findOnlyBorrowingRecordsByOnOffStockId(onOffStockId,
                                                                                                              page);
+        return borrowReturnRecordList;
+    }
+
+    @Override
+    public List<BorrowReturnRecord> findOnlyReturnedRecordsByOnOffStockId(Long onOffStockId, Pagination page) {
+        List<BorrowReturnRecord> borrowReturnRecordList = borrowReturnRecordMapper.findOnlyReturnedRecordsByOnOffStockId(onOffStockId,
+                page);
         return borrowReturnRecordList;
     }
 }

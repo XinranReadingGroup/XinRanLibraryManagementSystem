@@ -31,13 +31,22 @@ public interface BorrowReturnRecordMapper {
 
 
     @Select("SELECT * FROM borrow_return_record WHERE borrow_user_id = #{borrowUserId} and borrow_status = #{borrowStatus} order by id desc limit #{page.start},#{page.end}")
-    List<BorrowReturnRecord> findRecordsByBorrowUserId(@Param("borrowUserId") Long borrowUserId,
-                                                 @Param("borrowStatus") Integer borrowStatus,
-                                                 @Param("page") Pagination page);
+    List<BorrowReturnRecord> findBorrowedOrReturnedRecordsByBorrowUserId(@Param("borrowUserId") Long borrowUserId,
+                                                                         @Param("borrowStatus") Integer borrowStatus,
+                                                                         @Param("page") Pagination page);
 
 
     @Select("SELECT * FROM borrow_return_record WHERE  on_off_stock_id = #{onOffStockId} order by id desc limit #{page.start},#{page.end}")
-    List<BorrowReturnRecord> findRecordsByOnOffStockId(@Param("onOffStockId") Long onOffStockId,
-                                                  @Param("page") Pagination page);
+    List<BorrowReturnRecord> findAllBorrowedAndReturnedRecordsByOnOffStockId(@Param("onOffStockId") Long onOffStockId,
+                                                                             @Param("page") Pagination page);
+
+
+    @Select("SELECT * FROM borrow_return_record WHERE  on_off_stock_id = #{onOffStockId} and borrow_status = 1 order by id desc limit #{page.start},#{page.end}")
+    List<BorrowReturnRecord> findOnlyBorrowingRecordsByOnOffStockId(@Param("onOffStockId") Long onOffStockId,
+                                                                    @Param("page") Pagination page);
+
+    @Select("SELECT * FROM borrow_return_record WHERE  on_off_stock_id = #{onOffStockId} and borrow_status = 0 order by id desc limit #{page.start},#{page.end}")
+    List<BorrowReturnRecord> findOnlyReturnedRecordsByOnOffStockId(@Param("onOffStockId") Long onOffStockId,
+                                                       @Param("page") Pagination page);
 
 }
