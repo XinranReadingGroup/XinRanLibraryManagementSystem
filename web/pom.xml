@@ -13,7 +13,7 @@
 		<springVersion>4.1.1.RELEASE</springVersion>
 	</properties>
 	<build>
-		<finalName>xinranweb</finalName>
+		<finalName>root</finalName>
 		<plugins>
 			<plugin>
 				<artifactId>maven-compiler-plugin</artifactId>
