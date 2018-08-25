@@ -23,7 +23,7 @@ services:
    depends_on:
        - mysql
    volumes:
-       - ./web/target/root:/var/lib/jetty/webapps
+       - ./web/target:/var/lib/jetty/webapps
        - ./logs/jetty:/var/log/jetty
 
    environment:
