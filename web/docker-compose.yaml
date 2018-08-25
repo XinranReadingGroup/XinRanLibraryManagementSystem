@@ -1,0 +1,38 @@
+version: '1'
+services:
+  nginx:
+   container_name: nginx
+   image: nginx
+   restart: always
+   ports:
+   - 80:80
+   - 443:443
+   volumes:
+   - ./nginx:/etc/nginx
+   networks:
+   - front
+
+  jetty:
+   container_name: jetty
+   image: jetty
+   restart: always
+   networks:
+   - front
+   - back
+
+  mysql:
+   container_name: mysql
+   image: mysql/mysql-server
+   environment:
+    MYSQL_ROOT_PASSWORD: kidding
+   ports:
+   - "3306:3306"
+   volumes:
+   - /home/admin/data/mysql:/var/lib/mysql
+   restart: always
+   networks:
+   - back
+
+networks:
+  front:
+  back:
