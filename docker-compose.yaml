@@ -22,7 +22,7 @@ services:
    depends_on:
        - mysql
    volumes:
-       - ./web/target/xinranweb.war:/var/lib/jetty/webapps
+       - ./web/target/xinranweb:/var/lib/jetty/webapps
    environment:
        - "JAVA_OPTS=-Xmx1g -Xms1g -XX:+HeapDumpOnOutOfMemoryError -XX:+UseG1GC -XX:+UnlockExperimentalVMOptions -XX:+AggressiveOpts -XX:MaxGCPauseMillis=400 -XX:GCPauseIntervalMillis=8000 -XX:+PrintGCTimeStamps -XX:+PrintGCApplicationStoppedTime -XX:+PrintGCApplicationConcurrentTime -Xloggc:gc.log -XX:+UseGCLogFileRotation -XX:NumberOfGCLogFiles=4 -XX:GCLogFileSize=10240K"
    networks:
