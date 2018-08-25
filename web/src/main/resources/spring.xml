@@ -30,7 +30,7 @@
 	<mvc:resources location="/mock/" mapping="/mock/**" />
 
 	<context:property-placeholder
-		location="classpath:jdbc.properties,file:/home/admin/xinran/jdbc.properties"
+		location="classpath:jdbc.properties,file:/home/admin/XinRanLibraryManagementSystem/jdbc.properties"
 		ignore-resource-not-found="true" />
 	<!-- 可通过注解控制事务 -->
 	<context:annotation-config />
