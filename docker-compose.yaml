@@ -12,7 +12,7 @@ services:
    volumes:
       - ./nginx:/etc/nginx
       - ./nginx.conf:/etc/nginx/nginx.conf
-      - ./log/nginx:/var/log/nginx
+      - ./logs/nginx:/var/log/nginx
    networks:
    - front
 
@@ -24,6 +24,8 @@ services:
        - mysql
    volumes:
        - ./web/target/xinranweb:/var/lib/jetty/webapps
+       - ./logs/jetty:/var/log/jetty
+
    environment:
        - "JAVA_OPTIONS=-Xmx1g -Xms1g -XX:+HeapDumpOnOutOfMemoryError -XX:+UseG1GC -XX:+UnlockExperimentalVMOptions -XX:+AggressiveOpts -XX:MaxGCPauseMillis=400 -XX:GCPauseIntervalMillis=8000 -XX:+PrintGCTimeStamps -XX:+PrintGCApplicationStoppedTime -XX:+PrintGCApplicationConcurrentTime -Xloggc:gc.log -XX:+UseGCLogFileRotation -XX:NumberOfGCLogFiles=4 -XX:GCLogFileSize=10240K"
    networks:
