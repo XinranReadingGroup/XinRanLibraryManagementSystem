@@ -12,7 +12,7 @@ services:
    volumes:
       - ./nginx:/etc/nginx
       - ./nginx.conf:/etc/nginx/nginx.conf
-      - ./logs/nginx-access.log:/var/log/nginx/access.log
+      - ./log/nginx:/var/log/nginx
    networks:
    - front
 
