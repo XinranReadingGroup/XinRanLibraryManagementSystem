@@ -23,7 +23,7 @@ services:
    links:
        - mysql-server
    depends_on:
-       - mysql-server
+       - mysql
    volumes:
        - ./web/target:/var/lib/jetty/webapps
        - ./logs/jetty:/logs/jetty
