@@ -34,7 +34,7 @@ services:
   mysql:
    container_name: mysql
    image: mysql/mysql-server:5.7
-   command: ['mysqld', '--character-set-server=utf8mb4', '--collation-server=utf8_unicode_ci']
+   command: ['mysqld', '--character-set-server=utf8mb4', '--collation-server=utf8mb4_unicode_ci']
    environment:
     MYSQL_DATABASE: xinran
     MYSQL_ROOT_PASSWORD: kidding
