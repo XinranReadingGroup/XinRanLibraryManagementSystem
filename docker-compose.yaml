@@ -44,7 +44,6 @@ services:
    - "3306:3306"
    volumes:
    - /home/admin/data/mysql:/var/lib/mysql
-   - ./web/src/main/sql/schema.sql:/docker-entrypoint-initdb.d/schema.sql
 
    restart: always
    networks:
