@@ -42,7 +42,6 @@ services:
     MYSQL_ROOT_PASSWORD: kidding
     MYSQL_USER: kidding
     MYSQL_PASSWORD: kidding
-    MYSQL_ROOT_HOST: '%'
 
    ports:
    - "3306:3306"
