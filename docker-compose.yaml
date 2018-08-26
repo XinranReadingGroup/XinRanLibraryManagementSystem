@@ -33,7 +33,7 @@ services:
 
   mysql:
    container_name: mysql
-   image: mysql:8.0.12-1.1.7
+   image: mysql/mysql-server:8.0.12-1.1.7
    command: ['mysqld', '--character-set-server=utf8mb4', '--collation-server=utf8mb4_unicode_ci']
    environment:
     MYSQL_DATABASE: xinran
@@ -49,6 +49,7 @@ services:
    restart: always
    networks:
    - back
+   - front
 
 networks:
   front:
