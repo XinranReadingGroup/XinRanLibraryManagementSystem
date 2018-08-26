@@ -21,9 +21,9 @@ services:
    image: jetty:9.4.11
    restart: always
    links:
-       - mysql
+       - mysql-server
    depends_on:
-       - mysql
+       - mysql-server
    volumes:
        - ./web/target:/var/lib/jetty/webapps
        - ./logs/jetty:/logs/jetty
