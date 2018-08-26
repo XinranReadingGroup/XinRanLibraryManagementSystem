@@ -17,7 +17,7 @@ services:
    - front
 
   jetty:
-   container_name: jetty
+   container_name: jetty-server
    image: jetty:9.4.11
    restart: always
    links:
@@ -34,7 +34,7 @@ services:
    - back
 
   mysql:
-   container_name: mysql
+   container_name: mysql-server
    image: mysql/mysql-server:8.0.12-1.1.7
    command: ['mysqld', '--character-set-server=utf8mb4', '--collation-server=utf8mb4_unicode_ci']
    environment:
