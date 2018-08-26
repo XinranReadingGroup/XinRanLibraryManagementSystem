@@ -33,7 +33,7 @@ services:
 
   mysql:
    container_name: mysql
-   image: mysql/mysql-server
+   image: mysql/mysql-server:8.0.12-1.1.7
    command: ['mysqld', '--character-set-server=utf8mb4', '--collation-server=utf8mb4_unicode_ci']
    environment:
     MYSQL_DATABASE: xinran
@@ -44,6 +44,7 @@ services:
    - "3306:3306"
    volumes:
    - /home/admin/data/mysql:/var/lib/mysql
+   - ./web/src/main/sql/schema.sql:/docker-entrypoint-initdb.d/schema.sql
 
    restart: always
    networks:
