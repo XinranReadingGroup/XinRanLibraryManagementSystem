@@ -1,31 +1,30 @@
 version: '3.3'
 services:
-  nginx:
-   container_name: nginx
-   image: nginx
+  lb:
+   container_name: nginx-server
+   image: nginx:1.11.6-alpine
    restart: always
-   depends_on:
-      - jetty
+
    ports:
       - 80:80
       - 443:443
    volumes:
-      - ./nginx:/etc/nginx
       - ./nginx.conf:/etc/nginx/nginx.conf
       - ./logs/nginx:/var/log/nginx
    networks:
    - front
+   - back
 
-  jetty:
+  app:
    container_name: jetty-server
    image: jetty:9.4.11
    restart: always
    links:
-       - mysql
+       - db
    depends_on:
-       - mysql
+       - db
    volumes:
-       - ./web/target:/var/lib/jetty/webapps
+       - ./web/target/root:/var/lib/jetty/webapps/root
        - ./logs/jetty:/logs/jetty
    environment:
        - "JAVA_OPTIONS=-Xmx1g -Xms1g -Djetty.logs=/logs/jetty -XX:+HeapDumpOnOutOfMemoryError -XX:+UseG1GC -XX:+UnlockExperimentalVMOptions -XX:+AggressiveOpts -XX:MaxGCPauseMillis=400 -XX:GCPauseIntervalMillis=8000 -XX:+PrintGCTimeStamps -XX:+PrintGCApplicationStoppedTime -XX:+PrintGCApplicationConcurrentTime -Xloggc:gc.log -XX:+UseGCLogFileRotation -XX:NumberOfGCLogFiles=4 -XX:GCLogFileSize=10240K"
@@ -33,7 +32,7 @@ services:
    - front
    - back
 
-  mysql:
+  db:
    container_name: mysql-server
    image: mysql/mysql-server:5.7
    command: ['mysqld', '--character-set-server=utf8mb4', '--collation-server=utf8mb4_unicode_ci']
